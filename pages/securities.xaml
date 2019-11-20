@@ -12,31 +12,33 @@
         <Button Content="Connect" HorizontalAlignment="Left" Margin="703,78,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="Insert" HorizontalAlignment="Left" Margin="703,127,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
         <Label Content="partID" HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top"/>
-        <Label Content="type" HorizontalAlignment="Left" Margin="27,159,0,0" VerticalAlignment="Top"/>
-        <Label Content="code" HorizontalAlignment="Left" Margin="27,211,0,0" VerticalAlignment="Top"/>
-        <Label Content="утас" HorizontalAlignment="Left" Margin="27,260,0,0" VerticalAlignment="Top"/>
-        <Label Content="Факс" HorizontalAlignment="Left" Margin="27,300,0,0" VerticalAlignment="Top"/>
-        <Label Content="Имэйл" HorizontalAlignment="Left" Margin="345,222,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="pphone" HorizontalAlignment="Left" Height="23" Margin="155,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="PreviewTextInput"/>
-        <TextBox x:Name="pfax" HorizontalAlignment="Left" Height="23" Margin="155,301,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="473,226,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="pmail" HorizontalAlignment="Left" Height="23" Margin="473,227,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Label Content="contact" HorizontalAlignment="Left" Margin="345,71,0,0" VerticalAlignment="Top"/>
-        <Label Content="төлөв" HorizontalAlignment="Left" Margin="345,114,0,0" VerticalAlignment="Top"/>
-        <Label Content="modified" HorizontalAlignment="Left" Margin="345,166,0,0" VerticalAlignment="Top"/>
-        <Label Content="webid" HorizontalAlignment="Left" Margin="345,257,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="iAct" HorizontalAlignment="Left" Height="23" Margin="473,72,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="pwebid" HorizontalAlignment="Left" Height="23" Margin="473,266,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Label Content="csid" HorizontalAlignment="Left" Margin="352,307,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="pcsid" HorizontalAlignment="Left" Height="23" Margin="473,311,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="pname" HorizontalAlignment="Left" Height="23" Margin="155,117,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="pcode" HorizontalAlignment="Left" Height="23" Margin="155,76,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Нэр" HorizontalAlignment="Left" Margin="34,114,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="pcountry" HorizontalAlignment="Left" Height="23" Margin="155,159,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="paddress" HorizontalAlignment="Left" Height="23" Margin="155,208,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="pcontact" HorizontalAlignment="Left" Height="23" Margin="473,72,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="pstate" HorizontalAlignment="Left" Height="23" Margin="473,114,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="pmodify" HorizontalAlignment="Left" Height="23" Margin="473,168,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label Content="type" HorizontalAlignment="Left" Margin="34,114,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.497,0.786"/>
+        <Label Content="code" HorizontalAlignment="Left" Margin="34,159,0,0" VerticalAlignment="Top"/>
+        <Label Content="refno" HorizontalAlignment="Left" Margin="33,254,0,0" VerticalAlignment="Top"/>
+        <Label Content="regno" HorizontalAlignment="Left" Margin="27,301,0,0" VerticalAlignment="Top"/>
+        <Label Content="Имэйл" HorizontalAlignment="Left" Margin="345,194,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="refNo" HorizontalAlignment="Left" Height="23" Margin="155,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="PreviewTextInput"/>
+        <TextBox x:Name="regNo" HorizontalAlignment="Left" Height="23" Margin="155,302,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="473,198,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="smail" HorizontalAlignment="Left" Height="23" Margin="473,199,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label Content="totalQty" HorizontalAlignment="Left" Margin="345,71,0,0" VerticalAlignment="Top"/>
+        <Label Content="firstPrice" HorizontalAlignment="Left" Margin="345,114,0,0" VerticalAlignment="Top"/>
+        <Label Content="intRate" HorizontalAlignment="Left" Margin="345,155,0,0" VerticalAlignment="Top"/>
+        <Label Content="state" HorizontalAlignment="Left" Margin="345,229,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="totQuant" HorizontalAlignment="Left" Height="23" Margin="473,72,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="state" HorizontalAlignment="Left" Height="23" Margin="473,238,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label Content="sdate" HorizontalAlignment="Left" Margin="352,279,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="stype" HorizontalAlignment="Left" Height="23" Margin="155,117,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="partId" HorizontalAlignment="Left" Height="23" Margin="155,76,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Нэр" HorizontalAlignment="Left" Margin="34,204,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,0.435"/>
+        <TextBox x:Name="scode" HorizontalAlignment="Left" Height="23" Margin="155,159,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="sname" HorizontalAlignment="Left" Height="23" Margin="155,208,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="totalquant" HorizontalAlignment="Left" Height="23" Margin="473,72,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="fprice" HorizontalAlignment="Left" Height="23" Margin="473,114,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="srate" HorizontalAlignment="Left" Height="23" Margin="473,157,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label Content="edate" HorizontalAlignment="Left" Margin="352,316,0,0" VerticalAlignment="Top"/>
+        <DatePicker Name="sdate" HorizontalAlignment="Left" Margin="473,279,0,0" VerticalAlignment="Top" Width="120"/>
+        <DatePicker Name="edate" HorizontalAlignment="Left" Margin="473,316,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Page>

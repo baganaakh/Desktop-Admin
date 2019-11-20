@@ -42,5 +42,9 @@ namespace pages
         {
             Main.Content = new assets();
         }
+        private void btnClickP5(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new securities();
+        }
     }
 }
