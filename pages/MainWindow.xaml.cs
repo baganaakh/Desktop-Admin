@@ -52,5 +52,9 @@ namespace pages
         {
             Main.Content = new contracts();
         }
+        private void btnClickP7(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new trans();
+        }
     }
 }

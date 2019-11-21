@@ -14,7 +14,7 @@
             <Button Content="assets" Margin="10,0,0,0" Click="btnClickP4"/>
             <Button Content="securities" Margin="10,0,0,0" Click="btnClickP5"/>
             <Button Content="contracts" Margin="10,0,0,0" Click="btnClickP6"/>
-            <Button Content="Page 2" Margin="10,0,0,0"/>
+            <Button Content="trans" Margin="10,0,0,0" Click="btnClickP7"/>
         </StackPanel>
         <Frame x:Name="Main" Margin="28,25,0,0" NavigationUIVisibility="Hidden" Height="354" VerticalAlignment="Top" Content="" />
 

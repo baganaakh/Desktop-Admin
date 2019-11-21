@@ -17,11 +17,11 @@ using System.Text.RegularExpressions;
 namespace pages
 {
     /// <summary>
-    /// Interaction logic for contracts.xaml
+    /// Interaction logic for trans.xaml
     /// </summary>
-    public partial class contracts : Page
+    public partial class trans : Page
     {
-        public contracts()
+        public trans()
         {
             InitializeComponent();
         }
@@ -59,8 +59,8 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.contracts (securityId, type, code, name, lot, tick, sdate, edate, groupId, state, modified, mmorderLimit, orderLimit, refpriceParam) values" +
-                " ('" + secId+ "','" + type + "','" + code + "','" + name + "', '" + lot+ "', '" + tick+ "', '" + csdates+ "', '" + cedates+ "', '" + groupID +
-                "','" + stat+ "', getdate(),'" + mmorderLimit+ "','" + orderlimit+ "','" + refpricePar+ "')";
+                " ('" + secId + "','" + type + "','" + code + "','" + name + "', '" + lot + "', '" + tick + "', '" + csdates + "', '" + cedates + "', '" + groupID +
+                "','" + stat + "', getdate(),'" + mmorderLimit + "','" + orderlimit + "','" + refpricePar + "')";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
