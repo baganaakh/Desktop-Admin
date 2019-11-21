@@ -17,11 +17,11 @@ using System.Text.RegularExpressions;
 namespace pages
 {
     /// <summary>
-    /// Interaction logic for margins.xaml
+    /// Interaction logic for MarketMakers.xaml
     /// </summary>
-    public partial class margins : Page
+    public partial class MarketMakers : Page
     {
-        public margins()
+        public MarketMakers()
         {
             InitializeComponent();
         }
@@ -37,21 +37,25 @@ namespace pages
         }
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            string buy = mbuy.Text;
-            string sell = msell.Text;
-            string buyType = mbuyType.Text;
-            string sellType = mselltype.Text;
-            string mmbuy = mbuy_Copy.Text;
-            string mmSell = mmsell.Text;
-            
+            string contId = markcontact.Text;
+            string memId = markmember.Text;
+            string accId = markaccount.Text;
+            string sdate = sdat.Text;
+            string edate = edat.Text;
+            string ticks = markticks.Text;
+            string desc= markdesc.Text;
+            string orderL = markorderl.Text;
+            string state = markstat.Text;
+
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.margin(buy, sell, buyType, sellType, mbuy, msell, modified) values" +
-                " ('" + buy+ "','" + sell+ "','" + buyType+ "','" + sellType+ "', '" + mmbuy+ "', '" + mmSell+ "', getdate())";
+            cmd.CommandText = "insert into dbo.marketMakers (contactid, memberid, accountid, startdate, enddate, ticks, description, orderlimit, state, modified) values" +
+                " ('" + contId+ "','" + memId+ "','" + accId+ "','" + sdate+ "', '" + edate+ "', '" + ticks+ "', '" + desc+ "', '" + orderL+ "', '" + state +
+                "', getdate())";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();

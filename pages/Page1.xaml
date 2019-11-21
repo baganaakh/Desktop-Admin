@@ -15,13 +15,13 @@
         <Label Content="tdays" HorizontalAlignment="Left" Margin="126,194,0,0" VerticalAlignment="Top"/>
         <Label Content="тайлбар" HorizontalAlignment="Left" Margin="126,246,0,0" VerticalAlignment="Top"/>
         <Label Content="Төлөв" HorizontalAlignment="Left" Margin="126,301,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="bname" HorizontalAlignment="Left" Height="23" Margin="201,116,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="btype" HorizontalAlignment="Left" Height="23" Margin="201,151,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="201,197,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="tdayss" HorizontalAlignment="Left" Height="23" Margin="201,198,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="desc" HorizontalAlignment="Left" Height="23" Margin="201,249,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="201,311,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="state" HorizontalAlignment="Left" Height="23" Margin="201,312,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="bname" HorizontalAlignment="Left" Height="23" Margin="201,116,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="btype" HorizontalAlignment="Left" Height="23" Margin="201,151,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="201,197,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="tdayss" HorizontalAlignment="Left" Height="23" Margin="201,198,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="desc" HorizontalAlignment="Left" Height="23" Margin="201,249,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="201,311,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="state" HorizontalAlignment="Left" Height="23" Margin="201,312,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label Name="checkDAta" Content="Type" HorizontalAlignment="Left" Margin="426,246,0,0" VerticalAlignment="Top"/>
         <Button Content="Insert" HorizontalAlignment="Left" Margin="400,157,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
 

@@ -22,11 +22,11 @@
         <Label Content="groupid" HorizontalAlignment="Left" Margin="340,154,0,0" VerticalAlignment="Top"/>
         <Label Content="state" HorizontalAlignment="Left" Margin="340,195,0,0" VerticalAlignment="Top"/>
         <Label Content="mmorderlimit" HorizontalAlignment="Left" Margin="340,239,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="ccode" HorizontalAlignment="Left" Height="23" Margin="150,157,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="ccode" HorizontalAlignment="Left" Height="23" Margin="150,157,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="ctype" HorizontalAlignment="Left" Height="23" Margin="150,112,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
         <Label Content="lot" HorizontalAlignment="Left" Margin="29,244,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,0.435"/>
-        <TextBox x:Name="cname" HorizontalAlignment="Left" Height="23" Margin="150,199,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="clot" HorizontalAlignment="Left" Height="23" Margin="150,248,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="cname" HorizontalAlignment="Left" Height="23" Margin="150,199,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="clot" HorizontalAlignment="Left" Height="23" Margin="150,248,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox  x:Name="orderLim" HorizontalAlignment="Left" Height="23" Margin="468,287,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="cgroupid" HorizontalAlignment="Left" Height="23" Margin="468,154,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
         <TextBox  x:Name="cstate" HorizontalAlignment="Left" Height="23" Margin="468,197,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>

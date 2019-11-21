@@ -58,6 +58,9 @@
     <Compile Include="margins.xaml.cs">
       <DependentUpon>margins.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MarketMakers.xaml.cs">
+      <DependentUpon>MarketMakers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="trans.xaml.cs">
       <DependentUpon>trans.xaml</DependentUpon>
     </Compile>
@@ -88,6 +91,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="margins.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MarketMakers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

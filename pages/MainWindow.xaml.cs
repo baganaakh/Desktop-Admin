@@ -60,5 +60,9 @@ namespace pages
         {
             Main.Content = new margins();
         }
+        private void btnClickP9(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new MarketMakers();
+        }
     }
 }

@@ -22,14 +22,14 @@
         <Label Content="firstPrice" HorizontalAlignment="Left" Margin="345,114,0,0" VerticalAlignment="Top"/>
         <Label Content="intRate" HorizontalAlignment="Left" Margin="345,155,0,0" VerticalAlignment="Top"/>
         <Label Content="state" HorizontalAlignment="Left" Margin="345,200,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="totQuant" HorizontalAlignment="Left" Height="23" Margin="473,72,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="state" HorizontalAlignment="Left" Height="23" Margin="473,204,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="totQuant" HorizontalAlignment="Left" Height="23" Margin="473,72,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="state" HorizontalAlignment="Left" Height="23" Margin="473,204,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label Content="sdate" HorizontalAlignment="Left" Margin="345,246,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="stype" HorizontalAlignment="Left" Height="23" Margin="155,117,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="stype" HorizontalAlignment="Left" Height="23" Margin="155,117,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="partId" HorizontalAlignment="Left" Height="23" Margin="155,76,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
         <Label Content="Нэр" HorizontalAlignment="Left" Margin="34,204,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,0.435"/>
-        <TextBox x:Name="scode" HorizontalAlignment="Left" Height="23" Margin="155,159,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="sname" HorizontalAlignment="Left" Height="23" Margin="155,208,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="scode" HorizontalAlignment="Left" Height="23" Margin="155,159,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="sname" HorizontalAlignment="Left" Height="23" Margin="155,208,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="totalquant" HorizontalAlignment="Left" Height="23" Margin="473,72,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="fprice" HorizontalAlignment="Left" Height="23" Margin="473,114,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="srate" HorizontalAlignment="Left" Height="23" Margin="473,157,0,0" TextWrapping="Wrap" Text="1234

@@ -18,25 +18,25 @@
         <Label Content="Факс" HorizontalAlignment="Left" Margin="27,300,0,0" VerticalAlignment="Top"/>
         <Label Content="Имэйл" HorizontalAlignment="Left" Margin="345,222,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="pphone" HorizontalAlignment="Left" Height="23" Margin="155,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="PreviewTextInput"/>
-        <TextBox x:Name="pfax" HorizontalAlignment="Left" Height="23" Margin="155,301,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="473,226,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="pmail" HorizontalAlignment="Left" Height="23" Margin="473,227,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="pfax" HorizontalAlignment="Left" Height="23" Margin="155,301,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="473,226,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="pmail" HorizontalAlignment="Left" Height="23" Margin="473,227,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label Content="contact" HorizontalAlignment="Left" Margin="345,71,0,0" VerticalAlignment="Top"/>
         <Label Content="төлөв" HorizontalAlignment="Left" Margin="345,114,0,0" VerticalAlignment="Top"/>
         <Label Content="modified" HorizontalAlignment="Left" Margin="345,166,0,0" VerticalAlignment="Top"/>
         <Label Content="webid" HorizontalAlignment="Left" Margin="345,257,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="iAct" HorizontalAlignment="Left" Height="23" Margin="473,72,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="pwebid" HorizontalAlignment="Left" Height="23" Margin="473,266,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="iAct" HorizontalAlignment="Left" Height="23" Margin="473,72,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="pwebid" HorizontalAlignment="Left" Height="23" Margin="473,266,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label Content="csid" HorizontalAlignment="Left" Margin="352,307,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="pcsid" HorizontalAlignment="Left" Height="23" Margin="473,311,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="pname" HorizontalAlignment="Left" Height="23" Margin="155,117,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="pcode" HorizontalAlignment="Left" Height="23" Margin="155,76,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="pcsid" HorizontalAlignment="Left" Height="23" Margin="473,311,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="pname" HorizontalAlignment="Left" Height="23" Margin="155,117,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="pcode" HorizontalAlignment="Left" Height="23" Margin="155,76,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label Content="Нэр" HorizontalAlignment="Left" Margin="34,114,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="pcountry" HorizontalAlignment="Left" Height="23" Margin="155,159,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="paddress" HorizontalAlignment="Left" Height="23" Margin="155,208,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="pcontact" HorizontalAlignment="Left" Height="23" Margin="473,72,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="pstate" HorizontalAlignment="Left" Height="23" Margin="473,114,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="pmodify" HorizontalAlignment="Left" Height="23" Margin="473,168,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="pcountry" HorizontalAlignment="Left" Height="23" Margin="155,159,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="paddress" HorizontalAlignment="Left" Height="23" Margin="155,208,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="pcontact" HorizontalAlignment="Left" Height="23" Margin="473,72,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="pstate" HorizontalAlignment="Left" Height="23" Margin="473,114,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="pmodify" HorizontalAlignment="Left" Height="23" Margin="473,168,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBlock x:Name="checkDAta" HorizontalAlignment="Left" Margin="22,372,0,24" TextWrapping="Wrap" Width="713"><Run Text="TextBlock"/></TextBlock>
 
     </Grid>

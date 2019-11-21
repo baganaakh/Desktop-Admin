@@ -15,15 +15,15 @@
         <Label Content="тайлбар" HorizontalAlignment="Left" Margin="28,203,0,0" VerticalAlignment="Top"/>
         <Label Content="дуусах хугацаа" HorizontalAlignment="Left" Margin="346,114,0,0" VerticalAlignment="Top"/>
         <Label Content="төлөв" HorizontalAlignment="Left" Margin="346,154,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="astate" HorizontalAlignment="Left" Height="23" Margin="474,155,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="astate" HorizontalAlignment="Left" Height="23" Margin="474,155,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label Content="ratio" HorizontalAlignment="Left" Margin="346,63,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="iAct" HorizontalAlignment="Left" Height="23" Margin="474,64,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="aname" HorizontalAlignment="Left" Height="23" Margin="156,109,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="acode" HorizontalAlignment="Left" Height="23" Margin="156,68,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="iAct" HorizontalAlignment="Left" Height="23" Margin="474,64,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="aname" HorizontalAlignment="Left" Height="23" Margin="156,109,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="acode" HorizontalAlignment="Left" Height="23" Margin="156,68,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label Content="нэр" HorizontalAlignment="Left" Margin="35,106,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="aprice" HorizontalAlignment="Left" Height="23" Margin="156,154,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="artio" HorizontalAlignment="Left" Height="23" Margin="474,64,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="anote" HorizontalAlignment="Left" Height="23" Margin="156,207,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="aprice" HorizontalAlignment="Left" Height="23" Margin="156,154,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="artio" HorizontalAlignment="Left" Height="23" Margin="474,64,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="anote" HorizontalAlignment="Left" Height="23" Margin="156,207,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <DatePicker Name="aexpire" HorizontalAlignment="Left" Margin="474,114,0,0" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Page>
