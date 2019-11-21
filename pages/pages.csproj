@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="margins.xaml.cs">
+      <DependentUpon>margins.xaml</DependentUpon>
+    </Compile>
     <Compile Include="trans.xaml.cs">
       <DependentUpon>trans.xaml</DependentUpon>
     </Compile>
@@ -84,6 +87,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="margins.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Page1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

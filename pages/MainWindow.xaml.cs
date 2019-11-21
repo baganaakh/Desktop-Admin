@@ -56,5 +56,9 @@ namespace pages
         {
             Main.Content = new trans();
         }
+        private void btnClickP8(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new margins();
+        }
     }
 }
