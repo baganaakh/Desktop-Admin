@@ -64,5 +64,33 @@ namespace pages
         {
             Main.Content = new MarketMakers();
         }
+        private void btnClickP10(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new ClearingAccount();
+        }
+        private void btnClickP11(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new TickSizeTable();
+        }
+        private void btnClickP12(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new members();
+        }
+        private void btnClickP13(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new dealerAccount();
+        }
+        private void btnClickP14(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new RefPrice();
+        }
+        private void btnClickP15(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new Spread();
+        }
+        private void btnClickP16(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new showData();
+        }
     }
 }

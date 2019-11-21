@@ -55,11 +55,32 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ClearingAccount.xaml.cs">
+      <DependentUpon>ClearingAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="dealerAccount.xaml.cs">
+      <DependentUpon>dealerAccount.xaml</DependentUpon>
+    </Compile>
     <Compile Include="margins.xaml.cs">
       <DependentUpon>margins.xaml</DependentUpon>
     </Compile>
     <Compile Include="MarketMakers.xaml.cs">
       <DependentUpon>MarketMakers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="members.xaml.cs">
+      <DependentUpon>members.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RefPrice.xaml.cs">
+      <DependentUpon>RefPrice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="showData.xaml.cs">
+      <DependentUpon>showData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Spread.xaml.cs">
+      <DependentUpon>Spread.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TickSizeTable.xaml.cs">
+      <DependentUpon>TickSizeTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="trans.xaml.cs">
       <DependentUpon>trans.xaml</DependentUpon>
@@ -68,7 +89,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ClearingAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="contracts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="dealerAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -98,6 +127,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="members.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Page1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -106,11 +139,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="RefPrice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="securities.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="session.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="showData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Spread.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TickSizeTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
