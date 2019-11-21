@@ -1,4 +1,4 @@
-﻿<Page x:Class="pages.securities"
+﻿<Page x:Class="pages.contracts"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,51 +6,37 @@
       xmlns:local="clr-namespace:pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="securities">
+      Title="contracts">
 
     <Grid>
         <Button Content="Connect" HorizontalAlignment="Left" Margin="703,78,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="Insert" HorizontalAlignment="Left" Margin="703,127,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
-        <Label Content="partID" HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top"/>
-        <Label Content="type" HorizontalAlignment="Left" Margin="34,114,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.497,0.786"/>
-        <Label Content="code" HorizontalAlignment="Left" Margin="34,159,0,0" VerticalAlignment="Top"/>
-        <Label Content="refno" HorizontalAlignment="Left" Margin="33,254,0,0" VerticalAlignment="Top"/>
-        <Label Content="regno" HorizontalAlignment="Left" Margin="27,301,0,0" VerticalAlignment="Top"/>
+        <Label Content="securityId" HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top"/>
+        <Label Content="code" HorizontalAlignment="Left" Margin="34,114,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.497,0.786"/>
+        <Label Content="name" HorizontalAlignment="Left" Margin="34,159,0,0" VerticalAlignment="Top"/>
+        <Label Content="tick" HorizontalAlignment="Left" Margin="33,254,0,0" VerticalAlignment="Top"/>
+        <Label Content="sdate" HorizontalAlignment="Left" Margin="27,301,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="refNo"  HorizontalAlignment="Left" Height="23" Margin="155,258,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120" PreviewTextInput="PreviewTextInput"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="regNo" HorizontalAlignment="Left" Height="23" Margin="155,302,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
-        <Label Content="totalQty" HorizontalAlignment="Left" Margin="345,71,0,0" VerticalAlignment="Top"/>
-        <Label Content="firstPrice" HorizontalAlignment="Left" Margin="345,114,0,0" VerticalAlignment="Top"/>
-        <Label Content="intRate" HorizontalAlignment="Left" Margin="345,155,0,0" VerticalAlignment="Top"/>
-        <Label Content="state" HorizontalAlignment="Left" Margin="345,200,0,0" VerticalAlignment="Top"/>
+        <Label Content="edate" HorizontalAlignment="Left" Margin="345,71,0,0" VerticalAlignment="Top"/>
+        <Label Content="groupid" HorizontalAlignment="Left" Margin="345,114,0,0" VerticalAlignment="Top"/>
+        <Label Content="state" HorizontalAlignment="Left" Margin="345,155,0,0" VerticalAlignment="Top"/>
+        <Label Content="modified" HorizontalAlignment="Left" Margin="345,200,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="totQuant" HorizontalAlignment="Left" Height="23" Margin="473,72,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="state" HorizontalAlignment="Left" Height="23" Margin="473,204,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Label Content="sdate" HorizontalAlignment="Left" Margin="345,246,0,0" VerticalAlignment="Top"/>
+        <Label Content="mmorderlimit" HorizontalAlignment="Left" Margin="345,246,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="stype" HorizontalAlignment="Left" Height="23" Margin="155,117,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="partId" HorizontalAlignment="Left" Height="23" Margin="155,76,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Нэр" HorizontalAlignment="Left" Margin="34,204,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,0.435"/>
+        <Label Content="lot" HorizontalAlignment="Left" Margin="34,204,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,0.435"/>
         <TextBox x:Name="scode" HorizontalAlignment="Left" Height="23" Margin="155,159,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="sname" HorizontalAlignment="Left" Height="23" Margin="155,208,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="totalquant" HorizontalAlignment="Left" Height="23" Margin="473,72,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="fprice" HorizontalAlignment="Left" Height="23" Margin="473,114,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="srate" HorizontalAlignment="Left" Height="23" Margin="473,157,0,0" TextWrapping="Wrap" Text="1234
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 `" VerticalAlignment="Top" Width="120"/>
-        <Label Content="edate" HorizontalAlignment="Left" Margin="345,285,0,0" VerticalAlignment="Top"/>
-        <DatePicker Name="sdate" HorizontalAlignment="Left" Margin="473,248,0,0" VerticalAlignment="Top" Width="120"/>
-        <DatePicker Name="edate" HorizontalAlignment="Left" Margin="473,285,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="groupid" HorizontalAlignment="Left" Margin="345,321,0,0" VerticalAlignment="Top"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="srate" HorizontalAlignment="Left" Height="23" Margin="473,157,0,0" TextWrapping="Wrap" Text="1234                                                                                                                                                                                                                                                            `" VerticalAlignment="Top" Width="120"/>
+        <Label Content="orderimit" HorizontalAlignment="Left" Margin="345,285,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="sdate" HorizontalAlignment="Left" Margin="473,248,0,0" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="edate" HorizontalAlignment="Left" Margin="473,285,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="refpriceparam" HorizontalAlignment="Left" Margin="345,321,0,0" VerticalAlignment="Top"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="groupid" HorizontalAlignment="Left" Height="23" Margin="473,325,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
 
     </Grid>

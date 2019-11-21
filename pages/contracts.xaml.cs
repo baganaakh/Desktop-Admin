@@ -17,11 +17,11 @@ using System.Text.RegularExpressions;
 namespace pages
 {
     /// <summary>
-    /// Interaction logic for securities.xaml
+    /// Interaction logic for contracts.xaml
     /// </summary>
-    public partial class securities : Page
+    public partial class contracts : Page
     {
-        public securities()
+        public contracts()
         {
             InitializeComponent();
         }
@@ -40,12 +40,12 @@ namespace pages
             string partid = partId.Text;
             string type = stype.Text;
             string code = scode.Text;
-            string name= sname.Text;
+            string name = sname.Text;
             string refno = refNo.Text;
             string regno = regNo.Text;
             string total = totalquant.Text;
-            string fPirce= fprice.Text;
-            string intRate= srate.Text;
+            string fPirce = fprice.Text;
+            string intRate = srate.Text;
             string stat = state.Text;
             string starTime = sdate.SelectedDate.Value.ToShortDateString();
             string endTime = edate.SelectedDate.Value.ToShortDateString();
@@ -59,8 +59,8 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.securities (partid, type, code, name, refno, regno, totalQty, firstPrice, intRate, sdate, edate, groupid, state, modified) values" +
-                " ('" + partid + "','" + type + "','" + code + "','" + name + "', '" + refno + "', '" + regno + "', '" + total + "', '" + fPirce+ "', '" + intRate+
-                "','"+ starTime + "','" + endTime + "','" + groupId +"','" + stat +"', getdate())";
+                " ('" + partid + "','" + type + "','" + code + "','" + name + "', '" + refno + "', '" + regno + "', '" + total + "', '" + fPirce + "', '" + intRate +
+                "','" + starTime + "','" + endTime + "','" + groupId + "','" + stat + "', getdate())";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();

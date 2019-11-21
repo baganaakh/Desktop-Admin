@@ -24,8 +24,10 @@ namespace pages
         public MainWindow()
         {
             InitializeComponent();
+            Main.Content = new Page1();
+
         }
-        
+
         private void btnClickP1(object sender, RoutedEventArgs e)
         {
             Main.Content = new Page1();
@@ -45,6 +47,10 @@ namespace pages
         private void btnClickP5(object sender, RoutedEventArgs e)
         {
             Main.Content = new securities();
+        }
+        private void btnClickP6(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new contracts();
         }
     }
 }
