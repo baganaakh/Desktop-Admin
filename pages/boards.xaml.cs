@@ -27,14 +27,14 @@ namespace pages
             FillDataGrid();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-
+        string id;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection cnn;
             cnn = new SqlConnection(connectionString);
             var value = DateTable1.SelectedItem as DataRowView;
             if (null == value) return;
-            string id = value.Row[0].ToString();
+            id = value.Row[0].ToString();
             string name = value.Row[1].ToString();
             string type = value.Row[2].ToString();
             string tdays = value.Row[3].ToString();
@@ -87,5 +87,34 @@ namespace pages
             }
         }
 
+        private void update(object sender, RoutedEventArgs e)
+        {
+            string boardName = bname.Text;
+            string type = btype.Text;
+            string tdays = tdayss.Text;
+            string descr = desc.Text;
+            string stat = state.Text;
+            System.Data.SqlClient.SqlConnection sqlConnection1 =
+           new System.Data.SqlClient.SqlConnection(connectionString);
+
+
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "UPDATE demo.dbo.boards SET " +
+                "name = '" + boardName + "', " +
+                "type = '" + type + "', " +
+                "tdays = '" + tdays + "', " +
+                "description = '" + descr + "', " +
+                "state = '" + stat + "', " +
+                "modified = getdate() " +
+                "WHERE id = '"+ id +"'";
+
+            checkDAta.Content = cmd.CommandText;
+            cmd.Connection = sqlConnection1;
+            sqlConnection1.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection1.Close();
+            FillDataGrid();
+        }
     }
 }
