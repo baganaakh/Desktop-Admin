@@ -13,17 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
-
+using System.Data;
 namespace pages
 {
     /// <summary>
     /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class boards : Page
     {
-        public Page1()
+        public boards()
         {
             InitializeComponent();
+            FillDataGrid();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
 
@@ -31,9 +32,20 @@ namespace pages
         {
             SqlConnection cnn;
             cnn = new SqlConnection(connectionString);
-            cnn.Open();
-            MessageBox.Show("connection Open!");
-            cnn.Close();
+            var value = DateTable1.SelectedItem as DataRowView;
+            if (null == value) return;
+            string id = value.Row[0].ToString();
+            string name = value.Row[1].ToString();
+            string type = value.Row[2].ToString();
+            string tdays = value.Row[3].ToString();
+            string description = value.Row[4].ToString();
+            string stat= value.Row[5].ToString();
+
+            bname.Text= name;
+            btype.Text = type;
+            tdayss.Text = tdays;
+            desc.Text = description;
+            state.Text = stat;
         }
         private void insertFunc(object sender, RoutedEventArgs e)
         {
@@ -53,13 +65,26 @@ namespace pages
 
             cmd.Parameters.AddWithValue("@modified", DateTime.Now);
 
-            checkDAta.Content = cmd.CommandText;
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
-
+        }
+        private void FillDataGrid()
+        {
+            string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
+            string CmdString = string.Empty;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                CmdString = "SELECT TOP (1000) [id],[name],[type],[tdays],[description],[state],[modified] FROM dbo.boards ";
+                SqlCommand cmd = new SqlCommand(CmdString, conn);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable("Employee");
+               // DataRowView dr = new DataRowView();
+                sda.Fill(dt);
+                DateTable1.ItemsSource = dt.DefaultView;
+            }
         }
 
     }

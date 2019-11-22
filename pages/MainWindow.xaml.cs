@@ -24,13 +24,13 @@ namespace pages
         public MainWindow()
         {
             InitializeComponent();
-            Main.Content = new Page1();
+            Main.Content = new boards();
 
         }
 
         private void btnClickP1(object sender, RoutedEventArgs e)
         {
-            Main.Content = new Page1();
+            Main.Content = new boards();
         }
         private void btnClickP2(object sender, RoutedEventArgs e)
         {

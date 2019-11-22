@@ -131,7 +131,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Page1.xaml">
+    <Page Include="boards.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -169,8 +169,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Page1.xaml.cs">
-      <DependentUpon>Page1.xaml</DependentUpon>
+    <Compile Include="boards.xaml.cs">
+      <DependentUpon>boards.xaml</DependentUpon>
     </Compile>
     <Compile Include="participants.xaml.cs">
       <DependentUpon>participants.xaml</DependentUpon>

@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Data;
 namespace pages
 {
     /// <summary>
@@ -24,7 +26,7 @@ namespace pages
         {
             InitializeComponent();
         }
-
+       
         private void window_loaded(object sender, RoutedEventArgs e)
         {
 

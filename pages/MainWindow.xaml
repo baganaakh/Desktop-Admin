@@ -4,11 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:pages"
-        mc:Ignorable="d"sdasda
+        mc:Ignorable="d"
         Title="MainWindow" Height="850" Width="1000">
     <Grid Margin="0,0,0,29">
         <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Height="35">
-            <Button Content="Page 1" Click="btnClickP1"/>
+            <Button Content="boards" Click="btnClickP1"/>
             <Button Content="Session" Margin="10,0,0,0" Click="btnClickP2"/>
             <Button Content="Participants" Margin="10,0,0,0" Click="btnClickP3"/>
             <Button Content="assets" Margin="10,0,0,0" Click="btnClickP4"/>
