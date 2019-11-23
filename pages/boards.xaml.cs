@@ -79,7 +79,6 @@ namespace pages
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Employee");
-               // DataRowView dr = new DataRowView();
                 sda.Fill(dt);
                 DateTable1.ItemsSource = dt.DefaultView;
             }
@@ -130,6 +129,11 @@ namespace pages
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
+            FillDataGrid();
+        }
+
+        private void refreshh(object sender, RoutedEventArgs e)
+        {
             FillDataGrid();
         }
     }

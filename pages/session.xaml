@@ -90,6 +90,7 @@
                 <DataGridTextColumn Binding="{Binding markettype}" Header="MarketType"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button Content="Refresh" HorizontalAlignment="Left" Margin="1350,163,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh"/>
 
     </Grid>
 </Page>

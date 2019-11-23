@@ -128,5 +128,9 @@ namespace pages
                 DateTable2.ItemsSource = dt.DefaultView;
             }
         }
+        private void refreshh(object sender, RoutedEventArgs e)
+        {
+            FillDataGrid();
+        }
     }
 }
