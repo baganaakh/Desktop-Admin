@@ -9,7 +9,7 @@
       Title="Page2" Height="1060" Width="1500">
 
     <Grid >
-        <Button Content="Connect" HorizontalAlignment="Left" Margin="1350,77,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="1350,77,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="Insert" HorizontalAlignment="Left" Margin="1350,126,0,0" VerticalAlignment="Top" Width="76" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
         <Label Content="boardid" HorizontalAlignment="Left" Margin="29,33,0,0" VerticalAlignment="Top"/>
         <Label Content="Нэр" HorizontalAlignment="Left" Margin="22,71,0,0" VerticalAlignment="Top"/>

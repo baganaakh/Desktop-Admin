@@ -30,8 +30,6 @@ namespace pages
         string id;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection cnn;
-            cnn = new SqlConnection(connectionString);
             var value = DateTable1.SelectedItem as DataRowView;
             if (null == value) return;
             id = value.Row[0].ToString();
