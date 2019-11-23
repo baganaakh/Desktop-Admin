@@ -15,12 +15,12 @@
         <Label Content="Type" HorizontalAlignment="Left" Margin="16,96,0,0" VerticalAlignment="Top"/>
         <Label Content="tdays" HorizontalAlignment="Left" Margin="207,61,0,0" VerticalAlignment="Top"/>
         <Label Content="тайлбар" HorizontalAlignment="Left" Margin="207,93,0,0" VerticalAlignment="Top"/>
-        <Label Content="Төлөв" HorizontalAlignment="Left" Margin="426,64,0,0" VerticalAlignment="Top"/>
+        <Label Content="Төлөв" HorizontalAlignment="Left" Margin="426,61,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.698,0.538"/>
         <TextBox Name="bname" HorizontalAlignment="Left" Height="23" Margin="65,61,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox Name="btype" HorizontalAlignment="Left" Height="23" Margin="65,96,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox Name="tdayss" HorizontalAlignment="Left" Height="23" Margin="282,61,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox Name="desc" HorizontalAlignment="Left" Height="23" Margin="282,97,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="state" HorizontalAlignment="Left" Height="23" Margin="506,61,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="state" HorizontalAlignment="Left" Height="23" Margin="483,61,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Button Content="Insert" HorizontalAlignment="Left" Margin="426,99,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
         <DataGrid x:Name="DateTable1" HorizontalAlignment="Left" Height="341" Margin="10,232,0,0" VerticalAlignment="Top" Width="712">
             <DataGrid.Columns>
@@ -34,8 +34,9 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Update" HorizontalAlignment="Left" Margin="625,99,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Delete" HorizontalAlignment="Left" Margin="733,99,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete"/>
-        <Button Content="Refresh" HorizontalAlignment="Left" Margin="647,61,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="728,99,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" Margin="625,61,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh"/>
+        <Button Content="New" HorizontalAlignment="Left" Margin="728,61,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData"/>
 
     </Grid>
 </Page>

@@ -136,5 +136,14 @@ namespace pages
         {
             FillDataGrid();
         }
+
+        private void newData(object sender, RoutedEventArgs e)
+        {
+            bname.Text = null;
+            btype.Text = null;
+            tdayss.Text = null;
+            desc.Text = null;
+            state.Text = null;
+        }
     }
 }

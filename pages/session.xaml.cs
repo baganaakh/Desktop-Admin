@@ -108,7 +108,7 @@ namespace pages
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
             sqlConnection1.Close();
 
         }
@@ -131,6 +131,43 @@ namespace pages
         private void refreshh(object sender, RoutedEventArgs e)
         {
             FillDataGrid();
+        }
+        private void delete(object sender, RoutedEventArgs e)
+        {
+            var value = DateTable2.SelectedItem as DataRowView;
+            if (null == value) return;
+            id = value.Row[0].ToString();
+            System.Data.SqlClient.SqlConnection sqlConnection1 =
+           new System.Data.SqlClient.SqlConnection(connectionString);
+
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "DELETE demo.dbo.session WHERE id='" + id + "'";
+            cmd.Connection = sqlConnection1;
+            sqlConnection1.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection1.Close();
+            FillDataGrid();
+        }
+        private void newData(object sender, RoutedEventArgs e)
+        {
+            sboardid.SelectedValue = null;
+            sname.Text = null;
+            stime.SelectedDate = null;
+            dhour.SelectedValue = null;
+            algo.Text = null;
+            match1.Text = null;
+            allowT.Text = null;
+            sdesc.Text = null;
+            sstate.Text = null;
+            iAct.Text = null;
+            starttime.SelectedDate = null;
+            sEndTime.SelectedDate = null;
+            sduration.Text = null;
+            matchedN.Text = null;
+            eOrder.Text = null;
+            dOrder.Text = null;
+            markT.Text = null;
         }
     }
 }
