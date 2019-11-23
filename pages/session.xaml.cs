@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace pages
 {
@@ -24,6 +25,7 @@ namespace pages
         public session()
         {
             InitializeComponent();
+            FillDataGrid();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
 
@@ -67,13 +69,29 @@ namespace pages
                 "', getdate(), '"+iActive+"', '"+ startT + "', '"+endTime+ "', '"+EDorder+ "', '"+DEorder+ "', '"+markType+"')";
             // cmd.Parameters.AddWithValue("@startTime", stime.SelectedDate);2019-11-20 12:19:51.950
             cmd.Parameters.AddWithValue("@modified", DateTime.Now);
-            checkDAta.Text = cmd.CommandText;
+            //checkDAta.Text = cmd.CommandText;
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
 
+        }
+        private void FillDataGrid()
+        {
+            string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
+            string CmdString = string.Empty;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                CmdString = "SELECT TOP (1000) [id], [boardid], [name], [stime], [duration], [algorithm], [match], [allowedtypes], [description], [state] ,[modified], " +
+                    "[isactive], [starttime], [endtime], [tduration], [matched], [editorder], [delorder], [markettype] FROM dbo.session ";
+                SqlCommand cmd = new SqlCommand(CmdString, conn);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable("Employee");
+                // DataRowView dr = new DataRowView();
+                sda.Fill(dt);
+                DateTable2.ItemsSource = dt.DefaultView;
+            }
         }
     }
 }

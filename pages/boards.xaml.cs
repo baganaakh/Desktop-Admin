@@ -116,5 +116,23 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+
+        private void delete(object sender, RoutedEventArgs e)
+        {
+            var value = DateTable1.SelectedItem as DataRowView;
+            if (null == value) return;
+            id = value.Row[0].ToString();
+            System.Data.SqlClient.SqlConnection sqlConnection1 =
+           new System.Data.SqlClient.SqlConnection(connectionString);
+
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "DELETE demo.dbo.boards WHERE id='" +id+"'";
+            cmd.Connection = sqlConnection1;
+            sqlConnection1.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection1.Close();
+            FillDataGrid();
+        }
     }
 }

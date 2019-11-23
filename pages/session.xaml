@@ -4,48 +4,45 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:pages"
-      mc:Ignorable="d" d:DesignWidth="800"
-      Title="Page2" Height="596">
+      mc:Ignorable="d" 
+      d:DesignHeight="900"  d:DesignWidth="1200"
+      Title="Page2" Height="1060" Width="1500">
 
-    <Grid Margin="0,0,0,10">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="207*"/>
-            <ColumnDefinition Width="593*"/>
-        </Grid.ColumnDefinitions>
-        <Button Content="Connect" HorizontalAlignment="Left" Margin="496,78,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633" Grid.Column="1"/>
-        <Button Content="Insert" HorizontalAlignment="Left" Margin="496,127,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633" Grid.Column="1"/>
+    <Grid >
+        <Button Content="Connect" HorizontalAlignment="Left" Margin="1350,77,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Insert" HorizontalAlignment="Left" Margin="1350,126,0,0" VerticalAlignment="Top" Width="76" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
         <Label Content="boardid" HorizontalAlignment="Left" Margin="29,33,0,0" VerticalAlignment="Top"/>
         <Label Content="Нэр" HorizontalAlignment="Left" Margin="22,71,0,0" VerticalAlignment="Top"/>
         <Label Content="Эхлэх хугацаа" HorizontalAlignment="Left" Margin="22,114,0,0" VerticalAlignment="Top"/>
         <Label Content="Үргэлжлэх хугацаа" HorizontalAlignment="Left" Margin="22,166,0,0" VerticalAlignment="Top"/>
-        <Label Content="Тайлбар" HorizontalAlignment="Left" Margin="22,350,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.286,0.577"/>
+        <Label Content="Тайлбар" HorizontalAlignment="Left" Margin="313,38,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.286,0.577"/>
         <Label Content="алгоритм" HorizontalAlignment="Left" Margin="22,215,0,0" VerticalAlignment="Top"/>
         <Label Content="тулгах тоо" HorizontalAlignment="Left" Margin="22,255,0,0" VerticalAlignment="Top"/>
         <Label Content="allowed types" HorizontalAlignment="Left" Margin="22,298,0,0" VerticalAlignment="Top"/>
-        <Label Content="төлөв" HorizontalAlignment="Left" Margin="22,401,0,0" VerticalAlignment="Top"/>
+        <Label Content="төлөв" HorizontalAlignment="Left" Margin="313,89,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="algo" HorizontalAlignment="Left" Height="23" Margin="150,221,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
         <TextBox x:Name="match1" HorizontalAlignment="Left" Height="23" Margin="150,256,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="150,302,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
         <TextBox x:Name="allowT" HorizontalAlignment="Left" Height="23" Margin="150,303,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="sdesc" HorizontalAlignment="Left" Height="23" Margin="150,354,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="150,416,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="sstate" HorizontalAlignment="Left" Height="23" Margin="150,417,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-        <Label Content="идэвхжсэн эсэх" HorizontalAlignment="Left" Margin="138,71,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Label Content="эхэлсэн хугацаа" HorizontalAlignment="Left" Margin="138,114,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Label Content="Дуусах хугацаа" HorizontalAlignment="Left" Margin="138,166,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Label Content="Үргэлжилсэн хугацаа" HorizontalAlignment="Left" Margin="138,221,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <TextBox x:Name="iAct" HorizontalAlignment="Left" Height="23" Margin="266,72,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="266,232,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        <TextBox x:Name="sduration" HorizontalAlignment="Left" Height="23" Margin="266,233,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        <Label x:Name="checkDAta_Copy" Content="Market төрөл" HorizontalAlignment="Left" Margin="159,401,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Label Content="тулгалт тоо" HorizontalAlignment="Left" Margin="145,271,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Label Content="Edit order" HorizontalAlignment="Left" Margin="138,309,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Label Content="Del order" HorizontalAlignment="Left" Margin="138,352,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <TextBox x:Name="matchedN" HorizontalAlignment="Left" Height="23" Margin="266,275,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        <TextBox x:Name="eOrder" HorizontalAlignment="Left" Height="23" Margin="266,310,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="266,356,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        <TextBox x:Name="dOrder" HorizontalAlignment="Left" Height="23" Margin="266,357,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        <TextBox x:Name="markT" HorizontalAlignment="Left" Height="23" Margin="266,408,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+        <TextBox x:Name="sdesc" HorizontalAlignment="Left" Height="23" Margin="466,43,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="466,105,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="sstate" HorizontalAlignment="Left" Height="24" Margin="466,105,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="идэвхжсэн эсэх" HorizontalAlignment="Left" Margin="315,151,0,0" VerticalAlignment="Top"/>
+        <Label Content="эхэлсэн хугацаа" HorizontalAlignment="Left" Margin="313,203,0,0" VerticalAlignment="Top"/>
+        <Label Content="Дуусах хугацаа" HorizontalAlignment="Left" Margin="313,268,0,0" VerticalAlignment="Top"/>
+        <Label Content="Үргэлжилсэн хугацаа" HorizontalAlignment="Left" Margin="668,43,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="iAct" HorizontalAlignment="Left" Height="23" Margin="466,163,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="837,38,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="sduration" HorizontalAlignment="Left" Height="23" Margin="837,39,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="checkDAta_Copy" Content="Market төрөл" HorizontalAlignment="Left" Margin="676,256,0,0" VerticalAlignment="Top"/>
+        <Label Content="тулгалт тоо" HorizontalAlignment="Left" Margin="668,83,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.387,0.538"/>
+        <Label Content="Edit order" HorizontalAlignment="Left" Margin="668,169,0,0" VerticalAlignment="Top"/>
+        <Label Content="Del order" HorizontalAlignment="Left" Margin="676,208,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.558"/>
+        <TextBox x:Name="matchedN" HorizontalAlignment="Left" Height="23" Margin="837,81,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="eOrder" HorizontalAlignment="Left" Height="23" Margin="837,164,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="837,210,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="dOrder" HorizontalAlignment="Left" Height="23" Margin="837,211,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="markT" HorizontalAlignment="Left" Height="23" Margin="837,262,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="sname" HorizontalAlignment="Left" Height="23" Margin="150,72,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
         <ComboBox x:Name="sboardid" HorizontalAlignment="Left" Margin="150,38,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2">
             <ListBoxItem Content="1"/>
@@ -63,15 +60,36 @@
             <ListBoxItem Content="2"/>
             <ListBoxItem Content="3"/>
         </ComboBox>
-        <ComboBox HorizontalAlignment="Left" Margin="34,171,0,0" VerticalAlignment="Top" Width="29" Grid.Column="1">
+        <ComboBox HorizontalAlignment="Left" Margin="241,166,0,0" VerticalAlignment="Top" Width="29" RenderTransformOrigin="-5.655,0.614">
             <ListBoxItem Content="1"/>
             <ListBoxItem Content="2"/>
             <ListBoxItem Content="3"/>
         </ComboBox>
-        <DatePicker x:Name="starttime" HorizontalAlignment="Left" Margin="266,114,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        <DatePicker x:Name="sEndTime" HorizontalAlignment="Left" Margin="266,171,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-        <TextBlock x:Name="checkDAta" HorizontalAlignment="Left" Margin="29,475,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="50" Width="713">
-            <Run Text="TextBlock"/></TextBlock>
+        <DatePicker x:Name="starttime" HorizontalAlignment="Left" Margin="466,205,0,0" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="sEndTime" HorizontalAlignment="Left" Margin="466,262,0,0" VerticalAlignment="Top" Width="120"/>
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="22,331,0,329" VerticalAlignment="Center" Width="1362">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
+                <DataGridTextColumn Binding="{Binding boardid}" Header="BID"/>
+                <DataGridTextColumn Binding="{Binding name}" Header="Name"/>
+                <DataGridTextColumn Binding="{Binding stime}" Header="Stime"/>
+                <DataGridTextColumn Binding="{Binding duration}" Header="Duration"/>
+                <DataGridTextColumn Binding="{Binding algorithm}" Header="Algorithm"/>
+                <DataGridTextColumn Binding="{Binding match}" Header="Match"/>
+                <DataGridTextColumn Binding="{Binding allowedtypes}" Header="AllowedTypes"/>
+                <DataGridTextColumn Binding="{Binding description}" Width="200" Header="description"/>
+                <DataGridTextColumn Binding="{Binding state}" Header="state"/>
+                <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
+                <DataGridTextColumn Binding="{Binding isactive}" Header="IsActive"/>
+                <DataGridTextColumn Binding="{Binding starttime}" Header="StartTime"/>
+                <DataGridTextColumn Binding="{Binding endtime}" Header="EndTime"/>
+                <DataGridTextColumn Binding="{Binding tduration}" Header="Tduration"/>
+                <DataGridTextColumn Binding="{Binding matched}" Header="Matched"/>
+                <DataGridTextColumn Binding="{Binding editorder}" Header="EditOrder"/>
+                <DataGridTextColumn Binding="{Binding delorder}" Header="DelOrder"/>
+                <DataGridTextColumn Binding="{Binding markettype}" Header="MarketType"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Page>

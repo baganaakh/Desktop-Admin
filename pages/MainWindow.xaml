@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:pages"
         mc:Ignorable="d"
-        Title="MainWindow" Height="850" Width="1000">
-    <Grid Margin="0,0,0,29">
+        Title="MainWindow" Height="1000" Width="1500">
+    <Grid >
         <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Height="35">
             <Button Content="boards" Click="btnClickP1"/>
             <Button Content="Session" Margin="10,0,0,0" Click="btnClickP2"/>
@@ -25,7 +25,7 @@
             <Button Content="speads" Margin="10,0,0,0" Click="btnClickP15"/>
             <Button Content="show&#xD;&#xA;Data" Margin="10,0,0,0" Click="btnClickP16"/>
         </StackPanel>
-        <Frame x:Name="Main" Margin="28,25,0,0" NavigationUIVisibility="Hidden" Height="354" VerticalAlignment="Top" Content="" />
+        <Frame x:Name="Main" Margin="28,25,0,0" NavigationUIVisibility="Hidden" MinHeight="350" VerticalAlignment="Top" Content="" />
 
 
     </Grid>
