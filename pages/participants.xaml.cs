@@ -136,5 +136,64 @@ namespace pages
         {
             FillDataGrid();
         }
+        private void delete(object sender, RoutedEventArgs e)
+        {
+            var value = DateTable2.SelectedItem as DataRowView;
+            if (null == value) return;
+            id = value.Row[0].ToString();
+            System.Data.SqlClient.SqlConnection sqlConnection1 =
+           new System.Data.SqlClient.SqlConnection(connectionString);
+
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "DELETE demo.dbo.participants WHERE id='" + id + "'";
+            cmd.Connection = sqlConnection1;
+            sqlConnection1.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection1.Close();
+            FillDataGrid();
+        }
+        private void update(object sender, RoutedEventArgs e)
+        {
+            string code = pcode.Text;
+            string name = pname.Text;
+            string country = pcountry.Text;
+            string address = paddress.Text;
+            string phone = pphone.Text;
+            string fax = pfax.Text;
+            string email = pmail.Text;
+            string contact = pcontact.Text;
+            string state = pstate.Text;
+            string csid = pcsid.Text;
+            string webid = pwebid.Text;
+
+            System.Data.SqlClient.SqlConnection sqlConnection1 =
+           new System.Data.SqlClient.SqlConnection(connectionString);
+
+
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "UPDATE demo.dbo.participants SET " +
+                "code = '" + code+ "', " +
+                "name= '" + name + "', " +
+                "country = '" + country+ "', " +
+                "address= '" + address + "', " +
+                "phone= '" + phone+ "', " +
+                "fax= '" + fax+ "', " +
+                "email= '" + email+ "', " +
+                "contact= '" + contact+ "', " +
+                "state= '" + state + "', " +
+                "modified = getdate(), " +
+                "webid= '" + webid+ "', " +
+                "csid= '" + csid+ "' " +
+                "WHERE id = '" + id + "'";
+
+            checkDAta.Text = cmd.CommandText;
+            cmd.Connection = sqlConnection1;
+            sqlConnection1.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection1.Close();
+            FillDataGrid();
+        }
     }
 }
