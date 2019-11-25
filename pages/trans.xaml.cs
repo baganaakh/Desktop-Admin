@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.Data;
 namespace pages
 {
     /// <summary>
@@ -24,6 +25,7 @@ namespace pages
         public trans()
         {
             InitializeComponent();
+            FillDataGrid();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
 
@@ -71,6 +73,21 @@ namespace pages
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !IsTextAllowed(e.Text);
+        }
+        private void FillDataGrid()
+        {
+            string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
+            string CmdString = string.Empty;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                CmdString = "SELECT ALL [id], [accountId], [type], [type1], [amount], [currency], [rate], [note], [tdate], [state], [modified], [userId] "+
+        "FROM dbo.trans";
+                SqlCommand cmd = new SqlCommand(CmdString, conn);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable("Securities");
+                sda.Fill(dt);
+                DateTable2.ItemsSource = dt.DefaultView;
+            }
         }
     }
 }

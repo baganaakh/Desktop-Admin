@@ -5,32 +5,49 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="900"  d:DesignWidth="1200"
+      
       Title="trans">
 
     <Grid>
-        <Button Content="Connect" HorizontalAlignment="Left" Margin="698,118,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Insert" HorizontalAlignment="Left" Margin="698,167,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Connect" HorizontalAlignment="Left" Margin="1069,104,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Insert" HorizontalAlignment="Left" Margin="1069,153,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
         <Label Content="type" HorizontalAlignment="Left" Margin="29,108,0,0" VerticalAlignment="Top"/>
         <Label Content="type1" HorizontalAlignment="Left" Margin="29,154,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.497,0.786"/>
-        <Label Content="amount" HorizontalAlignment="Left" Margin="29,199,0,0" VerticalAlignment="Top"/>
-        <Label Content="rate" HorizontalAlignment="Left" Margin="346,240,0,0" VerticalAlignment="Top"/>
-        <Label Content="note" HorizontalAlignment="Left" Margin="340,72,0,0" VerticalAlignment="Top"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="trrate"  HorizontalAlignment="Left" Height="23" Margin="468,244,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120" />
-        <Label Content="tdate" HorizontalAlignment="Left" Margin="340,111,0,0" VerticalAlignment="Top"/>
-        <Label Content="state" HorizontalAlignment="Left" Margin="340,154,0,0" VerticalAlignment="Top"/>
-        <Label Content="userid" HorizontalAlignment="Left" Margin="340,195,0,0" VerticalAlignment="Top"/>
+        <Label Content="amount" HorizontalAlignment="Left" Margin="305,76,0,0" VerticalAlignment="Top"/>
+        <Label Content="rate" HorizontalAlignment="Left" Margin="563,197,0,0" VerticalAlignment="Top"/>
+        <Label Content="note" HorizontalAlignment="Left" Margin="305,162,0,0" VerticalAlignment="Top"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="trrate"  HorizontalAlignment="Left" Height="23" Margin="649,201,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120" />
+        <Label Content="tdate" HorizontalAlignment="Left" Margin="557,68,0,0" VerticalAlignment="Top"/>
+        <Label Content="state" HorizontalAlignment="Left" Margin="557,111,0,0" VerticalAlignment="Top"/>
+        <Label Content="userid" HorizontalAlignment="Left" Margin="557,152,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="trtype1" HorizontalAlignment="Left" Height="23" Margin="150,157,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="trtype" HorizontalAlignment="Left" Height="23" Margin="150,112,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
-        <Label Content="currency" HorizontalAlignment="Left" Margin="29,244,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,0.435"/>
-        <TextBox PreviewTextInput="PreviewTextInput"  x:Name="tramount" HorizontalAlignment="Left" Height="23" Margin="150,199,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="trcurrent" HorizontalAlignment="Left" Height="23" Margin="150,248,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="trstate" HorizontalAlignment="Left" Height="23" Margin="468,154,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="truser" HorizontalAlignment="Left" Height="23" Margin="468,197,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
-        <DatePicker x:Name="trtdate" HorizontalAlignment="Left" Margin="468,111,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="currency" HorizontalAlignment="Left" Margin="305,121,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,0.435"/>
+        <TextBox PreviewTextInput="PreviewTextInput"  x:Name="tramount" HorizontalAlignment="Left" Height="23" Margin="399,74,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="trcurrent" HorizontalAlignment="Left" Height="23" Margin="399,123,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="trstate" HorizontalAlignment="Left" Height="23" Margin="649,111,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="truser" HorizontalAlignment="Left" Height="23" Margin="649,154,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="trtdate" HorizontalAlignment="Left" Margin="649,68,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="accountID" HorizontalAlignment="Left" Margin="29,71,0,0" VerticalAlignment="Top"/>
         <TextBox PreviewTextInput="PreviewTextInput"  x:Name="accId" HorizontalAlignment="Left" Height="23" Margin="150,75,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="trnote" HorizontalAlignment="Left" Height="23" Margin="468,76,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="trnote" HorizontalAlignment="Left" Height="23" Margin="399,166,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="21,284,0,216" VerticalAlignment="Center" Width="1138">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
+                <DataGridTextColumn Binding="{Binding accountId}" Header="AID"/>
+                <DataGridTextColumn Binding="{Binding type}" Header="Type"/>
+                <DataGridTextColumn Binding="{Binding type1}" Header="Type1"/>
+                <DataGridTextColumn Binding="{Binding amount}" Header="Amount"/>
+                <DataGridTextColumn Binding="{Binding currency}" Header="Currency"/>
+                <DataGridTextColumn Binding="{Binding rate}" Header="Rate"/>
+                <DataGridTextColumn Binding="{Binding note}" Header="Note"/>
+                <DataGridTextColumn Binding="{Binding tdate}" Header="Tdate"/>
+                <DataGridTextColumn Binding="{Binding state}" Header="State"/>
+                <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
+                <DataGridTextColumn Binding="{Binding userId}" Header="UID"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Page>
