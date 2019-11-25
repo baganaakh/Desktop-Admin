@@ -78,7 +78,6 @@ namespace pages
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
-
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.participants (code, name, country, address, phone, fax, email, contact, state, modified, csid, webid) values" +
@@ -131,6 +130,7 @@ namespace pages
             pmail.Text = null;
             pwebid.Text= null;
             pcsid.Text= null;
+            id = null;
         }
         private void refreshh(object sender, RoutedEventArgs e)
         {

@@ -64,6 +64,11 @@ namespace pages
         }
         private void insertFunc(object sender, RoutedEventArgs e)
         {
+            if (sdate.SelectedDate == null || edate.SelectedDate == null)
+            {
+                MessageBox.Show("Please Set Date !!!!!");
+                return;
+            }
             string partid = partId.Text;
             string type = stype.Text;
             string code = scode.Text;
@@ -78,10 +83,8 @@ namespace pages
             string endTime = edate.SelectedDate.Value.ToShortDateString();
             string groupId = groupid.Text;
 
-
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
-
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
@@ -94,7 +97,6 @@ namespace pages
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
             FillDataGrid();
-
         }
         private static readonly Regex _regex = new Regex("[^0-9.-]+");
         private static bool IsTextAllowed(string text)

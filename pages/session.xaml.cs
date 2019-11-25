@@ -61,7 +61,7 @@ namespace pages
             match1.Text = match;
             allowT.Text = allowtyp;
             sdesc.Text = description;
-            sstate.Text = state;
+            sstate.Text = state; 
             iAct.Text = isACT;
             starttime.SelectedDate = DateTime.Parse(startTime);
             sEndTime.SelectedDate = DateTime.Parse(endTime);
@@ -73,7 +73,11 @@ namespace pages
         }
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            checkDate();
+            if (stime.SelectedDate == null || starttime.SelectedDate == null || sEndTime.SelectedDate == null)
+                {
+                    MessageBox.Show("Please Set Date !!!!!");
+                    return;
+                }
             string boardid = sboardid.Text;
             string name = sname.Text;
             string sstime = stime.SelectedDate.Value.ToShortDateString();
@@ -175,9 +179,15 @@ namespace pages
             eOrder.Text = null;
             dOrder.Text = null;
             markT.Text = null;
+            id = null;
         }
         private void update(object sender, RoutedEventArgs e)
         {
+            if (stime.SelectedDate == null || starttime.SelectedDate == null || sEndTime.SelectedDate == null)
+            {
+                MessageBox.Show("Please Set Date !!!!!");
+                return;
+            }
             string boardid = sboardid.Text;
             string name = sname.Text;
             string sstime = stime.SelectedDate.Value.ToShortDateString();
