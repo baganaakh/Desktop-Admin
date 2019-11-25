@@ -76,13 +76,13 @@ namespace pages
         {
             string boardid = sboardid.Text;
             string name = sname.Text;
-            string formatted = stime.SelectedDate.Value.ToShortDateString();
+            string sstime = stime.SelectedDate.Value.ToShortDateString();
             string dhours = dhour.Text;
             string alogor = algo.Text;
             string match11 = match1.Text;
             string allowedT = allowT.Text;
-            string iActive = iAct.Text;
             string descrip = sdesc.Text;
+            string iActive = iAct.Text;
             string state = sstate.Text;
             string startT = starttime.SelectedDate.Value.ToShortDateString();
             string endTime = sEndTime.SelectedDate.Value.ToShortDateString();
@@ -99,10 +99,9 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.session (boardid, name, stime, duration, algorithm, match, allowedtypes, description, state, modified, isactive," +
-                " starttime, endtime, editorder, delorder, markettype) values" +
-                " ('" + boardid + "','" + name + "','"+formatted+"','" + dhours + "', '" + alogor + "', '"+match11+ "', '"+allowedT+ "', '"+descrip+ "', '"+state+ 
-                "', getdate(), '"+iActive+"', '"+ startT + "', '"+endTime+ "', '"+EDorder+ "', '"+DEorder+ "', '"+markType+"')";
-            // cmd.Parameters.AddWithValue("@startTime", stime.SelectedDate);2019-11-20 12:19:51.950
+                " starttime, endtime, tduration, matched, editorder, delorder, markettype) values" +
+                " ('" + boardid + "','" + name + "','"+sstime+"','" + dhours + "', '" + alogor + "', '"+match11+ "', '"+allowedT+ "', '"+descrip+ "', '"+state+ 
+                "', getdate(), '"+iActive+"', '"+ startT + "', '"+endTime+ "', '"+tduration+"','"+prevMatch+"', '"+EDorder+ "', '"+DEorder+ "', '"+markType+"')";
             cmd.Parameters.AddWithValue("@modified", DateTime.Now);
             //checkDAta.Text = cmd.CommandText;
 
@@ -168,6 +167,59 @@ namespace pages
             eOrder.Text = null;
             dOrder.Text = null;
             markT.Text = null;
+        }
+        private void update(object sender, RoutedEventArgs e)
+        {
+            string boardid = sboardid.Text;
+            string name = sname.Text;
+            string sstime = stime.SelectedDate.Value.ToShortDateString();
+            string dhours = dhour.Text;
+            string alogor = algo.Text;
+            string match11 = match1.Text;
+            string allowedT = allowT.Text;
+            string descrip = sdesc.Text;
+            string state = sstate.Text;
+            string iActive = iAct.Text;
+            string startT = starttime.SelectedDate.Value.ToShortDateString();
+            string endTime = sEndTime.SelectedDate.Value.ToShortDateString();
+            string tduration = sduration.Text;
+            string prevMatch = matchedN.Text;
+            string EDorder = eOrder.Text;
+            string DEorder = dOrder.Text;
+            string markType = markT.Text;
+            System.Data.SqlClient.SqlConnection sqlConnection1 =
+           new System.Data.SqlClient.SqlConnection(connectionString);
+
+
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "UPDATE demo.dbo.session SET " +
+                "boardid = '" + boardid+ "', " +
+                "name= '" + name + "', " +
+                "stime = '" + sstime + "', " +
+                "duration = '" + dhours+ "', " +
+                "algorithm= '" + alogor+ "', " +
+                "match= '" + match11+ "', " +
+                "allowedtypes= '" + allowedT+ "', " +
+                "description= '" + descrip+ "', " +
+                "state= '" + state+ "', " +
+                "modified = getdate(), " +
+                "isactive= '" + iActive+ "', " +
+                "starttime= '" + startT+ "', " +
+                "endtime= '" + endTime+ "', " +
+                "tduration= '" + tduration+ "', " +
+                "matched= '" + prevMatch+ "', " +
+                "editorder= '" + EDorder+ "', " +
+                "delorder= '" + DEorder+ "', " +
+                "markettype= '" + markType+ "' " +
+                "WHERE id = '" + id + "'";
+
+            checkDAta.Text = cmd.CommandText;
+            cmd.Connection = sqlConnection1;
+            sqlConnection1.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection1.Close();
+            FillDataGrid();
         }
     }
 }

@@ -60,7 +60,7 @@
             <ListBoxItem Content="2"/>
             <ListBoxItem Content="3"/>
         </ComboBox>
-        <ComboBox HorizontalAlignment="Left" Margin="241,166,0,0" VerticalAlignment="Top" Width="29" RenderTransformOrigin="-5.655,0.614">
+        <ComboBox HorizontalAlignment="Left" Margin="241,170,0,0" VerticalAlignment="Top" Width="29" RenderTransformOrigin="-5.655,0.614">
             <ListBoxItem Content="1"/>
             <ListBoxItem Content="2"/>
             <ListBoxItem Content="3"/>
@@ -93,6 +93,8 @@
         <Button Content="Refresh" HorizontalAlignment="Left" Margin="1350,163,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh"/>
         <Button Content="Delete" HorizontalAlignment="Left" Margin="1350,203,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete"/>
         <Button Content="New" HorizontalAlignment="Left" Margin="1351,49,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData"/>
+        <Button Content="Update" HorizontalAlignment="Left" Margin="1351,241,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
+        <TextBlock x:Name="checkDAta" HorizontalAlignment="Left" Margin="29,755,0,262" TextWrapping="Wrap" Width="1131"><Run Text="TextBlock"/></TextBlock>
 
     </Grid>
 </Page>
