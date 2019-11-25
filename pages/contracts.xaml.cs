@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.Data;
 namespace pages
 {
     /// <summary>
@@ -24,18 +25,140 @@ namespace pages
         public contracts()
         {
             InitializeComponent();
+            FillDataGrid();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-
+        static string id;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection cnn;
-            cnn = new SqlConnection(connectionString);
-            cnn.Open();
-            MessageBox.Show("connection Open!");
-            cnn.Close();
+            var values = DateTable2.SelectedItem as DataRowView;
+            id = values.Row[0].ToString();
+            string SID= values.Row[1].ToString();
+            string Type= values.Row[2].ToString();
+            string Code= values.Row[3].ToString();
+            string Name = values.Row[4].ToString();
+            string Lot= values.Row[5].ToString();
+            string Tick= values.Row[6].ToString();
+            string Sdate= values.Row[7].ToString();
+            string Edate= values.Row[8].ToString();
+            string GID= values.Row[9].ToString();
+            string State= values.Row[10].ToString();
+            string MMol= values.Row[12].ToString();
+            string Olimit= values.Row[13].ToString();
+            string refprPAram= values.Row[14].ToString();
+
+            securityid_Copy.Text = SID;
+            ctype.Text = Type;
+            ccode.Text = Code;
+            cname.Text = Name;
+            clot.Text = Lot;
+            ctick.Text = Tick;
+            csdate.SelectedDate = DateTime.Parse(Sdate);
+            cedate.SelectedDate = DateTime.Parse(Edate);
+            cgroupid.Text = GID;
+            cstate.Text = State;
+            mmorderLim.Text = MMol;
+            orderLim.Text = Olimit;
+            refpricePara.Text = refprPAram;
         }
         private void insertFunc(object sender, RoutedEventArgs e)
+        {
+            if (csdate.SelectedDate == null || cedate.SelectedDate == null)
+            {
+                MessageBox.Show("Please Set Date !!!!!");
+                return;
+            }
+            string secId = securityid_Copy.Text;
+            string type = ctype.Text;
+            string code = ccode.Text;
+            string name = cname.Text;
+            string lot = clot.Text;
+            string tick = ctick.Text;
+            string csdates = csdate.SelectedDate.Value.ToShortDateString();
+            string cedates = cedate.SelectedDate.Value.ToShortDateString();
+            string groupID = cgroupid.Text;
+            string stat = cstate.Text;
+            string mmorderLimit = mmorderLim.Text;
+            string orderlimit = orderLim.Text;
+            string refpricePar = refpricePara.Text;
+
+            System.Data.SqlClient.SqlConnection sqlConnection1 =
+           new System.Data.SqlClient.SqlConnection(connectionString);
+
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "insert into dbo.contracts (securityId, type, code, name, lot, tick, sdate, edate, groupId, state, modified, mmorderLimit, orderLimit, refpriceParam) values" +
+                " ('" + secId+ "','" + type + "','" + code + "','" + name + "', '" + lot+ "', '" + tick+ "', '" + csdates+ "', '" + cedates+ "', '" + groupID +
+                "','" + stat+ "', getdate(),'" + mmorderLimit+ "','" + orderlimit+ "','" + refpricePar+ "')";
+
+            cmd.Connection = sqlConnection1;
+            sqlConnection1.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection1.Close();
+            FillDataGrid();
+        }
+        private static readonly Regex _regex = new Regex("[^0-9.-]+");
+        private static bool IsTextAllowed(string text)
+        {
+            return !_regex.IsMatch(text);
+        }
+        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
+        private void FillDataGrid()
+        {
+            string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
+            string CmdString = string.Empty;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                CmdString = "SELECT ALL [id], [securityId], [type], [code], [name], [lot], [tick], [sdate], [edate], [groupId], [state], [modified], " +
+                    "[mmorderLimit], [orderLimit], [refpriceParam] FROM dbo.contracts";
+                SqlCommand cmd = new SqlCommand(CmdString, conn);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable("Securities");
+                sda.Fill(dt);
+                DateTable2.ItemsSource = dt.DefaultView;
+            }
+        }
+        private void refreshh(object sender, RoutedEventArgs e)
+        {
+            FillDataGrid();
+        }
+        private void newData(object sender, RoutedEventArgs e)
+        {
+            securityid_Copy.Text = null;
+            ctype.Text = null;
+            ccode.Text = null;
+            cname.Text = null;
+            clot.Text = null;
+            ctick.Text = null;
+            csdate.SelectedDate = null;
+            cedate.SelectedDate = null;
+            cgroupid.Text = null;
+            cstate.Text = null;
+            mmorderLim.Text = null;
+            orderLim.Text = null;
+            refpricePara.Text = null;
+            id = null;
+        }
+        private void delete(object sender, RoutedEventArgs e)
+        {
+            var value = DateTable2.SelectedItem as DataRowView;
+            id = value.Row[0].ToString();
+            System.Data.SqlClient.SqlConnection sqlConnection1 =
+           new System.Data.SqlClient.SqlConnection(connectionString);
+
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "DELETE demo.dbo.contracts WHERE id='" + id + "'";
+            cmd.Connection = sqlConnection1;
+            sqlConnection1.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection1.Close();
+            FillDataGrid();
+        }
+        private void update(object sender, RoutedEventArgs e)
         {
             string secId = securityid_Copy.Text;
             string type = ctype.Text;
@@ -51,31 +174,34 @@ namespace pages
             string orderlimit = orderLim.Text;
             string refpricePar = refpricePara.Text;
 
-
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.contracts (securityId, type, code, name, lot, tick, sdate, edate, groupId, state, modified, mmorderLimit, orderLimit, refpriceParam) values" +
-                " ('" + secId+ "','" + type + "','" + code + "','" + name + "', '" + lot+ "', '" + tick+ "', '" + csdates+ "', '" + cedates+ "', '" + groupID +
-                "','" + stat+ "', getdate(),'" + mmorderLimit+ "','" + orderlimit+ "','" + refpricePar+ "')";
+            cmd.CommandText = "UPDATE demo.dbo.contracts SET " +
+                "securityId= '" + secId+ "', " +
+                "type= '" + type+ "', " +
+                "code= '" + code+ "', " +
+                "name= '" + name + "', " +
+                "lot= '" + lot+ "', " +
+                "tick= '" + tick + "', " +
+                "sdate= '" + csdates+ "', " +
+                "edate= '" + cedates+ "', " +
+                "groupId= '" + groupID+ "', " +
+                "state= '" + stat+ "', " +
+                "modified = getdate(), " +
+                "mmorderLimit= '" + mmorderLimit+ "', " +
+                "orderLimit= '" + orderlimit+ "', " +
+                "refpriceParam= '" + refpricePar+ "'" +
+                "WHERE id = '" + id + "'";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
-
-        }
-        private static readonly Regex _regex = new Regex("[^0-9.-]+");
-        private static bool IsTextAllowed(string text)
-        {
-            return !_regex.IsMatch(text);
-        }
-        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = !IsTextAllowed(e.Text);
+            FillDataGrid();
         }
     }
 }
