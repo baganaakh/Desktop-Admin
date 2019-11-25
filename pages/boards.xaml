@@ -22,7 +22,7 @@
         <TextBox Name="desc" HorizontalAlignment="Left" Height="23" Margin="282,97,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox Name="state" HorizontalAlignment="Left" Height="23" Margin="483,61,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Button Content="Insert" HorizontalAlignment="Left" Margin="426,99,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
-        <DataGrid x:Name="DateTable1" HorizontalAlignment="Left" Height="341" Margin="10,232,0,0" VerticalAlignment="Top" Width="712">
+        <DataGrid x:Name="DateTable1" HorizontalAlignment="Left" Height="341" AutoGenerateColumns="False" Margin="10,232,0,0" VerticalAlignment="Top" Width="712">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding name}" Header="Name"/>

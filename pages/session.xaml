@@ -77,7 +77,7 @@
                 <DataGridTextColumn Binding="{Binding algorithm}" Header="Algorithm"/>
                 <DataGridTextColumn Binding="{Binding match}" Header="Match"/>
                 <DataGridTextColumn Binding="{Binding allowedtypes}" Header="AllowedTypes"/>
-                <DataGridTextColumn Binding="{Binding description}" Width="200" Header="description"/>
+                <DataGridTextColumn Binding="{Binding description}" Header="description"/>
                 <DataGridTextColumn Binding="{Binding state}" Header="state"/>
                 <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
                 <DataGridTextColumn Binding="{Binding isactive}" Header="IsActive"/>

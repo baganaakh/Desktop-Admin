@@ -75,7 +75,7 @@ namespace pages
             string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT TOP (1000) [id],[name],[type],[tdays],[description],[state],[modified] FROM dbo.boards ";
+                CmdString = "SELECT ALL [id],[name],[type],[tdays],[description],[state],[modified] FROM dbo.boards ";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Employee");
