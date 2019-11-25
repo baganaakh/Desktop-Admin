@@ -11,8 +11,8 @@
             <Button Content="boards" Click="btnClickP1"/>
             <Button Content="Session" Margin="10,0,0,0" Click="btnClickP2"/>
             <Button Content="Participants" Margin="10,0,0,0" Click="btnClickP3"/>
-            <Button Content="assets" Margin="10,0,0,0" Click="btnClickP4"/>
             <Button Content="securities" Margin="10,0,0,0" Click="btnClickP5"/>
+            <Button Content="assets" Margin="10,0,0,0" Click="btnClickP4" RenderTransformOrigin="-1.167,0.486"/>
             <Button Content="contracts" Margin="10,0,0,0" Click="btnClickP6"/>
             <Button Content="trans" Margin="10,0,0,0" Click="btnClickP7"/>
             <Button Content="margins" Margin="10,0,0,0" Click="btnClickP8"/>

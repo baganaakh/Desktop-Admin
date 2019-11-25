@@ -5,53 +5,63 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="900"  d:DesignWidth="1200"
+      
       Title="securities">
 
     <Grid>
-        <Button Content="Connect" HorizontalAlignment="Left" Margin="703,78,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Insert" HorizontalAlignment="Left" Margin="703,127,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
         <Label Content="partID" HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top"/>
         <Label Content="type" HorizontalAlignment="Left" Margin="34,114,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.497,0.786"/>
         <Label Content="code" HorizontalAlignment="Left" Margin="34,159,0,0" VerticalAlignment="Top"/>
-        <Label Content="refno" HorizontalAlignment="Left" Margin="33,254,0,0" VerticalAlignment="Top"/>
-        <Label Content="regno" HorizontalAlignment="Left" Margin="27,301,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="refNo"  HorizontalAlignment="Left" Height="23" Margin="155,258,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120" PreviewTextInput="PreviewTextInput"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="regNo" HorizontalAlignment="Left" Height="23" Margin="155,302,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
-        <Label Content="totalQty" HorizontalAlignment="Left" Margin="345,71,0,0" VerticalAlignment="Top"/>
-        <Label Content="firstPrice" HorizontalAlignment="Left" Margin="345,114,0,0" VerticalAlignment="Top"/>
-        <Label Content="intRate" HorizontalAlignment="Left" Margin="345,155,0,0" VerticalAlignment="Top"/>
-        <Label Content="state" HorizontalAlignment="Left" Margin="345,200,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="totQuant" HorizontalAlignment="Left" Height="23" Margin="473,72,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="state" HorizontalAlignment="Left" Height="23" Margin="473,204,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <Label Content="sdate" HorizontalAlignment="Left" Margin="345,246,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="stype" HorizontalAlignment="Left" Height="23" Margin="155,117,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="partId" HorizontalAlignment="Left" Height="23" Margin="155,76,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <Label Content="refno" HorizontalAlignment="Left" Margin="305,70,0,0" VerticalAlignment="Top"/>
+        <Label Content="regno" HorizontalAlignment="Left" Margin="299,117,0,0" VerticalAlignment="Top"/>
+        <Label Content="totalQty" HorizontalAlignment="Left" Margin="299,164,0,0" VerticalAlignment="Top"/>
+        <Label Content="firstPrice" HorizontalAlignment="Left" Margin="299,207,0,0" VerticalAlignment="Top"/>
+        <Label Content="intRate" HorizontalAlignment="Left" Margin="603,73,0,0" VerticalAlignment="Top"/>
+        <Label Content="edate" HorizontalAlignment="Left" Margin="603,203,0,0" VerticalAlignment="Top"/>
+        <Label Content="state" HorizontalAlignment="Left" Margin="603,118,0,0" VerticalAlignment="Top"/>
+        <Label Content="sdate" HorizontalAlignment="Left" Margin="603,164,0,0" VerticalAlignment="Top"/>
+        <Label Content="groupid" HorizontalAlignment="Left" Margin="866,73,0,0" VerticalAlignment="Top"/>
         <Label Content="Нэр" HorizontalAlignment="Left" Margin="34,204,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,0.435"/>
+        <TextBox x:Name="stype" HorizontalAlignment="Left" Height="23" Margin="155,117,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="scode" HorizontalAlignment="Left" Height="23" Margin="155,159,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="sname" HorizontalAlignment="Left" Height="23" Margin="155,208,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="totalquant" HorizontalAlignment="Left" Height="23" Margin="473,72,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="fprice" HorizontalAlignment="Left" Height="23" Margin="473,114,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="srate" HorizontalAlignment="Left" Height="23" Margin="473,157,0,0" TextWrapping="Wrap" Text="1234
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 `" VerticalAlignment="Top" Width="120"/>
-        <Label Content="edate" HorizontalAlignment="Left" Margin="345,285,0,0" VerticalAlignment="Top"/>
-        <DatePicker Name="sdate" HorizontalAlignment="Left" Margin="473,248,0,0" VerticalAlignment="Top" Width="120"/>
-        <DatePicker Name="edate" HorizontalAlignment="Left" Margin="473,285,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="groupid" HorizontalAlignment="Left" Margin="345,321,0,0" VerticalAlignment="Top"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="groupid" HorizontalAlignment="Left" Height="23" Margin="473,325,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="totalquant" HorizontalAlignment="Left" Height="23" Margin="427,165,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="fprice" HorizontalAlignment="Left" Height="23" Margin="427,207,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="srate" HorizontalAlignment="Left" Height="23" Margin="731,75,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <DatePicker  Name="sdate" HorizontalAlignment="Left" Margin="731,166,0,0" VerticalAlignment="Top" Width="120"/>
+        <DatePicker Name="edate" HorizontalAlignment="Left" Margin="731,203,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="totQuant" HorizontalAlignment="Left" Height="23" Margin="427,165,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="state" HorizontalAlignment="Left" Height="23" Margin="731,122,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="partId" HorizontalAlignment="Left" Height="23" Margin="155,76,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="groupid" HorizontalAlignment="Left" Height="23" Margin="994,77,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="refNo"  HorizontalAlignment="Left" Height="23" Margin="427,74,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120" PreviewTextInput="PreviewTextInput"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="regNo" HorizontalAlignment="Left" Height="23" Margin="427,118,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="25,255,0,245" VerticalAlignment="Center" Width="1138">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
+                <DataGridTextColumn Binding="{Binding partid}" Header="PartID"/>
+                <DataGridTextColumn Binding="{Binding type}" Header="Type"/>
+                <DataGridTextColumn Binding="{Binding code}" Header="Code"/>
+                <DataGridTextColumn Binding="{Binding name}" Header="Name"/>
+                <DataGridTextColumn Binding="{Binding refno}" Header="RefNo"/>
+                <DataGridTextColumn Binding="{Binding regno}" Header="RegNo"/>
+                <DataGridTextColumn Binding="{Binding totalQty}" Header="TotalQty"/>
+                <DataGridTextColumn Binding="{Binding firstPrice}" Header="FPrice"/>
+                <DataGridTextColumn Binding="{Binding intRate}" Header="IntRate"/>
+                <DataGridTextColumn Binding="{Binding sdate}" Header="Sdate"/>
+                <DataGridTextColumn Binding="{Binding edate}" Header="Edate"/>
+                <DataGridTextColumn Binding="{Binding groupId}" Header="GID"/>
+                <DataGridTextColumn Binding="{Binding state}" Header="State"/>
+                <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="882,208,0,0"/>
+        <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="882,120,0,0"/>
+        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="994,121,0,0"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="882,149,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Insert" HorizontalAlignment="Left" Margin="882,178,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Update" HorizontalAlignment="Left" Margin="994,149,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
 
     </Grid>
 </Page>

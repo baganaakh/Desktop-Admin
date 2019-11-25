@@ -70,10 +70,10 @@ namespace pages
             eOrder.Text = editoreder;
             dOrder.Text = deleteorder;
             markT.Text = markettype;
-
         }
         private void insertFunc(object sender, RoutedEventArgs e)
         {
+            checkDate();
             string boardid = sboardid.Text;
             string name = sname.Text;
             string sstime = stime.SelectedDate.Value.ToShortDateString();
@@ -110,6 +110,14 @@ namespace pages
                 cmd.ExecuteNonQuery();
             sqlConnection1.Close();
 
+        }
+        private void checkDate()
+        {
+            if (stime.SelectedDate == null && starttime.SelectedDate == null && sEndTime.SelectedDate == null)
+            {
+                MessageBox.Show("Please Set Date !!!!!");
+            }
+            return;
         }
         private void FillDataGrid()
         {
