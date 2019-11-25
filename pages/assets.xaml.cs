@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
+using System.Data;
+using System.Text.RegularExpressions;
+
 namespace pages
 {
     /// <summary>
@@ -23,18 +26,117 @@ namespace pages
         public assets()
         {
             InitializeComponent();
+            FillDataGrid();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-
+        static string id;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection cnn;
-            cnn = new SqlConnection(connectionString);
-            cnn.Open();
-            MessageBox.Show("connection Open!");
-            cnn.Close();
+            var values = DateTable2.SelectedItem as DataRowView;
+            if (null == values) return;
+            id = values.Row[0].ToString();
+            string codev = values.Row[1].ToString();
+            string namev = values.Row[2].ToString();
+            string pricev = values.Row[3].ToString();
+            string descv = values.Row[4].ToString();
+            string expirev = values.Row[5].ToString();
+            string statev = values.Row[6].ToString();
+            string ratiov = values.Row[8].ToString();
+
+            acode.Text = codev;
+            aname.Text = namev;
+            aprice.Text = pricev;
+            anote.Text = descv;
+            artio.Text = ratiov;
+            aexpire.SelectedDate = DateTime.Parse(expirev);
+            astate.Text = statev;
         }
         private void insertFunc(object sender, RoutedEventArgs e)
+        {
+            if (aexpire.SelectedDate == null)
+            {
+                MessageBox.Show("Please Set Date !!!!!");
+                return;
+            }
+            string code = acode.Text;
+            string name = aname.Text;
+            string value = aprice.Text;
+            string note = anote.Text;
+            string expireDate = aexpire.SelectedDate.Value.ToShortDateString();
+            string ratio = artio.Text;
+            string state = astate.Text;
+
+            System.Data.SqlClient.SqlConnection sqlConnection1 =
+           new System.Data.SqlClient.SqlConnection(connectionString);
+
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "insert into dbo.assets(code, name, value, note, expireDate, state, modified, ratio) values" +
+                " ('" + code + "','" + name + "','" + value + "','" + note + "', '" + expireDate+ "', '" + state+ "', getdate(), '" + ratio+ "')";
+
+            cmd.Connection = sqlConnection1;
+            sqlConnection1.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection1.Close();
+            FillDataGrid();
+        }
+        private void FillDataGrid()
+        {
+            string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
+            string CmdString = string.Empty;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                CmdString = "SELECT ALL [id], [code], [name], [value], [note], [expireDate], [state], [modified], [ratio] "+
+                    "FROM dbo.assets";
+                SqlCommand cmd = new SqlCommand(CmdString, conn);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable("Securities");
+                sda.Fill(dt);
+                DateTable2.ItemsSource = dt.DefaultView;
+            }
+        }
+        private void refreshh(object sender, RoutedEventArgs e)
+        {
+            FillDataGrid();
+        }
+        private void newData(object sender, RoutedEventArgs e)
+        {
+            acode.Text = null;
+            aname.Text = null;
+            aprice.Text = null;
+            anote.Text = null;
+            artio.Text = null;
+            aexpire.SelectedDate = null;
+            astate.Text = null;
+            id = null;
+        }
+        private void delete(object sender, RoutedEventArgs e)
+        {
+            var value = DateTable2.SelectedItem as DataRowView;
+            if (null == value) return;
+            id = value.Row[0].ToString();
+            System.Data.SqlClient.SqlConnection sqlConnection1 =
+           new System.Data.SqlClient.SqlConnection(connectionString);
+
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "DELETE demo.dbo.assets WHERE id='" + id + "'";
+            cmd.Connection = sqlConnection1;
+            sqlConnection1.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection1.Close();
+            FillDataGrid();
+        }
+        private static readonly Regex _regex = new Regex("[^0-9.-]+");
+        private static bool IsTextAllowed(string text)
+        {
+            return !_regex.IsMatch(text);
+        }
+        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
+        private void update(object sender, RoutedEventArgs e)
         {
             string code = acode.Text;
             string name = aname.Text;
@@ -50,14 +152,22 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.assets(code, name, value, note, expireDate, state, modified, ratio) values" +
-                " ('" + code + "','" + name + "','" + value + "','" + note + "', '" + expireDate+ "', '" + state+ "', getdate(), '" + ratio+ "')";
+            cmd.CommandText = "UPDATE demo.dbo.assets SET " +
+                "code= '" + code+ "', " +
+                "name= '" + name + "', " +
+                "value= '" + value+ "', " +
+                "note= '" + note + "', " +
+                "expireDate= '" + expireDate+ "', " +
+                "state= '" + state + "', " +
+                "modified = getdate(), " +
+                "ratio= '" + ratio+ "' " +
+                "WHERE id = '" + id + "'";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
-
+            FillDataGrid();
         }
     }
 }

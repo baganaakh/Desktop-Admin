@@ -141,6 +141,7 @@ namespace pages
             sdate.Text = null;
             edate.Text = null;
             groupid.Text = null;
+            id = null;
         }
         private void delete(object sender, RoutedEventArgs e)
         {

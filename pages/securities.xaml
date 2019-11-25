@@ -6,7 +6,6 @@
       xmlns:local="clr-namespace:pages"
       mc:Ignorable="d" 
       d:DesignHeight="900"  d:DesignWidth="1200"
-      
       Title="securities">
 
     <Grid>
