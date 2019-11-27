@@ -28,17 +28,40 @@ namespace pages
             FillDataGrid();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-
+        static string id;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection cnn;
-            cnn = new SqlConnection(connectionString);
-            cnn.Open();
-            MessageBox.Show("connection Open!");
-            cnn.Close();
+            var values = DateTable2.SelectedItem as DataRowView;
+            id = values.Row[0].ToString();
+            string accid = values.Row[1].ToString();
+            string Type = values.Row[2].ToString();
+            string Type1= values.Row[3].ToString();
+            string amount= values.Row[4].ToString();
+            string currency= values.Row[5].ToString();
+            string rate = values.Row[6].ToString();
+            string note = values.Row[7].ToString();
+            string tdate = values.Row[8].ToString();
+            string state = values.Row[9].ToString();
+            string userid = values.Row[11].ToString();
+
+            accId.Text= accid;
+            trtype.Text = Type;
+            trtype1.Text = Type1;
+            tramount.Text = amount;
+            trcurrent.Text = currency;
+            trrate.Text = rate;
+            trnote.Text = note;
+            trtdate.SelectedDate = DateTime.Parse(tdate);
+            trstate.Text = state;
+            truser.Text = userid;
         }
         private void insertFunc(object sender, RoutedEventArgs e)
         {
+            if (trtdate.SelectedDate == null)
+            {
+                MessageBox.Show("Please Set Date !!!!!");
+                return;
+            }
             string accountId = accId.Text;
             string type = trtype.Text;
             string type1 = trtype1.Text;
@@ -88,6 +111,78 @@ namespace pages
                 sda.Fill(dt);
                 DateTable2.ItemsSource = dt.DefaultView;
             }
+        }
+        private void refreshh(object sender, RoutedEventArgs e)
+        {
+            FillDataGrid();
+        }
+        private void newData(object sender, RoutedEventArgs e)
+        {
+            accId.Text = null;
+            trtype.Text = null;
+            trtype1.Text = null;
+            tramount.Text = null;
+            trcurrent.Text = null;
+            trrate.Text = null;
+            trnote.Text = null;
+            trtdate.SelectedDate = null;
+            trstate.Text = null;
+            truser.Text = null;
+            id = null;
+        }
+        private void delete(object sender, RoutedEventArgs e)
+        {
+            var value = DateTable2.SelectedItem as DataRowView;
+            id = value.Row[0].ToString();
+            System.Data.SqlClient.SqlConnection sqlConnection1 =
+           new System.Data.SqlClient.SqlConnection(connectionString);
+
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "DELETE demo.dbo.trans WHERE id='" + id + "'";
+            cmd.Connection = sqlConnection1;
+            sqlConnection1.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection1.Close();
+            FillDataGrid();
+        }
+        private void update(object sender, RoutedEventArgs e)
+        {
+            string accountId = accId.Text;
+            string type = trtype.Text;
+            string type1 = trtype1.Text;
+            string ammount = tramount.Text;
+            string currecy = trcurrent.Text;
+            string rate = trrate.Text;
+            string note = trnote.Text;
+            string tdate = trtdate.SelectedDate.Value.ToShortDateString();
+            string state = trstate.Text;
+            string userId = truser.Text;
+
+            System.Data.SqlClient.SqlConnection sqlConnection1 =
+           new System.Data.SqlClient.SqlConnection(connectionString);
+
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "UPDATE demo.dbo.trans SET " +
+                "accountId= '" + accountId+ "', " +
+                "type= '" + type + "', " +
+                "type1= '" + type1 + "', " +
+                "amount= '" + ammount + "', " +
+                "currency= '" + currecy+ "', " +
+                "rate= '" + rate+ "', " +
+                "note= '" + note+ "', " +
+                "tdate= '" + tdate+ "', " +
+                "state= '" + state+ "', " +
+                "userId= '" + userId+ "', " +
+                "modified = getdate() " +
+                "WHERE id = '" + id + "'";
+
+            cmd.Connection = sqlConnection1;
+            sqlConnection1.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection1.Close();
+            FillDataGrid();
         }
     }
 }
