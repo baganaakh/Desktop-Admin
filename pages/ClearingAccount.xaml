@@ -5,12 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="900"  d:DesignWidth="1200"
+
       Title="ClearingAccount">
 
     <Grid>
-        <Button Content="Connect" HorizontalAlignment="Left" Margin="703,78,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Insert" HorizontalAlignment="Left" Margin="703,127,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Connect" HorizontalAlignment="Left" Margin="978,77,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Insert" HorizontalAlignment="Left" Margin="978,126,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
         <Label Content="memberID" HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top"/>
         <Label Content="account" HorizontalAlignment="Left" Margin="34,114,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.497,0.786"/>
         <Label Content="type" HorizontalAlignment="Left" Margin="34,159,0,0" VerticalAlignment="Top"/>
@@ -28,6 +29,24 @@
         <TextBox x:Name="currency" HorizontalAlignment="Left" Height="23" Margin="155,208,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox  x:Name="linkacc" HorizontalAlignment="Left" Height="23" Margin="463,166,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
         <TextBox  x:Name="stat" HorizontalAlignment="Left" Height="23" Margin="463,208,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="10,263,0,237" VerticalAlignment="Center" Width="1138">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
+                <DataGridTextColumn Binding="{Binding memberid}" Header="MID"/>
+                <DataGridTextColumn Binding="{Binding account}" Header="Account"/>
+                <DataGridTextColumn Binding="{Binding type}" Header="Type"/>
+                <DataGridTextColumn Binding="{Binding currency}" Header="Currency"/>
+                <DataGridTextColumn Binding="{Binding blnc}" Header="blnc"/>
+                <DataGridTextColumn Binding="{Binding sblnc}" Header="sblnc"/>
+                <DataGridTextColumn Binding="{Binding linkaccount}" Header="LinkAcc"/>
+                <DataGridTextColumn Binding="{Binding state}" Header="State"/>
+                <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="994,181,0,0"/>
+        <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="869,99,0,0"/>
+        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="869,134,0,0"/>
+        <Button Content="Update" HorizontalAlignment="Left" Margin="869,181,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
 
     </Grid>
 </Page>
