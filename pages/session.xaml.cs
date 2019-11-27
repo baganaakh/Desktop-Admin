@@ -115,14 +115,6 @@ namespace pages
             sqlConnection1.Close();
 
         }
-        private void checkDate()
-        {
-            if (stime.SelectedDate == null && starttime.SelectedDate == null && sEndTime.SelectedDate == null)
-            {
-                MessageBox.Show("Please Set Date !!!!!");
-            }
-            return;
-        }
         private void FillDataGrid()
         {
             string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";

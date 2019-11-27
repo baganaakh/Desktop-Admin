@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.Data;
 namespace pages
 {
     /// <summary>
@@ -24,24 +25,46 @@ namespace pages
         public MarketMakers()
         {
             InitializeComponent();
+            FillDataGrid();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-
+        static string id;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection cnn;
-            cnn = new SqlConnection(connectionString);
-            cnn.Open();
-            MessageBox.Show("connection Open!");
-            cnn.Close();
+            var values = DateTable2.SelectedItem as DataRowView;
+            id = values.Row[0].ToString();
+            string CID = values.Row[1].ToString();
+            string MID = values.Row[2].ToString();
+            string AID= values.Row[3].ToString();
+            string SDate= values.Row[4].ToString();
+            string EDate= values.Row[5].ToString();
+            string Ticks = values.Row[6].ToString();
+            string Desc = values.Row[7].ToString();
+            string orderLimitt= values.Row[8].ToString();
+            string State= values.Row[9].ToString();
+
+            markcontact.Text=CID;
+            markmember.Text=MID;
+            markaccount.Text=AID;
+            sdat.SelectedDate=DateTime.Parse(SDate);
+            edat.SelectedDate=DateTime.Parse(EDate);
+            markticks.Text = Ticks;
+            markdesc.Text=Desc;
+            markorderl.Text=orderLimitt;
+            markstat.Text=State;
         }
         private void insertFunc(object sender, RoutedEventArgs e)
         {
+            if (sdat.SelectedDate == null || edat.SelectedDate == null)
+            {
+                MessageBox.Show("Please Set Date !!!!!");
+                return;
+            }
             string contId = markcontact.Text;
             string memId = markmember.Text;
             string accId = markaccount.Text;
-            string sdate = sdat.Text;
-            string edate = edat.Text;
+            string sdate = sdat.SelectedDate.Value.ToShortDateString();
+            string edate = edat.SelectedDate.Value.ToShortDateString();
             string ticks = markticks.Text;
             string desc= markdesc.Text;
             string orderL = markorderl.Text;
@@ -61,7 +84,7 @@ namespace pages
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
-
+            FillDataGrid();
         }
         private static readonly Regex _regex = new Regex("[^0-9.-]+");
         private static bool IsTextAllowed(string text)
@@ -71,6 +94,90 @@ namespace pages
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !IsTextAllowed(e.Text);
+        }
+        private void FillDataGrid()
+        {
+            string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
+            string CmdString = string.Empty;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                CmdString = "SELECT ALL [id], [contactid], [memberid], [accountid], [startdate], [enddate], [ticks], [description], [orderlimit], [state], [modified] " +
+                            "FROM dbo.marketMakers";
+                SqlCommand cmd = new SqlCommand(CmdString, conn);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable("Securities");
+                sda.Fill(dt);
+                DateTable2.ItemsSource = dt.DefaultView;
+            }
+        }
+        private void refreshh(object sender, RoutedEventArgs e)
+        {
+            FillDataGrid();
+        }
+        private void newData(object sender, RoutedEventArgs e)
+        {
+            markcontact.Text = null;
+            markmember.Text = null;
+            markaccount.Text = null;
+            sdat.SelectedDate = null;
+            edat.SelectedDate = null;
+            markticks.Text = null;
+            markdesc.Text = null;
+            markorderl.Text = null;
+            markstat.Text = null;
+            id = null;
+        }
+        private void delete(object sender, RoutedEventArgs e)
+        {
+            var value = DateTable2.SelectedItem as DataRowView;
+            id = value.Row[0].ToString();
+            System.Data.SqlClient.SqlConnection sqlConnection1 =
+           new System.Data.SqlClient.SqlConnection(connectionString);
+
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "DELETE demo.dbo.marketMakers WHERE id='" + id + "'";
+            cmd.Connection = sqlConnection1;
+            sqlConnection1.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection1.Close();
+            FillDataGrid();
+        }
+        private void update(object sender, RoutedEventArgs e)
+        {
+            string contId = markcontact.Text;
+            string memId = markmember.Text;
+            string accId = markaccount.Text;
+            string sdate = sdat.SelectedDate.Value.ToShortDateString();
+            string edate = edat.SelectedDate.Value.ToShortDateString();
+            string ticks = markticks.Text;
+            string desc = markdesc.Text;
+            string orderL = markorderl.Text;
+            string state = markstat.Text;
+
+            System.Data.SqlClient.SqlConnection sqlConnection1 =
+           new System.Data.SqlClient.SqlConnection(connectionString);
+
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "UPDATE demo.dbo.marketMakers SET " +
+                "contactid= '" + contId+ "', " +
+                "memberid= '" + memId+ "', " +
+                "accountid= '" + accId+ "', " +
+                "startdate= '" + sdate + "', " +
+                "enddate= '" + edate+ "', " +
+                "ticks= '" + ticks+ "', " +
+                "description= '" + desc+ "', " +
+                "orderlimit= '" + orderL+ "', " +
+                "state= '" + state+ "', " +
+                "modified = getdate() " +
+                "WHERE id = '" + id + "'";
+
+            cmd.Connection = sqlConnection1;
+            sqlConnection1.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection1.Close();
+            FillDataGrid();
         }
     }
 }

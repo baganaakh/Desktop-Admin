@@ -5,31 +5,50 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="900"  d:DesignWidth="1200"
       Title="MarketMakers">
 
     <Grid>
-        <Button Content="Connect" HorizontalAlignment="Left" Margin="703,78,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Insert" HorizontalAlignment="Left" Margin="703,127,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="994,80,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Insert" HorizontalAlignment="Left" Margin="994,123,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
         <Label Content="contactID" HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top"/>
         <Label Content="accountId" HorizontalAlignment="Left" Margin="27,159,0,0" VerticalAlignment="Top"/>
-        <Label Content="startdate" HorizontalAlignment="Left" Margin="27,211,0,0" VerticalAlignment="Top"/>
-        <Label Content="enddate" HorizontalAlignment="Left" Margin="27,254,0,0" VerticalAlignment="Top"/>
-        <Label Content="ticks" HorizontalAlignment="Left" Margin="344,71,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="markticks" HorizontalAlignment="Left" Height="23" Margin="472,72,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <Label Content="description" HorizontalAlignment="Left" Margin="344,114,0,0" VerticalAlignment="Top"/>
-        <Label Content="orderLimit" HorizontalAlignment="Left" Margin="344,157,0,0" VerticalAlignment="Top"/>
-        <Label Content="state" HorizontalAlignment="Left" Margin="344,208,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="iAct" HorizontalAlignment="Left" Height="23" Margin="472,115,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="startdate" HorizontalAlignment="Left" Margin="297,74,0,0" VerticalAlignment="Top"/>
+        <Label Content="enddate" HorizontalAlignment="Left" Margin="297,117,0,0" VerticalAlignment="Top"/>
+        <Label Content="ticks" HorizontalAlignment="Left" Margin="297,158,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="markticks" HorizontalAlignment="Left" Height="23" Margin="425,159,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="description" HorizontalAlignment="Left" Margin="577,74,0,0" VerticalAlignment="Top"/>
+        <Label Content="orderLimit" HorizontalAlignment="Left" Margin="577,117,0,0" VerticalAlignment="Top"/>
+        <Label Content="state" HorizontalAlignment="Left" Margin="577,155,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="iAct" HorizontalAlignment="Left" Height="23" Margin="705,75,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="markmember" HorizontalAlignment="Left" Height="23" Margin="155,117,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="markcontact" HorizontalAlignment="Left" Height="23" Margin="155,76,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label Content="memberId" HorizontalAlignment="Left" Margin="34,114,0,0" VerticalAlignment="Top"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="markaccount" HorizontalAlignment="Left" Height="23" Margin="155,159,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="markdesc" HorizontalAlignment="Left" Height="23" Margin="472,115,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="markorderl" HorizontalAlignment="Left" Height="23" Margin="472,157,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="markstat" HorizontalAlignment="Left" Height="23" Margin="472,211,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <DatePicker x:Name="sdat" HorizontalAlignment="Left" Margin="155,213,0,0" VerticalAlignment="Top" Width="120"/>
-        <DatePicker x:Name="edat" HorizontalAlignment="Left" Margin="155,254,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="markdesc" HorizontalAlignment="Left" Height="23" Margin="705,75,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="markorderl" HorizontalAlignment="Left" Height="23" Margin="705,117,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="markstat" HorizontalAlignment="Left" Height="23" Margin="705,158,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="sdat" HorizontalAlignment="Left" Margin="425,76,0,0" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="edat" HorizontalAlignment="Left" Margin="425,117,0,0" VerticalAlignment="Top" Width="120"/>
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="10,242,0,258" VerticalAlignment="Center" Width="1138">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
+                <DataGridTextColumn Binding="{Binding contactid}" Header="CID"/>
+                <DataGridTextColumn Binding="{Binding memberid}" Header="MID"/>
+                <DataGridTextColumn Binding="{Binding accountid}" Header="AID"/>
+                <DataGridTextColumn Binding="{Binding startdate}" Header="Start date"/>
+                <DataGridTextColumn Binding="{Binding enddate}" Header="End date"/>
+                <DataGridTextColumn Binding="{Binding ticks}" Header="Ticks"/>
+                <DataGridTextColumn Binding="{Binding description}" Header="Description"/>
+                <DataGridTextColumn Binding="{Binding orderlimit}" Header="orderlimit"/>
+                <DataGridTextColumn Binding="{Binding state}" Header="State"/>
+                <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="994,160,0,0"/>
+        <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="869,78,0,0"/>
+        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="869,113,0,0"/>
+        <Button Content="Update" HorizontalAlignment="Left" Margin="869,160,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
 
     </Grid>
 </Page>
