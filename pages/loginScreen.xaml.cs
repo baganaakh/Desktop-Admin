@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
+using System.Data;
 namespace pages
 {
     /// <summary>
@@ -31,19 +32,47 @@ namespace pages
             try
             {
                 if (conn.State == System.Data.ConnectionState.Closed)
-                    conn.Open();
-                string query = "SELECT COUNT(1) FROM [dbo].[user] WHERE uname=@Username AND password=@Password";
-                SqlCommand sqlcmd = new SqlCommand(query, conn);
-                sqlcmd.CommandType = System.Data.CommandType.Text;
-                sqlcmd.Parameters.AddWithValue("@Username", userName.Text);
-                sqlcmd.Parameters.AddWithValue("@Password", passBox.Password);
-                int count = Convert.ToInt32(sqlcmd.ExecuteScalar());
-                if(count == 1)
                 {
-                    MainWindow dashboard = new MainWindow();
-                    dashboard.Show();
-                    this.Close();
+                    conn.Open();
+                    string CmdString = string.Empty;
+                    CmdString = "SELECT role FROM [dbo].[users] WHERE uname= '" + userName.Text + "' AND password= '" + passBox.Password + "'";
+                    SqlCommand cmd = new SqlCommand(CmdString, conn);
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable("Securities");
+                    sda.Fill(dt);
+                    Object o = dt.Rows[0][0];
+                    string dataa = o.ToString();
+
+                    if (dt.Rows.Count == 1) { 
+                    switch (dataa)
+                    {
+                        case "admin":
+                            {
+                                this.Hide();
+                                MainWindow dashboard = new MainWindow();
+                                dashboard.Show();
+                                dashboard.Content = new adminPage();
+                                this.Close();
+                                break;
+                            }
+                        case "subs":
+                            {
+                                MainWindow dashboard = new MainWindow();
+                                dashboard.Show();
+                                this.Close();
+                                break;
+                            }
+                        default:
+                            {
+                                break;
+                            }
+                    }
+                    }
                 }
+
+
+
+
                 else
                 {
                     MessageBox.Show("Username and password is incorrect");
