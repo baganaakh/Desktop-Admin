@@ -35,7 +35,7 @@ namespace pages
             id = values.Row[0].ToString();
             string refPrice = values.Row[1].ToString();
 
-            rId.Text = id;
+            rId.Content = id;
             refprice.Text = refPrice;
         }
         private void insertFunc(object sender, RoutedEventArgs e)
@@ -86,7 +86,7 @@ namespace pages
         }
         private void newData(object sender, RoutedEventArgs e)
         {
-            rId.Text = null;
+            rId.Content = null;
             refprice.Text = null;
             id = null;
         }

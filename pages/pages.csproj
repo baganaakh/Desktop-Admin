@@ -61,6 +61,9 @@
     <Compile Include="dealerAccount.xaml.cs">
       <DependentUpon>dealerAccount.xaml</DependentUpon>
     </Compile>
+    <Compile Include="loginScreen.xaml.cs">
+      <DependentUpon>loginScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="margins.xaml.cs">
       <DependentUpon>margins.xaml</DependentUpon>
     </Compile>
@@ -98,6 +101,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="dealerAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="loginScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
