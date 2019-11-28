@@ -91,8 +91,8 @@ namespace pages
             string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT ALL [id], [contactid], [memberid], [accountid], [startdate], [enddate], [ticks], [description], [orderlimit], [state], [modified] " +
-                            "FROM dbo.marketMakers";
+                CmdString = "SELECT ALL [id], [memberid], [account], [type], [currency], [blnc], [sblnc], [linkaccount], [state], [modified] " +
+                            "FROM dbo.ClearingAccounts";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Securities");
@@ -106,15 +106,14 @@ namespace pages
         }
         private void newData(object sender, RoutedEventArgs e)
         {
-            markcontact.Text = null;
-            markmember.Text = null;
-            markaccount.Text = null;
-            sdat.SelectedDate = null;
-            edat.SelectedDate = null;
-            markticks.Text = null;
-            markdesc.Text = null;
-            markorderl.Text = null;
-            markstat.Text = null;
+            memid.Text = null;
+            accid.Text = null;
+            typee.Text = null;
+            currency.Text = null;
+            balanc.Text =null;
+            sbalanc.Text = null;
+            linkacc.Text = null;
+            stat.Text = null;
             id = null;
         }
         private void delete(object sender, RoutedEventArgs e)
@@ -126,7 +125,7 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE demo.dbo.marketMakers WHERE id='" + id + "'";
+            cmd.CommandText = "DELETE demo.dbo.ClearingAccounts WHERE id='" + id + "'";
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();
@@ -135,15 +134,14 @@ namespace pages
         }
         private void update(object sender, RoutedEventArgs e)
         {
-            string contId = markcontact.Text;
-            string memId = markmember.Text;
-            string accId = markaccount.Text;
-            string sdate = sdat.SelectedDate.Value.ToShortDateString();
-            string edate = edat.SelectedDate.Value.ToShortDateString();
-            string ticks = markticks.Text;
-            string desc = markdesc.Text;
-            string orderL = markorderl.Text;
-            string state = markstat.Text;
+            string memID = memid.Text;
+            string accID = accid.Text;
+            string type = typee.Text;
+            string currenc = currency.Text;
+            string blnc = balanc.Text;
+            string sblnc = sbalanc.Text;
+            string linkAcc = linkacc.Text;
+            string state = stat.Text;
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
@@ -151,14 +149,13 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.dbo.marketMakers SET " +
-                "contactid= '" + contId + "', " +
-                "memberid= '" + memId + "', " +
-                "accountid= '" + accId + "', " +
-                "startdate= '" + sdate + "', " +
-                "enddate= '" + edate + "', " +
-                "ticks= '" + ticks + "', " +
-                "description= '" + desc + "', " +
-                "orderlimit= '" + orderL + "', " +
+                "contactid= '" + memID + "', " +
+                "account= '" + accID + "', " +
+                "type= '" + type + "', " +
+                "currency= '" + currenc + "', " +
+                "blnc= '" + blnc + "', " +
+                "sblnc= '" + sblnc + "', " +
+                "linkaccount= '" + linkAcc + "', " +
                 "state= '" + state + "', " +
                 "modified = getdate() " +
                 "WHERE id = '" + id + "'";

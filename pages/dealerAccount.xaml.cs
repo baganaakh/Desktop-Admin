@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.Data;
 namespace pages
 {
     /// <summary>
@@ -24,27 +25,30 @@ namespace pages
         public dealerAccount()
         {
             InitializeComponent();
+            FillDataGrid();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-
+        static string id;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection cnn;
-            cnn = new SqlConnection(connectionString);
-            cnn.Open();
-            MessageBox.Show("connection Open!");
-            cnn.Close();
+            var values = DateTable2.SelectedItem as DataRowView;
+            id = values.Row[0].ToString();
+            string memId= values.Row[1].ToString();
+            string accId= values.Row[2].ToString();
+            string State = values.Row[4].ToString();
+
+            memid.Text=memId;
+            accid.Text=accId;
+            stat.Text=State;
         }
         private void insertFunc(object sender, RoutedEventArgs e)
         {
             string memberID = memid.Text;
             string accID = accid.Text;
             string state = stat.Text;
-         
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
-
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
@@ -55,7 +59,7 @@ namespace pages
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
-
+            FillDataGrid();
         }
         private static readonly Regex _regex = new Regex("[^0-9.-]+");
         private static bool IsTextAllowed(string text)
@@ -65,6 +69,72 @@ namespace pages
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !IsTextAllowed(e.Text);
+        }
+        private void FillDataGrid()
+        {
+            string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
+            string CmdString = string.Empty;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                CmdString = "SELECT ALL [id], [memberid], [accountid],[state], [modified] " +
+                            "FROM dbo.DealerAccounts";
+                SqlCommand cmd = new SqlCommand(CmdString, conn);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable("Securities");
+                sda.Fill(dt);
+                DateTable2.ItemsSource = dt.DefaultView;
+            }
+        }
+        private void refreshh(object sender, RoutedEventArgs e)
+        {
+            FillDataGrid();
+        }
+        private void newData(object sender, RoutedEventArgs e)
+        {
+            memid.Text = null;
+            accid.Text = null;
+            stat.Text = null;
+            id = null;
+        }
+        private void delete(object sender, RoutedEventArgs e)
+        {
+            var value = DateTable2.SelectedItem as DataRowView;
+            id = value.Row[0].ToString();
+            System.Data.SqlClient.SqlConnection sqlConnection1 =
+           new System.Data.SqlClient.SqlConnection(connectionString);
+
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "DELETE demo.dbo.DealerAccounts WHERE id='" + id + "'";
+            cmd.Connection = sqlConnection1;
+            sqlConnection1.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection1.Close();
+            FillDataGrid();
+        }
+        private void update(object sender, RoutedEventArgs e)
+        {
+            string memberID = memid.Text;
+            string accID = accid.Text;
+            string state = stat.Text;
+
+            System.Data.SqlClient.SqlConnection sqlConnection1 =
+           new System.Data.SqlClient.SqlConnection(connectionString);
+
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "UPDATE demo.dbo.DealerAccounts SET " +
+                "memberid= '" + memberID + "', " +
+                "accountid= '" + accID+ "', " +
+                "state= '" + state + "', " +
+                "modified = getdate() " +
+                "WHERE id = '" + id + "'";
+
+            cmd.Connection = sqlConnection1;
+            sqlConnection1.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection1.Close();
+            FillDataGrid();
         }
     }
 }
