@@ -80,7 +80,7 @@ namespace pages
             string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT ALL [id], [tableid], [tick], [price] [state], [modified] " +
+                CmdString = "SELECT ALL [id], [tableid], [tick], [price], [state], [modified] " +
                             "FROM dbo.TickSizeTable";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);

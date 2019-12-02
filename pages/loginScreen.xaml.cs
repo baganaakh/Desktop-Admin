@@ -28,6 +28,7 @@ namespace pages
         private void log_submit(object sender, RoutedEventArgs e)
         {
             string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
+            string roless;
             SqlConnection conn = new SqlConnection(connectionString);
             try
             {
@@ -40,42 +41,38 @@ namespace pages
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable("Securities");
                     sda.Fill(dt);
-                    Object o = dt.Rows[0][0];
-                    string dataa = o.ToString();
+                    Object neo = dt.Rows[0][0];
 
-                    if (dt.Rows.Count == 1) { 
-                    switch (dataa)
+
+                    if (dt.Rows.Count == 1)
                     {
-                        case "admin":
-                            {
-                                this.Hide();
-                                MainWindow dashboard = new MainWindow();
-                                dashboard.Show();
-                                dashboard.Content = new adminPage();
-                                this.Close();
-                                break;
-                            }
-                        case "subs":
-                            {
-                                MainWindow dashboard = new MainWindow();
-                                dashboard.Show();
-                                this.Close();
-                                break;
-                            }
-                        default:
-                            {
-                                break;
-                            }
+                        MainWindow dashboard = new MainWindow();
+                        dashboard.Show();
+                        //dashboard.Content = new adminPage();
+                        this.Close();
+                        //foreach (DataRow row in dt.Rows)
+                        //{
+                        //    roless = row[0].ToString();
+                        //    if(string.Equals(roless, "admin"))
+                        //    {
+                        //            MessageBox.Show("in admin");
+                        //    }
+                        //    else if(string.Equals(roless, "subs"))
+                        //    {
+                        //            MessageBox.Show("not admin");
+                        //    }
+                        //    else
+                        //    {
+                        //            MessageBox.Show("outside");
+                        //    }
+
+                        //}
+
                     }
+                    else
+                    {
+                        MessageBox.Show("Username and password is incorrect");
                     }
-                }
-
-
-
-
-                else
-                {
-                    MessageBox.Show("Username and password is incorrect");
                 }
             }
             catch (Exception ex)
@@ -85,6 +82,34 @@ namespace pages
             finally
             {
                 conn.Close();
+            }
+
+
+            void Switches(string valuee)
+            {
+                switch (valuee)
+                {
+                    case "admin":
+                        {
+                            MainWindow dashboard = new MainWindow();
+                            dashboard.Show();
+                            dashboard.Content = new adminPage();
+                            this.Close();
+                            break;
+                        }
+                    case "subs":
+                        {
+                            MainWindow dashboard = new MainWindow();
+                            dashboard.Show();
+                            this.Close();
+                            break;
+                        }
+                    default:
+                        {
+                            MessageBox.Show("default opened");
+                            break;
+                        }
+                }
             }
         }
     }

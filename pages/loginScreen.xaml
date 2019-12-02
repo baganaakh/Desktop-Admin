@@ -11,8 +11,8 @@
         <TextBlock HorizontalAlignment="Left" Margin="247,143,0,0" Background="AliceBlue" TextWrapping="Wrap" Text="Usernamee:" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="247,173,0,0" Background="AliceBlue" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top"/>
         <Button  Content="Submit" HorizontalAlignment="Left" Margin="288,243,0,0" VerticalAlignment="Top" Width="75" Click="log_submit"/>
-        <TextBox x:Name="userName" HorizontalAlignment="Left" Height="23" Margin="320,142,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <PasswordBox x:Name="passBox" HorizontalAlignment="Left" Margin="320,173,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="userName" HorizontalAlignment="Left" Height="23" Margin="320,142,0,0" TextWrapping="Wrap" Text="user1" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox x:Name="passBox" HorizontalAlignment="Left" Password="user1" Margin="320,173,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

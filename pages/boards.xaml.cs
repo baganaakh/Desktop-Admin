@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
+using System.Text.RegularExpressions;
 namespace pages
 {
     /// <summary>
@@ -25,6 +26,15 @@ namespace pages
         {
             InitializeComponent();
             FillDataGrid();
+        }
+        private static readonly Regex _regex = new Regex("[^0-9.-]+");
+        private static bool IsTextAllowed(string text)
+        {
+            return !_regex.IsMatch(text);
+        }
+        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
         string id;
@@ -55,19 +65,18 @@ namespace pages
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
-
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.boards (name, type, tdays, description, state, modified) values" +
-                " ('" + boardName + "','" + type + "','" + tdays + "', '" + descr + "', '" + stat + "',@modified)";
-
-            cmd.Parameters.AddWithValue("@modified", DateTime.Now);
-
+            cmd.CommandText = "insert into dbo.boards (name, type, tdays, description, state) values" +
+                " ('" + boardName + "','" + type + "','" + tdays + "', '" + descr + "', '" + stat + "')";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
+            FillDataGrid();
+            var newstate = newState.Tag;
+            checkDAta.Text = 
         }
         private void FillDataGrid()
         {
@@ -106,7 +115,6 @@ namespace pages
                 "modified = getdate() " +
                 "WHERE id = '"+ id +"'";
 
-            checkDAta.Content = cmd.CommandText;
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();

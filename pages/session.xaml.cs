@@ -53,10 +53,19 @@ namespace pages
             string deleteorder= value.Row[17].ToString();
             string markettype= value.Row[18].ToString();
 
-            sboardid.SelectedValue = bid;
+            char seperator = ':';
+            checkDAta.Text = duration;
+            string[] arrays = duration.Split(seperator);
+            string dHours = arrays[0];
+            string dMinute = arrays[1];
+           
+            dminute.Text = dMinute;
+            dhour.Text = dHours;
+
+            
+            sboardid.SelectedItem= bid;
             sname.Text = name;
             stime.SelectedDate = DateTime.Parse(sTime);
-            dhour.SelectedValue = duration;
             algo.Text = algorithm;
             match1.Text = match;
             allowT.Text = allowtyp;
@@ -82,6 +91,7 @@ namespace pages
             string name = sname.Text;
             string sstime = stime.SelectedDate.Value.ToShortDateString();
             string dhours = dhour.Text;
+            string dminutes = dminute.Text;
             string alogor = algo.Text;
             string match11 = match1.Text;
             string allowedT = allowT.Text;
@@ -104,7 +114,7 @@ namespace pages
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.session (boardid, name, stime, duration, algorithm, match, allowedtypes, description, state, modified, isactive," +
                 " starttime, endtime, tduration, matched, editorder, delorder, markettype) values" +
-                " ('" + boardid + "','" + name + "','"+sstime+"','" + dhours + "', '" + alogor + "', '"+match11+ "', '"+allowedT+ "', '"+descrip+ "', '"+state+ 
+                " ('" + boardid + "','" + name + "','"+sstime+"','" + dhours + ":"+dminutes+":00', '" + alogor + "', '"+match11+ "', '"+allowedT+ "', '"+descrip+ "', '"+state+ 
                 "', getdate(), '"+iActive+"', '"+ startT + "', '"+endTime+ "', '"+tduration+"','"+prevMatch+"', '"+EDorder+ "', '"+DEorder+ "', '"+markType+"')";
             cmd.Parameters.AddWithValue("@modified", DateTime.Now);
             //checkDAta.Text = cmd.CommandText;
@@ -184,6 +194,7 @@ namespace pages
             string name = sname.Text;
             string sstime = stime.SelectedDate.Value.ToShortDateString();
             string dhours = dhour.Text;
+            string dminutes = dminute.Text;
             string alogor = algo.Text;
             string match11 = match1.Text;
             string allowedT = allowT.Text;
@@ -207,7 +218,7 @@ namespace pages
                 "boardid = '" + boardid+ "', " +
                 "name= '" + name + "', " +
                 "stime = '" + sstime + "', " +
-                "duration = '" + dhours+ "', " +
+                "duration = '" + dhours+ ":"+dminutes+"', " +
                 "algorithm= '" + alogor+ "', " +
                 "match= '" + match11+ "', " +
                 "allowedtypes= '" + allowedT+ "', " +
@@ -231,5 +242,7 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+
+       
     }
 }

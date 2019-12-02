@@ -9,7 +9,7 @@
       Title="adminPage">
 
     <Grid>
-        <Label Content="I am The Admin" HorizontalAlignment="Left" Margin="336,78,0,0" VerticalAlignment="Top"/>
+        <Label Name="adminLabel" Content="I am The Admin" HorizontalAlignment="Left" Margin="336,78,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>
