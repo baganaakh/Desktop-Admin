@@ -37,20 +37,8 @@
         <Button Content="Delete" HorizontalAlignment="Left" Margin="728,99,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete"/>
         <Button Content="Refresh" HorizontalAlignment="Left" Margin="625,61,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh"/>
         <Button Content="New" HorizontalAlignment="Left" Margin="728,61,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData"/>
-        <ComboBox x:Name="newState" HorizontalAlignment="Left" Margin="832,179,0,0" VerticalAlignment="Top" Width="120">
-            <ComboBoxItem Content="Идэвхтэй" Tag="0"/>
-            <ComboBoxItem Content="устгасан" Tag="-1"/>
-            <ComboBoxItem Content="Идэвхгүй" Tag="1"/>
-            <ComboBoxItem Content="Биелсэн" Tag="-0"/>
-            <ComboBoxItem Content="Шинэ" Tag="99"/>
-            <Separator/>
-            <MenuItem/>
-            <CheckBox/>
-            <ListBoxItem/>
-            <MenuItem/>
-            <RadioButton/>
-            <TabItem/>
-        </ComboBox>
+        
+
         <TextBlock x:Name="checkDAta" HorizontalAlignment="Left" Margin="832,65,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="54" Width="149"/>
 
     </Grid>

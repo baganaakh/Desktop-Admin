@@ -26,6 +26,7 @@ namespace pages
         {
             InitializeComponent();
             FillDataGrid();
+
         }
         private static readonly Regex _regex = new Regex("[^0-9.-]+");
         private static bool IsTextAllowed(string text)
@@ -47,9 +48,9 @@ namespace pages
             string type = value.Row[2].ToString();
             string tdays = value.Row[3].ToString();
             string description = value.Row[4].ToString();
-            string stat= value.Row[5].ToString();
+            string stat = value.Row[5].ToString();
 
-            bname.Text= name;
+            bname.Text = name;
             btype.Text = type;
             tdayss.Text = tdays;
             desc.Text = description;
@@ -75,8 +76,7 @@ namespace pages
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
             FillDataGrid();
-            var newstate = newState.Tag;
-            checkDAta.Text = 
+
         }
         private void FillDataGrid()
         {
@@ -113,7 +113,7 @@ namespace pages
                 "description = '" + descr + "', " +
                 "state = '" + stat + "', " +
                 "modified = getdate() " +
-                "WHERE id = '"+ id +"'";
+                "WHERE id = '" + id + "'";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -132,7 +132,7 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE demo.dbo.boards WHERE id='" +id+"'";
+            cmd.CommandText = "DELETE demo.dbo.boards WHERE id='" + id + "'";
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();
@@ -153,5 +153,6 @@ namespace pages
             desc.Text = null;
             state.Text = null;
         }
+        
     }
 }

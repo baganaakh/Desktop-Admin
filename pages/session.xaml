@@ -5,10 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:pages"
       mc:Ignorable="d" 
-      d:DesignHeight="900"  d:DesignWidth="1200"
       Title="Page2" Height="1060" Width="1500">
 
     <Grid >
+    <ComboBox Name="combo1" ItemsSource="{Binding}" SelectionChanged="ComboBox_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="987,44,0,0" VerticalAlignment="Top" Width="329"/>
         <Button Content="Edit" HorizontalAlignment="Left" Margin="1350,86,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="Insert" HorizontalAlignment="Left" Margin="1350,126,0,0" VerticalAlignment="Top" Width="76" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
         <Label Content="boardid" HorizontalAlignment="Left" Margin="29,33,0,0" VerticalAlignment="Top"/>

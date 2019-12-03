@@ -26,6 +26,8 @@ namespace pages
         {
             InitializeComponent();
             FillDataGrid();
+            bindCombo();
+
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
         static string id;
@@ -242,7 +244,21 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        public List<Boards> boa { get; set; }
+        private void bindCombo()
+        {
+            //throw new NotImplementedException();
+            demoEntities dE = new demoEntities();
+            var item = dE.Boards.ToList();
+            boa = item;
+            DataContext = boa;
+        }
 
-       
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = combo1.SelectedItem as Boards;
+            MessageBox.Show(item.name.ToString());
+        }
+
     }
 }

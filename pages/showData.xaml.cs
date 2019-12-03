@@ -27,9 +27,26 @@ namespace pages
             InitializeComponent();
         }
        
-        private void window_loaded(object sender, RoutedEventArgs e)
-        {
+      
+        
+        //private void ComboBox_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    List<string> data = new List<string>();
+        //    data.Add("apple");
+        //    data.Add("mango");
+        //    data.Add("banana");
+        //    var combo = sender as ComboBox;
+        //    combo.ItemsSource = data;
+        //    combo.SelectedIndex = 0;
 
-        }
+        //}
+
+        //private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    var selectedComboItem = sender as ComboBox;
+        //    string name = selectedComboItem.SelectedItem as string;
+        //    MessageBox.Show(name);
+
+        //}
     }
 }
