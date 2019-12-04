@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Data;
+using pages.dbBind;
+
 namespace pages
 {
     /// <summary>
@@ -26,9 +28,10 @@ namespace pages
         {
             InitializeComponent();
             FillDataGrid();
+            bindcombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id;
+        static string id,cid;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -42,7 +45,7 @@ namespace pages
             string Linkacc= values.Row[7].ToString();
             string State= values.Row[8].ToString();
 
-            memid.Text=MID;
+            memid.SelectedValue=MID;
             accid.Text=Acc;
             typee.Text=Type;
             currency.Text=Currency;
@@ -53,7 +56,7 @@ namespace pages
         }
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            string memID = memid.Text;
+            string memID = cid;
             string accID = accid.Text;
             string type = typee.Text;
             string currenc = currency.Text;
@@ -134,7 +137,7 @@ namespace pages
         }
         private void update(object sender, RoutedEventArgs e)
         {
-            string memID = memid.Text;
+            string memID = cid;
             string accID = accid.Text;
             string type = typee.Text;
             string currenc = currency.Text;
@@ -148,8 +151,8 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "UPDATE demo.dbo.marketMakers SET " +
-                "contactid= '" + memID + "', " +
+            cmd.CommandText = "UPDATE demo.dbo.ClearingAccounts SET " +
+                "memberid= '" + memID + "', " +
                 "account= '" + accID + "', " +
                 "type= '" + type + "', " +
                 "currency= '" + currenc + "', " +
@@ -165,6 +168,20 @@ namespace pages
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
             FillDataGrid();
+        }
+        public List<Members> Emp { get; set; }
+        private void bindcombo()
+        {
+            demoEntities1 dc = new demoEntities1();
+            var item = dc.Members.ToList();
+            Emp = item;
+            memid.ItemsSource = Emp;
+        }
+        private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = memid.SelectedItem as Members;
+            cid = item.id.ToString();
+
         }
     }
 }
