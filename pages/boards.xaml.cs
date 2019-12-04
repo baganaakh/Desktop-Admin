@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
 using System.Text.RegularExpressions;
+using pages.dbBind;
+
 namespace pages
 {
     /// <summary>
@@ -26,7 +28,7 @@ namespace pages
         {
             InitializeComponent();
             FillDataGrid();
-
+            bindCombo();
         }
         private static readonly Regex _regex = new Regex("[^0-9.-]+");
         private static bool IsTextAllowed(string text)
@@ -38,7 +40,7 @@ namespace pages
             e.Handled = !IsTextAllowed(e.Text);
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        string id;
+        string id, cid;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var value = DateTable1.SelectedItem as DataRowView;
@@ -54,7 +56,7 @@ namespace pages
             btype.Text = type;
             tdayss.Text = tdays;
             desc.Text = description;
-            state.Text = stat;
+            state.SelectedValue = stat;
         }
         private void insertFunc(object sender, RoutedEventArgs e)
         {
@@ -62,14 +64,18 @@ namespace pages
             string type = btype.Text;
             string tdays = tdayss.Text;
             string descr = desc.Text;
-            string stat = state.Text;
+            string de = "Шинэ";
+            if (cid == null)
+            {
+                cid = "Шинэ";
+            }
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.boards (name, type, tdays, description, state) values" +
-                " ('" + boardName + "','" + type + "','" + tdays + "', '" + descr + "', '" + stat + "')";
+                " (N'" + boardName + "',N'" + type + "',N'" + tdays + "', N'" + descr + "', N'" + cid + "')";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -99,21 +105,19 @@ namespace pages
             string type = btype.Text;
             string tdays = tdayss.Text;
             string descr = desc.Text;
-            string stat = state.Text;
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
-
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.dbo.boards SET " +
-                "name = '" + boardName + "', " +
-                "type = '" + type + "', " +
-                "tdays = '" + tdays + "', " +
-                "description = '" + descr + "', " +
-                "state = '" + stat + "', " +
+                "name = N'" + boardName + "', " +
+                "type = N'" + type + "', " +
+                "tdays = N'" + tdays + "', " +
+                "description = N'" + descr + "', " +
+                "state = N'" + cid + "', " +
                 "modified = getdate() " +
-                "WHERE id = '" + id + "'";
+                "WHERE id = N'" + id + "N'";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -132,7 +136,7 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE demo.dbo.boards WHERE id='" + id + "'";
+            cmd.CommandText = "DELETE demo.dbo.boards WHERE id=N'" + id + "N'";
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();
@@ -151,8 +155,28 @@ namespace pages
             btype.Text = null;
             tdayss.Text = null;
             desc.Text = null;
-            state.Text = null;
+            state.SelectedValue = null;
         }
-        
+        public List<States> boa { get; set; }
+        private void bindCombo()
+        {
+            demoEntities3 dE = new demoEntities3();
+            var item = dE.States.ToList();
+            boa = item;
+            state.ItemsSource = boa;
+        }
+
+        private void stat_change(object sender, SelectionChangedEventArgs e)
+        {
+            var item = state.SelectedItem as States;
+            try
+            {
+                cid = item.id.ToString();
+            }
+            catch (NullReferenceException)
+            {
+                cid = 0.ToString();
+            }
+        }
     }
 }
