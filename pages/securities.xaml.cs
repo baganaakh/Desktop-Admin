@@ -31,7 +31,7 @@ namespace pages
             bindcombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id;
+        static string id, cid;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -72,7 +72,7 @@ namespace pages
                 MessageBox.Show("Please Set Date !!!!!");
                 return;
             }
-            string partid = id;
+            string partid = cid;
             string type = stype.Text;
             string code = scode.Text;
             string name = sname.Text;
@@ -165,7 +165,7 @@ namespace pages
         }
         private void update(object sender, RoutedEventArgs e)
         {
-            string partid = partId.Text;
+            string partid = cid;
             string type = stype.Text;
             string code = scode.Text;
             string name = sname.Text;
@@ -220,7 +220,8 @@ namespace pages
         private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = partId.SelectedItem as Participants;
-            id = item.id.ToString();
+            cid = item.id.ToString();
+//< ComboBox Name = "sboardid" ItemsSource = "{Binding}" SelectionChanged = "boardid_SelectionChanged" DisplayMemberPath = "name" SelectedValuePath = "id" HorizontalAlignment = "Left" Margin = "150,44,0,0" VerticalAlignment = "Top" Width = "120" />
 
         }
     }

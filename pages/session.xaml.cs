@@ -30,7 +30,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id;
+        static string id, cid;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -86,7 +86,7 @@ namespace pages
                 MessageBox.Show("Please Set Date !!!!!");
                 return;
             }
-            string boardid = id;
+            string boardid = cid;
             string name = sname.Text;
             string sstime = stime.SelectedDate.Value.ToShortDateString();
             string dhours = dhour.Text;
@@ -188,7 +188,7 @@ namespace pages
                 MessageBox.Show("Please Set Date !!!!!");
                 return;
             }
-            string boardid = id;
+            string boardid = cid;
             string name = sname.Text;
             string sstime = stime.SelectedDate.Value.ToShortDateString();
             string dhours = dhour.Text;
@@ -251,7 +251,7 @@ namespace pages
         private void boardid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = sboardid.SelectedItem as Boards;
-            id = item.id.ToString();
+            cid = item.id.ToString();
         }
     }
 }

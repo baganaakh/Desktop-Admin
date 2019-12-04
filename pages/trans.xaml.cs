@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Data;
+using pages.dbBind;
+
 namespace pages
 {
     /// <summary>
@@ -26,9 +28,10 @@ namespace pages
         {
             InitializeComponent();
             FillDataGrid();
+            bindcombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id;
+        static string id,cid;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -43,7 +46,9 @@ namespace pages
             string tdate = values.Row[8].ToString();
             string state = values.Row[9].ToString();
             string userid = values.Row[11].ToString();
+            string memberid= values.Row[12].ToString();
 
+            sboardid.SelectedValue = memberid;
             accId.Text= accid;
             trtype.Text = Type;
             trtype1.Text = Type1;
@@ -62,6 +67,7 @@ namespace pages
                 MessageBox.Show("Please Set Date !!!!!");
                 return;
             }
+            string MemID = cid;
             string accountId = accId.Text;
             string type = trtype.Text;
             string type1 = trtype1.Text;
@@ -79,8 +85,8 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.trans(accountId, type, type1, amount, currency, rate, note, tdate, state, modified, userId) values" +
-                " ('" + accountId+ "','" + type + "','" + type1+ "','" + ammount+ "', '" + currecy+ "', '" + rate+ "', '" + note+ "','" +tdate +"', '" + state+ "', getdate(), '" + userId+"')";
+            cmd.CommandText = "insert into dbo.trans(accountId, type, type1, amount, currency, rate, note, tdate, state, modified, userId,memberid) values" +
+                " ('" + accountId+ "','" + type + "','" + type1+ "','" + ammount+ "', '" + currecy+ "', '" + rate+ "', '" + note+ "','" +tdate +"', '" + state+ "', getdate(), '" + userId+"', '" + MemID+"')";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -103,7 +109,7 @@ namespace pages
             string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT ALL [id], [accountId], [type], [type1], [amount], [currency], [rate], [note], [tdate], [state], [modified], [userId] "+
+                CmdString = "SELECT ALL [id], [accountId], [type], [type1], [amount], [currency], [rate], [note], [tdate], [state], [modified], [userId], [memberid] "+
         "FROM dbo.trans";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
@@ -128,6 +134,7 @@ namespace pages
             trtdate.SelectedDate = null;
             trstate.Text = null;
             truser.Text = null;
+            sboardid.SelectedValue = null;
             id = null;
         }
         private void delete(object sender, RoutedEventArgs e)
@@ -149,6 +156,7 @@ namespace pages
         private void update(object sender, RoutedEventArgs e)
         {
             string accountId = accId.Text;
+            string MemID = cid;
             string type = trtype.Text;
             string type1 = trtype1.Text;
             string ammount = tramount.Text;
@@ -175,6 +183,7 @@ namespace pages
                 "tdate= '" + tdate+ "', " +
                 "state= '" + state+ "', " +
                 "userId= '" + userId+ "', " +
+                "userId= '" + MemID+ "', " +
                 "modified = getdate() " +
                 "WHERE id = '" + id + "'";
 
@@ -183,6 +192,20 @@ namespace pages
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
             FillDataGrid();
+        }
+        public List<Members> Emp { get; set; }
+        private void bindcombo()
+        {
+            demoEntities1 dc = new demoEntities1();
+            var item = dc.Members.ToList();
+            Emp = item;
+            DataContext = Emp;
+        }
+        private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = sboardid.SelectedItem as Members;
+            cid = item.id.ToString();
+
         }
     }
 }

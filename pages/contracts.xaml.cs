@@ -31,7 +31,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id;
+        static string id, cid;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -71,7 +71,7 @@ namespace pages
                 MessageBox.Show("Please Set Date !!!!!");
                 return;
             }
-            string secId = securityid_Copy.Text;
+            string secId = cid;
             string type = ctype.Text;
             string code = ccode.Text;
             string name = cname.Text;
@@ -163,7 +163,7 @@ namespace pages
         }
         private void update(object sender, RoutedEventArgs e)
         {
-            string secId = securityid_Copy.Text;
+            string secId = cid;
             string type = ctype.Text;
             string code = ccode.Text;
             string name = cname.Text;
@@ -218,7 +218,7 @@ namespace pages
         private void boardid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = securityid_Copy.SelectedItem as Securities;
-            id = item.id.ToString();
+            cid = item.id.ToString();
         }
     }
 }

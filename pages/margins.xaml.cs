@@ -87,7 +87,7 @@ namespace pages
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 CmdString = "SELECT ALL [id], [buy], [sell], [buytype], [selltype], [mbuy], [msell], [modified] "+
-                            "FROM dbo.margin";
+                            "FROM dbo.Margin";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Securities");
