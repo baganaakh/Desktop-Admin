@@ -1,0 +1,548 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="demoModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Assets">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="nvarchar" MaxLength="16" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="value" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="note" Type="nvarchar(max)" />
+          <Property Name="expireDate" Type="date" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="ratio" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Boards">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="type" Type="smallint" />
+          <Property Name="tdays" Type="nvarchar" MaxLength="128" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="description" Type="nvarchar" MaxLength="1024" />
+        </EntityType>
+        <EntityType Name="Contracts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="securityId" Type="int" />
+          <Property Name="type" Type="smallint" />
+          <Property Name="code" Type="nvarchar" MaxLength="16" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="lot" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="tick" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="sdate" Type="date" />
+          <Property Name="edate" Type="date" />
+          <Property Name="groupId" Type="smallint" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="mmorderLimit" Type="int" />
+          <Property Name="orderLimit" Type="int" />
+          <Property Name="refpriceParam" Type="decimal" Precision="18" Scale="6" />
+        </EntityType>
+        <EntityType Name="Invoices">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="smallint" />
+          <Property Name="invoiceno" Type="nvarchar" MaxLength="16" />
+          <Property Name="invoicedate" Type="datetime" />
+          <Property Name="expiredate" Type="datetime" />
+          <Property Name="formid" Type="bigint" />
+          <Property Name="toid" Type="bigint" />
+          <Property Name="assetid" Type="int" />
+          <Property Name="qty" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="smallint" />
+          <Property Name="code" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="address" Type="nchar" MaxLength="100" />
+          <Property Name="phone" Type="int" />
+          <Property Name="fax" Type="nchar" MaxLength="50" />
+          <Property Name="email" Type="nchar" MaxLength="50" />
+          <Property Name="contact" Type="nchar" MaxLength="50" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="csid" Type="int" />
+          <Property Name="webid" Type="int" />
+          <Property Name="partid" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Participants">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="nchar" MaxLength="10" />
+          <Property Name="name" Type="nchar" MaxLength="50" />
+          <Property Name="country" Type="smallint" />
+          <Property Name="address" Type="nvarchar" MaxLength="255" />
+          <Property Name="phone" Type="int" />
+          <Property Name="fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="contact" Type="nvarchar" MaxLength="50" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="csid" Type="int" />
+          <Property Name="webid" Type="int" />
+        </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="boardid" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="boardid" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="stime" Type="datetime" />
+          <Property Name="duration" Type="time" Precision="7" />
+          <Property Name="algorithm" Type="smallint" />
+          <Property Name="match" Type="smallint" />
+          <Property Name="allowedtypes" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar" MaxLength="1024" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="isactive" Type="nvarchar" MaxLength="50" />
+          <Property Name="starttime" Type="date" />
+          <Property Name="endtime" Type="date" />
+          <Property Name="tduration" Type="nchar" MaxLength="10" />
+          <Property Name="matched" Type="bigint" />
+          <Property Name="editorder" Type="nchar" MaxLength="50" />
+          <Property Name="delorder" Type="nchar" MaxLength="50" />
+          <Property Name="markettype" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_boards_boards1">
+          <End Role="Boards" Type="Self.Boards" Multiplicity="1" />
+          <End Role="Boards1" Type="Self.Boards" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Boards">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Boards1">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_session_session">
+          <End Role="Session" Type="Self.Session" Multiplicity="1" />
+          <End Role="Session1" Type="Self.Session" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="id" />
+              <PropertyRef Name="boardid" />
+            </Principal>
+            <Dependent Role="Session1">
+              <PropertyRef Name="id" />
+              <PropertyRef Name="boardid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_session_session1">
+          <End Role="Session" Type="Self.Session" Multiplicity="1" />
+          <End Role="Session1" Type="Self.Session" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="id" />
+              <PropertyRef Name="boardid" />
+            </Principal>
+            <Dependent Role="Session1">
+              <PropertyRef Name="id" />
+              <PropertyRef Name="boardid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="demoModel1StoreContainer">
+          <EntitySet Name="Assets" EntityType="Self.Assets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Boards" EntityType="Self.Boards" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contracts" EntityType="Self.Contracts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Participants" EntityType="Self.Participants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Session" EntityType="Self.Session" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_boards_boards1" Association="Self.FK_boards_boards1">
+            <End Role="Boards" EntitySet="Boards" />
+            <End Role="Boards1" EntitySet="Boards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_session_session" Association="Self.FK_session_session">
+            <End Role="Session" EntitySet="Session" />
+            <End Role="Session1" EntitySet="Session" />
+          </AssociationSet>
+          <AssociationSet Name="FK_session_session1" Association="Self.FK_session_session1">
+            <End Role="Session" EntitySet="Session" />
+            <End Role="Session1" EntitySet="Session" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="demoModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Assets">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="value" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="expireDate" Type="DateTime" Precision="0" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="ratio" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Boards">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="Int16" />
+          <Property Name="tdays" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Boards1" Relationship="Self.FK_boards_boards1" FromRole="Boards" ToRole="Boards1" />
+          <NavigationProperty Name="Boards2" Relationship="Self.FK_boards_boards1" FromRole="Boards1" ToRole="Boards" />
+        </EntityType>
+        <EntityType Name="Contracts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="securityId" Type="Int32" />
+          <Property Name="type" Type="Int16" />
+          <Property Name="code" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lot" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="tick" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="sdate" Type="DateTime" Precision="0" />
+          <Property Name="edate" Type="DateTime" Precision="0" />
+          <Property Name="groupId" Type="Int16" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="mmorderLimit" Type="Int32" />
+          <Property Name="orderLimit" Type="Int32" />
+          <Property Name="refpriceParam" Type="Decimal" Precision="18" Scale="6" />
+        </EntityType>
+        <EntityType Name="Invoices">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="Int16" />
+          <Property Name="invoiceno" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="invoicedate" Type="DateTime" Precision="3" />
+          <Property Name="expiredate" Type="DateTime" Precision="3" />
+          <Property Name="formid" Type="Int64" />
+          <Property Name="toid" Type="Int64" />
+          <Property Name="assetid" Type="Int32" />
+          <Property Name="qty" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="Int16" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="phone" Type="Int32" />
+          <Property Name="fax" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="contact" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="csid" Type="Int32" />
+          <Property Name="webid" Type="Int32" />
+          <Property Name="partid" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Participants">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="country" Type="Int16" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="Int32" />
+          <Property Name="fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="csid" Type="Int32" />
+          <Property Name="webid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="boardid" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="boardid" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="stime" Type="DateTime" Precision="3" />
+          <Property Name="duration" Type="Time" Precision="7" />
+          <Property Name="algorithm" Type="Int16" />
+          <Property Name="match" Type="Int16" />
+          <Property Name="allowedtypes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="isactive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="starttime" Type="DateTime" Precision="0" />
+          <Property Name="endtime" Type="DateTime" Precision="0" />
+          <Property Name="tduration" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="matched" Type="Int64" />
+          <Property Name="editorder" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="delorder" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="markettype" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Session1" Relationship="Self.FK_session_session" FromRole="Session" ToRole="Session1" />
+          <NavigationProperty Name="Session2" Relationship="Self.FK_session_session" FromRole="Session1" ToRole="Session" />
+          <NavigationProperty Name="Session11" Relationship="Self.FK_session_session1" FromRole="Session" ToRole="Session1" />
+          <NavigationProperty Name="Session3" Relationship="Self.FK_session_session1" FromRole="Session1" ToRole="Session" />
+        </EntityType>
+        <Association Name="FK_boards_boards1">
+          <End Role="Boards" Type="Self.Boards" Multiplicity="1" />
+          <End Role="Boards1" Type="Self.Boards" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Boards">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Boards1">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_session_session">
+          <End Role="Session" Type="Self.Session" Multiplicity="1" />
+          <End Role="Session1" Type="Self.Session" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="id" />
+              <PropertyRef Name="boardid" />
+            </Principal>
+            <Dependent Role="Session1">
+              <PropertyRef Name="id" />
+              <PropertyRef Name="boardid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_session_session1">
+          <End Role="Session" Type="Self.Session" Multiplicity="1" />
+          <End Role="Session1" Type="Self.Session" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="id" />
+              <PropertyRef Name="boardid" />
+            </Principal>
+            <Dependent Role="Session1">
+              <PropertyRef Name="id" />
+              <PropertyRef Name="boardid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="demoEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Assets" EntityType="Self.Assets" />
+          <EntitySet Name="Boards" EntityType="Self.Boards" />
+          <EntitySet Name="Contracts" EntityType="Self.Contracts" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoices" />
+          <EntitySet Name="Members" EntityType="Self.Members" />
+          <EntitySet Name="Participants" EntityType="Self.Participants" />
+          <EntitySet Name="Session" EntityType="Self.Session" />
+          <AssociationSet Name="FK_boards_boards1" Association="Self.FK_boards_boards1">
+            <End Role="Boards" EntitySet="Boards" />
+            <End Role="Boards1" EntitySet="Boards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_session_session" Association="Self.FK_session_session">
+            <End Role="Session" EntitySet="Session" />
+            <End Role="Session1" EntitySet="Session" />
+          </AssociationSet>
+          <AssociationSet Name="FK_session_session1" Association="Self.FK_session_session1">
+            <End Role="Session" EntitySet="Session" />
+            <End Role="Session1" EntitySet="Session" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="demoModel1StoreContainer" CdmEntityContainer="demoEntities1">
+          <EntitySetMapping Name="Assets">
+            <EntityTypeMapping TypeName="demoModel1.Assets">
+              <MappingFragment StoreEntitySet="Assets">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="expireDate" ColumnName="expireDate" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="ratio" ColumnName="ratio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Boards">
+            <EntityTypeMapping TypeName="demoModel1.Boards">
+              <MappingFragment StoreEntitySet="Boards">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="tdays" ColumnName="tdays" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contracts">
+            <EntityTypeMapping TypeName="demoModel1.Contracts">
+              <MappingFragment StoreEntitySet="Contracts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="securityId" ColumnName="securityId" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="lot" ColumnName="lot" />
+                <ScalarProperty Name="tick" ColumnName="tick" />
+                <ScalarProperty Name="sdate" ColumnName="sdate" />
+                <ScalarProperty Name="edate" ColumnName="edate" />
+                <ScalarProperty Name="groupId" ColumnName="groupId" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="mmorderLimit" ColumnName="mmorderLimit" />
+                <ScalarProperty Name="orderLimit" ColumnName="orderLimit" />
+                <ScalarProperty Name="refpriceParam" ColumnName="refpriceParam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="demoModel1.Invoices">
+              <MappingFragment StoreEntitySet="Invoices">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="invoiceno" ColumnName="invoiceno" />
+                <ScalarProperty Name="invoicedate" ColumnName="invoicedate" />
+                <ScalarProperty Name="expiredate" ColumnName="expiredate" />
+                <ScalarProperty Name="formid" ColumnName="formid" />
+                <ScalarProperty Name="toid" ColumnName="toid" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="demoModel1.Members">
+              <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="contact" ColumnName="contact" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="csid" ColumnName="csid" />
+                <ScalarProperty Name="webid" ColumnName="webid" />
+                <ScalarProperty Name="partid" ColumnName="partid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Participants">
+            <EntityTypeMapping TypeName="demoModel1.Participants">
+              <MappingFragment StoreEntitySet="Participants">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="contact" ColumnName="contact" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="csid" ColumnName="csid" />
+                <ScalarProperty Name="webid" ColumnName="webid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Session">
+            <EntityTypeMapping TypeName="demoModel1.Session">
+              <MappingFragment StoreEntitySet="Session">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="boardid" ColumnName="boardid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="stime" ColumnName="stime" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="algorithm" ColumnName="algorithm" />
+                <ScalarProperty Name="match" ColumnName="match" />
+                <ScalarProperty Name="allowedtypes" ColumnName="allowedtypes" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="starttime" ColumnName="starttime" />
+                <ScalarProperty Name="endtime" ColumnName="endtime" />
+                <ScalarProperty Name="tduration" ColumnName="tduration" />
+                <ScalarProperty Name="matched" ColumnName="matched" />
+                <ScalarProperty Name="editorder" ColumnName="editorder" />
+                <ScalarProperty Name="delorder" ColumnName="delorder" />
+                <ScalarProperty Name="markettype" ColumnName="markettype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

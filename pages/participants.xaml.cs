@@ -107,7 +107,7 @@ namespace pages
             string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT ALL [id], [code], [name], [country], [address], [phone], [fax], [email], [contact], [state], [modified], [wedid], [csid], [webid] " +
+                CmdString = "SELECT ALL [id], [code], [name], [country], [address], [phone], [fax], [email], [contact], [state], [modified], [webid], [csid], [webid] " +
                     "FROM dbo.participants ";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);

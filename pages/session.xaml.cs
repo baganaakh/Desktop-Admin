@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
+using pages.dbBind;
 
 namespace pages
 {
@@ -27,7 +28,6 @@ namespace pages
             InitializeComponent();
             FillDataGrid();
             bindCombo();
-
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
         static string id;
@@ -40,39 +40,36 @@ namespace pages
             string name = value.Row[2].ToString();
             string sTime = value.Row[3].ToString();
             string duration = value.Row[4].ToString();
-            string algorithm= value.Row[5].ToString();
-            string match= value.Row[6].ToString();
-            string allowtyp= value.Row[7].ToString();
+            string algorithm = value.Row[5].ToString();
+            string match = value.Row[6].ToString();
+            string allowtyp = value.Row[7].ToString();
             string description = value.Row[8].ToString();
-            string state= value.Row[9].ToString();
-            string modifi= value.Row[10].ToString();
-            string isACT= value.Row[11].ToString();
-            string startTime= value.Row[12].ToString();
-            string endTime= value.Row[13].ToString();
-            string tduartion= value.Row[14].ToString();
-            string matched= value.Row[15].ToString();
-            string editoreder= value.Row[16].ToString();
-            string deleteorder= value.Row[17].ToString();
-            string markettype= value.Row[18].ToString();
+            string state = value.Row[9].ToString();
+            string isACT = value.Row[11].ToString();
+            string startTime = value.Row[12].ToString();
+            string endTime = value.Row[13].ToString();
+            string tduartion = value.Row[14].ToString();
+            string matched = value.Row[15].ToString();
+            string editoreder = value.Row[16].ToString();
+            string deleteorder = value.Row[17].ToString();
+            string markettype = value.Row[18].ToString();
 
             char seperator = ':';
             checkDAta.Text = duration;
             string[] arrays = duration.Split(seperator);
             string dHours = arrays[0];
             string dMinute = arrays[1];
-           
+
             dminute.Text = dMinute;
             dhour.Text = dHours;
-
-            
-            sboardid.SelectedItem= bid;
+            sboardid.SelectedValue = bid;
             sname.Text = name;
             stime.SelectedDate = DateTime.Parse(sTime);
             algo.Text = algorithm;
             match1.Text = match;
             allowT.Text = allowtyp;
             sdesc.Text = description;
-            sstate.Text = state; 
+            sstate.Text = state;
             iAct.Text = isACT;
             starttime.SelectedDate = DateTime.Parse(startTime);
             sEndTime.SelectedDate = DateTime.Parse(endTime);
@@ -85,11 +82,11 @@ namespace pages
         private void insertFunc(object sender, RoutedEventArgs e)
         {
             if (stime.SelectedDate == null || starttime.SelectedDate == null || sEndTime.SelectedDate == null)
-                {
-                    MessageBox.Show("Please Set Date !!!!!");
-                    return;
-                }
-            string boardid = sboardid.Text;
+            {
+                MessageBox.Show("Please Set Date !!!!!");
+                return;
+            }
+            string boardid = id;
             string name = sname.Text;
             string sstime = stime.SelectedDate.Value.ToShortDateString();
             string dhours = dhour.Text;
@@ -111,21 +108,20 @@ namespace pages
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
-
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.session (boardid, name, stime, duration, algorithm, match, allowedtypes, description, state, modified, isactive," +
                 " starttime, endtime, tduration, matched, editorder, delorder, markettype) values" +
-                " ('" + boardid + "','" + name + "','"+sstime+"','" + dhours + ":"+dminutes+":00', '" + alogor + "', '"+match11+ "', '"+allowedT+ "', '"+descrip+ "', '"+state+ 
-                "', getdate(), '"+iActive+"', '"+ startT + "', '"+endTime+ "', '"+tduration+"','"+prevMatch+"', '"+EDorder+ "', '"+DEorder+ "', '"+markType+"')";
+                " ('" + boardid + "','" + name + "','" + sstime + "','" + dhours + ":" + dminutes + ":00', '" + alogor + "', '" + match11 + "', '" + allowedT + "', '" + descrip + "', '" + state +
+                "', getdate(), '" + iActive + "', '" + startT + "', '" + endTime + "', '" + tduration + "','" + prevMatch + "', '" + EDorder + "', '" + DEorder + "', '" + markType + "')";
             cmd.Parameters.AddWithValue("@modified", DateTime.Now);
             //checkDAta.Text = cmd.CommandText;
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
-                cmd.ExecuteNonQuery();
+            cmd.ExecuteNonQuery();
             sqlConnection1.Close();
-
+            FillDataGrid();
         }
         private void FillDataGrid()
         {
@@ -192,7 +188,7 @@ namespace pages
                 MessageBox.Show("Please Set Date !!!!!");
                 return;
             }
-            string boardid = sboardid.Text;
+            string boardid = id;
             string name = sname.Text;
             string sstime = stime.SelectedDate.Value.ToShortDateString();
             string dhours = dhour.Text;
@@ -213,28 +209,27 @@ namespace pages
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
-
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.dbo.session SET " +
-                "boardid = '" + boardid+ "', " +
+                "boardid = '" + boardid + "', " +
                 "name= '" + name + "', " +
                 "stime = '" + sstime + "', " +
-                "duration = '" + dhours+ ":"+dminutes+"', " +
-                "algorithm= '" + alogor+ "', " +
-                "match= '" + match11+ "', " +
-                "allowedtypes= '" + allowedT+ "', " +
-                "description= '" + descrip+ "', " +
-                "state= '" + state+ "', " +
+                "duration = '" + dhours + ":" + dminutes + "', " +
+                "algorithm= '" + alogor + "', " +
+                "match= '" + match11 + "', " +
+                "allowedtypes= '" + allowedT + "', " +
+                "description= '" + descrip + "', " +
+                "state= '" + state + "', " +
                 "modified = getdate(), " +
-                "isactive= '" + iActive+ "', " +
-                "starttime= '" + startT+ "', " +
-                "endtime= '" + endTime+ "', " +
-                "tduration= '" + tduration+ "', " +
-                "matched= '" + prevMatch+ "', " +
-                "editorder= '" + EDorder+ "', " +
-                "delorder= '" + DEorder+ "', " +
-                "markettype= '" + markType+ "' " +
+                "isactive= '" + iActive + "', " +
+                "starttime= '" + startT + "', " +
+                "endtime= '" + endTime + "', " +
+                "tduration= '" + tduration + "', " +
+                "matched= '" + prevMatch + "', " +
+                "editorder= '" + EDorder + "', " +
+                "delorder= '" + DEorder + "', " +
+                "markettype= '" + markType + "' " +
                 "WHERE id = '" + id + "'";
 
             checkDAta.Text = cmd.CommandText;
@@ -247,18 +242,16 @@ namespace pages
         public List<Boards> boa { get; set; }
         private void bindCombo()
         {
-            //throw new NotImplementedException();
-            demoEntities dE = new demoEntities();
+            demoEntities1 dE = new demoEntities1();
             var item = dE.Boards.ToList();
             boa = item;
             DataContext = boa;
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void boardid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var item = combo1.SelectedItem as Boards;
-            MessageBox.Show(item.name.ToString());
+            var item = sboardid.SelectedItem as Boards;
+            id = item.id.ToString();
         }
-
     }
 }

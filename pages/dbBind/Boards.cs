@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace pages
+namespace pages.dbBind
 {
     using System;
     using System.Collections.Generic;

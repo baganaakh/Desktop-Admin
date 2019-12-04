@@ -8,7 +8,7 @@
       Title="Page2" Height="1060" Width="1500">
 
     <Grid >
-    <ComboBox Name="combo1" ItemsSource="{Binding}" SelectionChanged="ComboBox_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="987,44,0,0" VerticalAlignment="Top" Width="329"/>
+        <ComboBox Name="sboardid" ItemsSource="{Binding}" SelectionChanged="boardid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,44,0,0" VerticalAlignment="Top" Width="120"/>
         <Button Content="Edit" HorizontalAlignment="Left" Margin="1350,86,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="Insert" HorizontalAlignment="Left" Margin="1350,126,0,0" VerticalAlignment="Top" Width="76" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
         <Label Content="boardid" HorizontalAlignment="Left" Margin="29,33,0,0" VerticalAlignment="Top"/>
@@ -44,11 +44,7 @@
         <TextBox x:Name="dOrder" HorizontalAlignment="Left" Height="23" Margin="837,211,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="markT" HorizontalAlignment="Left" Height="23" Margin="837,262,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="sname" HorizontalAlignment="Left" Height="23" Margin="150,72,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-        <ComboBox x:Name="sboardid" HorizontalAlignment="Left" Margin="150,38,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2">
-            <ListBoxItem Content="1"/>
-            <ListBoxItem Content="2"/>
-            <ListBoxItem Content="3"/>
-        </ComboBox>
+        
         <DatePicker x:Name="stime" HorizontalAlignment="Left" Margin="150,119,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="120"/>
         <ComboBox x:Name="dhour" HorizontalAlignment="Left" Margin="150,170,0,0" VerticalAlignment="Top" Width="58">
             <ComboBoxItem Content="00"/>

@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace pages
+namespace pages.dbBind
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class demoEntities : DbContext
+    public partial class demoEntities2 : DbContext
     {
-        public demoEntities()
-            : base("name=demoEntities")
+        public demoEntities2()
+            : base("name=demoEntities2")
         {
         }
     
@@ -25,6 +25,6 @@ namespace pages
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Boards> Boards { get; set; }
+        public virtual DbSet<Securities> Securities { get; set; }
     }
 }

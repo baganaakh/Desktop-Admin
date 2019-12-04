@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Data;
+using pages.dbBind;
+
 namespace pages
 {
     /// <summary>
@@ -26,6 +28,7 @@ namespace pages
         {
             InitializeComponent();
             FillDataGrid();
+            bindcombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
         static string id;
@@ -36,8 +39,8 @@ namespace pages
             id = value.Row[0].ToString();
             string pidse = value.Row[1].ToString();
             string typese = value.Row[2].ToString();
-            string codese= value.Row[3].ToString();
-            string namese= value.Row[4].ToString();
+            string codese = value.Row[3].ToString();
+            string namese = value.Row[4].ToString();
             string refnose = value.Row[5].ToString();
             string regnose = value.Row[6].ToString();
             string totqtse = value.Row[7].ToString();
@@ -48,7 +51,7 @@ namespace pages
             string statese = value.Row[13].ToString();
             string gidse = value.Row[12].ToString();
 
-            partId.Text = pidse;
+            partId.SelectedValue= pidse;
             stype.Text = typese;
             scode.Text = codese;
             sname.Text = namese;
@@ -69,15 +72,15 @@ namespace pages
                 MessageBox.Show("Please Set Date !!!!!");
                 return;
             }
-            string partid = partId.Text;
+            string partid = id;
             string type = stype.Text;
             string code = scode.Text;
-            string name= sname.Text;
+            string name = sname.Text;
             string refno = refNo.Text;
             string regno = regNo.Text;
             string total = totalquant.Text;
-            string fPirce= fprice.Text;
-            string intRate= srate.Text;
+            string fPirce = fprice.Text;
+            string intRate = srate.Text;
             string stat = state.Text;
             string starTime = sdate.SelectedDate.Value.ToShortDateString();
             string endTime = edate.SelectedDate.Value.ToShortDateString();
@@ -89,8 +92,8 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.securities (partid, type, code, name, refno, regno, totalQty, firstPrice, intRate, sdate, edate, groupid, state, modified) values" +
-                " ('" + partid + "','" + type + "','" + code + "','" + name + "', '" + refno + "', '" + regno + "', '" + total + "', '" + fPirce+ "', '" + intRate+
-                "','"+ starTime + "','" + endTime + "','" + groupId +"','" + stat +"', getdate())";
+                " ('" + partid + "','" + type + "','" + code + "','" + name + "', '" + refno + "', '" + regno + "', '" + total + "', '" + fPirce + "', '" + intRate +
+                "','" + starTime + "','" + endTime + "','" + groupId + "','" + stat + "', getdate())";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -183,19 +186,19 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.dbo.securities SET " +
-                "partid= '" + partid+ "', " +
-                "type= '" + type+ "', " +
-                "code= '" + code+ "', " +
-                "name= '" + name+ "', " +
-                "refno= '" + refno+ "', " +
-                "regno= '" + regno+ "', " +
+                "partid= '" + partid + "', " +
+                "type= '" + type + "', " +
+                "code= '" + code + "', " +
+                "name= '" + name + "', " +
+                "refno= '" + refno + "', " +
+                "regno= '" + regno + "', " +
                 "totalQty= '" + total + "', " +
-                "firstPrice= '" + fPirce+ "', " +
+                "firstPrice= '" + fPirce + "', " +
                 "intRate= '" + intRate + "', " +
-                "sdate= '" + starTime+ "', " +
+                "sdate= '" + starTime + "', " +
                 "edate= '" + endTime + "', " +
-                "groupId= '" + groupId+ "', " +
-                "state= '" + stat+ "', " +
+                "groupId= '" + groupId + "', " +
+                "state= '" + stat + "', " +
                 "modified = getdate() " +
                 "WHERE id = '" + id + "'";
 
@@ -204,6 +207,21 @@ namespace pages
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
             FillDataGrid();
+        }
+
+        public List<Participants> Emp { get; set; }
+        private void bindcombo()
+        {
+            demoEntities1 dc = new demoEntities1();
+            var item = dc.Participants.ToList();
+            Emp = item;
+            DataContext = Emp;
+        }
+        private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = partId.SelectedItem as Participants;
+            id = item.id.ToString();
+
         }
     }
 }

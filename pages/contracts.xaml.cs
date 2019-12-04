@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Data;
+using pages.dbBind;
+
 namespace pages
 {
     /// <summary>
@@ -26,6 +28,7 @@ namespace pages
         {
             InitializeComponent();
             FillDataGrid();
+            bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
         static string id;
@@ -36,7 +39,7 @@ namespace pages
             string SID= values.Row[1].ToString();
             string Type= values.Row[2].ToString();
             string Code= values.Row[3].ToString();
-            string Name = values.Row[4].ToString();
+            string Name= values.Row[4].ToString();
             string Lot= values.Row[5].ToString();
             string Tick= values.Row[6].ToString();
             string Sdate= values.Row[7].ToString();
@@ -47,7 +50,7 @@ namespace pages
             string Olimit= values.Row[13].ToString();
             string refprPAram= values.Row[14].ToString();
 
-            securityid_Copy.Text = SID;
+            securityid_Copy.SelectedValue= SID;
             ctype.Text = Type;
             ccode.Text = Code;
             cname.Text = Name;
@@ -202,6 +205,20 @@ namespace pages
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
             FillDataGrid();
+        }
+        public List<Securities> boa { get; set; }
+        private void bindCombo()
+        {
+            demoEntities2 dE = new demoEntities2();
+            var item = dE.Securities.ToList();
+            boa = item;
+            DataContext = boa;
+        }
+
+        private void boardid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = securityid_Copy.SelectedItem as Securities;
+            id = item.id.ToString();
         }
     }
 }
