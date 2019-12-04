@@ -92,7 +92,7 @@ namespace pages
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
-
+            FillDataGrid();
         }
         private static readonly Regex _regex = new Regex("[^0-9.-]+");
         private static bool IsTextAllowed(string text)
@@ -199,7 +199,7 @@ namespace pages
             demoEntities1 dc = new demoEntities1();
             var item = dc.Members.ToList();
             Emp = item;
-            DataContext = Emp;
+            sboardid.ItemsSource = Emp;
         }
         private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

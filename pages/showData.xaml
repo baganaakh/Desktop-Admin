@@ -9,6 +9,19 @@
       Title="showData">
 
     <Grid>
-        
+        <StackPanel>
+            <ComboBox Name = "comboBox"  Margin = "50" Width = "100">
+                <ComboBoxItem Content = "Green" />
+                <ComboBoxItem Content = "Yellow" IsSelected = "True" />
+                <ComboBoxItem Content = "Orange" />
+            </ComboBox>
+
+            <TextBox  Name = "textBox" Margin = "50" 
+         Width = "100" Height = "23" VerticalAlignment = "Top" 
+         Text  = "{Binding ElementName = comboBox, Path = SelectedItem.Content, 
+         Mode = TwoWay, UpdateSourceTrigger = PropertyChanged}" 
+         Background = "{Binding ElementName = comboBox, Path = SelectedItem.Content}">
+            </TextBox>
+        </StackPanel>
     </Grid>
 </Page>

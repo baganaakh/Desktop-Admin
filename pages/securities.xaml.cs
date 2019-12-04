@@ -215,7 +215,7 @@ namespace pages
             demoEntities1 dc = new demoEntities1();
             var item = dc.Participants.ToList();
             Emp = item;
-            DataContext = Emp;
+            partId.ItemsSource = Emp;
         }
         private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

@@ -212,7 +212,7 @@ namespace pages
             demoEntities2 dE = new demoEntities2();
             var item = dE.Securities.ToList();
             boa = item;
-            DataContext = boa;
+            securityid_Copy.ItemsSource = boa;
         }
 
         private void boardid_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -245,7 +245,7 @@ namespace pages
             demoEntities1 dE = new demoEntities1();
             var item = dE.Boards.ToList();
             boa = item;
-            DataContext = boa;
+            sboardid.ItemsSource = boa;
         }
 
         private void boardid_SelectionChanged(object sender, SelectionChangedEventArgs e)

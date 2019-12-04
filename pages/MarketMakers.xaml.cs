@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Data;
+using pages.dbBind;
 namespace pages
 {
     /// <summary>
@@ -26,9 +27,10 @@ namespace pages
         {
             InitializeComponent();
             FillDataGrid();
+            bindcombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id;
+        static string id,coId,meId;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -43,8 +45,8 @@ namespace pages
             string orderLimitt= values.Row[8].ToString();
             string State= values.Row[9].ToString();
 
-            markcontact.Text=CID;
-            markmember.Text=MID;
+            markcontact.SelectedValue=CID;
+            markmember.SelectedValue=MID;
             markaccount.Text=AID;
             sdat.SelectedDate=DateTime.Parse(SDate);
             edat.SelectedDate=DateTime.Parse(EDate);
@@ -60,8 +62,8 @@ namespace pages
                 MessageBox.Show("Please Set Date !!!!!");
                 return;
             }
-            string contId = markcontact.Text;
-            string memId = markmember.Text;
+            string contId = coId;
+            string memId = meId;
             string accId = markaccount.Text;
             string sdate = sdat.SelectedDate.Value.ToShortDateString();
             string edate = edat.SelectedDate.Value.ToShortDateString();
@@ -72,7 +74,6 @@ namespace pages
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
-
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
@@ -145,8 +146,8 @@ namespace pages
         }
         private void update(object sender, RoutedEventArgs e)
         {
-            string contId = markcontact.Text;
-            string memId = markmember.Text;
+            string contId = coId;
+            string memId = meId;
             string accId = markaccount.Text;
             string sdate = sdat.SelectedDate.Value.ToShortDateString();
             string edate = edat.SelectedDate.Value.ToShortDateString();
@@ -178,6 +179,33 @@ namespace pages
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
             FillDataGrid();
+        }
+        public List<Contracts> Cont { get; set; }
+        public List<Members> Emp { get; set; }
+
+        private void bindcombo()
+        {
+            demoEntities1 dc = new demoEntities1();
+            var item = dc.Members.ToList();
+            Emp = item;
+            markmember.ItemsSource= Emp;
+
+            demoEntities1 ct = new demoEntities1();
+            var citem = ct.Contracts.ToList();
+            Cont = citem;
+            markcontact.ItemsSource = Cont;
+        }
+        private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = markmember.SelectedItem as Members;
+            meId = item.id.ToString();
+
+        }
+        private void contid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var citem = markcontact.SelectedItem as Contracts;
+            coId = citem.id.ToString();
+
         }
     }
 }
