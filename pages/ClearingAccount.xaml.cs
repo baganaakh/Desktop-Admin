@@ -31,7 +31,7 @@ namespace pages
             bindcombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id,cid;
+        static string id,cid,statid;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -52,7 +52,7 @@ namespace pages
             balanc.Text=Blnc;
             sbalanc.Text=Sblnc;
             linkacc.Text=Linkacc;
-            stat.Text=State;
+            stat.SelectedValue=State;
         }
         private void insertFunc(object sender, RoutedEventArgs e)
         {
@@ -71,7 +71,7 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.ClearingAccounts (memberid, account, type, currency, blnc, sblnc, linkaccount, state,modified) values" +
-                " ('" + memID+ "','" + accID+ "','" + type+ "','" + currenc+ "', '" + blnc+ "', '" + sblnc+ "', '" + linkAcc+ "', '" + state+ "',getdate())";
+                " ('" + memID+ "',N'" + accID+ "',N'" + type+ "',N'" + currenc+ "', '" + blnc+ "', '" + sblnc+ "', '" + linkAcc+ "', '" + statid+ "',getdate())";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -159,7 +159,7 @@ namespace pages
                 "blnc= '" + blnc + "', " +
                 "sblnc= '" + sblnc + "', " +
                 "linkaccount= '" + linkAcc + "', " +
-                "state= '" + state + "', " +
+                "state= '" + statid + "', " +
                 "modified = getdate() " +
                 "WHERE id = '" + id + "'";
 
@@ -170,18 +170,43 @@ namespace pages
             FillDataGrid();
         }
         public List<Members> Emp { get; set; }
+        public List<States> statt { get; set; }
+
         private void bindcombo()
         {
             demoEntities1 dc = new demoEntities1();
             var item = dc.Members.ToList();
             Emp = item;
             memid.ItemsSource = Emp;
+
+            demoEntities3 st = new demoEntities3();
+            var items = st.States.ToList();
+            statt = items;
+            stat.ItemsSource = statt;
         }
         private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = memid.SelectedItem as Members;
-            cid = item.id.ToString();
-
+            try
+            {
+                cid = item.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
+        }
+        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var items = stat.SelectedItem as States;
+            try
+            {
+                statid = items.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }

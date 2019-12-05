@@ -31,7 +31,7 @@ namespace pages
             bindcombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id,cid;
+        static string id,cid,statid;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -57,7 +57,7 @@ namespace pages
             trrate.Text = rate;
             trnote.Text = note;
             trtdate.SelectedDate = DateTime.Parse(tdate);
-            trstate.Text = state;
+            trstate.SelectedValue = state;
             truser.Text = userid;
         }
         private void insertFunc(object sender, RoutedEventArgs e)
@@ -86,7 +86,7 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.trans(accountId, type, type1, amount, currency, rate, note, tdate, state, modified, userId,memberid) values" +
-                " ('" + accountId+ "','" + type + "','" + type1+ "','" + ammount+ "', '" + currecy+ "', '" + rate+ "', '" + note+ "','" +tdate +"', '" + state+ "', getdate(), '" + userId+"', '" + MemID+"')";
+                " ('" + accountId+ "',N'" + type + "',N'" + type1+ "',N'" + ammount+ "', '" + currecy+ "', '" + rate+ "', '" + note+ "',N'" +tdate +"', '" + statid+ "', getdate(), '" + userId+"', '" + MemID+"')";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -181,7 +181,7 @@ namespace pages
                 "rate= '" + rate+ "', " +
                 "note= '" + note+ "', " +
                 "tdate= '" + tdate+ "', " +
-                "state= '" + state+ "', " +
+                "state= '" + statid+ "', " +
                 "userId= '" + userId+ "', " +
                 "userId= '" + MemID+ "', " +
                 "modified = getdate() " +
@@ -194,18 +194,44 @@ namespace pages
             FillDataGrid();
         }
         public List<Members> Emp { get; set; }
+        public List<States> statt { get; set; }
+
         private void bindcombo()
         {
             demoEntities1 dc = new demoEntities1();
             var item = dc.Members.ToList();
             Emp = item;
             sboardid.ItemsSource = Emp;
+
+            demoEntities3 st = new demoEntities3();
+            var items = st.States.ToList();
+            statt = items;
+            trstate.ItemsSource = statt;
         }
         private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = sboardid.SelectedItem as Members;
-            cid = item.id.ToString();
 
+            try
+            {
+                cid = item.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
+        }
+        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var items = trstate.SelectedItem as States;
+            try
+            {
+                statid = items.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }

@@ -59,7 +59,7 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.Spreads(contractid, sessionid, rspread, ispread, rparam, modified) values" +
-                " ('" + contid + "','" + sessid+ "','"+ rsprea+ "','" + isprea+ "','" + rpara+"', getdate())";
+                " ('" + contid + "',N'" + sessid+ "',N'"+ rsprea+ "',N'" + isprea+ "',N'" + rpara+"', getdate())";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();

@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Data;
+using pages.dbBind;
+
 namespace pages
 {
     /// <summary>
@@ -26,17 +28,18 @@ namespace pages
         {
             InitializeComponent();
             FillDataGrid();
+            bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id;
+        static string id,statid;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
             if (null == value) return;
             id = value.Row[0].ToString();
-            string countrypar = value.Row[1].ToString();
-            string codepar = value.Row[2].ToString();
-            string namepar = value.Row[3].ToString();
+            string typeeee = value.Row[3].ToString();
+            string codepar = value.Row[1].ToString();
+            string namepar = value.Row[2].ToString();
             string addresspar = value.Row[4].ToString();
             string phonepar = value.Row[5].ToString();
             string faxpar = value.Row[6].ToString();
@@ -49,9 +52,9 @@ namespace pages
 
             pcode.Text = codepar;
             pname.Text = namepar;
-            mtype.Text = countrypar;
+            mtype.Text = typeeee;
             pcontact.Text = contactpar;
-            pstate.Text = statepar;
+            pstate.SelectedValue = statepar;
             pmodify.Text = modifypar;
             paddress.Text = addresspar;
             pphone.Text = phonepar;
@@ -81,7 +84,7 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.members (type,code, name, address, phone, fax, email, contact, state, modified, csid, webid) values" +
-                " ('" + type + "','" + code + "','" + name + "','" + address + "', '" + phone + "', '" + fax + "', '" + email + "', '" + contact + "', '" + state +
+                " ('" + type + "',N'" + code + "',N'" + name + "',N'" + address + "', '" + phone + "', '" + fax + "', '" + email + "', '" + contact + "', '" + statid +
                 "', getdate(), '" + csid + "', '" + webid + "')";
 
             cmd.Connection = sqlConnection1;
@@ -174,13 +177,13 @@ namespace pages
             cmd.CommandText = "UPDATE demo.dbo.members SET " +
                 "code = '" + code + "', " +
                 "name= '" + name + "', " +
-                "mtype = '" + Mtype+ "', " +
+                "type = '" + Mtype+ "', " +
                 "address= '" + address + "', " +
                 "phone= '" + phone + "', " +
                 "fax= '" + fax + "', " +
                 "email= '" + email + "', " +
                 "contact= '" + contact + "', " +
-                "state= '" + state + "', " +
+                "state= '" + statid + "', " +
                 "modified = getdate(), " +
                 "webid= '" + webid + "', " +
                 "csid= '" + csid + "' " +
@@ -191,6 +194,26 @@ namespace pages
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
             FillDataGrid();
+        }
+        public List<States> statt { get; set; }
+        private void bindCombo()
+        {
+            demoEntities3 st = new demoEntities3();
+            var items = st.States.ToList();
+            statt = items;
+            pstate.ItemsSource = statt;
+        }
+        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var items = pstate.SelectedItem as States;
+            try
+            {
+                statid = items.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }

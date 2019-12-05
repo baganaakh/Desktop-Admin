@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Data;
+using pages.dbBind;
+
 namespace pages
 {
     /// <summary>
@@ -26,9 +28,10 @@ namespace pages
         {
             InitializeComponent();
             FillDataGrid();
+            bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id;
+        static string id,statid;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -41,7 +44,7 @@ namespace pages
             tableid.Text=tableId;
             tickk.Text=Tick;
             pricee.Text=price;
-            stat.Text = State ;
+            stat.SelectedValue= State ;
 
         }
         private void insertFunc(object sender, RoutedEventArgs e)
@@ -57,7 +60,7 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.TickSizeTable (tableid, tick, price, state, modified) values" +
-                " ('" + tableId+ "','" + tick+ "','" + price+ "','" + state+ "', getdate())";
+                " ('" + tableId+ "',N'" + tick+ "',N'" + price+ "',N'" + statid+ "', getdate())";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -100,6 +103,7 @@ namespace pages
             pricee.Text = null;
             stat.Text = null;
             id = null;
+            statid = null;
         }
         private void delete(object sender, RoutedEventArgs e)
         {
@@ -133,7 +137,7 @@ namespace pages
                 "tableid= '" + tableId + "', " +
                 "tick= '" + tick+ "', " +
                 "price= '" + price + "', " +
-                "state= '" + state + "', " +
+                "state= '" + statid + "', " +
                 "modified = getdate() " +
                 "WHERE id = '" + id + "'";
 
@@ -142,6 +146,27 @@ namespace pages
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
             FillDataGrid();
+        }
+        public List<States> statt { get; set; }
+
+        private void bindCombo()
+        {
+            demoEntities3 st = new demoEntities3();
+            var items = st.States.ToList();
+            statt = items;
+            stat.ItemsSource = statt;
+        }
+        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var items = stat.SelectedItem as States;
+            try
+            {
+                statid = items.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }

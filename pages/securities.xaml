@@ -31,7 +31,6 @@
         <DatePicker  Name="sdate" HorizontalAlignment="Left" Margin="731,166,0,0" VerticalAlignment="Top" Width="120"/>
         <DatePicker Name="edate" HorizontalAlignment="Left" Margin="731,203,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="totQuant" HorizontalAlignment="Left" Height="23" Margin="427,165,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="state" HorizontalAlignment="Left" Height="23" Margin="731,122,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="groupid" HorizontalAlignment="Left" Height="23" Margin="994,77,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="refNo"  HorizontalAlignment="Left" Height="23" Margin="427,74,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120" PreviewTextInput="PreviewTextInput"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="regNo" HorizontalAlignment="Left" Height="23" Margin="427,118,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
@@ -61,6 +60,7 @@
         <Button Content="Insert" HorizontalAlignment="Left" Margin="882,178,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="Update" HorizontalAlignment="Left" Margin="994,149,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
         <ComboBox x:Name="partId" ItemsSource="{Binding}" SelectionChanged="partid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,75,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="state" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="731,121,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
 
     </Grid>
 </Page>

@@ -30,7 +30,7 @@ namespace pages
             bindcombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id,coId,meId;
+        static string id,coId,meId,statid;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -53,7 +53,7 @@ namespace pages
             markticks.Text = Ticks;
             markdesc.Text=Desc;
             markorderl.Text=orderLimitt;
-            markstat.Text=State;
+            markstat.SelectedValue=State;
         }
         private void insertFunc(object sender, RoutedEventArgs e)
         {
@@ -78,7 +78,7 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.marketMakers (contactid, memberid, accountid, startdate, enddate, ticks, description, orderlimit, state, modified) values" +
-                " ('" + contId+ "','" + memId+ "','" + accId+ "','" + sdate+ "', '" + edate+ "', '" + ticks+ "', '" + desc+ "', '" + orderL+ "', '" + state +
+                " ('" + contId+ "',N'" + memId+ "',N'" + accId+ "',N'" + sdate+ "', '" + edate+ "', '" + ticks+ "', '" + desc+ "', '" + orderL+ "', '" + statid +
                 "', getdate())";
 
             cmd.Connection = sqlConnection1;
@@ -170,7 +170,7 @@ namespace pages
                 "ticks= '" + ticks+ "', " +
                 "description= '" + desc+ "', " +
                 "orderlimit= '" + orderL+ "', " +
-                "state= '" + state+ "', " +
+                "state= '" + statid+ "', " +
                 "modified = getdate() " +
                 "WHERE id = '" + id + "'";
 
@@ -182,6 +182,7 @@ namespace pages
         }
         public List<Contracts> Cont { get; set; }
         public List<Members> Emp { get; set; }
+        public List<States> statt { get; set; }
 
         private void bindcombo()
         {
@@ -194,18 +195,47 @@ namespace pages
             var citem = ct.Contracts.ToList();
             Cont = citem;
             markcontact.ItemsSource = Cont;
+
+            demoEntities3 st = new demoEntities3();
+            var items = st.States.ToList();
+            statt = items;
+            markstat.ItemsSource = statt;
         }
         private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = markmember.SelectedItem as Members;
+            try
+            {
             meId = item.id.ToString();
-
+            }
+            catch
+            {
+                return;
+            }
         }
         private void contid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var citem = markcontact.SelectedItem as Contracts;
+            try
+            {
             coId = citem.id.ToString();
-
+            }
+            catch
+            {
+                return;
+            }
+        }
+        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var items = markstat.SelectedItem as States;
+            try
+            {
+                statid = items.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }

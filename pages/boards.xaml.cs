@@ -64,11 +64,7 @@ namespace pages
             string type = btype.Text;
             string tdays = tdayss.Text;
             string descr = desc.Text;
-            string de = "Шинэ";
-            if (cid == null)
-            {
-                cid = "Шинэ";
-            }
+           
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
@@ -136,7 +132,7 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE demo.dbo.boards WHERE id=N'" + id + "N'";
+            cmd.CommandText = "DELETE demo.dbo.boards WHERE id=N'" + id + "'";
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();
@@ -173,9 +169,9 @@ namespace pages
             {
                 cid = item.id.ToString();
             }
-            catch (NullReferenceException)
+            catch
             {
-                cid = 0.ToString();
+                return;
             }
         }
     }

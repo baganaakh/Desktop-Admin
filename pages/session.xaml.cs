@@ -30,7 +30,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id, cid;
+        static string id, cid, statid;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -69,7 +69,7 @@ namespace pages
             match1.Text = match;
             allowT.Text = allowtyp;
             sdesc.Text = description;
-            sstate.Text = state;
+            sstate.SelectedValue = state;
             iAct.Text = isACT;
             starttime.SelectedDate = DateTime.Parse(startTime);
             sEndTime.SelectedDate = DateTime.Parse(endTime);
@@ -96,7 +96,6 @@ namespace pages
             string allowedT = allowT.Text;
             string descrip = sdesc.Text;
             string iActive = iAct.Text;
-            string state = sstate.Text;
             string startT = starttime.SelectedDate.Value.ToShortDateString();
             string endTime = sEndTime.SelectedDate.Value.ToShortDateString();
             string tduration = sduration.Text;
@@ -104,6 +103,7 @@ namespace pages
             string EDorder = eOrder.Text;
             string DEorder = dOrder.Text;
             string markType = markT.Text;
+            string state = statid;
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
@@ -112,8 +112,8 @@ namespace pages
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.session (boardid, name, stime, duration, algorithm, match, allowedtypes, description, state, modified, isactive," +
                 " starttime, endtime, tduration, matched, editorder, delorder, markettype) values" +
-                " ('" + boardid + "','" + name + "','" + sstime + "','" + dhours + ":" + dminutes + ":00', '" + alogor + "', '" + match11 + "', '" + allowedT + "', '" + descrip + "', '" + state +
-                "', getdate(), '" + iActive + "', '" + startT + "', '" + endTime + "', '" + tduration + "','" + prevMatch + "', '" + EDorder + "', '" + DEorder + "', '" + markType + "')";
+                " ('" + boardid + "',N'" + name + "',N'" + sstime + "',N'" + dhours + ":" + dminutes + ":00', '" + alogor + "', '" + match11 + "', '" + allowedT + "', '" + descrip + "', '" + state +
+                "', getdate(), '" + iActive + "', '" + startT + "', '" + endTime + "', '" + tduration + "',N'" + prevMatch + "', '" + EDorder + "', '" + DEorder + "', '" + markType + "')";
             cmd.Parameters.AddWithValue("@modified", DateTime.Now);
             //checkDAta.Text = cmd.CommandText;
 
@@ -197,7 +197,7 @@ namespace pages
             string match11 = match1.Text;
             string allowedT = allowT.Text;
             string descrip = sdesc.Text;
-            string state = sstate.Text;
+            string state = statid;
             string iActive = iAct.Text;
             string startT = starttime.SelectedDate.Value.ToShortDateString();
             string endTime = sEndTime.SelectedDate.Value.ToShortDateString();
@@ -240,18 +240,44 @@ namespace pages
             FillDataGrid();
         }
         public List<Boards> boa { get; set; }
+        public List<States> statt { get; set; }
+
         private void bindCombo()
         {
             demoEntities1 dE = new demoEntities1();
             var item = dE.Boards.ToList();
             boa = item;
             sboardid.ItemsSource = boa;
+
+            demoEntities3 st = new demoEntities3();
+            var items = st.States.ToList();
+            statt = items;
+            sstate.ItemsSource = statt;
+        }
+        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var items =sstate.SelectedItem as States;
+            try
+            {
+                statid = items.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
         }
 
         private void boardid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = sboardid.SelectedItem as Boards;
-            cid = item.id.ToString();
+            try
+            {
+                cid = item.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }

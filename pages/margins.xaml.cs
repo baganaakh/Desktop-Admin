@@ -63,7 +63,7 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.margin(buy, sell, buyType, sellType, mbuy, msell, modified) values" +
-                " ('" + buy+ "','" + sell+ "','" + buyType+ "','" + sellType+ "', '" + mmbuy+ "', '" + mmSell+ "', getdate())";
+                " ('" + buy+ "',N'" + sell+ "',N'" + buyType+ "',N'" + sellType+ "', '" + mmbuy+ "', '" + mmSell+ "', getdate())";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();

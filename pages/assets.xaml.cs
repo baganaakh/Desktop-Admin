@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
 using System.Text.RegularExpressions;
+using pages.dbBind;
 
 namespace pages
 {
@@ -27,9 +28,10 @@ namespace pages
         {
             InitializeComponent();
             FillDataGrid();
+            bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id;
+        static string id,statid;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -49,7 +51,7 @@ namespace pages
             anote.Text = descv;
             artio.Text = ratiov;
             aexpire.SelectedDate = DateTime.Parse(expirev);
-            astate.Text = statev;
+            astate.SelectedValue = statev;
         }
         private void insertFunc(object sender, RoutedEventArgs e)
         {
@@ -72,7 +74,7 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.assets(code, name, value, note, expireDate, state, modified, ratio) values" +
-                " ('" + code + "','" + name + "','" + value + "','" + note + "', '" + expireDate+ "', '" + state+ "', getdate(), '" + ratio+ "')";
+                " ('" + code + "',N'" + name + "',N'" + value + "',N'" + note + "', '" + expireDate+ "', '" + statid+ "', getdate(), '" + ratio+ "')";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -158,7 +160,7 @@ namespace pages
                 "value= '" + value+ "', " +
                 "note= '" + note + "', " +
                 "expireDate= '" + expireDate+ "', " +
-                "state= '" + state + "', " +
+                "state= '" + statid + "', " +
                 "modified = getdate(), " +
                 "ratio= '" + ratio+ "' " +
                 "WHERE id = '" + id + "'";
@@ -168,6 +170,26 @@ namespace pages
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
             FillDataGrid();
+        }
+        public List<States> statt { get; set; }
+        private void bindCombo()
+        {
+            demoEntities3 st = new demoEntities3();
+            var items = st.States.ToList();
+            statt = items;
+            astate.ItemsSource = statt;
+        }
+        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var items = astate.SelectedItem as States;
+            try
+            {
+            statid = items.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }

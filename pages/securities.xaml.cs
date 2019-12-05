@@ -31,7 +31,7 @@ namespace pages
             bindcombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id, cid;
+        static string id, cid, statid;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -60,7 +60,7 @@ namespace pages
             totalquant.Text = totqtse;
             fprice.Text = fpricese;
             srate.Text = intrase;
-            state.Text = statese;
+            state.SelectedValue= statese;
             sdate.Text = sdatese;
             edate.Text = edatese;
             groupid.Text = gidse;
@@ -92,8 +92,8 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.securities (partid, type, code, name, refno, regno, totalQty, firstPrice, intRate, sdate, edate, groupid, state, modified) values" +
-                " ('" + partid + "','" + type + "','" + code + "','" + name + "', '" + refno + "', '" + regno + "', '" + total + "', '" + fPirce + "', '" + intRate +
-                "','" + starTime + "','" + endTime + "','" + groupId + "','" + stat + "', getdate())";
+                " ('" + partid + "',N'" + type + "',N'" + code + "',N'" + name + "', '" + refno + "', '" + regno + "', '" + total + "', '" + fPirce + "', '" + intRate +
+                "',N'" + starTime + "',N'" + endTime + "',N'" + groupId + "',N'" + statid + "', getdate())";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -198,7 +198,7 @@ namespace pages
                 "sdate= '" + starTime + "', " +
                 "edate= '" + endTime + "', " +
                 "groupId= '" + groupId + "', " +
-                "state= '" + stat + "', " +
+                "state= '" + statid + "', " +
                 "modified = getdate() " +
                 "WHERE id = '" + id + "'";
 
@@ -210,19 +210,42 @@ namespace pages
         }
 
         public List<Participants> Emp { get; set; }
+        public List<States> statt { get; set; }
+
         private void bindcombo()
         {
             demoEntities1 dc = new demoEntities1();
             var item = dc.Participants.ToList();
             Emp = item;
             partId.ItemsSource = Emp;
+            demoEntities3 st = new demoEntities3();
+            var items = st.States.ToList();
+            statt = items;
+            state.ItemsSource = statt;
         }
         private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = partId.SelectedItem as Participants;
-            cid = item.id.ToString();
-//< ComboBox Name = "sboardid" ItemsSource = "{Binding}" SelectionChanged = "boardid_SelectionChanged" DisplayMemberPath = "name" SelectedValuePath = "id" HorizontalAlignment = "Left" Margin = "150,44,0,0" VerticalAlignment = "Top" Width = "120" />
-
+            try
+            {
+                cid = item.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
+        }
+        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var items = state.SelectedItem as States;
+            try
+            {
+            statid = items.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }

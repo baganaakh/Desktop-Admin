@@ -28,7 +28,6 @@
         <TextBox x:Name="typee" HorizontalAlignment="Left" Height="23" Margin="155,159,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="currency" HorizontalAlignment="Left" Height="23" Margin="155,208,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox  x:Name="linkacc" HorizontalAlignment="Left" Height="23" Margin="463,166,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
-        <TextBox  x:Name="stat" HorizontalAlignment="Left" Height="23" Margin="463,208,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
         <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="10,263,0,237" VerticalAlignment="Center" Width="1138">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
@@ -47,6 +46,7 @@
         <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="869,99,0,0"/>
         <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="869,134,0,0"/>
         <Button Content="Update" HorizontalAlignment="Left" Margin="869,181,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
+        <ComboBox x:Name="stat" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="463,208,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
 
     </Grid>
 </Page>

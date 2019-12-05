@@ -16,7 +16,6 @@
         <Label Content="тайлбар" HorizontalAlignment="Left" Margin="28,203,0,0" VerticalAlignment="Top"/>
         <Label Content="дуусах хугацаа" HorizontalAlignment="Left" Margin="346,114,0,0" VerticalAlignment="Top"/>
         <Label Content="төлөв" HorizontalAlignment="Left" Margin="346,154,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="astate" HorizontalAlignment="Left" Height="23" Margin="474,155,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label Content="ratio" HorizontalAlignment="Left" Margin="346,63,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="iAct" HorizontalAlignment="Left" Height="23" Margin="474,64,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="aname" HorizontalAlignment="Left" Height="23" Margin="156,109,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
@@ -43,5 +42,6 @@
         <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="823,70,0,0"/>
         <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="823,119,0,0"/>
         <Button Content="Update" HorizontalAlignment="Left" Margin="823,165,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
+        <ComboBox x:Name="astate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="474,155,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
     </Grid>
 </Page>

@@ -25,7 +25,6 @@
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="markaccount" HorizontalAlignment="Left" Height="23" Margin="155,159,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="markdesc" HorizontalAlignment="Left" Height="23" Margin="705,75,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="markorderl" HorizontalAlignment="Left" Height="23" Margin="705,117,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="markstat" HorizontalAlignment="Left" Height="23" Margin="705,158,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <DatePicker x:Name="sdat" HorizontalAlignment="Left" Margin="425,76,0,0" VerticalAlignment="Top" Width="120"/>
         <DatePicker x:Name="edat" HorizontalAlignment="Left" Margin="425,117,0,0" VerticalAlignment="Top" Width="120"/>
         <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="10,242,0,258" VerticalAlignment="Center" Width="1138">
@@ -49,6 +48,7 @@
         <Button Content="Update" HorizontalAlignment="Left" Margin="869,160,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
         <ComboBox x:Name="markmember" ItemsSource="{Binding}" SelectionChanged="partid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,117,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="markcontact" ItemsSource="{Binding}" SelectionChanged="contid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,76,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="markstat" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="705,158,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
 
     </Grid>
 </Page>

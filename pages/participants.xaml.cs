@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Data;
+using pages.dbBind;
+
 namespace pages
 {
     /// <summary>
@@ -26,9 +28,10 @@ namespace pages
         {
             InitializeComponent();
             FillDataGrid();
+            bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id;
+        static string id,cid;
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -52,7 +55,7 @@ namespace pages
             pname.Text = namepar;
             pcountry.Text = countrypar;
             pcontact.Text = contactpar;
-            pstate.Text = statepar;
+            pstate.SelectedValue = statepar;
             pmodify.Text = modifypar;
             paddress.Text = addresspar;
             pphone.Text = phonepar;
@@ -81,7 +84,7 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.participants (code, name, country, address, phone, fax, email, contact, state, modified, csid, webid) values" +
-                " ('" + code + "','" + name + "','" + country + "','" + address+ "', '" + phone+ "', '" + fax+ "', '" + email+ "', '" + contact+ "', '" + state +
+                " ('" + code + "',N'" + name + "',N'" + country + "',N'" + address+ "', '" + phone+ "', '" + fax+ "', '" + email+ "', '" + contact+ "', '" + cid +
                 "', getdate(), '"+csid+ "', '"+webid+"')";
             checkDAta.Text = cmd.CommandText;
 
@@ -182,7 +185,7 @@ namespace pages
                 "fax= '" + fax+ "', " +
                 "email= '" + email+ "', " +
                 "contact= '" + contact+ "', " +
-                "state= '" + state + "', " +
+                "state= '" + cid + "', " +
                 "modified = getdate(), " +
                 "webid= '" + webid+ "', " +
                 "csid= '" + csid+ "' " +
@@ -194,6 +197,27 @@ namespace pages
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
             FillDataGrid();
+        }
+        public List<States> boa { get; set; }
+        private void bindCombo()
+        {
+            demoEntities3 dE = new demoEntities3();
+            var item = dE.States.ToList();
+            boa = item;
+            pstate.ItemsSource = boa;
+        }
+
+        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = pstate.SelectedItem as States;
+            try
+            {
+                cid = item.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }

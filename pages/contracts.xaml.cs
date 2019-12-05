@@ -31,7 +31,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id, cid;
+        static string id, cid, statid;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -59,7 +59,7 @@ namespace pages
             csdate.SelectedDate = DateTime.Parse(Sdate);
             cedate.SelectedDate = DateTime.Parse(Edate);
             cgroupid.Text = GID;
-            cstate.Text = State;
+            cstate.SelectedValue = State;
             mmorderLim.Text = MMol;
             orderLim.Text = Olimit;
             refpricePara.Text = refprPAram;
@@ -91,8 +91,8 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.contracts (securityId, type, code, name, lot, tick, sdate, edate, groupId, state, modified, mmorderLimit, orderLimit, refpriceParam) values" +
-                " ('" + secId+ "','" + type + "','" + code + "','" + name + "', '" + lot+ "', '" + tick+ "', '" + csdates+ "', '" + cedates+ "', '" + groupID +
-                "','" + stat+ "', getdate(),'" + mmorderLimit+ "','" + orderlimit+ "','" + refpricePar+ "')";
+                " ('" + secId+ "',N'" + type + "',N'" + code + "',N'" + name + "', '" + lot+ "', '" + tick+ "', '" + csdates+ "', '" + cedates+ "', '" + groupID +
+                "',N'" + statid+ "', getdate(),N'" + mmorderLimit+ "',N'" + orderlimit+ "',N'" + refpricePar+ "')";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -144,6 +144,7 @@ namespace pages
             orderLim.Text = null;
             refpricePara.Text = null;
             id = null;
+            statid = null;
         }
         private void delete(object sender, RoutedEventArgs e)
         {
@@ -193,7 +194,7 @@ namespace pages
                 "sdate= '" + csdates+ "', " +
                 "edate= '" + cedates+ "', " +
                 "groupId= '" + groupID+ "', " +
-                "state= '" + stat+ "', " +
+                "state= '" + statid+ "', " +
                 "modified = getdate(), " +
                 "mmorderLimit= '" + mmorderLimit+ "', " +
                 "orderLimit= '" + orderlimit+ "', " +
@@ -207,18 +208,44 @@ namespace pages
             FillDataGrid();
         }
         public List<Securities> boa { get; set; }
+        public List<States> statt { get; set; }
+
         private void bindCombo()
         {
             demoEntities2 dE = new demoEntities2();
             var item = dE.Securities.ToList();
             boa = item;
             securityid_Copy.ItemsSource = boa;
+
+            demoEntities3 st = new demoEntities3();
+            var items = st.States.ToList();
+            statt = items;
+            cstate.ItemsSource = statt;
         }
 
         private void boardid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = securityid_Copy.SelectedItem as Securities;
-            cid = item.id.ToString();
+            try
+            {
+                cid = item.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
+        }
+        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var items = cstate.SelectedItem as States;
+            try
+            {
+            statid = items.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }
