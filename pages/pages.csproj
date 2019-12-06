@@ -192,6 +192,9 @@
     <Compile Include="Spread.xaml.cs">
       <DependentUpon>Spread.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Table.xaml.cs">
+      <DependentUpon>Table.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TickSizeTable.xaml.cs">
       <DependentUpon>TickSizeTable.xaml</DependentUpon>
     </Compile>
@@ -281,6 +284,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Spread.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Table.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

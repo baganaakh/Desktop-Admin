@@ -96,5 +96,9 @@ namespace pages
         {
             Main.Content = new Account();
         }
+        private void btnClickP18(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new Table();
+        }
     }
 }

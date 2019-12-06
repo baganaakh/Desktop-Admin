@@ -1,0 +1,38 @@
+﻿<Page x:Class="pages.Table"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="900"  d:DesignWidth="1200"
+      Title="Table">
+
+    <Grid>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="781,81,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Insert" HorizontalAlignment="Left" Margin="781,116,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
+        <Label Content="Arrange Price" HorizontalAlignment="Left" Margin="28,68,0,0" VerticalAlignment="Top"/>
+        <Label Content="TickSize" HorizontalAlignment="Left" Margin="28,114,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.497,0.786"/>
+        <Label Content="userId" HorizontalAlignment="Left" Margin="318,72,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="ticksize" HorizontalAlignment="Left" Height="23" Margin="149,117,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="arrangeprice" HorizontalAlignment="Left" Height="23" Margin="149,72,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="userid" HorizontalAlignment="Left" Height="23" Margin="439,72,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="AssetId" HorizontalAlignment="Left" Margin="318,117,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="assetid" HorizontalAlignment="Left" Height="23" Margin="439,117,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="10,242,0,258" VerticalAlignment="Center" Width="1138">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
+                <DataGridTextColumn Binding="{Binding arrangePrice}" Header="Arrange Price"/>
+                <DataGridTextColumn Binding="{Binding tickSize}" Header="Tick Size"/>
+                <DataGridTextColumn Binding="{Binding userid}" Header="User ID"/>
+                <DataGridTextColumn Binding="{Binding assetid}" Header="Asset ID"/>
+                <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="882,117,0,0"/>
+        <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="656,81,0,0"/>
+        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="656,116,0,0"/>
+        <Button Content="Update" HorizontalAlignment="Left" Margin="882,81,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
+
+    </Grid>
+</Page>
