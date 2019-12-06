@@ -154,7 +154,7 @@ namespace pages
 
         private void bindCombo()
         {
-            demoEntities1 dc = new demoEntities1();
+            demoEntities7 dc = new demoEntities7();
             var item = dc.Members.ToList();
             Emp = item;
             memid.ItemsSource = Emp;

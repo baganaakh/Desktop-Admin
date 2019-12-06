@@ -244,12 +244,12 @@ namespace pages
 
         private void bindCombo()
         {
-            demoEntities1 dE = new demoEntities1();
+            demoEntities7 dE = new demoEntities7();
             var item = dE.Boards.ToList();
             boa = item;
             sboardid.ItemsSource = boa;
 
-            demoEntities3 st = new demoEntities3();
+            demoEntities7 st = new demoEntities7();
             var items = st.States.ToList();
             statt = items;
             sstate.ItemsSource = statt;

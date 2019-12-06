@@ -13,10 +13,10 @@ namespace pages.dbBind
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class demoEntities1 : DbContext
+    public partial class demoEntities7 : DbContext
     {
-        public demoEntities1()
-            : base("name=demoEntities1")
+        public demoEntities7()
+            : base("name=demoEntities7")
         {
         }
     
@@ -25,12 +25,40 @@ namespace pages.dbBind
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Account> Account { get; set; }
+        public virtual DbSet<ActiveSessions> ActiveSessions { get; set; }
         public virtual DbSet<Assets> Assets { get; set; }
+        public virtual DbSet<BoardInstruments> BoardInstruments { get; set; }
         public virtual DbSet<Boards> Boards { get; set; }
+        public virtual DbSet<Calendar> Calendar { get; set; }
+        public virtual DbSet<ClearingAccounts> ClearingAccounts { get; set; }
         public virtual DbSet<Contracts> Contracts { get; set; }
+        public virtual DbSet<Deal2> Deal2 { get; set; }
+        public virtual DbSet<DealerAccounts> DealerAccounts { get; set; }
+        public virtual DbSet<GroupUsers> GroupUsers { get; set; }
         public virtual DbSet<Invoices> Invoices { get; set; }
+        public virtual DbSet<Margins> Margins { get; set; }
+        public virtual DbSet<MarketMakers> MarketMakers { get; set; }
         public virtual DbSet<Members> Members { get; set; }
         public virtual DbSet<Participants> Participants { get; set; }
+        public virtual DbSet<RefPrice> RefPrice { get; set; }
+        public virtual DbSet<Rights> Rights { get; set; }
+        public virtual DbSet<Securities> Securities { get; set; }
+        public virtual DbSet<Spreads> Spreads { get; set; }
+        public virtual DbSet<States> States { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Table> Table { get; set; }
+        public virtual DbSet<TickSizeTable> TickSizeTable { get; set; }
+        public virtual DbSet<Trans> Trans { get; set; }
+        public virtual DbSet<UserAccounts> UserAccounts { get; set; }
+        public virtual DbSet<UserGroups> UserGroups { get; set; }
+        public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<Deals> Deals { get; set; }
+        public virtual DbSet<Dealtype> Dealtype { get; set; }
+        public virtual DbSet<GroupRights> GroupRights { get; set; }
+        public virtual DbSet<InvoiceDetails> InvoiceDetails { get; set; }
+        public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<Session> Session { get; set; }
+        public virtual DbSet<Softwares> Softwares { get; set; }
     }
 }

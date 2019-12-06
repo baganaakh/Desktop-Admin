@@ -146,12 +146,12 @@ namespace pages
 
         private void bindCombo()
         {
-            demoEntities1 dc = new demoEntities1();
+            demoEntities7 dc = new demoEntities7();
             var item = dc.Members.ToList();
             Emp = item;
             memid.ItemsSource = Emp;
 
-            demoEntities3 st = new demoEntities3();
+            demoEntities7 st = new demoEntities7();
             var items = st.States.ToList();
             statt = items;
             stat.ItemsSource = statt;

@@ -4,7 +4,33 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="demoModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="demoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="memberid" Type="bigint" Nullable="false" />
+          <Property Name="trading" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="clearing" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="settlement" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="collateral" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="modified" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ActiveSessions">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="sessionid" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sessionid" Type="int" Nullable="false" />
+          <Property Name="isactive" Type="nchar" MaxLength="10" />
+          <Property Name="starttime" Type="time" Precision="7" />
+          <Property Name="endtime" Type="time" Precision="7" />
+          <Property Name="tduration" Type="time" Precision="7" />
+          <Property Name="matched" Type="int" />
+          <Property Name="state" Type="nchar" MaxLength="10" />
+        </EntityType>
         <EntityType Name="Assets">
           <Key>
             <PropertyRef Name="id" />
@@ -19,6 +45,16 @@
           <Property Name="modified" Type="datetime" />
           <Property Name="ratio" Type="nchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="BoardInstruments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="boardid" Type="int" />
+          <Property Name="instrumentid" Type="int" />
+          <Property Name="state" Type="nchar" MaxLength="10" />
+          <Property Name="modified" Type="datetime" />
+        </EntityType>
         <EntityType Name="Boards">
           <Key>
             <PropertyRef Name="id" />
@@ -30,6 +66,32 @@
           <Property Name="state" Type="smallint" />
           <Property Name="modified" Type="datetime" />
           <Property Name="description" Type="nvarchar" MaxLength="1024" />
+        </EntityType>
+        <EntityType Name="Calendar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tdate" Type="date" />
+          <Property Name="type" Type="smallint" />
+          <Property Name="note" Type="nvarchar" MaxLength="1024" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ClearingAccounts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="memberid" Type="int" />
+          <Property Name="account" Type="int" />
+          <Property Name="type" Type="smallint" />
+          <Property Name="currency" Type="int" />
+          <Property Name="blnc" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="sblnc" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="linkaccount" Type="bigint" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
         </EntityType>
         <EntityType Name="Contracts">
           <Key>
@@ -51,6 +113,96 @@
           <Property Name="orderLimit" Type="int" />
           <Property Name="refpriceParam" Type="decimal" Precision="18" Scale="6" />
         </EntityType>
+        <EntityType Name="Deal2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderid" Type="bigint" Nullable="false" />
+          <Property Name="memberid" Type="bigint" />
+          <Property Name="accountid" Type="bigint" />
+          <Property Name="member2id" Type="bigint" />
+          <Property Name="account2id" Type="bigint" />
+          <Property Name="assetAmount" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="userid" Type="int" />
+          <Property Name="modified" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DealerAccounts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="memberid" Type="bigint" />
+          <Property Name="accountid" Type="bigint" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'demo.dbo.Deals' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Deals">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="dealno" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="dealtype" Type="smallint" />
+          <Property Name="dealno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="side" Type="smallint" />
+          <Property Name="memberid" Type="int" />
+          <Property Name="accountid" Type="bigint" />
+          <Property Name="assetid" Type="int" />
+          <Property Name="qty" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'demo.dbo.Dealtype' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Dealtype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'demo.dbo.GroupRights' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="GroupRights">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupID" Type="bigint" />
+          <Property Name="RightID" Type="int" />
+          <Property Name="HasRight" Type="smallint" />
+          <Property Name="Modified" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GroupUsers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userid" Type="bigint" />
+          <Property Name="groupid" Type="int" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'demo.dbo.InvoiceDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="InvoiceDetails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="invoiceid" Type="bigint" />
+          <Property Name="assetid" Type="int" />
+          <Property Name="qty" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="note" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Invoices">
           <Key>
             <PropertyRef Name="id" />
@@ -64,6 +216,35 @@
           <Property Name="toid" Type="bigint" />
           <Property Name="assetid" Type="int" />
           <Property Name="qty" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Margins">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="buy" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="sell" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="buytype" Type="smallint" />
+          <Property Name="selltype" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="mbuy" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="msell" Type="decimal" Precision="18" Scale="6" />
+        </EntityType>
+        <EntityType Name="MarketMakers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contactid" Type="int" />
+          <Property Name="memberid" Type="int" />
+          <Property Name="accountid" Type="bigint" />
+          <Property Name="startdate" Type="date" />
+          <Property Name="enddate" Type="date" />
+          <Property Name="ticks" Type="int" />
+          <Property Name="description" Type="nchar" MaxLength="10" />
+          <Property Name="orderlimit" Type="int" />
           <Property Name="state" Type="smallint" />
           <Property Name="modified" Type="datetime" />
         </EntityType>
@@ -86,6 +267,23 @@
           <Property Name="webid" Type="int" />
           <Property Name="partid" Type="bigint" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'demo.dbo.Order' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dealType" Type="smallint" />
+          <Property Name="side" Type="nvarchar" MaxLength="20" />
+          <Property Name="memberid" Type="bigint" />
+          <Property Name="accountid" Type="bigint" />
+          <Property Name="assetid" Type="bigint" />
+          <Property Name="qty" Type="int" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+        </EntityType>
         <EntityType Name="Participants">
           <Key>
             <PropertyRef Name="id" />
@@ -104,6 +302,50 @@
           <Property Name="csid" Type="int" />
           <Property Name="webid" Type="int" />
         </EntityType>
+        <EntityType Name="RefPrice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="refprice" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="modified" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Rights">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RightType" Type="int" />
+          <Property Name="KeyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="RightCaption" Type="nvarchar" MaxLength="128" />
+          <Property Name="RightTooltip" Type="nvarchar" MaxLength="1024" />
+          <Property Name="DefaultValue" Type="smallint" />
+          <Property Name="RelationID" Type="int" />
+          <Property Name="RightLevel" Type="smallint" />
+          <Property Name="ParentID" Type="int" />
+        </EntityType>
+        <EntityType Name="Securities">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="partid" Type="int" />
+          <Property Name="type" Type="smallint" />
+          <Property Name="code" Type="nvarchar" MaxLength="16" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="refno" Type="nvarchar" MaxLength="16" />
+          <Property Name="regno" Type="nvarchar" MaxLength="16" />
+          <Property Name="totalQty" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="firstPrice" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="intRate" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="sdate" Type="date" />
+          <Property Name="edate" Type="date" />
+          <Property Name="groupId" Type="int" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'demo.dbo.Session' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Session">
           <Key>
             <PropertyRef Name="id" />
@@ -129,6 +371,119 @@
           <Property Name="delorder" Type="nchar" MaxLength="50" />
           <Property Name="markettype" Type="nchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Softwares">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SWName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SWCaption" Type="nvarchar" MaxLength="128" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1024" />
+          <Property Name="IsClient" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Spreads">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contractid" Type="int" />
+          <Property Name="sessionid" Type="int" />
+          <Property Name="rspread" Type="int" />
+          <Property Name="ispread" Type="int" />
+          <Property Name="rparam" Type="nchar" MaxLength="10" />
+          <Property Name="modified" Type="datetime" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" Nullable="false" />
+          <Property Name="states" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="arrangePrice" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="tickSize" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="userid" Type="bigint" />
+          <Property Name="assetid" Type="bigint" />
+          <Property Name="modified" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TickSizeTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tableid" Type="bigint" />
+          <Property Name="tick" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="timestamp" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Trans">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accountId" Type="bigint" />
+          <Property Name="type" Type="smallint" />
+          <Property Name="type1" Type="smallint" />
+          <Property Name="amount" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="currency" Type="int" />
+          <Property Name="rate" Type="int" />
+          <Property Name="note" Type="nvarchar(max)" />
+          <Property Name="tdate" Type="date" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="userId" Type="bigint" />
+          <Property Name="memberid" Type="bigint" />
+        </EntityType>
+        <EntityType Name="UserAccounts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userid" Type="bigint" />
+          <Property Name="accountid" Type="bigint" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UserGroups">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar" MaxLength="1024" />
+          <Property Name="manager" Type="bigint" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uname" Type="nchar" MaxLength="10" />
+          <Property Name="password" Type="nchar" MaxLength="10" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="role" Type="nchar" MaxLength="10" />
+        </EntityType>
         <Association Name="FK_boards_boards1">
           <End Role="Boards" Type="Self.Boards" Multiplicity="1" />
           <End Role="Boards1" Type="Self.Boards" Multiplicity="0..1" />
@@ -141,60 +496,159 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_session_session">
-          <End Role="Session" Type="Self.Session" Multiplicity="1" />
-          <End Role="Session1" Type="Self.Session" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Session">
-              <PropertyRef Name="id" />
-              <PropertyRef Name="boardid" />
-            </Principal>
-            <Dependent Role="Session1">
-              <PropertyRef Name="id" />
-              <PropertyRef Name="boardid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_session_session1">
-          <End Role="Session" Type="Self.Session" Multiplicity="1" />
-          <End Role="Session1" Type="Self.Session" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Session">
-              <PropertyRef Name="id" />
-              <PropertyRef Name="boardid" />
-            </Principal>
-            <Dependent Role="Session1">
-              <PropertyRef Name="id" />
-              <PropertyRef Name="boardid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="demoModel1StoreContainer">
+        <EntityContainer Name="demoModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActiveSessions" EntityType="Self.ActiveSessions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Assets" EntityType="Self.Assets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BoardInstruments" EntityType="Self.BoardInstruments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Boards" EntityType="Self.Boards" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Calendar" EntityType="Self.Calendar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClearingAccounts" EntityType="Self.ClearingAccounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contracts" EntityType="Self.Contracts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Deal2" EntityType="Self.Deal2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DealerAccounts" EntityType="Self.DealerAccounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupUsers" EntityType="Self.GroupUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Margins" EntityType="Self.Margins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MarketMakers" EntityType="Self.MarketMakers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Participants" EntityType="Self.Participants" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Session" EntityType="Self.Session" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RefPrice" EntityType="Self.RefPrice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rights" EntityType="Self.Rights" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Securities" EntityType="Self.Securities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Spreads" EntityType="Self.Spreads" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TickSizeTable" EntityType="Self.TickSizeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trans" EntityType="Self.Trans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAccounts" EntityType="Self.UserAccounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserGroups" EntityType="Self.UserGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Deals" EntityType="Self.Deals" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Deals].[id] AS [id], 
+    [Deals].[dealtype] AS [dealtype], 
+    [Deals].[dealno] AS [dealno], 
+    [Deals].[side] AS [side], 
+    [Deals].[memberid] AS [memberid], 
+    [Deals].[accountid] AS [accountid], 
+    [Deals].[assetid] AS [assetid], 
+    [Deals].[qty] AS [qty], 
+    [Deals].[price] AS [price], 
+    [Deals].[state] AS [state], 
+    [Deals].[modified] AS [modified]
+    FROM [dbo].[Deals] AS [Deals]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Dealtype" EntityType="Self.Dealtype" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Dealtype].[id] AS [id], 
+    [Dealtype].[type] AS [type]
+    FROM [dbo].[Dealtype] AS [Dealtype]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="GroupRights" EntityType="Self.GroupRights" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [GroupRights].[ID] AS [ID], 
+    [GroupRights].[GroupID] AS [GroupID], 
+    [GroupRights].[RightID] AS [RightID], 
+    [GroupRights].[HasRight] AS [HasRight], 
+    [GroupRights].[Modified] AS [Modified]
+    FROM [dbo].[GroupRights] AS [GroupRights]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="InvoiceDetails" EntityType="Self.InvoiceDetails" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [InvoiceDetails].[id] AS [id], 
+    [InvoiceDetails].[invoiceid] AS [invoiceid], 
+    [InvoiceDetails].[assetid] AS [assetid], 
+    [InvoiceDetails].[qty] AS [qty], 
+    [InvoiceDetails].[price] AS [price], 
+    [InvoiceDetails].[state] AS [state], 
+    [InvoiceDetails].[modified] AS [modified], 
+    [InvoiceDetails].[note] AS [note]
+    FROM [dbo].[InvoiceDetails] AS [InvoiceDetails]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Order" EntityType="Self.Order" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Order].[id] AS [id], 
+    [Order].[dealType] AS [dealType], 
+    [Order].[side] AS [side], 
+    [Order].[memberid] AS [memberid], 
+    [Order].[accountid] AS [accountid], 
+    [Order].[assetid] AS [assetid], 
+    [Order].[qty] AS [qty], 
+    [Order].[price] AS [price], 
+    [Order].[state] AS [state], 
+    [Order].[modified] AS [modified]
+    FROM [dbo].[Order] AS [Order]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Session" EntityType="Self.Session" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Session].[id] AS [id], 
+    [Session].[boardid] AS [boardid], 
+    [Session].[name] AS [name], 
+    [Session].[stime] AS [stime], 
+    [Session].[duration] AS [duration], 
+    [Session].[algorithm] AS [algorithm], 
+    [Session].[match] AS [match], 
+    [Session].[allowedtypes] AS [allowedtypes], 
+    [Session].[description] AS [description], 
+    [Session].[state] AS [state], 
+    [Session].[modified] AS [modified], 
+    [Session].[isactive] AS [isactive], 
+    [Session].[starttime] AS [starttime], 
+    [Session].[endtime] AS [endtime], 
+    [Session].[tduration] AS [tduration], 
+    [Session].[matched] AS [matched], 
+    [Session].[editorder] AS [editorder], 
+    [Session].[delorder] AS [delorder], 
+    [Session].[markettype] AS [markettype]
+    FROM [dbo].[Session] AS [Session]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Softwares" EntityType="Self.Softwares" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Softwares].[ID] AS [ID], 
+    [Softwares].[SWName] AS [SWName], 
+    [Softwares].[SWCaption] AS [SWCaption], 
+    [Softwares].[Description] AS [Description], 
+    [Softwares].[IsClient] AS [IsClient]
+    FROM [dbo].[Softwares] AS [Softwares]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_boards_boards1" Association="Self.FK_boards_boards1">
             <End Role="Boards" EntitySet="Boards" />
             <End Role="Boards1" EntitySet="Boards" />
-          </AssociationSet>
-          <AssociationSet Name="FK_session_session" Association="Self.FK_session_session">
-            <End Role="Session" EntitySet="Session" />
-            <End Role="Session1" EntitySet="Session" />
-          </AssociationSet>
-          <AssociationSet Name="FK_session_session1" Association="Self.FK_session_session1">
-            <End Role="Session" EntitySet="Session" />
-            <End Role="Session1" EntitySet="Session" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="demoModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="demoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="memberid" Type="Int64" Nullable="false" />
+          <Property Name="trading" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="clearing" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="settlement" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="collateral" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ActiveSessions">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="sessionid" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sessionid" Type="Int32" Nullable="false" />
+          <Property Name="isactive" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="starttime" Type="Time" Precision="7" />
+          <Property Name="endtime" Type="Time" Precision="7" />
+          <Property Name="tduration" Type="Time" Precision="7" />
+          <Property Name="matched" Type="Int32" />
+          <Property Name="state" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
         <EntityType Name="Assets">
           <Key>
             <PropertyRef Name="id" />
@@ -209,6 +663,16 @@
           <Property Name="modified" Type="DateTime" Precision="3" />
           <Property Name="ratio" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
+        <EntityType Name="BoardInstruments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="boardid" Type="Int32" />
+          <Property Name="instrumentid" Type="Int32" />
+          <Property Name="state" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+        </EntityType>
         <EntityType Name="Boards">
           <Key>
             <PropertyRef Name="id" />
@@ -222,6 +686,32 @@
           <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Boards1" Relationship="Self.FK_boards_boards1" FromRole="Boards" ToRole="Boards1" />
           <NavigationProperty Name="Boards2" Relationship="Self.FK_boards_boards1" FromRole="Boards1" ToRole="Boards" />
+        </EntityType>
+        <EntityType Name="Calendar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tdate" Type="DateTime" Precision="0" />
+          <Property Name="type" Type="Int16" />
+          <Property Name="note" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ClearingAccounts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="memberid" Type="Int32" />
+          <Property Name="account" Type="Int32" />
+          <Property Name="type" Type="Int16" />
+          <Property Name="currency" Type="Int32" />
+          <Property Name="blnc" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="sblnc" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="linkaccount" Type="Int64" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Contracts">
           <Key>
@@ -243,6 +733,41 @@
           <Property Name="orderLimit" Type="Int32" />
           <Property Name="refpriceParam" Type="Decimal" Precision="18" Scale="6" />
         </EntityType>
+        <EntityType Name="Deal2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderid" Type="Int64" Nullable="false" />
+          <Property Name="memberid" Type="Int64" />
+          <Property Name="accountid" Type="Int64" />
+          <Property Name="member2id" Type="Int64" />
+          <Property Name="account2id" Type="Int64" />
+          <Property Name="assetAmount" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="userid" Type="Int32" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DealerAccounts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="memberid" Type="Int64" />
+          <Property Name="accountid" Type="Int64" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="GroupUsers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userid" Type="Int64" />
+          <Property Name="groupid" Type="Int32" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+        </EntityType>
         <EntityType Name="Invoices">
           <Key>
             <PropertyRef Name="id" />
@@ -256,6 +781,35 @@
           <Property Name="toid" Type="Int64" />
           <Property Name="assetid" Type="Int32" />
           <Property Name="qty" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Margins">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="buy" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="sell" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="buytype" Type="Int16" />
+          <Property Name="selltype" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="mbuy" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="msell" Type="Decimal" Precision="18" Scale="6" />
+        </EntityType>
+        <EntityType Name="MarketMakers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contactid" Type="Int32" />
+          <Property Name="memberid" Type="Int32" />
+          <Property Name="accountid" Type="Int64" />
+          <Property Name="startdate" Type="DateTime" Precision="0" />
+          <Property Name="enddate" Type="DateTime" Precision="0" />
+          <Property Name="ticks" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="orderlimit" Type="Int32" />
           <Property Name="state" Type="Int16" />
           <Property Name="modified" Type="DateTime" Precision="3" />
         </EntityType>
@@ -296,6 +850,211 @@
           <Property Name="csid" Type="Int32" />
           <Property Name="webid" Type="Int32" />
         </EntityType>
+        <EntityType Name="RefPrice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="refprice1" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Rights">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RightType" Type="Int32" />
+          <Property Name="KeyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RightCaption" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="RightTooltip" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultValue" Type="Int16" />
+          <Property Name="RelationID" Type="Int32" />
+          <Property Name="RightLevel" Type="Int16" />
+          <Property Name="ParentID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Securities">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="partid" Type="Int32" />
+          <Property Name="type" Type="Int16" />
+          <Property Name="code" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="refno" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="regno" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="totalQty" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="firstPrice" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="intRate" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="sdate" Type="DateTime" Precision="0" />
+          <Property Name="edate" Type="DateTime" Precision="0" />
+          <Property Name="groupId" Type="Int32" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Spreads">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contractid" Type="Int32" />
+          <Property Name="sessionid" Type="Int32" />
+          <Property Name="rspread" Type="Int32" />
+          <Property Name="ispread" Type="Int32" />
+          <Property Name="rparam" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" />
+          <Property Name="states1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="arrangePrice" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="tickSize" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="userid" Type="Int64" />
+          <Property Name="assetid" Type="Int64" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TickSizeTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tableid" Type="Int64" />
+          <Property Name="tick" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="timestamp" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Trans">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accountId" Type="Int64" />
+          <Property Name="type" Type="Int16" />
+          <Property Name="type1" Type="Int16" />
+          <Property Name="amount" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="currency" Type="Int32" />
+          <Property Name="rate" Type="Int32" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tdate" Type="DateTime" Precision="0" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="userId" Type="Int64" />
+          <Property Name="memberid" Type="Int64" />
+        </EntityType>
+        <EntityType Name="UserAccounts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userid" Type="Int64" />
+          <Property Name="accountid" Type="Int64" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserGroups">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="manager" Type="Int64" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="role" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Deals">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="dealno" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="dealtype" Type="Int16" />
+          <Property Name="dealno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="side" Type="Int16" />
+          <Property Name="memberid" Type="Int32" />
+          <Property Name="accountid" Type="Int64" />
+          <Property Name="assetid" Type="Int32" />
+          <Property Name="qty" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Dealtype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GroupRights">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupID" Type="Int64" />
+          <Property Name="RightID" Type="Int32" />
+          <Property Name="HasRight" Type="Int16" />
+          <Property Name="Modified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="InvoiceDetails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="invoiceid" Type="Int64" />
+          <Property Name="assetid" Type="Int32" />
+          <Property Name="qty" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dealType" Type="Int16" />
+          <Property Name="side" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="memberid" Type="Int64" />
+          <Property Name="accountid" Type="Int64" />
+          <Property Name="assetid" Type="Int64" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+        </EntityType>
         <EntityType Name="Session">
           <Key>
             <PropertyRef Name="id" />
@@ -320,10 +1079,16 @@
           <Property Name="editorder" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="delorder" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="markettype" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Session1" Relationship="Self.FK_session_session" FromRole="Session" ToRole="Session1" />
-          <NavigationProperty Name="Session2" Relationship="Self.FK_session_session" FromRole="Session1" ToRole="Session" />
-          <NavigationProperty Name="Session11" Relationship="Self.FK_session_session1" FromRole="Session" ToRole="Session1" />
-          <NavigationProperty Name="Session3" Relationship="Self.FK_session_session1" FromRole="Session1" ToRole="Session" />
+        </EntityType>
+        <EntityType Name="Softwares">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SWName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SWCaption" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="IsClient" Type="Int16" />
         </EntityType>
         <Association Name="FK_boards_boards1">
           <End Role="Boards" Type="Self.Boards" Multiplicity="1" />
@@ -337,53 +1102,45 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_session_session">
-          <End Role="Session" Type="Self.Session" Multiplicity="1" />
-          <End Role="Session1" Type="Self.Session" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Session">
-              <PropertyRef Name="id" />
-              <PropertyRef Name="boardid" />
-            </Principal>
-            <Dependent Role="Session1">
-              <PropertyRef Name="id" />
-              <PropertyRef Name="boardid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_session_session1">
-          <End Role="Session" Type="Self.Session" Multiplicity="1" />
-          <End Role="Session1" Type="Self.Session" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Session">
-              <PropertyRef Name="id" />
-              <PropertyRef Name="boardid" />
-            </Principal>
-            <Dependent Role="Session1">
-              <PropertyRef Name="id" />
-              <PropertyRef Name="boardid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="demoEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="demoEntities7" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Account" EntityType="Self.Account" />
+          <EntitySet Name="ActiveSessions" EntityType="Self.ActiveSessions" />
           <EntitySet Name="Assets" EntityType="Self.Assets" />
+          <EntitySet Name="BoardInstruments" EntityType="Self.BoardInstruments" />
           <EntitySet Name="Boards" EntityType="Self.Boards" />
+          <EntitySet Name="Calendar" EntityType="Self.Calendar" />
+          <EntitySet Name="ClearingAccounts" EntityType="Self.ClearingAccounts" />
           <EntitySet Name="Contracts" EntityType="Self.Contracts" />
+          <EntitySet Name="Deal2" EntityType="Self.Deal2" />
+          <EntitySet Name="DealerAccounts" EntityType="Self.DealerAccounts" />
+          <EntitySet Name="GroupUsers" EntityType="Self.GroupUsers" />
           <EntitySet Name="Invoices" EntityType="Self.Invoices" />
+          <EntitySet Name="Margins" EntityType="Self.Margins" />
+          <EntitySet Name="MarketMakers" EntityType="Self.MarketMakers" />
           <EntitySet Name="Members" EntityType="Self.Members" />
           <EntitySet Name="Participants" EntityType="Self.Participants" />
+          <EntitySet Name="RefPrice" EntityType="Self.RefPrice" />
+          <EntitySet Name="Rights" EntityType="Self.Rights" />
+          <EntitySet Name="Securities" EntityType="Self.Securities" />
+          <EntitySet Name="Spreads" EntityType="Self.Spreads" />
+          <EntitySet Name="States" EntityType="Self.States" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Table" EntityType="Self.Table" />
+          <EntitySet Name="TickSizeTable" EntityType="Self.TickSizeTable" />
+          <EntitySet Name="Trans" EntityType="Self.Trans" />
+          <EntitySet Name="UserAccounts" EntityType="Self.UserAccounts" />
+          <EntitySet Name="UserGroups" EntityType="Self.UserGroups" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <EntitySet Name="Deals" EntityType="Self.Deals" />
+          <EntitySet Name="Dealtype" EntityType="Self.Dealtype" />
+          <EntitySet Name="GroupRights" EntityType="Self.GroupRights" />
+          <EntitySet Name="InvoiceDetails" EntityType="Self.InvoiceDetails" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
           <EntitySet Name="Session" EntityType="Self.Session" />
+          <EntitySet Name="Softwares" EntityType="Self.Softwares" />
           <AssociationSet Name="FK_boards_boards1" Association="Self.FK_boards_boards1">
             <End Role="Boards" EntitySet="Boards" />
             <End Role="Boards1" EntitySet="Boards" />
-          </AssociationSet>
-          <AssociationSet Name="FK_session_session" Association="Self.FK_session_session">
-            <End Role="Session" EntitySet="Session" />
-            <End Role="Session1" EntitySet="Session" />
-          </AssociationSet>
-          <AssociationSet Name="FK_session_session1" Association="Self.FK_session_session1">
-            <End Role="Session" EntitySet="Session" />
-            <End Role="Session1" EntitySet="Session" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -391,9 +1148,36 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="demoModel1StoreContainer" CdmEntityContainer="demoEntities1">
+        <EntityContainerMapping StorageEntityContainer="demoModelStoreContainer" CdmEntityContainer="demoEntities7">
+          <EntitySetMapping Name="Account">
+            <EntityTypeMapping TypeName="demoModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="trading" ColumnName="trading" />
+                <ScalarProperty Name="clearing" ColumnName="clearing" />
+                <ScalarProperty Name="settlement" ColumnName="settlement" />
+                <ScalarProperty Name="collateral" ColumnName="collateral" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActiveSessions">
+            <EntityTypeMapping TypeName="demoModel.ActiveSessions">
+              <MappingFragment StoreEntitySet="ActiveSessions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="sessionid" ColumnName="sessionid" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="starttime" ColumnName="starttime" />
+                <ScalarProperty Name="endtime" ColumnName="endtime" />
+                <ScalarProperty Name="tduration" ColumnName="tduration" />
+                <ScalarProperty Name="matched" ColumnName="matched" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Assets">
-            <EntityTypeMapping TypeName="demoModel1.Assets">
+            <EntityTypeMapping TypeName="demoModel.Assets">
               <MappingFragment StoreEntitySet="Assets">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="code" ColumnName="code" />
@@ -407,8 +1191,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BoardInstruments">
+            <EntityTypeMapping TypeName="demoModel.BoardInstruments">
+              <MappingFragment StoreEntitySet="BoardInstruments">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="boardid" ColumnName="boardid" />
+                <ScalarProperty Name="instrumentid" ColumnName="instrumentid" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Boards">
-            <EntityTypeMapping TypeName="demoModel1.Boards">
+            <EntityTypeMapping TypeName="demoModel.Boards">
               <MappingFragment StoreEntitySet="Boards">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -420,8 +1215,36 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Calendar">
+            <EntityTypeMapping TypeName="demoModel.Calendar">
+              <MappingFragment StoreEntitySet="Calendar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tdate" ColumnName="tdate" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClearingAccounts">
+            <EntityTypeMapping TypeName="demoModel.ClearingAccounts">
+              <MappingFragment StoreEntitySet="ClearingAccounts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="currency" ColumnName="currency" />
+                <ScalarProperty Name="blnc" ColumnName="blnc" />
+                <ScalarProperty Name="sblnc" ColumnName="sblnc" />
+                <ScalarProperty Name="linkaccount" ColumnName="linkaccount" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Contracts">
-            <EntityTypeMapping TypeName="demoModel1.Contracts">
+            <EntityTypeMapping TypeName="demoModel.Contracts">
               <MappingFragment StoreEntitySet="Contracts">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="securityId" ColumnName="securityId" />
@@ -441,8 +1264,46 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Deal2">
+            <EntityTypeMapping TypeName="demoModel.Deal2">
+              <MappingFragment StoreEntitySet="Deal2">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="accountid" ColumnName="accountid" />
+                <ScalarProperty Name="member2id" ColumnName="member2id" />
+                <ScalarProperty Name="account2id" ColumnName="account2id" />
+                <ScalarProperty Name="assetAmount" ColumnName="assetAmount" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DealerAccounts">
+            <EntityTypeMapping TypeName="demoModel.DealerAccounts">
+              <MappingFragment StoreEntitySet="DealerAccounts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="accountid" ColumnName="accountid" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupUsers">
+            <EntityTypeMapping TypeName="demoModel.GroupUsers">
+              <MappingFragment StoreEntitySet="GroupUsers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="groupid" ColumnName="groupid" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Invoices">
-            <EntityTypeMapping TypeName="demoModel1.Invoices">
+            <EntityTypeMapping TypeName="demoModel.Invoices">
               <MappingFragment StoreEntitySet="Invoices">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="type" ColumnName="type" />
@@ -458,8 +1319,39 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Margins">
+            <EntityTypeMapping TypeName="demoModel.Margins">
+              <MappingFragment StoreEntitySet="Margins">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="buy" ColumnName="buy" />
+                <ScalarProperty Name="sell" ColumnName="sell" />
+                <ScalarProperty Name="buytype" ColumnName="buytype" />
+                <ScalarProperty Name="selltype" ColumnName="selltype" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="mbuy" ColumnName="mbuy" />
+                <ScalarProperty Name="msell" ColumnName="msell" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MarketMakers">
+            <EntityTypeMapping TypeName="demoModel.MarketMakers">
+              <MappingFragment StoreEntitySet="MarketMakers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="contactid" ColumnName="contactid" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="accountid" ColumnName="accountid" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
+                <ScalarProperty Name="enddate" ColumnName="enddate" />
+                <ScalarProperty Name="ticks" ColumnName="ticks" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="orderlimit" ColumnName="orderlimit" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Members">
-            <EntityTypeMapping TypeName="demoModel1.Members">
+            <EntityTypeMapping TypeName="demoModel.Members">
               <MappingFragment StoreEntitySet="Members">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="type" ColumnName="type" />
@@ -479,7 +1371,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Participants">
-            <EntityTypeMapping TypeName="demoModel1.Participants">
+            <EntityTypeMapping TypeName="demoModel.Participants">
               <MappingFragment StoreEntitySet="Participants">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="code" ColumnName="code" />
@@ -497,8 +1389,229 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="RefPrice">
+            <EntityTypeMapping TypeName="demoModel.RefPrice">
+              <MappingFragment StoreEntitySet="RefPrice">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="refprice1" ColumnName="refprice" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rights">
+            <EntityTypeMapping TypeName="demoModel.Rights">
+              <MappingFragment StoreEntitySet="Rights">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RightType" ColumnName="RightType" />
+                <ScalarProperty Name="KeyName" ColumnName="KeyName" />
+                <ScalarProperty Name="RightCaption" ColumnName="RightCaption" />
+                <ScalarProperty Name="RightTooltip" ColumnName="RightTooltip" />
+                <ScalarProperty Name="DefaultValue" ColumnName="DefaultValue" />
+                <ScalarProperty Name="RelationID" ColumnName="RelationID" />
+                <ScalarProperty Name="RightLevel" ColumnName="RightLevel" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Securities">
+            <EntityTypeMapping TypeName="demoModel.Securities">
+              <MappingFragment StoreEntitySet="Securities">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="partid" ColumnName="partid" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="refno" ColumnName="refno" />
+                <ScalarProperty Name="regno" ColumnName="regno" />
+                <ScalarProperty Name="totalQty" ColumnName="totalQty" />
+                <ScalarProperty Name="firstPrice" ColumnName="firstPrice" />
+                <ScalarProperty Name="intRate" ColumnName="intRate" />
+                <ScalarProperty Name="sdate" ColumnName="sdate" />
+                <ScalarProperty Name="edate" ColumnName="edate" />
+                <ScalarProperty Name="groupId" ColumnName="groupId" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Spreads">
+            <EntityTypeMapping TypeName="demoModel.Spreads">
+              <MappingFragment StoreEntitySet="Spreads">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="contractid" ColumnName="contractid" />
+                <ScalarProperty Name="sessionid" ColumnName="sessionid" />
+                <ScalarProperty Name="rspread" ColumnName="rspread" />
+                <ScalarProperty Name="ispread" ColumnName="ispread" />
+                <ScalarProperty Name="rparam" ColumnName="rparam" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="demoModel.States">
+              <MappingFragment StoreEntitySet="States">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="states1" ColumnName="states" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="demoModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table">
+            <EntityTypeMapping TypeName="demoModel.Table">
+              <MappingFragment StoreEntitySet="Table">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="arrangePrice" ColumnName="arrangePrice" />
+                <ScalarProperty Name="tickSize" ColumnName="tickSize" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TickSizeTable">
+            <EntityTypeMapping TypeName="demoModel.TickSizeTable">
+              <MappingFragment StoreEntitySet="TickSizeTable">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tableid" ColumnName="tableid" />
+                <ScalarProperty Name="tick" ColumnName="tick" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trans">
+            <EntityTypeMapping TypeName="demoModel.Trans">
+              <MappingFragment StoreEntitySet="Trans">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="type1" ColumnName="type1" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="currency" ColumnName="currency" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="tdate" ColumnName="tdate" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAccounts">
+            <EntityTypeMapping TypeName="demoModel.UserAccounts">
+              <MappingFragment StoreEntitySet="UserAccounts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="accountid" ColumnName="accountid" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGroups">
+            <EntityTypeMapping TypeName="demoModel.UserGroups">
+              <MappingFragment StoreEntitySet="UserGroups">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="manager" ColumnName="manager" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="demoModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="uname" ColumnName="uname" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Deals">
+            <EntityTypeMapping TypeName="demoModel.Deals">
+              <MappingFragment StoreEntitySet="Deals">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="dealtype" ColumnName="dealtype" />
+                <ScalarProperty Name="dealno" ColumnName="dealno" />
+                <ScalarProperty Name="side" ColumnName="side" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="accountid" ColumnName="accountid" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dealtype">
+            <EntityTypeMapping TypeName="demoModel.Dealtype">
+              <MappingFragment StoreEntitySet="Dealtype">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupRights">
+            <EntityTypeMapping TypeName="demoModel.GroupRights">
+              <MappingFragment StoreEntitySet="GroupRights">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="RightID" ColumnName="RightID" />
+                <ScalarProperty Name="HasRight" ColumnName="HasRight" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceDetails">
+            <EntityTypeMapping TypeName="demoModel.InvoiceDetails">
+              <MappingFragment StoreEntitySet="InvoiceDetails">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="invoiceid" ColumnName="invoiceid" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="note" ColumnName="note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="demoModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="dealType" ColumnName="dealType" />
+                <ScalarProperty Name="side" ColumnName="side" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="accountid" ColumnName="accountid" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Session">
-            <EntityTypeMapping TypeName="demoModel1.Session">
+            <EntityTypeMapping TypeName="demoModel.Session">
               <MappingFragment StoreEntitySet="Session">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="boardid" ColumnName="boardid" />
@@ -519,6 +1632,17 @@
                 <ScalarProperty Name="editorder" ColumnName="editorder" />
                 <ScalarProperty Name="delorder" ColumnName="delorder" />
                 <ScalarProperty Name="markettype" ColumnName="markettype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Softwares">
+            <EntityTypeMapping TypeName="demoModel.Softwares">
+              <MappingFragment StoreEntitySet="Softwares">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SWName" ColumnName="SWName" />
+                <ScalarProperty Name="SWCaption" ColumnName="SWCaption" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsClient" ColumnName="IsClient" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

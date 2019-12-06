@@ -164,20 +164,25 @@ namespace pages
         public List<Account> Acc{ get; set; }
         private void bindCombo()
         {
-            demoEntities1 dc = new demoEntities1();
+            demoEntities7 dc = new demoEntities7();
             var item = dc.Members.ToList();
             Emp = item;
             memid.ItemsSource = Emp;
 
-            demoEntities3 st = new demoEntities3();
+            demoEntities7 st = new demoEntities7();
             var items = st.States.ToList();
             statt = items;
             stat.ItemsSource = statt;
             
-            demoEntities5 dt= new demoEntities5();
+            demoEntities7 dt= new demoEntities7();
             var dts = dt.Dealtype.ToList();
             Dtype = dts;
-            dealtype.ItemsSource = Dtype;        
+            dealtype.ItemsSource = Dtype;
+
+            demoEntities7 ac = new demoEntities7();
+            var accs = ac.Account.ToList();
+
+
         }
         private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -202,7 +207,6 @@ namespace pages
             {
                 return;
             }
-
         }
         private void dealtype_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
