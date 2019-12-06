@@ -100,5 +100,9 @@ namespace pages
         {
             Main.Content = new Table();
         }
+        private void btnClickP19(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new Order();
+        }
     }
 }

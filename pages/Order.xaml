@@ -1,0 +1,50 @@
+﻿<Page x:Class="pages.Order"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="900"  d:DesignWidth="1200"
+      Title="Order">
+
+    <Grid>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="1081,74,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Insert" HorizontalAlignment="Left" Margin="1081,113,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
+        <Label Content="memberid" HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top"/>
+        <Label Content="side" HorizontalAlignment="Left" Margin="574,116,0,0" VerticalAlignment="Top"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="side" HorizontalAlignment="Left" Height="23" Margin="644,119,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="accountid" HorizontalAlignment="Left" Margin="34,114,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="10,263,0,237" VerticalAlignment="Center" Width="1138">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
+                <DataGridTextColumn Binding="{Binding memberid}" Header="MID"/>
+                <DataGridTextColumn Binding="{Binding accountid}" Header="AID"/>
+                <DataGridTextColumn Binding="{Binding assetid}" Header="assetid"/>
+                <DataGridTextColumn Binding="{Binding dealType}" Header="DealType"/>
+                <DataGridTextColumn Binding="{Binding side}" Header="Side"/>
+                <DataGridTextColumn Binding="{Binding qty}" Header="QTY"/>
+                <DataGridTextColumn Binding="{Binding price}" Header="Price"/>
+                <DataGridTextColumn Binding="{Binding state}" Header="State"/>
+                <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="1081,155,0,0"/>
+        <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="977,74,0,0"/>
+        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="977,113,0,0"/>
+        <Button Content="Update" HorizontalAlignment="Left" Margin="977,155,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
+        <ComboBox x:Name="stat" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="415,74,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox x:Name="memid" ItemsSource="{Binding}" SelectionChanged="partid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,75,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="dealtype" HorizontalAlignment="Left" Margin="34,155,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="dealtype" ItemsSource="{Binding}" SelectionChanged="dealtype_SelectionChanged" DisplayMemberPath="type" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,155,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <Label Content="assetid" HorizontalAlignment="Left" Margin="345,115,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="assetid" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="415,118,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <Label Content="quantity" HorizontalAlignment="Left" Margin="345,151,0,0" VerticalAlignment="Top"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="quantity" HorizontalAlignment="Left" Height="23" Margin="415,154,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="price" HorizontalAlignment="Left" Margin="574,72,0,0" VerticalAlignment="Top"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="price" HorizontalAlignment="Left" Height="23" Margin="644,75,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="state" HorizontalAlignment="Left" Margin="345,70,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="accountid" ItemsSource="{Binding}" SelectionChanged="accountid_SelectionChanged" DisplayMemberPath="id" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,119,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+
+    </Grid>
+</Page>
