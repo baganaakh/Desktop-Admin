@@ -19,8 +19,10 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding memberid}" Header="Member id"/>
-                <DataGridTextColumn Binding="{Binding accountid}" Header="Acc ID"/>
-                <DataGridTextColumn Binding="{Binding state}" Header="State"/>
+                <DataGridTextColumn Binding="{Binding trading}" Header="Trading"/>
+                <DataGridTextColumn Binding="{Binding clearing}" Header="clearing"/>
+                <DataGridTextColumn Binding="{Binding settlement}" Header="Settlement"/>
+                <DataGridTextColumn Binding="{Binding collateral}" Header="Collateral"/>
                 <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
             </DataGrid.Columns>
         </DataGrid>

@@ -87,6 +87,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Account.xaml.cs">
+      <DependentUpon>Account.xaml</DependentUpon>
+    </Compile>
     <Compile Include="adminPage.xaml.cs">
       <DependentUpon>adminPage.xaml</DependentUpon>
     </Compile>
@@ -195,6 +198,10 @@
     <Compile Include="trans.xaml.cs">
       <DependentUpon>trans.xaml</DependentUpon>
     </Compile>
+    <Page Include="Account.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="adminPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

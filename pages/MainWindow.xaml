@@ -24,6 +24,7 @@
             <Button Content="ref&#xD;&#xA;price" Margin="10,0,0,0" Click="btnClickP14"/>
             <Button Content="speads" Margin="10,0,0,0" Click="btnClickP15"/>
             <Button Content="show&#xD;&#xA;Data" Margin="10,0,0,0" Click="btnClickP16"/>
+            <Button Content="Account" Margin="10,0,0,0" Click="btnClickP17"/>
         </StackPanel>
         <Frame x:Name="Main" Margin="28,25,0,0" NavigationUIVisibility="Hidden" MinHeight="350" VerticalAlignment="Top" Content="" />
 
