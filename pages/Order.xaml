@@ -38,7 +38,7 @@
         <Label Content="dealtype" HorizontalAlignment="Left" Margin="34,155,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="dealtype" ItemsSource="{Binding}" SelectionChanged="dealtype_SelectionChanged" DisplayMemberPath="type" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,155,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <Label Content="assetid" HorizontalAlignment="Left" Margin="345,115,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="assetid" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="415,118,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox x:Name="assetid" ItemsSource="{Binding}" SelectionChanged="assetid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="415,118,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <Label Content="quantity" HorizontalAlignment="Left" Margin="345,151,0,0" VerticalAlignment="Top"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="quantity" HorizontalAlignment="Left" Height="23" Margin="415,154,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label Content="price" HorizontalAlignment="Left" Margin="574,72,0,0" VerticalAlignment="Top"/>

@@ -65,7 +65,7 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.Order (dealType, side, memberid, accountid, assetid, qty, price, state, modified) values" +
+            cmd.CommandText = "insert into [dbo].[Order] (dealType, side, memberid, accountid, assetid, qty, price, state, modified) values" +
                 " ('" +  dealTypes + "',N'" + Side+ "',N'" + memId+ "',N'" + accId + "',N'" + assetId+ "',N'" + QTY+ "',N'" + Price+ "',N'" + statid+ "', getdate())";
 
             cmd.Connection = sqlConnection1;
@@ -122,7 +122,7 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE demo.dbo.Order WHERE id='" + id + "'";
+            cmd.CommandText = "DELETE demo.[dbo].[Order] WHERE id='" + id + "'";
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();
@@ -140,7 +140,7 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "UPDATE demo.dbo.Order SET " +
+            cmd.CommandText = "UPDATE demo.[dbo].[Order] SET " +
                 "dealType= '" + dealTypes+ "', " +
                 "side= '" + Side+ "', " +
                 "memberid= '" + memId + "', " +
@@ -161,7 +161,9 @@ namespace pages
         public List<States> statt { get; set; }
         public List<Members> Emp { get; set; }
         public List<Dealtype> Dtype { get; set; }
-        public List<Account> Acc{ get; set; }
+        public List<Account> ACCT { get; set; }
+        public List<Assets> ASST { get; set; }
+
         private void bindCombo()
         {
             demoEntities7 dc = new demoEntities7();
@@ -180,9 +182,14 @@ namespace pages
             dealtype.ItemsSource = Dtype;
 
             demoEntities7 ac = new demoEntities7();
-            var accs = ac.Account.ToList();
+            var act = ac.Account.ToList();
+            ACCT = act;
+            accountid.ItemsSource = ACCT;
 
-
+            demoEntities7 ass = new demoEntities7();
+            var asst = ass.Assets.ToList();
+            ASST = asst;
+            assetid.ItemsSource = ASST;
         }
         private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -222,7 +229,28 @@ namespace pages
         }
         private void accountid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           
+            var accitems = accountid.SelectedItem as Account;
+            try
+            {
+                accId = accitems.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
         }
+        private void assetid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var assItems = assetid.SelectedItem as Assets;
+            try
+            {
+                assetId = assItems.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
+        }
+
     }
 }

@@ -94,7 +94,7 @@ namespace pages
         }
         private void btnClickP17(object sender, RoutedEventArgs e)
         {
-            Main.Content = new Account();
+            Main.Content = new account();
         }
         private void btnClickP18(object sender, RoutedEventArgs e)
         {

@@ -22,9 +22,9 @@ namespace pages
     /// <summary>
     /// Interaction logic for Account.xaml
     /// </summary>
-    public partial class Account : Page
+    public partial class account : Page
     {
-        public Account()
+        public account()
         {
             InitializeComponent();
             FillDataGrid();
