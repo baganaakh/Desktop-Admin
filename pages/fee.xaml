@@ -1,0 +1,63 @@
+﻿<Page x:Class="pages.fee"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="900"  d:DesignWidth="1200"
+      Title="fee">
+
+    <Grid>
+        <Button Content="Update" HorizontalAlignment="Left" Margin="977,155,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
+        <Label Content="Арилжаа" HorizontalAlignment="Left" Margin="33,125,0,0" VerticalAlignment="Top"/>
+        <Label Content="Клиринг" HorizontalAlignment="Left" Margin="33,164,0,0" VerticalAlignment="Top"/>
+        <Label Content="Settlement" HorizontalAlignment="Left" Margin="33,195,0,0" VerticalAlignment="Top"/>
+        <Label Content="Позиц" HorizontalAlignment="Left" Margin="33,238,0,0" VerticalAlignment="Top"/>
+        <Label Content="Брокер" HorizontalAlignment="Left" Margin="33,313,0,0" VerticalAlignment="Top"/>
+        <Label Content="Алдагдал" HorizontalAlignment="Left" Margin="33,366,0,0" VerticalAlignment="Top"/>
+        <Label Content="Рэпо" HorizontalAlignment="Left" Margin="33,401,0,0" VerticalAlignment="Top"/>
+        <Label Content="Negotiation" HorizontalAlignment="Left" Margin="33,447,0,0" VerticalAlignment="Top"/>
+        <Label Content="OTC" HorizontalAlignment="Left" Margin="33,492,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tradbuyc" HorizontalAlignment="Left" Height="23" Margin="233,128,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="clearbuyc" HorizontalAlignment="Left" Height="23" Margin="233,164,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="settbuyc" HorizontalAlignment="Left" Height="23" Margin="233,199,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="posbuyc" HorizontalAlignment="Left" Height="23" Margin="233,241,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="brokbuyc" HorizontalAlignment="Left" Height="23" Margin="233,313,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="lossbuyc" HorizontalAlignment="Left" Height="23" Margin="233,366,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="repobuyc" HorizontalAlignment="Left" Height="23" Margin="233,405,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="negobuyc" HorizontalAlignment="Left" Height="23" Margin="233,447,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="otcbuyc" HorizontalAlignment="Left" Height="23" Margin="233,496,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tradbuyh" HorizontalAlignment="Left" Height="23" Margin="398,128,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="clearbuyh" HorizontalAlignment="Left" Height="23" Margin="398,164,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="settbuyh" HorizontalAlignment="Left" Height="23" Margin="398,199,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="posbuyh" HorizontalAlignment="Left" Height="23" Margin="398,241,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="brokbuyh" HorizontalAlignment="Left" Height="23" Margin="398,313,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="lossbuyh" HorizontalAlignment="Left" Height="23" Margin="398,366,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="repobuyh" HorizontalAlignment="Left" Height="23" Margin="398,405,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="negobuyh" HorizontalAlignment="Left" Height="23" Margin="398,447,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="otcbuyh" HorizontalAlignment="Left" Height="23" Margin="398,496,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tradsellc" HorizontalAlignment="Left" Height="23" Margin="570,128,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="clearsellc" HorizontalAlignment="Left" Height="23" Margin="570,164,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="settsellc" HorizontalAlignment="Left" Height="23" Margin="570,199,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="possellc" HorizontalAlignment="Left" Height="23" Margin="570,241,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="broksellc" HorizontalAlignment="Left" Height="23" Margin="570,313,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="lossselc" HorizontalAlignment="Left" Height="23" Margin="570,366,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="reposellc" HorizontalAlignment="Left" Height="23" Margin="570,405,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="negosellc" HorizontalAlignment="Left" Height="23" Margin="570,447,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="otcsellc" HorizontalAlignment="Left" Height="23" Margin="570,496,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tradsellh" HorizontalAlignment="Left" Height="23" Margin="735,128,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="clearsellh" HorizontalAlignment="Left" Height="23" Margin="735,164,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="settsellh" HorizontalAlignment="Left" Height="23" Margin="735,199,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="possellh" HorizontalAlignment="Left" Height="23" Margin="735,241,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="broksellh" HorizontalAlignment="Left" Height="23" Margin="735,313,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="losssellh" HorizontalAlignment="Left" Height="23" Margin="735,366,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="reposellh" HorizontalAlignment="Left" Height="23" Margin="735,405,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="negosellh" HorizontalAlignment="Left" Height="23" Margin="735,447,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="otcsellh" HorizontalAlignment="Left" Height="23" Margin="735,496,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
+        <Label Content="BUY C" HorizontalAlignment="Left" Margin="269,80,0,0" VerticalAlignment="Top"/>
+        <Label Content="BUY H" HorizontalAlignment="Left" Margin="416,80,0,0" VerticalAlignment="Top"/>
+        <Label Content="SELL C" HorizontalAlignment="Left" Margin="605,80,0,0" VerticalAlignment="Top"/>
+        <Label Content="SELL H" HorizontalAlignment="Left" Margin="757,80,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Page>

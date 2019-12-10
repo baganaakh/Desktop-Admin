@@ -28,81 +28,97 @@ namespace pages
 
         }
 
-        private void btnClickP1(object sender, RoutedEventArgs e)
+        private void BtnClickP1(object sender, RoutedEventArgs e)
         {
             Main.Content = new boards();
         }
-        private void btnClickP2(object sender, RoutedEventArgs e)
+        private void BtnClickP2(object sender, RoutedEventArgs e)
         {
             Main.Content = new session();
         }
-        private void btnClickP3(object sender, RoutedEventArgs e)
+        private void BtnClickP3(object sender, RoutedEventArgs e)
         {
             Main.Content = new participants();
         }
-        private void btnClickP4(object sender, RoutedEventArgs e)
+        private void BtnClickP4(object sender, RoutedEventArgs e)
         {
             Main.Content = new assets();
         }
-        private void btnClickP5(object sender, RoutedEventArgs e)
+        private void BtnClickP5(object sender, RoutedEventArgs e)
         {
             Main.Content = new securities();
         }
-        private void btnClickP6(object sender, RoutedEventArgs e)
+        private void BtnClickP6(object sender, RoutedEventArgs e)
         {
             Main.Content = new contracts();
         }
-        private void btnClickP7(object sender, RoutedEventArgs e)
+        private void BtnClickP7(object sender, RoutedEventArgs e)
         {
             Main.Content = new trans();
         }
-        private void btnClickP8(object sender, RoutedEventArgs e)
+        private void BtnClickP8(object sender, RoutedEventArgs e)
         {
             Main.Content = new margins();
         }
-        private void btnClickP9(object sender, RoutedEventArgs e)
+        private void BtnClickP9(object sender, RoutedEventArgs e)
         {
             Main.Content = new MarketMakers();
         }
-        private void btnClickP10(object sender, RoutedEventArgs e)
+        private void BtnClickP10(object sender, RoutedEventArgs e)
         {
             Main.Content = new ClearingAccount();
         }
-        private void btnClickP11(object sender, RoutedEventArgs e)
+        private void BtnClickP11(object sender, RoutedEventArgs e)
         {
             Main.Content = new TickSizeTable();
         }
-        private void btnClickP12(object sender, RoutedEventArgs e)
+        private void BtnClickP12(object sender, RoutedEventArgs e)
         {
             Main.Content = new members();
         }
-        private void btnClickP13(object sender, RoutedEventArgs e)
+        private void BtnClickP13(object sender, RoutedEventArgs e)
         {
             Main.Content = new dealerAccount();
         }
-        private void btnClickP14(object sender, RoutedEventArgs e)
+        private void BtnClickP14(object sender, RoutedEventArgs e)
         {
             Main.Content = new RefPrice();
         }
-        private void btnClickP15(object sender, RoutedEventArgs e)
+        private void BtnClickP15(object sender, RoutedEventArgs e)
         {
             Main.Content = new Spread();
         }
-        private void btnClickP16(object sender, RoutedEventArgs e)
+        private void BtnClickP16(object sender, RoutedEventArgs e)
         {
             Main.Content = new showData();
         }
-        private void btnClickP17(object sender, RoutedEventArgs e)
+        private void BtnClickP17(object sender, RoutedEventArgs e)
         {
             Main.Content = new account();
         }
-        private void btnClickP18(object sender, RoutedEventArgs e)
+        private void BtnClickP18(object sender, RoutedEventArgs e)
         {
             Main.Content = new Table();
         }
-        private void btnClickP19(object sender, RoutedEventArgs e)
+        private void BtnClickP19(object sender, RoutedEventArgs e)
         {
             Main.Content = new Order();
+        }
+        private void BtnClickP20(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new deal2();
+        }
+        private void BtnClickP21(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new orderOk();
+        }
+        private void BtnClickP22(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new fee();
+        }
+        private void BtnClickP23(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new fee();
         }
     }
 }

@@ -65,7 +65,7 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into [dbo].[Order] (dealType, side, memberid, accountid, assetid, qty, price, state, modified) values" +
+            cmd.CommandText = "insert into [demo].[dbo].[Order] (dealType, side, memberid, accountid, assetid, qty, price, state, modified) values" +
                 " ('" +  dealTypes + "',N'" + Side+ "',N'" + memId+ "',N'" + accId + "',N'" + assetId+ "',N'" + QTY+ "',N'" + Price+ "',N'" + statid+ "', getdate())";
 
             cmd.Connection = sqlConnection1;
@@ -191,6 +191,8 @@ namespace pages
             ASST = asst;
             assetid.ItemsSource = ASST;
         }
+
+
         private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var items = stat.SelectedItem as States;
@@ -251,6 +253,7 @@ namespace pages
                 return;
             }
         }
+        
 
     }
 }

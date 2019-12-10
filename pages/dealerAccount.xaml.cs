@@ -46,9 +46,9 @@ namespace pages
         }
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            string memberID = memid.Text;
+          //  string memberID = memid.Text;
             string accID = accid.Text;
-            string state = stat.Text;
+          //  string state = stat.Text;
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);

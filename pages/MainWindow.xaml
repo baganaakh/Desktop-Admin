@@ -8,25 +8,29 @@
         Title="MainWindow" Height="1000" Width="1500">
     <Grid >
         <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Height="35">
-            <Button Content="boards" Click="btnClickP1"/>
-            <Button Content="Session" Margin="10,0,0,0" Click="btnClickP2"/>
-            <Button Content="Participants" Margin="10,0,0,0" Click="btnClickP3"/>
-            <Button Content="securities" Margin="10,0,0,0" Click="btnClickP5"/>
-            <Button Content="contracts" Margin="10,0,0,0" Click="btnClickP6"/>
-            <Button Content="assets" Margin="10,0,0,0" Click="btnClickP4" RenderTransformOrigin="-1.167,0.486"/>
-            <Button Content="trans" Margin="10,0,0,0" Click="btnClickP7"/>
-            <Button Content="margins" Margin="10,0,0,0" Click="btnClickP8"/>
-            <Button Content="Market&#xD;&#xA;Makers" Margin="10,0,0,0" Click="btnClickP9"/>
-            <Button Content="Clearing&#xD;&#xA;Acc" Margin="10,0,0,0" Click="btnClickP10"/>
-            <Button Content="TickSize&#xD;&#xA;Table" Margin="10,0,0,0" Click="btnClickP11"/>
-            <Button Content="member" Margin="10,0,0,0" Click="btnClickP12"/>
-            <Button Content="dealer&#xD;&#xA;Acc" Margin="10,0,0,0" Click="btnClickP13"/>
-            <Button Content="ref&#xD;&#xA;price" Margin="10,0,0,0" Click="btnClickP14"/>
-            <Button Content="speads" Margin="10,0,0,0" Click="btnClickP15"/>
-            <Button Content="show&#xD;&#xA;Data" Margin="10,0,0,0" Click="btnClickP16"/>
-            <Button Content="Account" Margin="10,0,0,0" Click="btnClickP17"/>
-            <Button Content="Table" Margin="10,0,0,0" Click="btnClickP18"/>
-            <Button Content="Order" Margin="10,0,0,0" Click="btnClickP19"/>
+            <Button Content="boards" Click="BtnClickP1"/>
+            <Button Content="Session" Margin="10,0,0,0" Click="BtnClickP2"/>
+            <Button Content="Participants" Margin="10,0,0,0" Click="BtnClickP3"/>
+            <Button Content="securities" Margin="10,0,0,0" Click="BtnClickP5"/>
+            <Button Content="contracts" Margin="10,0,0,0" Click="BtnClickP6"/>
+            <Button Content="assets" Margin="10,0,0,0" Click="BtnClickP4" RenderTransformOrigin="-1.167,0.486"/>
+            <Button Content="trans" Margin="10,0,0,0" Click="BtnClickP7"/>
+            <Button Content="margins" Margin="10,0,0,0" Click="BtnClickP8"/>
+            <Button Content="Market&#xD;&#xA;Makers" Margin="10,0,0,0" Click="BtnClickP9"/>
+            <Button Content="Clearing&#xD;&#xA;Acc" Margin="10,0,0,0" Click="BtnClickP10"/>
+            <Button Content="TickSize&#xD;&#xA;Table" Margin="10,0,0,0" Click="BtnClickP11"/>
+            <Button Content="member" Margin="10,0,0,0" Click="BtnClickP12"/>
+            <Button Content="dealer&#xD;&#xA;Acc" Margin="10,0,0,0" Click="BtnClickP13"/>
+            <Button Content="ref&#xD;&#xA;price" Margin="10,0,0,0" Click="BtnClickP14"/>
+            <Button Content="speads" Margin="10,0,0,0" Click="BtnClickP15"/>
+            <Button Content="show&#xD;&#xA;Data" Margin="10,0,0,0" Click="BtnClickP16"/>
+            <Button Content="Account" Margin="10,0,0,0" Click="BtnClickP17"/>
+            <Button Content="Table" Margin="10,0,0,0" Click="BtnClickP18"/>
+            <Button Content="Order" Margin="10,0,0,0" Click="BtnClickP19"/>
+            <Button Content="Deal2" Margin="10,0,0,0" Click="BtnClickP20"/>
+            <Button Content="Order &#xD;&#xA;Ok" Margin="10,0,0,0" Click="BtnClickP21"/>
+            <Button Content="fee" Margin="10,0,0,0" Click="BtnClickP22"/>
+            <Button Content="Price" Margin="10,0,0,0" Click="BtnClickP23"/>
         </StackPanel>
         <Frame x:Name="Main" Margin="28,25,0,0" NavigationUIVisibility="Hidden" MinHeight="350" VerticalAlignment="Top" Content="" />
 

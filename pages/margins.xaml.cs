@@ -62,7 +62,7 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.margin(buy, sell, buyType, sellType, mbuy, msell, modified) values" +
+            cmd.CommandText = "insert into dbo.margins (buy, sell, buyType, sellType, mbuy, msell, modified) values" +
                 " ('" + buy+ "',N'" + sell+ "',N'" + buyType+ "',N'" + sellType+ "', '" + mmbuy+ "', '" + mmSell+ "', getdate())";
 
             cmd.Connection = sqlConnection1;
@@ -87,7 +87,7 @@ namespace pages
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 CmdString = "SELECT ALL [id], [buy], [sell], [buytype], [selltype], [mbuy], [msell], [modified] "+
-                            "FROM dbo.Margin";
+                            "FROM [dbo].[Margins]";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Securities");
@@ -118,7 +118,7 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE demo.dbo.margin WHERE id='" + id + "'";
+            cmd.CommandText = "DELETE demo.dbo.margins WHERE id='" + id + "'";
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();
@@ -139,7 +139,7 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "UPDATE demo.dbo.margin SET " +
+            cmd.CommandText = "UPDATE demo.dbo.margins SET " +
                 "buy= '" + buy+ "', " +
                 "sell= '" + sell+ "', " +
                 "buytype= '" + buyType+ "', " +

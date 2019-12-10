@@ -216,6 +216,9 @@
     <Compile Include="dbBind\users.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="deal2.xaml.cs">
+      <DependentUpon>deal2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="dealerAccount.xaml.cs">
       <DependentUpon>dealerAccount.xaml</DependentUpon>
     </Compile>
@@ -233,6 +236,12 @@
     </Compile>
     <Compile Include="Order.xaml.cs">
       <DependentUpon>Order.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="orderOk.xaml.cs">
+      <DependentUpon>orderOk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="fee.xaml.cs">
+      <DependentUpon>fee.xaml</DependentUpon>
     </Compile>
     <Compile Include="RefPrice.xaml.cs">
       <DependentUpon>RefPrice.xaml</DependentUpon>
@@ -269,6 +278,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="contracts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="deal2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -318,7 +331,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="orderOk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="participants.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="fee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
