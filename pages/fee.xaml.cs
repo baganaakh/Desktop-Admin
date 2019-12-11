@@ -29,16 +29,16 @@ namespace pages
             InitializeComponent();
             FillDataGrid();
         }
-       
+
         private void FillDataGrid()
         {
             string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-            string CmdString = "SELECT ALL [id], [tradBuyC], [tradBuyH], [tradSellC], [tradSellH], [clearBuyC], [clearBuyH], [clearSellC]"+
-      ",[clearSellH], [settBuyC], [settBuyH], [settSellC], [settSellH], [posBuyC], [posBuyH], [posSellC], [posSellH], [brokBuyC], [brokBuyH], [brokSellC],[brokSellH], [lossBuyC] "+
-      ",[lossBuyH], [lossSellC], [lossSellH], [repoBuyC], [repoBuyH], [repoSellC], [repoSellH], [negoBuyC], [negoBuyH], [negoSellC], [negoSellH], [otcBuyC], [otcBuyH], " +
-      "[otcSellC],[otcSellH], [other] FROM [demo].[dbo].[fee]";
+                string CmdString = "SELECT ALL [id], [tradBuyC], [tradBuyH], [tradSellC], [tradSellH], [clearBuyC], [clearBuyH], [clearSellC]" +
+          ",[clearSellH], [settBuyC], [settBuyH], [settSellC], [settSellH], [posBuyC], [posBuyH], [posSellC], [posSellH], [brokBuyC], [brokBuyH], [brokSellC],[brokSellH], [lossBuyC] " +
+          ",[lossBuyH], [lossSellC], [lossSellH], [repoBuyC], [repoBuyH], [repoSellC], [repoSellH], [negoBuyC], [negoBuyH], [negoSellC], [negoSellH], [otcBuyC], [otcBuyH], " +
+          "[otcSellC],[otcSellH], [other] FROM [demo].[dbo].[fee]";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Securities");
@@ -93,13 +93,14 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "INSERT INTO demo.[dbo].[fee]  ([tradBuyC], [tradBuyH], [tradSellC], [tradSellH], [clearBuyC], [clearBuyH], [clearSellC]"+
-      ",[clearSellH], [settBuyC], [settBuyH], [settSellC], [settSellH], [posBuyC], [posBuyH], [posSellC], [posSellH], [brokBuyC], [brokBuyH], [brokSellC],[brokSellH], [lossBuyC] "+
-      ",[lossBuyH], [lossSellC], [lossSellH], [repoBuyC], [repoBuyH], [repoSellC], [repoSellH], [negoBuyC], [negoBuyH], [negoSellC], [negoSellH], [otcBuyC], [otcBuyH], " +
-      "[otcSellC],[otcSellH]) values ("+Trbuyc+","+Trbuyh + "," +Trsellc + "," +Trsellh + "," +Clbuyc + "," +Clbuyh + "," +Clsellc + "," +Clsellh + "," +Setbuyc + "," +Setbuyh + "," +
-      Sesellc + "," +Sesellh + "," +Pobuyc + "," +Posbuyh + "," +Posellc + "," +Posellh + "," +Brobuyc + "," +Brobuyh + "," +Brsellc + "," +Brsellh + "," +Losbuyc + "," +Losbuyh+
-      "," +Losellc + "," +Losellh + "," +Repbuyc + "," +Repbuyh + "," +Resellc + "," +Resellh + "," +Negobuyc + "," +Negbuyh + "," +Nesellc + "," +Nesellh + "," +Otcbuyc+
-      "," +Otcbuyc + "," +Otcsellc + "," +Otsellh+") ";
+            cmd.CommandText = "UPDATE demo.[dbo].[fee] SET" +
+                " [tradBuyC]=" + Trbuyc + ", [tradBuyH]=" + Trbuyh + ", [tradSellC]=" + Trsellc + ", [tradSellH]=" + Trsellh + ", [clearBuyC]=" + Clbuyc + ", [clearBuyH]=" + Clbuyh + "" +
+                ", [clearSellC]=" + Clsellc + ",[clearSellH]=" + Clsellh + ", [settBuyC]=" + Setbuyc + ", [settBuyH]=" + Setbuyh + ", [settSellC]=" + Sesellc + ", [settSellH]=" + Sesellh + "" +
+                ", [posBuyC]=" + Pobuyc + ", [posBuyH]=" + Posbuyh + ", [posSellC]=" + Posellc + ", [posSellH]=" + Posellh + ", [brokBuyC]=" + Brobuyc + ", [brokBuyH]=" + Brobuyh + "" +
+                ", [brokSellC]=" + Brsellc + ",[brokSellH]=" + Brsellh + ", [lossBuyC]=" + Losbuyc + ",[lossBuyH]=" + Losbuyh + ", [lossSellC]=" + Losellc + ", [lossSellH]=" + Losellh + "" +
+                ", [repoBuyC]=" + Repbuyc + ", [repoBuyH]=" + Repbuyh + ", [repoSellC]=" + Resellc + ", [repoSellH]=" + Resellh + ", [negoBuyC]=" + Negobuyc + ", [negoBuyH]=" + Negbuyh + "" +
+                ", [negoSellC]=" + Nesellc + ", [negoSellH]=" + Nesellh + ", [otcBuyC]=" + Otcbuyc + ", [otcBuyH]=" + Otcbuyc + ", " + "[otcSellC]=" + Otcsellc + "" +
+                ",[otcSellH]=" + Otsellh + "  WHERE id= 1";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
