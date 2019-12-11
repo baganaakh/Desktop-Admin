@@ -13,10 +13,10 @@ namespace pages.dbBind
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class demoEntities7 : DbContext
+    public partial class demoEntities10 : DbContext
     {
-        public demoEntities7()
-            : base("name=demoEntities7")
+        public demoEntities10()
+            : base("name=demoEntities10")
         {
         }
     
@@ -33,6 +33,7 @@ namespace pages.dbBind
         public virtual DbSet<Calendar> Calendar { get; set; }
         public virtual DbSet<ClearingAccounts> ClearingAccounts { get; set; }
         public virtual DbSet<Contracts> Contracts { get; set; }
+        public virtual DbSet<dayType> dayType { get; set; }
         public virtual DbSet<Deal2> Deal2 { get; set; }
         public virtual DbSet<DealerAccounts> DealerAccounts { get; set; }
         public virtual DbSet<GroupUsers> GroupUsers { get; set; }
@@ -40,21 +41,27 @@ namespace pages.dbBind
         public virtual DbSet<Margins> Margins { get; set; }
         public virtual DbSet<MarketMakers> MarketMakers { get; set; }
         public virtual DbSet<Members> Members { get; set; }
+        public virtual DbSet<mtype> mtype { get; set; }
         public virtual DbSet<Participants> Participants { get; set; }
         public virtual DbSet<RefPrice> RefPrice { get; set; }
         public virtual DbSet<Rights> Rights { get; set; }
         public virtual DbSet<Securities> Securities { get; set; }
+        public virtual DbSet<Settings> Settings { get; set; }
+        public virtual DbSet<side> side { get; set; }
         public virtual DbSet<Spreads> Spreads { get; set; }
         public virtual DbSet<States> States { get; set; }
+        public virtual DbSet<stype> stype { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Table> Table { get; set; }
         public virtual DbSet<TickSizeTable> TickSizeTable { get; set; }
         public virtual DbSet<Trans> Trans { get; set; }
+        public virtual DbSet<transType> transType { get; set; }
         public virtual DbSet<UserAccounts> UserAccounts { get; set; }
         public virtual DbSet<UserGroups> UserGroups { get; set; }
         public virtual DbSet<users> users { get; set; }
         public virtual DbSet<Deals> Deals { get; set; }
         public virtual DbSet<Dealtype> Dealtype { get; set; }
+        public virtual DbSet<Fee> Fee { get; set; }
         public virtual DbSet<GroupRights> GroupRights { get; set; }
         public virtual DbSet<InvoiceDetails> InvoiceDetails { get; set; }
         public virtual DbSet<Order> Order { get; set; }

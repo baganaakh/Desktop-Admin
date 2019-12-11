@@ -15,14 +15,16 @@ namespace pages.dbBind
     public partial class Deal2
     {
         public long id { get; set; }
-        public long orderid { get; set; }
+        public short dealType { get; set; }
+        public Nullable<short> side { get; set; }
         public Nullable<long> memberid { get; set; }
         public Nullable<long> accountid { get; set; }
-        public Nullable<long> member2id { get; set; }
-        public Nullable<long> account2id { get; set; }
-        public Nullable<decimal> assetAmount { get; set; }
+        public Nullable<long> assetid { get; set; }
+        public Nullable<int> qty { get; set; }
         public Nullable<decimal> price { get; set; }
-        public Nullable<int> userid { get; set; }
+        public Nullable<short> state { get; set; }
         public Nullable<System.DateTime> modified { get; set; }
+        public Nullable<long> account2id { get; set; }
+        public long member2id { get; set; }
     }
 }

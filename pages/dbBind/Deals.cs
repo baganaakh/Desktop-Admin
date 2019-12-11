@@ -16,7 +16,7 @@ namespace pages.dbBind
     {
         public long id { get; set; }
         public Nullable<short> dealtype { get; set; }
-        public long dealno { get; set; }
+        public Nullable<long> dealno { get; set; }
         public Nullable<short> side { get; set; }
         public Nullable<int> memberid { get; set; }
         public Nullable<long> accountid { get; set; }
@@ -25,5 +25,8 @@ namespace pages.dbBind
         public Nullable<decimal> price { get; set; }
         public Nullable<short> state { get; set; }
         public Nullable<System.DateTime> modified { get; set; }
+        public Nullable<decimal> fee { get; set; }
+        public Nullable<decimal> m2m { get; set; }
+        public Nullable<decimal> refPrice { get; set; }
     }
 }

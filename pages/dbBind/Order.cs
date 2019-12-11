@@ -16,7 +16,7 @@ namespace pages.dbBind
     {
         public long id { get; set; }
         public Nullable<short> dealType { get; set; }
-        public string side { get; set; }
+        public Nullable<short> side { get; set; }
         public Nullable<long> memberid { get; set; }
         public Nullable<long> accountid { get; set; }
         public Nullable<long> assetid { get; set; }

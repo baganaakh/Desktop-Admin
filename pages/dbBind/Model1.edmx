@@ -113,20 +113,29 @@
           <Property Name="orderLimit" Type="int" />
           <Property Name="refpriceParam" Type="decimal" Precision="18" Scale="6" />
         </EntityType>
+        <EntityType Name="dayType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dayType" Type="nvarchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="Deal2">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="orderid" Type="bigint" Nullable="false" />
+          <Property Name="dealType" Type="smallint" Nullable="false" />
+          <Property Name="side" Type="smallint" />
           <Property Name="memberid" Type="bigint" />
           <Property Name="accountid" Type="bigint" />
-          <Property Name="member2id" Type="bigint" />
-          <Property Name="account2id" Type="bigint" />
-          <Property Name="assetAmount" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="assetid" Type="bigint" />
+          <Property Name="qty" Type="int" />
           <Property Name="price" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="userid" Type="int" />
+          <Property Name="state" Type="smallint" />
           <Property Name="modified" Type="datetime" />
+          <Property Name="account2id" Type="bigint" />
+          <Property Name="member2id" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="DealerAccounts">
           <Key>
@@ -143,11 +152,10 @@ warning 6002: The table/view 'demo.dbo.Deals' does not have a primary key define
         <EntityType Name="Deals">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="dealno" />
           </Key>
-          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="dealtype" Type="smallint" />
-          <Property Name="dealno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dealno" Type="bigint" />
           <Property Name="side" Type="smallint" />
           <Property Name="memberid" Type="int" />
           <Property Name="accountid" Type="bigint" />
@@ -156,6 +164,9 @@ warning 6002: The table/view 'demo.dbo.Deals' does not have a primary key define
           <Property Name="price" Type="decimal" Precision="18" Scale="4" />
           <Property Name="state" Type="smallint" />
           <Property Name="modified" Type="datetime" />
+          <Property Name="fee" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="m2m" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="refPrice" Type="decimal" Precision="18" Scale="4" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'demo.dbo.Dealtype' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -165,6 +176,51 @@ warning 6002: The table/view 'demo.dbo.Dealtype' does not have a primary key def
           </Key>
           <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="type" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'demo.dbo.Fee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Fee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tradBuyC" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="tradBuyH" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="tradSellC" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="tradSellH" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="clearBuyC" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="clearBuyH" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="clearSellC" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="clearSellH" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="settBuyC" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="settBuyH" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="settSellC" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="settSellH" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="posBuyC" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="posBuyH" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="posSellC" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="posSellH" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="brokBuyC" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="brokBuyH" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="brokSellC" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="brokSellH" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="lossBuyC" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="lossBuyH" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="lossSellC" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="lossSellH" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="repoBuyC" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="repoBuyH" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="repoSellC" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="repoSellH" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="negoBuyC" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="negoBuyH" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="negoSellC" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="negoSellH" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="otcBuyC" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="otcBuyH" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="otcSellC" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="otcSellH" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="other" Type="decimal" Precision="5" Scale="2" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'demo.dbo.GroupRights' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -219,6 +275,12 @@ warning 6002: The table/view 'demo.dbo.InvoiceDetails' does not have a primary k
           <Property Name="state" Type="smallint" />
           <Property Name="modified" Type="datetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'demo.dbo.isactive' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="isactive">
+          <Property Name="id" Type="smallint" />
+          <Property Name="isactive" Type="nvarchar" MaxLength="20" />
+        </EntityType>-->
         <EntityType Name="Margins">
           <Key>
             <PropertyRef Name="id" />
@@ -267,6 +329,13 @@ warning 6002: The table/view 'demo.dbo.InvoiceDetails' does not have a primary k
           <Property Name="webid" Type="int" />
           <Property Name="partid" Type="bigint" />
         </EntityType>
+        <EntityType Name="mtype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mtype" Type="nvarchar" MaxLength="20" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'demo.dbo.Order' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Order">
@@ -275,7 +344,7 @@ warning 6002: The table/view 'demo.dbo.Order' does not have a primary key define
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="dealType" Type="smallint" />
-          <Property Name="side" Type="nvarchar" MaxLength="20" />
+          <Property Name="side" Type="smallint" />
           <Property Name="memberid" Type="bigint" />
           <Property Name="accountid" Type="bigint" />
           <Property Name="assetid" Type="bigint" />
@@ -371,6 +440,26 @@ warning 6002: The table/view 'demo.dbo.Session' does not have a primary key defi
           <Property Name="delorder" Type="nchar" MaxLength="50" />
           <Property Name="markettype" Type="nchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SettingName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SettingValue" Type="nvarchar" MaxLength="1024" />
+          <Property Name="SettingCaption" Type="nvarchar" MaxLength="128" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="ReadOnly" Type="tinyint" />
+          <Property Name="ValueType" Type="nvarchar" MaxLength="50" />
+          <Property Name="FormatString" Type="nvarchar" MaxLength="1024" />
+        </EntityType>
+        <EntityType Name="side">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="side" Type="nvarchar" MaxLength="20" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Softwares">
@@ -401,6 +490,13 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
           </Key>
           <Property Name="id" Type="smallint" Nullable="false" />
           <Property Name="states" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="stype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stype" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -452,6 +548,13 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
           <Property Name="modified" Type="datetime" />
           <Property Name="userId" Type="bigint" />
           <Property Name="memberid" Type="bigint" />
+        </EntityType>
+        <EntityType Name="transType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="UserAccounts">
           <Key>
@@ -505,6 +608,7 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
           <EntitySet Name="Calendar" EntityType="Self.Calendar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClearingAccounts" EntityType="Self.ClearingAccounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contracts" EntityType="Self.Contracts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dayType" EntityType="Self.dayType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Deal2" EntityType="Self.Deal2" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DealerAccounts" EntityType="Self.DealerAccounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GroupUsers" EntityType="Self.GroupUsers" Schema="dbo" store:Type="Tables" />
@@ -512,16 +616,21 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
           <EntitySet Name="Margins" EntityType="Self.Margins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MarketMakers" EntityType="Self.MarketMakers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mtype" EntityType="Self.mtype" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Participants" EntityType="Self.Participants" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RefPrice" EntityType="Self.RefPrice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rights" EntityType="Self.Rights" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Securities" EntityType="Self.Securities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="side" EntityType="Self.side" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Spreads" EntityType="Self.Spreads" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stype" EntityType="Self.stype" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TickSizeTable" EntityType="Self.TickSizeTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Trans" EntityType="Self.Trans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transType" EntityType="Self.transType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAccounts" EntityType="Self.UserAccounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserGroups" EntityType="Self.UserGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
@@ -537,7 +646,10 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
     [Deals].[qty] AS [qty], 
     [Deals].[price] AS [price], 
     [Deals].[state] AS [state], 
-    [Deals].[modified] AS [modified]
+    [Deals].[modified] AS [modified], 
+    [Deals].[fee] AS [fee], 
+    [Deals].[m2m] AS [m2m], 
+    [Deals].[refPrice] AS [refPrice]
     FROM [dbo].[Deals] AS [Deals]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Dealtype" EntityType="Self.Dealtype" store:Type="Tables" store:Schema="dbo">
@@ -545,6 +657,48 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
     [Dealtype].[id] AS [id], 
     [Dealtype].[type] AS [type]
     FROM [dbo].[Dealtype] AS [Dealtype]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Fee" EntityType="Self.Fee" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Fee].[id] AS [id], 
+    [Fee].[tradBuyC] AS [tradBuyC], 
+    [Fee].[tradBuyH] AS [tradBuyH], 
+    [Fee].[tradSellC] AS [tradSellC], 
+    [Fee].[tradSellH] AS [tradSellH], 
+    [Fee].[clearBuyC] AS [clearBuyC], 
+    [Fee].[clearBuyH] AS [clearBuyH], 
+    [Fee].[clearSellC] AS [clearSellC], 
+    [Fee].[clearSellH] AS [clearSellH], 
+    [Fee].[settBuyC] AS [settBuyC], 
+    [Fee].[settBuyH] AS [settBuyH], 
+    [Fee].[settSellC] AS [settSellC], 
+    [Fee].[settSellH] AS [settSellH], 
+    [Fee].[posBuyC] AS [posBuyC], 
+    [Fee].[posBuyH] AS [posBuyH], 
+    [Fee].[posSellC] AS [posSellC], 
+    [Fee].[posSellH] AS [posSellH], 
+    [Fee].[brokBuyC] AS [brokBuyC], 
+    [Fee].[brokBuyH] AS [brokBuyH], 
+    [Fee].[brokSellC] AS [brokSellC], 
+    [Fee].[brokSellH] AS [brokSellH], 
+    [Fee].[lossBuyC] AS [lossBuyC], 
+    [Fee].[lossBuyH] AS [lossBuyH], 
+    [Fee].[lossSellC] AS [lossSellC], 
+    [Fee].[lossSellH] AS [lossSellH], 
+    [Fee].[repoBuyC] AS [repoBuyC], 
+    [Fee].[repoBuyH] AS [repoBuyH], 
+    [Fee].[repoSellC] AS [repoSellC], 
+    [Fee].[repoSellH] AS [repoSellH], 
+    [Fee].[negoBuyC] AS [negoBuyC], 
+    [Fee].[negoBuyH] AS [negoBuyH], 
+    [Fee].[negoSellC] AS [negoSellC], 
+    [Fee].[negoSellH] AS [negoSellH], 
+    [Fee].[otcBuyC] AS [otcBuyC], 
+    [Fee].[otcBuyH] AS [otcBuyH], 
+    [Fee].[otcSellC] AS [otcSellC], 
+    [Fee].[otcSellH] AS [otcSellH], 
+    [Fee].[other] AS [other]
+    FROM [dbo].[Fee] AS [Fee]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="GroupRights" EntityType="Self.GroupRights" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -733,20 +887,29 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
           <Property Name="orderLimit" Type="Int32" />
           <Property Name="refpriceParam" Type="Decimal" Precision="18" Scale="6" />
         </EntityType>
+        <EntityType Name="dayType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dayType1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Deal2">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="orderid" Type="Int64" Nullable="false" />
+          <Property Name="dealType" Type="Int16" Nullable="false" />
+          <Property Name="side" Type="Int16" />
           <Property Name="memberid" Type="Int64" />
           <Property Name="accountid" Type="Int64" />
-          <Property Name="member2id" Type="Int64" />
-          <Property Name="account2id" Type="Int64" />
-          <Property Name="assetAmount" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="assetid" Type="Int64" />
+          <Property Name="qty" Type="Int32" />
           <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="userid" Type="Int32" />
+          <Property Name="state" Type="Int16" />
           <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="account2id" Type="Int64" />
+          <Property Name="member2id" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="DealerAccounts">
           <Key>
@@ -832,6 +995,13 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
           <Property Name="webid" Type="Int32" />
           <Property Name="partid" Type="Int64" />
         </EntityType>
+        <EntityType Name="mtype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mtype1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Participants">
           <Key>
             <PropertyRef Name="id" />
@@ -892,6 +1062,26 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
           <Property Name="state" Type="Int16" />
           <Property Name="modified" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SettingName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SettingValue" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="SettingCaption" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="ReadOnly" Type="Byte" />
+          <Property Name="ValueType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FormatString" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="side">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="side1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Spreads">
           <Key>
             <PropertyRef Name="id" />
@@ -910,6 +1100,13 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" />
           <Property Name="states1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="stype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stype1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -962,6 +1159,13 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
           <Property Name="userId" Type="Int64" />
           <Property Name="memberid" Type="Int64" />
         </EntityType>
+        <EntityType Name="transType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="UserAccounts">
           <Key>
             <PropertyRef Name="id" />
@@ -996,11 +1200,10 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
         <EntityType Name="Deals">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="dealno" />
           </Key>
-          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="dealtype" Type="Int16" />
-          <Property Name="dealno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dealno" Type="Int64" />
           <Property Name="side" Type="Int16" />
           <Property Name="memberid" Type="Int32" />
           <Property Name="accountid" Type="Int64" />
@@ -1009,6 +1212,9 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
           <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="state" Type="Int16" />
           <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="m2m" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="refPrice" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="Dealtype">
           <Key>
@@ -1016,6 +1222,49 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Fee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tradBuyC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="tradBuyH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="tradSellC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="tradSellH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="clearBuyC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="clearBuyH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="clearSellC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="clearSellH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="settBuyC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="settBuyH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="settSellC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="settSellH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="posBuyC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="posBuyH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="posSellC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="posSellH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="brokBuyC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="brokBuyH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="brokSellC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="brokSellH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="lossBuyC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="lossBuyH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="lossSellC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="lossSellH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="repoBuyC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="repoBuyH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="repoSellC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="repoSellH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="negoBuyC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="negoBuyH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="negoSellC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="negoSellH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="otcBuyC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="otcBuyH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="otcSellC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="otcSellH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="other" Type="Decimal" Precision="5" Scale="2" />
         </EntityType>
         <EntityType Name="GroupRights">
           <Key>
@@ -1046,7 +1295,7 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="dealType" Type="Int16" />
-          <Property Name="side" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="side" Type="Int16" />
           <Property Name="memberid" Type="Int64" />
           <Property Name="accountid" Type="Int64" />
           <Property Name="assetid" Type="Int64" />
@@ -1102,7 +1351,7 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="demoEntities7" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="demoEntities10" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Account" EntityType="Self.Account" />
           <EntitySet Name="ActiveSessions" EntityType="Self.ActiveSessions" />
           <EntitySet Name="Assets" EntityType="Self.Assets" />
@@ -1111,6 +1360,7 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
           <EntitySet Name="Calendar" EntityType="Self.Calendar" />
           <EntitySet Name="ClearingAccounts" EntityType="Self.ClearingAccounts" />
           <EntitySet Name="Contracts" EntityType="Self.Contracts" />
+          <EntitySet Name="dayType" EntityType="Self.dayType" />
           <EntitySet Name="Deal2" EntityType="Self.Deal2" />
           <EntitySet Name="DealerAccounts" EntityType="Self.DealerAccounts" />
           <EntitySet Name="GroupUsers" EntityType="Self.GroupUsers" />
@@ -1118,21 +1368,27 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
           <EntitySet Name="Margins" EntityType="Self.Margins" />
           <EntitySet Name="MarketMakers" EntityType="Self.MarketMakers" />
           <EntitySet Name="Members" EntityType="Self.Members" />
+          <EntitySet Name="mtype" EntityType="Self.mtype" />
           <EntitySet Name="Participants" EntityType="Self.Participants" />
           <EntitySet Name="RefPrice" EntityType="Self.RefPrice" />
           <EntitySet Name="Rights" EntityType="Self.Rights" />
           <EntitySet Name="Securities" EntityType="Self.Securities" />
+          <EntitySet Name="Settings" EntityType="Self.Settings" />
+          <EntitySet Name="side" EntityType="Self.side" />
           <EntitySet Name="Spreads" EntityType="Self.Spreads" />
           <EntitySet Name="States" EntityType="Self.States" />
+          <EntitySet Name="stype" EntityType="Self.stype" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Table" EntityType="Self.Table" />
           <EntitySet Name="TickSizeTable" EntityType="Self.TickSizeTable" />
           <EntitySet Name="Trans" EntityType="Self.Trans" />
+          <EntitySet Name="transType" EntityType="Self.transType" />
           <EntitySet Name="UserAccounts" EntityType="Self.UserAccounts" />
           <EntitySet Name="UserGroups" EntityType="Self.UserGroups" />
           <EntitySet Name="users" EntityType="Self.users" />
           <EntitySet Name="Deals" EntityType="Self.Deals" />
           <EntitySet Name="Dealtype" EntityType="Self.Dealtype" />
+          <EntitySet Name="Fee" EntityType="Self.Fee" />
           <EntitySet Name="GroupRights" EntityType="Self.GroupRights" />
           <EntitySet Name="InvoiceDetails" EntityType="Self.InvoiceDetails" />
           <EntitySet Name="Order" EntityType="Self.Order" />
@@ -1148,7 +1404,7 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="demoModelStoreContainer" CdmEntityContainer="demoEntities7">
+        <EntityContainerMapping StorageEntityContainer="demoModelStoreContainer" CdmEntityContainer="demoEntities10">
           <EntitySetMapping Name="Account">
             <EntityTypeMapping TypeName="demoModel.Account">
               <MappingFragment StoreEntitySet="Account">
@@ -1264,19 +1520,29 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="dayType">
+            <EntityTypeMapping TypeName="demoModel.dayType">
+              <MappingFragment StoreEntitySet="dayType">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="dayType1" ColumnName="dayType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Deal2">
             <EntityTypeMapping TypeName="demoModel.Deal2">
               <MappingFragment StoreEntitySet="Deal2">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="dealType" ColumnName="dealType" />
+                <ScalarProperty Name="side" ColumnName="side" />
                 <ScalarProperty Name="memberid" ColumnName="memberid" />
                 <ScalarProperty Name="accountid" ColumnName="accountid" />
-                <ScalarProperty Name="member2id" ColumnName="member2id" />
-                <ScalarProperty Name="account2id" ColumnName="account2id" />
-                <ScalarProperty Name="assetAmount" ColumnName="assetAmount" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
                 <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="state" ColumnName="state" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="account2id" ColumnName="account2id" />
+                <ScalarProperty Name="member2id" ColumnName="member2id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1370,6 +1636,14 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="mtype">
+            <EntityTypeMapping TypeName="demoModel.mtype">
+              <MappingFragment StoreEntitySet="mtype">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="mtype1" ColumnName="mtype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Participants">
             <EntityTypeMapping TypeName="demoModel.Participants">
               <MappingFragment StoreEntitySet="Participants">
@@ -1434,6 +1708,28 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="demoModel.Settings">
+              <MappingFragment StoreEntitySet="Settings">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SettingName" ColumnName="SettingName" />
+                <ScalarProperty Name="SettingValue" ColumnName="SettingValue" />
+                <ScalarProperty Name="SettingCaption" ColumnName="SettingCaption" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="ReadOnly" ColumnName="ReadOnly" />
+                <ScalarProperty Name="ValueType" ColumnName="ValueType" />
+                <ScalarProperty Name="FormatString" ColumnName="FormatString" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="side">
+            <EntityTypeMapping TypeName="demoModel.side">
+              <MappingFragment StoreEntitySet="side">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="side1" ColumnName="side" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Spreads">
             <EntityTypeMapping TypeName="demoModel.Spreads">
               <MappingFragment StoreEntitySet="Spreads">
@@ -1452,6 +1748,14 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
               <MappingFragment StoreEntitySet="States">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="states1" ColumnName="states" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stype">
+            <EntityTypeMapping TypeName="demoModel.stype">
+              <MappingFragment StoreEntitySet="stype">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="stype1" ColumnName="stype" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1510,6 +1814,14 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="transType">
+            <EntityTypeMapping TypeName="demoModel.transType">
+              <MappingFragment StoreEntitySet="transType">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UserAccounts">
             <EntityTypeMapping TypeName="demoModel.UserAccounts">
               <MappingFragment StoreEntitySet="UserAccounts">
@@ -1558,6 +1870,9 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
                 <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="state" ColumnName="state" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="fee" ColumnName="fee" />
+                <ScalarProperty Name="m2m" ColumnName="m2m" />
+                <ScalarProperty Name="refPrice" ColumnName="refPrice" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1566,6 +1881,50 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
               <MappingFragment StoreEntitySet="Dealtype">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fee">
+            <EntityTypeMapping TypeName="demoModel.Fee">
+              <MappingFragment StoreEntitySet="Fee">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tradBuyC" ColumnName="tradBuyC" />
+                <ScalarProperty Name="tradBuyH" ColumnName="tradBuyH" />
+                <ScalarProperty Name="tradSellC" ColumnName="tradSellC" />
+                <ScalarProperty Name="tradSellH" ColumnName="tradSellH" />
+                <ScalarProperty Name="clearBuyC" ColumnName="clearBuyC" />
+                <ScalarProperty Name="clearBuyH" ColumnName="clearBuyH" />
+                <ScalarProperty Name="clearSellC" ColumnName="clearSellC" />
+                <ScalarProperty Name="clearSellH" ColumnName="clearSellH" />
+                <ScalarProperty Name="settBuyC" ColumnName="settBuyC" />
+                <ScalarProperty Name="settBuyH" ColumnName="settBuyH" />
+                <ScalarProperty Name="settSellC" ColumnName="settSellC" />
+                <ScalarProperty Name="settSellH" ColumnName="settSellH" />
+                <ScalarProperty Name="posBuyC" ColumnName="posBuyC" />
+                <ScalarProperty Name="posBuyH" ColumnName="posBuyH" />
+                <ScalarProperty Name="posSellC" ColumnName="posSellC" />
+                <ScalarProperty Name="posSellH" ColumnName="posSellH" />
+                <ScalarProperty Name="brokBuyC" ColumnName="brokBuyC" />
+                <ScalarProperty Name="brokBuyH" ColumnName="brokBuyH" />
+                <ScalarProperty Name="brokSellC" ColumnName="brokSellC" />
+                <ScalarProperty Name="brokSellH" ColumnName="brokSellH" />
+                <ScalarProperty Name="lossBuyC" ColumnName="lossBuyC" />
+                <ScalarProperty Name="lossBuyH" ColumnName="lossBuyH" />
+                <ScalarProperty Name="lossSellC" ColumnName="lossSellC" />
+                <ScalarProperty Name="lossSellH" ColumnName="lossSellH" />
+                <ScalarProperty Name="repoBuyC" ColumnName="repoBuyC" />
+                <ScalarProperty Name="repoBuyH" ColumnName="repoBuyH" />
+                <ScalarProperty Name="repoSellC" ColumnName="repoSellC" />
+                <ScalarProperty Name="repoSellH" ColumnName="repoSellH" />
+                <ScalarProperty Name="negoBuyC" ColumnName="negoBuyC" />
+                <ScalarProperty Name="negoBuyH" ColumnName="negoBuyH" />
+                <ScalarProperty Name="negoSellC" ColumnName="negoSellC" />
+                <ScalarProperty Name="negoSellH" ColumnName="negoSellH" />
+                <ScalarProperty Name="otcBuyC" ColumnName="otcBuyC" />
+                <ScalarProperty Name="otcBuyH" ColumnName="otcBuyH" />
+                <ScalarProperty Name="otcSellC" ColumnName="otcSellC" />
+                <ScalarProperty Name="otcSellH" ColumnName="otcSellH" />
+                <ScalarProperty Name="other" ColumnName="other" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

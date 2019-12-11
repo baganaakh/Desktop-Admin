@@ -201,7 +201,7 @@ namespace pages
         public List<States> boa { get; set; }
         private void bindCombo()
         {
-            demoEntities7 dE = new demoEntities7();
+            demoEntities10 dE = new demoEntities10();
             var item = dE.States.ToList();
             boa = item;
             pstate.ItemsSource = boa;

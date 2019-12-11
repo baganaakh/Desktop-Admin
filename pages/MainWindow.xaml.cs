@@ -114,11 +114,11 @@ namespace pages
         }
         private void BtnClickP22(object sender, RoutedEventArgs e)
         {
-            Main.Content = new fee();
+            Main.Content = new Fee();
         }
         private void BtnClickP23(object sender, RoutedEventArgs e)
         {
-            Main.Content = new fee();
+            Main.Content = new Fee();
         }
     }
 }

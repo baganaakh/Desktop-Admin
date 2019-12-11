@@ -20,11 +20,11 @@ namespace pages
     /// <summary>
     /// Interaction logic for price.xaml
     /// </summary>
-    public partial class fee : Page
+    public partial class Fee : Page
     {
         readonly string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
 
-        public fee()
+        public Fee()
         {
             InitializeComponent();
             FillDataGrid();
@@ -38,7 +38,7 @@ namespace pages
                 string CmdString = "SELECT ALL [id], [tradBuyC], [tradBuyH], [tradSellC], [tradSellH], [clearBuyC], [clearBuyH], [clearSellC]" +
           ",[clearSellH], [settBuyC], [settBuyH], [settSellC], [settSellH], [posBuyC], [posBuyH], [posSellC], [posSellH], [brokBuyC], [brokBuyH], [brokSellC],[brokSellH], [lossBuyC] " +
           ",[lossBuyH], [lossSellC], [lossSellH], [repoBuyC], [repoBuyH], [repoSellC], [repoSellH], [negoBuyC], [negoBuyH], [negoSellC], [negoSellH], [otcBuyC], [otcBuyH], " +
-          "[otcSellC],[otcSellH], [other] FROM [demo].[dbo].[fee]";
+          "[otcSellC],[otcSellH], [other] FROM [demo].[dbo].[Fee]";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Securities");
@@ -93,7 +93,7 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "UPDATE demo.[dbo].[fee] SET" +
+            cmd.CommandText = "UPDATE demo.[dbo].[Fee] SET" +
                 " [tradBuyC]=" + Trbuyc + ", [tradBuyH]=" + Trbuyh + ", [tradSellC]=" + Trsellc + ", [tradSellH]=" + Trsellh + ", [clearBuyC]=" + Clbuyc + ", [clearBuyH]=" + Clbuyh + "" +
                 ", [clearSellC]=" + Clsellc + ",[clearSellH]=" + Clsellh + ", [settBuyC]=" + Setbuyc + ", [settBuyH]=" + Setbuyh + ", [settSellC]=" + Sesellc + ", [settSellH]=" + Sesellh + "" +
                 ", [posBuyC]=" + Pobuyc + ", [posBuyH]=" + Posbuyh + ", [posSellC]=" + Posellc + ", [posSellH]=" + Posellh + ", [brokBuyC]=" + Brobuyc + ", [brokBuyH]=" + Brobuyh + "" +

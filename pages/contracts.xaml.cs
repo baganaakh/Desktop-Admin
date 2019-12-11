@@ -212,12 +212,12 @@ namespace pages
 
         private void bindCombo()
         {
-            demoEntities7 dE = new demoEntities7();
+            demoEntities10 dE = new demoEntities10();
             var item = dE.Securities.ToList();
             boa = item;
             securityid_Copy.ItemsSource = boa;
 
-            demoEntities7 st = new demoEntities7();
+            demoEntities10 st = new demoEntities10();
             var items = st.States.ToList();
             statt = items;
             cstate.ItemsSource = statt;

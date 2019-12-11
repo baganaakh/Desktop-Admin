@@ -91,7 +91,7 @@ namespace pages
 
         private void bindCombo()
         {
-            demoEntities7 ac = new demoEntities7();
+            demoEntities10 ac = new demoEntities10();
             var act = ac.Account.ToList();
             ACCT = act;
             accountid.ItemsSource = ACCT;

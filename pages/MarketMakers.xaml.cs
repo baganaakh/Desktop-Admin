@@ -186,17 +186,17 @@ namespace pages
 
         private void bindcombo()
         {
-            demoEntities7 dc = new demoEntities7();
+            demoEntities10 dc = new demoEntities10();
             var item = dc.Members.ToList();
             Emp = item;
             markmember.ItemsSource= Emp;
 
-            demoEntities7 ct = new demoEntities7();
+            demoEntities10 ct = new demoEntities10();
             var citem = ct.Contracts.ToList();
             Cont = citem;
             markcontact.ItemsSource = Cont;
 
-            demoEntities7 st = new demoEntities7();
+            demoEntities10 st = new demoEntities10();
             var items = st.States.ToList();
             statt = items;
             markstat.ItemsSource = statt;
