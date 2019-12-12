@@ -118,7 +118,7 @@ namespace pages
         }
         private void BtnClickP23(object sender, RoutedEventArgs e)
         {
-            Main.Content = new Fee();
+            Main.Content = new demo1();
         }
     }
 }

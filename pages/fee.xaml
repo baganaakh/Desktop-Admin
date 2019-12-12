@@ -4,60 +4,143 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:pages"
+      xmlns:dbBind="clr-namespace:pages.dbBind"
       mc:Ignorable="d" 
       d:DesignHeight="900"  d:DesignWidth="1200"
       Title="Fee">
+    <Page.Resources>
+        <CollectionViewSource x:Key="feeViewSource" d:DesignSource="{d:DesignInstance {x:Type dbBind:Fee}, CreateList=True}"/>
+    </Page.Resources>
 
-    <Grid>
-        <Button Content="Update" HorizontalAlignment="Left" Margin="977,155,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
-        <Label Content="Арилжаа" HorizontalAlignment="Left" Margin="33,125,0,0" VerticalAlignment="Top"/>
-        <Label Content="Клиринг" HorizontalAlignment="Left" Margin="33,164,0,0" VerticalAlignment="Top"/>
-        <Label Content="Settlement" HorizontalAlignment="Left" Margin="33,195,0,0" VerticalAlignment="Top"/>
-        <Label Content="Позиц" HorizontalAlignment="Left" Margin="33,238,0,0" VerticalAlignment="Top"/>
-        <Label Content="Брокер" HorizontalAlignment="Left" Margin="33,313,0,0" VerticalAlignment="Top"/>
-        <Label Content="Алдагдал" HorizontalAlignment="Left" Margin="33,366,0,0" VerticalAlignment="Top"/>
-        <Label Content="Рэпо" HorizontalAlignment="Left" Margin="33,401,0,0" VerticalAlignment="Top"/>
-        <Label Content="Negotiation" HorizontalAlignment="Left" Margin="33,447,0,0" VerticalAlignment="Top"/>
-        <Label Content="OTC" HorizontalAlignment="Left" Margin="33,492,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tradbuyc" HorizontalAlignment="Left" Height="23" Margin="233,128,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="clearbuyc" HorizontalAlignment="Left" Height="23" Margin="233,164,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="settbuyc" HorizontalAlignment="Left" Height="23" Margin="233,199,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="posbuyc" HorizontalAlignment="Left" Height="23" Margin="233,241,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="brokbuyc" HorizontalAlignment="Left" Height="23" Margin="233,313,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="lossbuyc" HorizontalAlignment="Left" Height="23" Margin="233,366,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="repobuyc" HorizontalAlignment="Left" Height="23" Margin="233,405,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="negobuyc" HorizontalAlignment="Left" Height="23" Margin="233,447,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="otcbuyc" HorizontalAlignment="Left" Height="23" Margin="233,496,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tradbuyh" HorizontalAlignment="Left" Height="23" Margin="398,128,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="clearbuyh" HorizontalAlignment="Left" Height="23" Margin="398,164,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="settbuyh" HorizontalAlignment="Left" Height="23" Margin="398,199,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="posbuyh" HorizontalAlignment="Left" Height="23" Margin="398,241,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="brokbuyh" HorizontalAlignment="Left" Height="23" Margin="398,313,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="lossbuyh" HorizontalAlignment="Left" Height="23" Margin="398,366,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="repobuyh" HorizontalAlignment="Left" Height="23" Margin="398,405,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="negobuyh" HorizontalAlignment="Left" Height="23" Margin="398,447,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="otcbuyh" HorizontalAlignment="Left" Height="23" Margin="398,496,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tradsellc" HorizontalAlignment="Left" Height="23" Margin="570,128,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="clearsellc" HorizontalAlignment="Left" Height="23" Margin="570,164,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="settsellc" HorizontalAlignment="Left" Height="23" Margin="570,199,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="possellc" HorizontalAlignment="Left" Height="23" Margin="570,241,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="broksellc" HorizontalAlignment="Left" Height="23" Margin="570,313,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="lossselc" HorizontalAlignment="Left" Height="23" Margin="570,366,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="reposellc" HorizontalAlignment="Left" Height="23" Margin="570,405,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="negosellc" HorizontalAlignment="Left" Height="23" Margin="570,447,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="otcsellc" HorizontalAlignment="Left" Height="23" Margin="570,496,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tradsellh" HorizontalAlignment="Left" Height="23" Margin="735,128,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="clearsellh" HorizontalAlignment="Left" Height="23" Margin="735,164,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="settsellh" HorizontalAlignment="Left" Height="23" Margin="735,199,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="possellh" HorizontalAlignment="Left" Height="23" Margin="735,241,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="broksellh" HorizontalAlignment="Left" Height="23" Margin="735,313,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="losssellh" HorizontalAlignment="Left" Height="23" Margin="735,366,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="reposellh" HorizontalAlignment="Left" Height="23" Margin="735,405,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="negosellh" HorizontalAlignment="Left" Height="23" Margin="735,447,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="otcsellh" HorizontalAlignment="Left" Height="23" Margin="735,496,0,0" TextWrapping="Wrap" Text="1.6" VerticalAlignment="Top" Width="120"/>
-        <Label Content="BUY C" HorizontalAlignment="Left" Margin="269,80,0,0" VerticalAlignment="Top"/>
-        <Label Content="BUY H" HorizontalAlignment="Left" Margin="416,80,0,0" VerticalAlignment="Top"/>
-        <Label Content="SELL C" HorizontalAlignment="Left" Margin="605,80,0,0" VerticalAlignment="Top"/>
-        <Label Content="SELL H" HorizontalAlignment="Left" Margin="757,80,0,0" VerticalAlignment="Top"/>
+    <Grid DataContext="{StaticResource feeViewSource}" >
+        <Grid x:Name="grid1" DataContext="{StaticResource feeViewSource}" HorizontalAlignment="Left" Margin="117,53,0,-614" Grid.Row="2" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="brok Buy C:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="brokBuyCTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding brokBuyC, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="brok Buy H:"  Grid.Column="2" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="brokBuyHTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding brokBuyH, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="brok Sell C:" Grid.Column="4" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="brokSellCTextBox" Grid.Column="5" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding brokSellC, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="brok Sell H:" Grid.Column="6" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="brokSellHTextBox" Grid.Column="7" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding brokSellH, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="clear Buy C:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="clearBuyCTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding clearBuyC, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="clear Buy H:" Grid.Column="2" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="clearBuyHTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding clearBuyH, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="clear Sell C:" Grid.Column="4" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="clearSellCTextBox" Grid.Column="5" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding clearSellC, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="clear Sell H:" Grid.Column="6" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="clearSellHTextBox" Grid.Column="7" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding clearSellH, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="id:" Grid.Column="2" HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
+            <TextBox x:Name="idTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="9" Text="{Binding id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="loss Buy C:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="lossBuyCTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding lossBuyC, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="loss Buy H:" Grid.Column="2" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="lossBuyHTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding lossBuyH, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="loss Sell C:" Grid.Column="4" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="lossSellCTextBox" Grid.Column="5" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding lossSellC, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="loss Sell H:" Grid.Column="6" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="lossSellHTextBox" Grid.Column="7" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding lossSellH, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="nego Buy C:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <TextBox x:Name="negoBuyCTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding negoBuyC, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="nego Buy H:" Grid.Column="2" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <TextBox x:Name="negoBuyHTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding negoBuyH, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="nego Sell C:" Grid.Column="4" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <TextBox x:Name="negoSellCTextBox" Grid.Column="5" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding negoSellC, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="nego Sell H:" Grid.Column="6" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <TextBox x:Name="negoSellHTextBox" Grid.Column="7" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding negoSellH, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="otc Buy C:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="otcBuyCTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding otcBuyC, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="otc Buy H:" Grid.Column="2" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="otcBuyHTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding otcBuyH, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="otc Sell C:" Grid.Column="4" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="otcSellCTextBox" Grid.Column="5" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding otcSellC, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="otc Sell H:" Grid.Column="6" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="otcSellHTextBox" Grid.Column="7" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding otcSellH, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="other:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
+            <TextBox x:Name="otherTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="9" Text="{Binding other, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="pos Buy C:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="posBuyCTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding posBuyC, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="pos Buy H:" Grid.Column="2" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="posBuyHTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding posBuyH, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="pos Sell C:" Grid.Column="4" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="posSellCTextBox" Grid.Column="5" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding posSellC, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="pos Sell H:" Grid.Column="6" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="posSellHTextBox" Grid.Column="7" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding posSellH, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="repo Buy C:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+            <TextBox x:Name="repoBuyCTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding repoBuyC, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="repo Buy H:" Grid.Column="2" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+            <TextBox x:Name="repoBuyHTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding repoBuyH, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="repo Sell C:" Grid.Column="4" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+            <TextBox x:Name="repoSellCTextBox" Grid.Column="5" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding repoSellC, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="repo Sell H:" Grid.Column="6" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+            <TextBox x:Name="repoSellHTextBox" Grid.Column="7" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding repoSellH, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="sett Buy C:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
+            <TextBox x:Name="settBuyCTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="7" Text="{Binding settBuyC, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="sett Buy H:" Grid.Column="2" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
+            <TextBox x:Name="settBuyHTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="7" Text="{Binding settBuyH, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="sett Sell C:" Grid.Column="4" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
+            <TextBox x:Name="settSellCTextBox" Grid.Column="5" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="7" Text="{Binding settSellC, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="sett Sell H:" Grid.Column="6" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
+            <TextBox x:Name="settSellHTextBox" Grid.Column="7" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="7" Text="{Binding settSellH, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="trad Buy C:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
+            <TextBox x:Name="tradBuyCTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="8" Text="{Binding tradBuyC, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="trad Buy H:" Grid.Column="2" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
+            <TextBox x:Name="tradBuyHTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="8" Text="{Binding tradBuyH, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="trad Sell C:" Grid.Column="4" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
+            <TextBox x:Name="tradSellCTextBox" Grid.Column="5" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="8" Text="{Binding tradSellC, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="trad Sell H:" Grid.Column="6" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
+            <TextBox x:Name="tradSellHTextBox" Grid.Column="7" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="8" Text="{Binding tradSellH, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Button Content="Update" Grid.Column="5" Click="Button_Click" HorizontalAlignment="Left" Margin="3,4,0,0" Grid.Row="9" VerticalAlignment="Top" Width="75"/>
+        </Grid>
     </Grid>
 </Page>

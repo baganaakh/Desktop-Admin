@@ -15,6 +15,9 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Data.Entity;
+using pages.dbBind;
+
 namespace pages
 {
     /// <summary>
@@ -22,31 +25,19 @@ namespace pages
     /// </summary>
     public partial class showData : Page
     {
+        demoEntities10 data = new demoEntities10();
+        CollectionViewSource feeViewSource;
+
         public showData()
         {
             InitializeComponent();
+            feeViewSource = ((CollectionViewSource)(FindResource("feeViewSource")));
+            DataContext = this;
+            data.Fee.Load();
+            feeViewSource.Source = data.Fee.Local;
+            feeViewSource.View.MoveCurrentToFirst();
         }
-       
-      
+
         
-        //private void ComboBox_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    List<string> data = new List<string>();
-        //    data.Add("apple");
-        //    data.Add("mango");
-        //    data.Add("banana");
-        //    var combo = sender as ComboBox;
-        //    combo.ItemsSource = data;
-        //    combo.SelectedIndex = 0;
-
-        //}
-
-        //private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    var selectedComboItem = sender as ComboBox;
-        //    string name = selectedComboItem.SelectedItem as string;
-        //    MessageBox.Show(name);
-
-        //}
     }
 }

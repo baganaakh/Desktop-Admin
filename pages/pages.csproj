@@ -243,6 +243,9 @@
     <Compile Include="dealerAccount.xaml.cs">
       <DependentUpon>dealerAccount.xaml</DependentUpon>
     </Compile>
+    <Compile Include="demo1.xaml.cs">
+      <DependentUpon>demo1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="loginScreen.xaml.cs">
       <DependentUpon>loginScreen.xaml</DependentUpon>
     </Compile>
@@ -307,6 +310,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="dealerAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="demo1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -436,6 +443,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\pages.dbBind.Assets.datasource" />
     <None Include="Properties\DataSources\pages.dbBind.Fee.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

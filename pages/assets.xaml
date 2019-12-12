@@ -1,14 +1,19 @@
-﻿<Page x:Class="pages.assets"
+﻿<Page
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:pages"
+      xmlns:dbBind="clr-namespace:pages.dbBind" x:Class="pages.assets"
       mc:Ignorable="d" 
       d:DesignHeight="900"  d:DesignWidth="1200"
       Title="assets" >
 
-    <Grid Height="531" VerticalAlignment="Top">
+    <Page.Resources>
+        <CollectionViewSource x:Key="assetsViewSource" d:DesignSource="{d:DesignInstance {x:Type dbBind:Assets}, CreateList=True}"/>
+    </Page.Resources>
+
+    <Grid Height="531" VerticalAlignment="Top" DataContext="{StaticResource assetsViewSource}">
         <Button Content="Edit" HorizontalAlignment="Left" Margin="704,70,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="Insert" HorizontalAlignment="Left" Margin="704,119,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
         <Label Content="Code" HorizontalAlignment="Left" Margin="35,64,0,0" VerticalAlignment="Top"/>
@@ -24,7 +29,7 @@
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="aprice" HorizontalAlignment="Left" Height="23" Margin="156,154,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="artio" HorizontalAlignment="Left" Height="23" Margin="474,64,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="anote" HorizontalAlignment="Left" Height="23" Margin="156,207,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <DatePicker Name="aexpire" HorizontalAlignment="Left" Margin="474,114,0,0" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="aexpire" HorizontalAlignment="Left" Margin="474,114,0,0" VerticalAlignment="Top" Width="120"/>
         <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="25,255,-363,-124" VerticalAlignment="Center" Width="1138">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>

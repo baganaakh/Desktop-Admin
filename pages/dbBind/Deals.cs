@@ -28,5 +28,9 @@ namespace pages.dbBind
         public Nullable<decimal> fee { get; set; }
         public Nullable<decimal> m2m { get; set; }
         public Nullable<decimal> refPrice { get; set; }
+        public Nullable<decimal> dopen { get; set; }
+        public Nullable<decimal> dhigh { get; set; }
+        public Nullable<decimal> dlow { get; set; }
+        public Nullable<decimal> dclose { get; set; }
     }
 }

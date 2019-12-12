@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="demoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="demoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="id" />
@@ -167,6 +167,10 @@ warning 6002: The table/view 'demo.dbo.Deals' does not have a primary key define
           <Property Name="fee" Type="decimal" Precision="18" Scale="4" />
           <Property Name="m2m" Type="decimal" Precision="18" Scale="4" />
           <Property Name="refPrice" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="dopen" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="dhigh" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="dlow" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="dclose" Type="decimal" Precision="18" Scale="4" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'demo.dbo.Dealtype' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -177,8 +181,6 @@ warning 6002: The table/view 'demo.dbo.Dealtype' does not have a primary key def
           <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="type" Type="nvarchar" MaxLength="20" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'demo.dbo.Fee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Fee">
           <Key>
             <PropertyRef Name="id" />
@@ -275,12 +277,6 @@ warning 6002: The table/view 'demo.dbo.InvoiceDetails' does not have a primary k
           <Property Name="state" Type="smallint" />
           <Property Name="modified" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'demo.dbo.isactive' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="isactive">
-          <Property Name="id" Type="smallint" />
-          <Property Name="isactive" Type="nvarchar" MaxLength="20" />
-        </EntityType>-->
         <EntityType Name="Margins">
           <Key>
             <PropertyRef Name="id" />
@@ -611,6 +607,7 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
           <EntitySet Name="dayType" EntityType="Self.dayType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Deal2" EntityType="Self.Deal2" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DealerAccounts" EntityType="Self.DealerAccounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fee" EntityType="Self.Fee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GroupUsers" EntityType="Self.GroupUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Margins" EntityType="Self.Margins" Schema="dbo" store:Type="Tables" />
@@ -649,7 +646,11 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
     [Deals].[modified] AS [modified], 
     [Deals].[fee] AS [fee], 
     [Deals].[m2m] AS [m2m], 
-    [Deals].[refPrice] AS [refPrice]
+    [Deals].[refPrice] AS [refPrice], 
+    [Deals].[dopen] AS [dopen], 
+    [Deals].[dhigh] AS [dhigh], 
+    [Deals].[dlow] AS [dlow], 
+    [Deals].[dclose] AS [dclose]
     FROM [dbo].[Deals] AS [Deals]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Dealtype" EntityType="Self.Dealtype" store:Type="Tables" store:Schema="dbo">
@@ -657,48 +658,6 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
     [Dealtype].[id] AS [id], 
     [Dealtype].[type] AS [type]
     FROM [dbo].[Dealtype] AS [Dealtype]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Fee" EntityType="Self.Fee" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Fee].[id] AS [id], 
-    [Fee].[tradBuyC] AS [tradBuyC], 
-    [Fee].[tradBuyH] AS [tradBuyH], 
-    [Fee].[tradSellC] AS [tradSellC], 
-    [Fee].[tradSellH] AS [tradSellH], 
-    [Fee].[clearBuyC] AS [clearBuyC], 
-    [Fee].[clearBuyH] AS [clearBuyH], 
-    [Fee].[clearSellC] AS [clearSellC], 
-    [Fee].[clearSellH] AS [clearSellH], 
-    [Fee].[settBuyC] AS [settBuyC], 
-    [Fee].[settBuyH] AS [settBuyH], 
-    [Fee].[settSellC] AS [settSellC], 
-    [Fee].[settSellH] AS [settSellH], 
-    [Fee].[posBuyC] AS [posBuyC], 
-    [Fee].[posBuyH] AS [posBuyH], 
-    [Fee].[posSellC] AS [posSellC], 
-    [Fee].[posSellH] AS [posSellH], 
-    [Fee].[brokBuyC] AS [brokBuyC], 
-    [Fee].[brokBuyH] AS [brokBuyH], 
-    [Fee].[brokSellC] AS [brokSellC], 
-    [Fee].[brokSellH] AS [brokSellH], 
-    [Fee].[lossBuyC] AS [lossBuyC], 
-    [Fee].[lossBuyH] AS [lossBuyH], 
-    [Fee].[lossSellC] AS [lossSellC], 
-    [Fee].[lossSellH] AS [lossSellH], 
-    [Fee].[repoBuyC] AS [repoBuyC], 
-    [Fee].[repoBuyH] AS [repoBuyH], 
-    [Fee].[repoSellC] AS [repoSellC], 
-    [Fee].[repoSellH] AS [repoSellH], 
-    [Fee].[negoBuyC] AS [negoBuyC], 
-    [Fee].[negoBuyH] AS [negoBuyH], 
-    [Fee].[negoSellC] AS [negoSellC], 
-    [Fee].[negoSellH] AS [negoSellH], 
-    [Fee].[otcBuyC] AS [otcBuyC], 
-    [Fee].[otcBuyH] AS [otcBuyH], 
-    [Fee].[otcSellC] AS [otcSellC], 
-    [Fee].[otcSellH] AS [otcSellH], 
-    [Fee].[other] AS [other]
-    FROM [dbo].[Fee] AS [Fee]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="GroupRights" EntityType="Self.GroupRights" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -772,8 +731,7 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
             <End Role="Boards1" EntitySet="Boards" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="demoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1215,6 +1173,10 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
           <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="m2m" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="refPrice" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="dopen" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="dhigh" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="dlow" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="dclose" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="Dealtype">
           <Key>
@@ -1222,49 +1184,6 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Fee">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tradBuyC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="tradBuyH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="tradSellC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="tradSellH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="clearBuyC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="clearBuyH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="clearSellC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="clearSellH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="settBuyC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="settBuyH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="settSellC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="settSellH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="posBuyC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="posBuyH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="posSellC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="posSellH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="brokBuyC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="brokBuyH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="brokSellC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="brokSellH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="lossBuyC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="lossBuyH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="lossSellC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="lossSellH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="repoBuyC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="repoBuyH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="repoSellC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="repoSellH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="negoBuyC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="negoBuyH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="negoSellC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="negoSellH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="otcBuyC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="otcBuyH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="otcSellC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="otcSellH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="other" Type="Decimal" Precision="5" Scale="2" />
         </EntityType>
         <EntityType Name="GroupRights">
           <Key>
@@ -1388,7 +1307,6 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
           <EntitySet Name="users" EntityType="Self.users" />
           <EntitySet Name="Deals" EntityType="Self.Deals" />
           <EntitySet Name="Dealtype" EntityType="Self.Dealtype" />
-          <EntitySet Name="Fee" EntityType="Self.Fee" />
           <EntitySet Name="GroupRights" EntityType="Self.GroupRights" />
           <EntitySet Name="InvoiceDetails" EntityType="Self.InvoiceDetails" />
           <EntitySet Name="Order" EntityType="Self.Order" />
@@ -1398,7 +1316,51 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
             <End Role="Boards" EntitySet="Boards" />
             <End Role="Boards1" EntitySet="Boards" />
           </AssociationSet>
+          <EntitySet Name="Fee" EntityType="demoModel.Fee" />
         </EntityContainer>
+        <EntityType Name="Fee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tradBuyC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="tradBuyH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="tradSellC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="tradSellH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="clearBuyC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="clearBuyH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="clearSellC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="clearSellH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="settBuyC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="settBuyH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="settSellC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="settSellH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="posBuyC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="posBuyH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="posSellC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="posSellH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="brokBuyC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="brokBuyH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="brokSellC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="brokSellH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="lossBuyC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="lossBuyH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="lossSellC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="lossSellH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="repoBuyC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="repoBuyH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="repoSellC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="repoSellH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="negoBuyC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="negoBuyH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="negoSellC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="negoSellH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="otcBuyC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="otcBuyH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="otcSellC" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="otcSellH" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="other" Type="Decimal" Precision="5" Scale="2" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1859,6 +1821,10 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
           <EntitySetMapping Name="Deals">
             <EntityTypeMapping TypeName="demoModel.Deals">
               <MappingFragment StoreEntitySet="Deals">
+                <ScalarProperty Name="dclose" ColumnName="dclose" />
+                <ScalarProperty Name="dlow" ColumnName="dlow" />
+                <ScalarProperty Name="dhigh" ColumnName="dhigh" />
+                <ScalarProperty Name="dopen" ColumnName="dopen" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="dealtype" ColumnName="dealtype" />
                 <ScalarProperty Name="dealno" ColumnName="dealno" />
@@ -1881,50 +1847,6 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
               <MappingFragment StoreEntitySet="Dealtype">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="type" ColumnName="type" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Fee">
-            <EntityTypeMapping TypeName="demoModel.Fee">
-              <MappingFragment StoreEntitySet="Fee">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="tradBuyC" ColumnName="tradBuyC" />
-                <ScalarProperty Name="tradBuyH" ColumnName="tradBuyH" />
-                <ScalarProperty Name="tradSellC" ColumnName="tradSellC" />
-                <ScalarProperty Name="tradSellH" ColumnName="tradSellH" />
-                <ScalarProperty Name="clearBuyC" ColumnName="clearBuyC" />
-                <ScalarProperty Name="clearBuyH" ColumnName="clearBuyH" />
-                <ScalarProperty Name="clearSellC" ColumnName="clearSellC" />
-                <ScalarProperty Name="clearSellH" ColumnName="clearSellH" />
-                <ScalarProperty Name="settBuyC" ColumnName="settBuyC" />
-                <ScalarProperty Name="settBuyH" ColumnName="settBuyH" />
-                <ScalarProperty Name="settSellC" ColumnName="settSellC" />
-                <ScalarProperty Name="settSellH" ColumnName="settSellH" />
-                <ScalarProperty Name="posBuyC" ColumnName="posBuyC" />
-                <ScalarProperty Name="posBuyH" ColumnName="posBuyH" />
-                <ScalarProperty Name="posSellC" ColumnName="posSellC" />
-                <ScalarProperty Name="posSellH" ColumnName="posSellH" />
-                <ScalarProperty Name="brokBuyC" ColumnName="brokBuyC" />
-                <ScalarProperty Name="brokBuyH" ColumnName="brokBuyH" />
-                <ScalarProperty Name="brokSellC" ColumnName="brokSellC" />
-                <ScalarProperty Name="brokSellH" ColumnName="brokSellH" />
-                <ScalarProperty Name="lossBuyC" ColumnName="lossBuyC" />
-                <ScalarProperty Name="lossBuyH" ColumnName="lossBuyH" />
-                <ScalarProperty Name="lossSellC" ColumnName="lossSellC" />
-                <ScalarProperty Name="lossSellH" ColumnName="lossSellH" />
-                <ScalarProperty Name="repoBuyC" ColumnName="repoBuyC" />
-                <ScalarProperty Name="repoBuyH" ColumnName="repoBuyH" />
-                <ScalarProperty Name="repoSellC" ColumnName="repoSellC" />
-                <ScalarProperty Name="repoSellH" ColumnName="repoSellH" />
-                <ScalarProperty Name="negoBuyC" ColumnName="negoBuyC" />
-                <ScalarProperty Name="negoBuyH" ColumnName="negoBuyH" />
-                <ScalarProperty Name="negoSellC" ColumnName="negoSellC" />
-                <ScalarProperty Name="negoSellH" ColumnName="negoSellH" />
-                <ScalarProperty Name="otcBuyC" ColumnName="otcBuyC" />
-                <ScalarProperty Name="otcBuyH" ColumnName="otcBuyH" />
-                <ScalarProperty Name="otcSellC" ColumnName="otcSellC" />
-                <ScalarProperty Name="otcSellH" ColumnName="otcSellH" />
-                <ScalarProperty Name="other" ColumnName="other" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2002,6 +1924,50 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
                 <ScalarProperty Name="SWCaption" ColumnName="SWCaption" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="IsClient" ColumnName="IsClient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fee">
+            <EntityTypeMapping TypeName="demoModel.Fee">
+              <MappingFragment StoreEntitySet="Fee">
+                <ScalarProperty Name="other" ColumnName="other" />
+                <ScalarProperty Name="otcSellH" ColumnName="otcSellH" />
+                <ScalarProperty Name="otcSellC" ColumnName="otcSellC" />
+                <ScalarProperty Name="otcBuyH" ColumnName="otcBuyH" />
+                <ScalarProperty Name="otcBuyC" ColumnName="otcBuyC" />
+                <ScalarProperty Name="negoSellH" ColumnName="negoSellH" />
+                <ScalarProperty Name="negoSellC" ColumnName="negoSellC" />
+                <ScalarProperty Name="negoBuyH" ColumnName="negoBuyH" />
+                <ScalarProperty Name="negoBuyC" ColumnName="negoBuyC" />
+                <ScalarProperty Name="repoSellH" ColumnName="repoSellH" />
+                <ScalarProperty Name="repoSellC" ColumnName="repoSellC" />
+                <ScalarProperty Name="repoBuyH" ColumnName="repoBuyH" />
+                <ScalarProperty Name="repoBuyC" ColumnName="repoBuyC" />
+                <ScalarProperty Name="lossSellH" ColumnName="lossSellH" />
+                <ScalarProperty Name="lossSellC" ColumnName="lossSellC" />
+                <ScalarProperty Name="lossBuyH" ColumnName="lossBuyH" />
+                <ScalarProperty Name="lossBuyC" ColumnName="lossBuyC" />
+                <ScalarProperty Name="brokSellH" ColumnName="brokSellH" />
+                <ScalarProperty Name="brokSellC" ColumnName="brokSellC" />
+                <ScalarProperty Name="brokBuyH" ColumnName="brokBuyH" />
+                <ScalarProperty Name="brokBuyC" ColumnName="brokBuyC" />
+                <ScalarProperty Name="posSellH" ColumnName="posSellH" />
+                <ScalarProperty Name="posSellC" ColumnName="posSellC" />
+                <ScalarProperty Name="posBuyH" ColumnName="posBuyH" />
+                <ScalarProperty Name="posBuyC" ColumnName="posBuyC" />
+                <ScalarProperty Name="settSellH" ColumnName="settSellH" />
+                <ScalarProperty Name="settSellC" ColumnName="settSellC" />
+                <ScalarProperty Name="settBuyH" ColumnName="settBuyH" />
+                <ScalarProperty Name="settBuyC" ColumnName="settBuyC" />
+                <ScalarProperty Name="clearSellH" ColumnName="clearSellH" />
+                <ScalarProperty Name="clearSellC" ColumnName="clearSellC" />
+                <ScalarProperty Name="clearBuyH" ColumnName="clearBuyH" />
+                <ScalarProperty Name="clearBuyC" ColumnName="clearBuyC" />
+                <ScalarProperty Name="tradSellH" ColumnName="tradSellH" />
+                <ScalarProperty Name="tradSellC" ColumnName="tradSellC" />
+                <ScalarProperty Name="tradBuyH" ColumnName="tradBuyH" />
+                <ScalarProperty Name="tradBuyC" ColumnName="tradBuyC" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

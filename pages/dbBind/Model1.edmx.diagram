@@ -41,13 +41,13 @@
         <EntityTypeShape EntityType="demoModel.users" Width="1.5" PointX="16.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="demoModel.Deals" Width="1.5" PointX="4.75" PointY="16.75" IsExpanded="true" />
         <EntityTypeShape EntityType="demoModel.Dealtype" Width="1.5" PointX="16.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="demoModel.Fee" Width="1.5" PointX="6.75" PointY="16.75" IsExpanded="true" />
         <EntityTypeShape EntityType="demoModel.GroupRights" Width="1.5" PointX="8.75" PointY="16.75" IsExpanded="true" />
         <EntityTypeShape EntityType="demoModel.InvoiceDetails" Width="1.5" PointX="16.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="demoModel.Order" Width="1.5" PointX="10.75" PointY="16.75" IsExpanded="true" />
         <EntityTypeShape EntityType="demoModel.Session" Width="1.5" PointX="16.75" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="demoModel.Softwares" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="demoModel.FK_boards_boards1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="demoModel.Fee" Width="1.5" PointX="6.5" PointY="15.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

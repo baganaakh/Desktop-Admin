@@ -61,11 +61,11 @@ namespace pages.dbBind
         public virtual DbSet<users> users { get; set; }
         public virtual DbSet<Deals> Deals { get; set; }
         public virtual DbSet<Dealtype> Dealtype { get; set; }
-        public virtual DbSet<Fee> Fee { get; set; }
         public virtual DbSet<GroupRights> GroupRights { get; set; }
         public virtual DbSet<InvoiceDetails> InvoiceDetails { get; set; }
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<Session> Session { get; set; }
         public virtual DbSet<Softwares> Softwares { get; set; }
+        public virtual DbSet<Fee> Fee { get; set; }
     }
 }
