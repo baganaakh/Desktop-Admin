@@ -76,16 +76,16 @@ namespace pages
             string state = pstate.Text;
             string csid = pcsid.Text;
             string webid = pwebid.Text;
-
+            string mask="";
+            string isd="";
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
-
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.members (type,code, name, address, phone, fax, email, contact, state, modified, csid, webid) values" +
+            cmd.CommandText = "insert into dbo.members (type,code, name, address, phone, fax, email, contact, state, modified, csid, webid,isDealer,mask) values" +
                 " ('" + metype + "',N'" + code + "',N'" + name + "',N'" + address + "', '" + phone + "', '" + fax + "', '" + email + "', '" + contact + "', '" + statid +
-                "', getdate(), '" + csid + "', '" + webid + "')";
+                "', getdate(), '" + csid + "', '" + webid + "','" + isd + ",N'"+mask+"')";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();

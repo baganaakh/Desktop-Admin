@@ -9,8 +9,8 @@
       Title="members">
 
     <Grid>
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="829,124,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Insert" HorizontalAlignment="Left" Margin="829,163,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="821,179,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Insert" HorizontalAlignment="Left" Margin="821,213,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
         <Label Content="Code" HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top"/>
         <Label Content="type" HorizontalAlignment="Left" Margin="32,163,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.302,0.501"/>
         <Label Content="хаяг" HorizontalAlignment="Left" Margin="27,211,0,0" VerticalAlignment="Top"/>
@@ -52,12 +52,14 @@
                 <DataGridTextColumn Binding="{Binding webid}" Header="webid"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="829,80,0,0"/>
-        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="829,215,0,0"/>
-        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="948,83,0,0"/>
-        <Button Content="Update" HorizontalAlignment="Left" Margin="948,114,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="821,148,0,0"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="940,213,0,0"/>
+        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="940,148,0,0"/>
+        <Button Content="Update" HorizontalAlignment="Left" Margin="940,179,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
         <ComboBox x:Name="pstate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="355,215,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <ComboBox x:Name="mtype" ItemsSource="{Binding}" SelectionChanged="mtype_SelectionChanged" DisplayMemberPath="mtype1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="111,168,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <Label Content="isDealer" HorizontalAlignment="Left" Margin="815,79,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="isdealer" HorizontalAlignment="Left" Height="23" Margin="895,83,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Page>
