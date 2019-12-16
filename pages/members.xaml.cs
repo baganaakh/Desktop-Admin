@@ -31,7 +31,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id,statid;
+        static string id,statid,metype;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -52,7 +52,7 @@ namespace pages
 
             pcode.Text = codepar;
             pname.Text = namepar;
-            mtype.Text = typeeee;
+            mtype.SelectedValue = typeeee;
             pcontact.Text = contactpar;
             pstate.SelectedValue = statepar;
             pmodify.Text = modifypar;
@@ -84,7 +84,7 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.members (type,code, name, address, phone, fax, email, contact, state, modified, csid, webid) values" +
-                " ('" + type + "',N'" + code + "',N'" + name + "',N'" + address + "', '" + phone + "', '" + fax + "', '" + email + "', '" + contact + "', '" + statid +
+                " ('" + metype + "',N'" + code + "',N'" + name + "',N'" + address + "', '" + phone + "', '" + fax + "', '" + email + "', '" + contact + "', '" + statid +
                 "', getdate(), '" + csid + "', '" + webid + "')";
 
             cmd.Connection = sqlConnection1;
@@ -177,7 +177,7 @@ namespace pages
             cmd.CommandText = "UPDATE demo.dbo.members SET " +
                 "code = '" + code + "', " +
                 "name= '" + name + "', " +
-                "type = '" + Mtype+ "', " +
+                "type = '" + metype+ "', " +
                 "address= '" + address + "', " +
                 "phone= '" + phone + "', " +
                 "fax= '" + fax + "', " +
@@ -196,13 +196,33 @@ namespace pages
             FillDataGrid();
         }
         public List<States> statt { get; set; }
+        public List<mtype> mt { get; set; }
         private void bindCombo()
         {
             demoEntities10 st = new demoEntities10();
             var items = st.States.ToList();
             statt = items;
             pstate.ItemsSource = statt;
+
+            var meitems = st.mtype.ToList();
+            mt = meitems;
+            mtype.ItemsSource = mt;
         }
+
+        private void mtype_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var items = mtype.SelectedItem as mtype;
+            try
+            {
+                metype = items.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
+
+        }
+
         private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var items = pstate.SelectedItem as States;
