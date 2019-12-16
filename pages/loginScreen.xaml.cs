@@ -24,7 +24,11 @@ namespace pages
         {
             InitializeComponent();
         }
-
+        public static class MyGlobals
+        {
+            public const string Prefix = "ID_";
+            public static string U_ID;
+        }
         private void log_submit(object sender, RoutedEventArgs e)
         {
             string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
@@ -36,17 +40,19 @@ namespace pages
                 {
                     conn.Open();
                     string CmdString = string.Empty;
-                    CmdString = "SELECT role FROM [dbo].[users] WHERE uname= '" + userName.Text + "' AND password= '" + passBox.Password + "'";
+                    CmdString = "SELECT role ,id FROM [dbo].[users] WHERE uname= '" + userName.Text + "' AND password= '" + passBox.Password + "'";
                     SqlCommand cmd = new SqlCommand(CmdString, conn);
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable("Securities");
                     sda.Fill(dt);
-                    Object neo = dt.Rows[0][0];
-
-
-                    if (dt.Rows.Count == 1)
+                    string neo = dt.Rows[0][0].ToString();
+                    string adminstr = "admin     ";
+                    string substr = "subs     ";
+                    if (Equals(neo, adminstr))
                     {
                         MainWindow dashboard = new MainWindow();
+                        MyGlobals.U_ID = dt.Rows[0][1].ToString();
+
                         dashboard.Show();
                         //dashboard.Content = new adminPage();
                         this.Close();

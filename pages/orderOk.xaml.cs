@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static pages.loginScreen;
 
 namespace pages
 {
@@ -72,6 +73,24 @@ namespace pages
             string Side = values.Row[2].ToString();
             string QTY = values.Row[6].ToString();
             string Price = values.Row[7].ToString();
+            int qty = Int32.Parse(QTY);
+            Decimal price = Decimal.Parse(Price);
+            decimal total1, total2;
+            int side1=0, side2=0;
+            if (Side == "-1")
+            {
+                total1 = qty*price;
+                total2 = qty*price*(-1);
+                side1 = -1;
+                side2 = 1;
+            }
+            else
+            {
+                total1 = qty*price * (-1);
+                total2 = qty*price;
+                side1 = 1;
+                side2 = -1;
+            }
 
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =
@@ -79,8 +98,10 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into [dbo].[Deal2] (dealType, side, memberid, accountid, assetid, qty, price, state, modified,account2id,member2id) values" +
-                " ('" + dealTypes + "',N'" + Side + "',N'" + memId + "',N'" + accId + "',N'" + assetId + "',N'" + QTY + "',N'" + Price + "',N'" + statid + "', getdate()," + accId2 + ",1)";
+            cmd.CommandText = "insert into [dbo].[Deals] (dealType, side, memberid, accountid, assetid, qty, price, state, modified,dealno,totalPrice) values" +
+                " ('" + dealTypes + "'," + side1 + ",N'" + memId + "',N'" + accId + "',N'" + assetId + "',N'" + QTY + "',N'" + Price + "',N'" + statid + "', getdate(),IDENT_CURRENT('deals')+1," + total1 + "),"+
+                " ('" + dealTypes + "'," + side2 + ",N'" + MyGlobals.U_ID + "',N'" + accId2 + "',N'" + assetId + "',N'" + QTY + "',N'" + Price + "',N'" + statid + "', getdate(),IDENT_CURRENT('deals')+1," + total2 + ")";
+
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();

@@ -19,6 +19,7 @@
                 <DataGridTextColumn Binding="{Binding side}" Header="Side"/>
                 <DataGridTextColumn Binding="{Binding qty}" Header="QTY"/>
                 <DataGridTextColumn Binding="{Binding price}" Header="Price"/>
+                <DataGridTextColumn Binding="{Binding totalPrice}" Header="TotalPrice"/>
                 <DataGridTextColumn Binding="{Binding state}" Header="State"/>
                 <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
                 <DataGridTextColumn Binding="{Binding account2id}" Header="Account 2"/>
