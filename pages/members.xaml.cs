@@ -49,6 +49,7 @@ namespace pages
             string modifypar = value.Row[10].ToString();
             string webidpar = value.Row[11].ToString();
             string csidpar = value.Row[12].ToString();
+            string isd= value.Row[13].ToString();
 
             pcode.Text = codepar;
             pname.Text = namepar;
@@ -62,6 +63,7 @@ namespace pages
             pmail.Text = emailpar;
             pwebid.Text = webidpar;
             pcsid.Text = csidpar;
+            isdealer.Text = isd;
         }
         private void insertFunc(object sender, RoutedEventArgs e)
         {
@@ -77,21 +79,40 @@ namespace pages
             string csid = pcsid.Text;
             string webid = pwebid.Text;
             string mask="";
-            string isd="";
+            string isd=isdealer.Text;
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
+
+            switch (metype)
+            {
+                case "0":
+                    mask = mask + "70";
+                    break;
+
+                case "1":
+                    mask = mask + "61";
+                    break;
+
+                case "2":
+                    mask = mask + "70";
+                    break;
+
+                default:
+                    MessageBox.Show("No Me Type match");
+                    break;
+            }
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.members (type,code, name, address, phone, fax, email, contact, state, modified, csid, webid,isDealer,mask) values" +
                 " ('" + metype + "',N'" + code + "',N'" + name + "',N'" + address + "', '" + phone + "', '" + fax + "', '" + email + "', '" + contact + "', '" + statid +
-                "', getdate(), '" + csid + "', '" + webid + "','" + isd + ",N'"+mask+"')";
+                "', getdate(), '" + csid + "', '" + webid + "'," + isd + ",N'"+mask+"')";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
-
+            FillDataGrid();
         }
         private static readonly Regex _regex = new Regex("[^0-9.-]+");
         private static bool IsTextAllowed(string text)
@@ -108,7 +129,7 @@ namespace pages
             string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT ALL [id], [code], [name], [type], [address], [phone], [fax], [email], [contact], [state], [modified], [csid], [webid] " +
+                CmdString = "SELECT ALL [id], [code], [name], [type], [address], [phone], [fax], [email], [contact], [state], [modified], [csid], [webid],[isDealer],[mask] " +
                     "FROM dbo.members ";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);

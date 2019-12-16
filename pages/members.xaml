@@ -50,6 +50,8 @@
                 <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
                 <DataGridTextColumn Binding="{Binding csid}" Header="csid"/>
                 <DataGridTextColumn Binding="{Binding webid}" Header="webid"/>
+                <DataGridTextColumn Binding="{Binding isDealer}" Header="isDealer"/>
+                <DataGridTextColumn Binding="{Binding mask}" Header="Mask"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="821,148,0,0"/>
