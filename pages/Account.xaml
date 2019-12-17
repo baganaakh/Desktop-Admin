@@ -15,7 +15,7 @@
         <Label Content="clearing" HorizontalAlignment="Left" Margin="345,71,0,0" VerticalAlignment="Top"/>
         <TextBox PreviewTextInput="PreviewTextInput" Name="trading" HorizontalAlignment="Left" Height="23" Margin="155,117,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label Content="trading" HorizontalAlignment="Left" Margin="34,117,0,0" VerticalAlignment="Top"/>
-        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="10,263,-148,187" VerticalAlignment="Center" Width="1138">
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="10,211,0,289" VerticalAlignment="Center" Width="1138">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding memberid}" Header="Member id"/>
@@ -24,6 +24,7 @@
                 <DataGridTextColumn Binding="{Binding settlement}" Header="Settlement"/>
                 <DataGridTextColumn Binding="{Binding collateral}" Header="Collateral"/>
                 <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
+                <DataGridTextColumn Binding="{Binding mask}" Header="Mask"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="1055,157,0,0"/>

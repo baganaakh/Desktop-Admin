@@ -79,6 +79,7 @@ namespace pages
             string csid = pcsid.Text;
             string webid = pwebid.Text;
             string mask="";
+            string h = "";
             string isd=isdealer.Text;
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
@@ -101,12 +102,24 @@ namespace pages
                     MessageBox.Show("No Me Type match");
                     break;
             }
-
+            mask = mask + code;
+            if (isd.Equals("1"))
+            {
+                h = ", (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h100')," +
+                " (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h200')," +
+                " (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h300')," +
+                " (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h400')";
+            }
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.members (type,code, name, address, phone, fax, email, contact, state, modified, csid, webid,isDealer,mask) values" +
+            cmd.CommandText = "insert into dbo.members (type,code, name, address, phone, fax, email, contact, state, modified, csid, webid,isDealer) values" +
                 " ('" + metype + "',N'" + code + "',N'" + name + "',N'" + address + "', '" + phone + "', '" + fax + "', '" + email + "', '" + contact + "', '" + statid +
-                "', getdate(), '" + csid + "', '" + webid + "'," + isd + ",N'"+mask+"')";
+                "', getdate(), '" + csid + "', '" + webid + "'," + isd + ");"
+                + "insert into dbo.Account(memberid, trading, clearing, settlement, collateral, modified,mask) values" +
+                " (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "c100')," +
+                " (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "c200')," +
+                " (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "c300')," +
+                " (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "c400')" + h;
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();

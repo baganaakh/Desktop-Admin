@@ -61,7 +61,7 @@
         <ComboBox x:Name="pstate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="355,215,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <ComboBox x:Name="mtype" ItemsSource="{Binding}" SelectionChanged="mtype_SelectionChanged" DisplayMemberPath="mtype1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="111,168,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <Label Content="isDealer" HorizontalAlignment="Left" Margin="815,79,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="isdealer" HorizontalAlignment="Left" Height="23" Margin="895,83,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="isdealer" HorizontalAlignment="Left" Height="23" Margin="895,83,0,0" TextWrapping="Wrap" Text="1"  VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Page>
