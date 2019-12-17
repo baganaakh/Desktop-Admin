@@ -158,8 +158,6 @@
           <Property Name="state" Type="smallint" />
           <Property Name="modified" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'demo.dbo.Deals' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Deals">
           <Key>
             <PropertyRef Name="id" />
@@ -230,8 +228,6 @@ warning 6002: The table/view 'demo.dbo.Deals' does not have a primary key define
           <Property Name="otcSellH" Type="decimal" Precision="5" Scale="2" />
           <Property Name="other" Type="decimal" Precision="5" Scale="2" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'demo.dbo.GroupRights' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="GroupRights">
           <Key>
             <PropertyRef Name="ID" />
@@ -252,8 +248,6 @@ warning 6002: The table/view 'demo.dbo.GroupRights' does not have a primary key 
           <Property Name="state" Type="smallint" />
           <Property Name="modified" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'demo.dbo.InvoiceDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="InvoiceDetails">
           <Key>
             <PropertyRef Name="id" />
@@ -283,12 +277,13 @@ warning 6002: The table/view 'demo.dbo.InvoiceDetails' does not have a primary k
           <Property Name="state" Type="smallint" />
           <Property Name="modified" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'demo.dbo.isactive' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="isactive">
-          <Property Name="id" Type="smallint" />
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="isactive" Type="nvarchar" MaxLength="20" />
-        </EntityType>-->
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6013: The table/view 'demo.dbo.IsDealer' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="IsDealer">
@@ -352,8 +347,6 @@ warning 6013: The table/view 'demo.dbo.IsDealer' does not have a primary key def
           <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="mtype" Type="nvarchar" MaxLength="20" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'demo.dbo.Order' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="id" />
@@ -436,12 +429,9 @@ warning 6002: The table/view 'demo.dbo.Order' does not have a primary key define
           <Property Name="state" Type="smallint" />
           <Property Name="modified" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'demo.dbo.Session' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Session">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="boardid" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="boardid" Type="int" Nullable="false" />
@@ -483,8 +473,6 @@ warning 6002: The table/view 'demo.dbo.Session' does not have a primary key defi
           <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="side" Type="nvarchar" MaxLength="20" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Softwares">
           <Key>
             <PropertyRef Name="ID" />
@@ -495,12 +483,13 @@ warning 6002: The table/view 'demo.dbo.Softwares' does not have a primary key de
           <Property Name="Description" Type="nvarchar" MaxLength="1024" />
           <Property Name="IsClient" Type="smallint" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'demo.dbo.SpecialType' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="SpecialType">
-          <Property Name="id" Type="smallint" />
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="specialType" Type="nvarchar" MaxLength="20" />
-        </EntityType>-->
+        </EntityType>
         <EntityType Name="Spreads">
           <Key>
             <PropertyRef Name="id" />
@@ -628,6 +617,37 @@ warning 6013: The table/view 'demo.dbo.SpecialType' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="demoModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActiveSessions" EntityType="Self.ActiveSessions" Schema="dbo" store:Type="Tables" />
@@ -641,21 +661,29 @@ warning 6013: The table/view 'demo.dbo.SpecialType' does not have a primary key 
           <EntitySet Name="dayType" EntityType="Self.dayType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Deal2" EntityType="Self.Deal2" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DealerAccounts" EntityType="Self.DealerAccounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Deals" EntityType="Self.Deals" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dealtype" EntityType="Self.Dealtype" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fee" EntityType="Self.Fee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupRights" EntityType="Self.GroupRights" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GroupUsers" EntityType="Self.GroupUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvoiceDetails" EntityType="Self.InvoiceDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="isactive" EntityType="Self.isactive" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Margins" EntityType="Self.Margins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MarketMakers" EntityType="Self.MarketMakers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mtype" EntityType="Self.mtype" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Participants" EntityType="Self.Participants" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ptype" EntityType="Self.Ptype" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RefPrice" EntityType="Self.RefPrice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rights" EntityType="Self.Rights" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Securities" EntityType="Self.Securities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Session" EntityType="Self.Session" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="side" EntityType="Self.side" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Softwares" EntityType="Self.Softwares" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpecialType" EntityType="Self.SpecialType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Spreads" EntityType="Self.Spreads" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="stype" EntityType="Self.stype" Schema="dbo" store:Type="Tables" />
@@ -667,92 +695,6 @@ warning 6013: The table/view 'demo.dbo.SpecialType' does not have a primary key 
           <EntitySet Name="UserAccounts" EntityType="Self.UserAccounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserGroups" EntityType="Self.UserGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Deals" EntityType="Self.Deals" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Deals].[id] AS [id], 
-    [Deals].[dealtype] AS [dealtype], 
-    [Deals].[dealno] AS [dealno], 
-    [Deals].[side] AS [side], 
-    [Deals].[memberid] AS [memberid], 
-    [Deals].[accountid] AS [accountid], 
-    [Deals].[assetid] AS [assetid], 
-    [Deals].[qty] AS [qty], 
-    [Deals].[price] AS [price], 
-    [Deals].[totalPrice] AS [totalPrice], 
-    [Deals].[state] AS [state], 
-    [Deals].[modified] AS [modified], 
-    [Deals].[fee] AS [fee], 
-    [Deals].[m2m] AS [m2m], 
-    [Deals].[refPrice] AS [refPrice]
-    FROM [dbo].[Deals] AS [Deals]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="GroupRights" EntityType="Self.GroupRights" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [GroupRights].[ID] AS [ID], 
-    [GroupRights].[GroupID] AS [GroupID], 
-    [GroupRights].[RightID] AS [RightID], 
-    [GroupRights].[HasRight] AS [HasRight], 
-    [GroupRights].[Modified] AS [Modified]
-    FROM [dbo].[GroupRights] AS [GroupRights]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="InvoiceDetails" EntityType="Self.InvoiceDetails" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [InvoiceDetails].[id] AS [id], 
-    [InvoiceDetails].[invoiceid] AS [invoiceid], 
-    [InvoiceDetails].[assetid] AS [assetid], 
-    [InvoiceDetails].[qty] AS [qty], 
-    [InvoiceDetails].[price] AS [price], 
-    [InvoiceDetails].[state] AS [state], 
-    [InvoiceDetails].[modified] AS [modified], 
-    [InvoiceDetails].[note] AS [note]
-    FROM [dbo].[InvoiceDetails] AS [InvoiceDetails]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Order" EntityType="Self.Order" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Order].[id] AS [id], 
-    [Order].[dealType] AS [dealType], 
-    [Order].[side] AS [side], 
-    [Order].[memberid] AS [memberid], 
-    [Order].[accountid] AS [accountid], 
-    [Order].[assetid] AS [assetid], 
-    [Order].[qty] AS [qty], 
-    [Order].[price] AS [price], 
-    [Order].[state] AS [state], 
-    [Order].[modified] AS [modified]
-    FROM [dbo].[Order] AS [Order]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Session" EntityType="Self.Session" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Session].[id] AS [id], 
-    [Session].[boardid] AS [boardid], 
-    [Session].[name] AS [name], 
-    [Session].[stime] AS [stime], 
-    [Session].[duration] AS [duration], 
-    [Session].[algorithm] AS [algorithm], 
-    [Session].[match] AS [match], 
-    [Session].[allowedtypes] AS [allowedtypes], 
-    [Session].[description] AS [description], 
-    [Session].[state] AS [state], 
-    [Session].[modified] AS [modified], 
-    [Session].[isactive] AS [isactive], 
-    [Session].[starttime] AS [starttime], 
-    [Session].[endtime] AS [endtime], 
-    [Session].[tduration] AS [tduration], 
-    [Session].[matched] AS [matched], 
-    [Session].[editorder] AS [editorder], 
-    [Session].[delorder] AS [delorder], 
-    [Session].[markettype] AS [markettype]
-    FROM [dbo].[Session] AS [Session]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Softwares" EntityType="Self.Softwares" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Softwares].[ID] AS [ID], 
-    [Softwares].[SWName] AS [SWName], 
-    [Softwares].[SWCaption] AS [SWCaption], 
-    [Softwares].[Description] AS [Description], 
-    [Softwares].[IsClient] AS [IsClient]
-    FROM [dbo].[Softwares] AS [Softwares]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_boards_boards1" Association="Self.FK_boards_boards1">
             <End Role="Boards" EntitySet="Boards" />
             <End Role="Boards1" EntitySet="Boards" />
@@ -767,7 +709,7 @@ warning 6013: The table/view 'demo.dbo.SpecialType' does not have a primary key 
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="memberid" Type="Int64" />
+          <Property Name="memberid" Type="String" MaxLength="20" FixedLength="false" Unicode="true"/>
           <Property Name="trading" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="clearing" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="settlement" Type="Decimal" Precision="18" Scale="4" />
@@ -1346,6 +1288,38 @@ warning 6013: The table/view 'demo.dbo.SpecialType' does not have a primary key 
           <EntitySet Name="Fee" EntityType="demoModel.Fee" />
           <EntitySet Name="API" EntityType="demoModel.API" />
           <EntitySet Name="Ptype" EntityType="demoModel.Ptype" />
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(demoModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(demoModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="isactives" EntityType="demoModel.isactive" />
+          <EntitySet Name="SpecialTypes" EntityType="demoModel.SpecialType" />
         </EntityContainer>
         <EntityType Name="Fee">
           <Key>
@@ -1406,6 +1380,31 @@ warning 6013: The table/view 'demo.dbo.SpecialType' does not have a primary key 
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ptype1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="isactive">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isactive1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SpecialType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="specialType1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2032,6 +2031,46 @@ warning 6013: The table/view 'demo.dbo.SpecialType' does not have a primary key 
             <EntityTypeMapping TypeName="demoModel.Ptype">
               <MappingFragment StoreEntitySet="Ptype">
                 <ScalarProperty Name="ptype1" ColumnName="ptype" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="demoModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="demoModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="demoModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="demoModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="demoModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="demoModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="demoModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="demoModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="demoModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="isactives">
+            <EntityTypeMapping TypeName="demoModel.isactive">
+              <MappingFragment StoreEntitySet="isactive">
+                <ScalarProperty Name="isactive1" ColumnName="isactive" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpecialTypes">
+            <EntityTypeMapping TypeName="demoModel.SpecialType">
+              <MappingFragment StoreEntitySet="SpecialType">
+                <ScalarProperty Name="specialType1" ColumnName="specialType" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

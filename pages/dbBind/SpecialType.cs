@@ -12,15 +12,9 @@ namespace pages.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class Account
+    public partial class SpecialType
     {
-        public long id { get; set; }
-        public string memberid { get; set; }
-        public Nullable<decimal> trading { get; set; }
-        public Nullable<decimal> clearing { get; set; }
-        public Nullable<decimal> settlement { get; set; }
-        public Nullable<decimal> collateral { get; set; }
-        public Nullable<System.DateTime> modified { get; set; }
-        public string mask { get; set; }
+        public short id { get; set; }
+        public string specialType1 { get; set; }
     }
 }
