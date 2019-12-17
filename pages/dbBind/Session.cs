@@ -15,7 +15,7 @@ namespace pages.dbBind
     public partial class Session
     {
         public int id { get; set; }
-        public int boardid { get; set; }
+        public Nullable<int> boardid { get; set; }
         public string name { get; set; }
         public Nullable<System.DateTime> stime { get; set; }
         public Nullable<System.TimeSpan> duration { get; set; }

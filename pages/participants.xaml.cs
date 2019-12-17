@@ -31,7 +31,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id,cid;
+        static string id,cid, spid;
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -199,12 +199,30 @@ namespace pages
             FillDataGrid();
         }
         public List<States> boa { get; set; }
+        public List<SpecialType> sptype { get; set; }
         private void bindCombo()
         {
             demoEntities10 dE = new demoEntities10();
             var item = dE.States.ToList();
             boa = item;
             pstate.ItemsSource = boa;
+            
+            var spitem = dE.SpecialTypes.ToList();
+            sptype = spitem;
+            spetype.ItemsSource = sptype;
+        }
+
+        private void spetype_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var spitem = spetype.SelectedItem as SpecialType;
+            try
+            {
+                spid = spitem.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
         }
 
         private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)

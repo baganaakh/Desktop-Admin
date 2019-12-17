@@ -60,7 +60,7 @@
         <Label Content="төрөл" HorizontalAlignment="Left" Margin="15,220,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="pstate_Copy" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="116,223,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <Label Content="Тусгай төрөл" HorizontalAlignment="Left" Margin="15,264,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="pstate_Copy1" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="116,267,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox x:Name="spetype" ItemsSource="{Binding}" SelectionChanged="spetype_SelectionChanged" DisplayMemberPath="stype1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="116,267,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
 
     </Grid>
 </Page>
