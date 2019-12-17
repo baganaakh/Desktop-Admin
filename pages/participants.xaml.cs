@@ -31,7 +31,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id,cid, spid;
+        static string id,cid, spid, ptid;
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -173,7 +173,6 @@ namespace pages
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
-
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.dbo.participants SET " +
@@ -200,6 +199,7 @@ namespace pages
         }
         public List<States> boa { get; set; }
         public List<SpecialType> sptype { get; set; }
+        public List<Ptype> ptyp{ get; set; }
         private void bindCombo()
         {
             demoEntities10 dE = new demoEntities10();
@@ -207,9 +207,28 @@ namespace pages
             boa = item;
             pstate.ItemsSource = boa;
             
-            var spitem = dE.SpecialTypes.ToList();
+            demoEntities10 sp = new demoEntities10();
+            var spitem = sp.SpecialTypes.ToList();
             sptype = spitem;
             spetype.ItemsSource = sptype;
+
+            demoEntities10 ptp = new demoEntities10();
+            var ptitem = ptp.Ptype.ToList();
+            ptyp= ptitem;
+            ptype.ItemsSource = ptyp;
+        }
+
+        private void ptype_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var spitem = ptype.SelectedItem as SpecialType;
+            try
+            {
+                ptid = spitem.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
         }
 
         private void spetype_SelectionChanged(object sender, SelectionChangedEventArgs e)
