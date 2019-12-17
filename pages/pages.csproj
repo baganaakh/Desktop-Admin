@@ -156,6 +156,9 @@
     <Compile Include="dbBind\isactive.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="dbBind\IsDealer.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="dbBind\Margins.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

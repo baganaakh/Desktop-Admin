@@ -73,6 +73,7 @@ namespace pages.dbBind
         public virtual DbSet<Ptype> Ptype { get; set; }
         public virtual DbSet<isactive> isactives { get; set; }
         public virtual DbSet<SpecialType> SpecialTypes { get; set; }
+        public virtual DbSet<IsDealer> IsDealers { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
