@@ -284,12 +284,13 @@
           <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="isactive" Type="nvarchar" MaxLength="20" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'demo.dbo.IsDealer' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="IsDealer">
-          <Property Name="id" Type="int" />
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="isDealer" Type="nvarchar" MaxLength="10" />
-        </EntityType>-->
+        </EntityType>
         <EntityType Name="Margins">
           <Key>
             <PropertyRef Name="id" />
@@ -669,6 +670,7 @@ warning 6013: The table/view 'demo.dbo.IsDealer' does not have a primary key def
           <EntitySet Name="InvoiceDetails" EntityType="Self.InvoiceDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="isactive" EntityType="Self.isactive" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IsDealer" EntityType="Self.IsDealer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Margins" EntityType="Self.Margins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MarketMakers" EntityType="Self.MarketMakers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
@@ -1320,6 +1322,7 @@ warning 6013: The table/view 'demo.dbo.IsDealer' does not have a primary key def
           <FunctionImport Name="sp_upgraddiagrams" />
           <EntitySet Name="isactives" EntityType="demoModel.isactive" />
           <EntitySet Name="SpecialTypes" EntityType="demoModel.SpecialType" />
+          <EntitySet Name="IsDealers" EntityType="demoModel.IsDealer" />
         </EntityContainer>
         <EntityType Name="Fee">
           <Key>
@@ -1405,6 +1408,13 @@ warning 6013: The table/view 'demo.dbo.IsDealer' does not have a primary key def
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="specialType1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="IsDealer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isDealer1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2071,6 +2081,14 @@ warning 6013: The table/view 'demo.dbo.IsDealer' does not have a primary key def
             <EntityTypeMapping TypeName="demoModel.SpecialType">
               <MappingFragment StoreEntitySet="SpecialType">
                 <ScalarProperty Name="specialType1" ColumnName="specialType" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IsDealers">
+            <EntityTypeMapping TypeName="demoModel.IsDealer">
+              <MappingFragment StoreEntitySet="IsDealer">
+                <ScalarProperty Name="isDealer1" ColumnName="isDealer" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
