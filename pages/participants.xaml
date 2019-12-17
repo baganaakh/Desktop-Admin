@@ -34,8 +34,8 @@
         <TextBox x:Name="paddress" HorizontalAlignment="Left" Height="23" Margin="600,76,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="pcontact" HorizontalAlignment="Left" Height="23" Margin="369,76,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="pmodify" HorizontalAlignment="Left" Height="23" Margin="369,173,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBlock x:Name="checkDAta" HorizontalAlignment="Left" Margin="34,225,0,632" TextWrapping="Wrap" Width="1131"><Run Text="TextBlock"/></TextBlock>
-        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="27,288,0,212" VerticalAlignment="Center" Width="1138">
+        <TextBlock x:Name="checkDAta" HorizontalAlignment="Left" Margin="41,316,0,541" TextWrapping="Wrap" Width="1131"><Run Text="TextBlock"/></TextBlock>
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="258" AutoGenerateColumns="False" Margin="34,379,0,263" VerticalAlignment="Center" Width="1138">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding code}" Header="Code"/>
@@ -57,6 +57,10 @@
         <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="1090,79,0,0"/>
         <Button Content="Update" HorizontalAlignment="Left" Margin="1090,110,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
         <ComboBox x:Name="pstate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="369,117,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <Label Content="төрөл" HorizontalAlignment="Left" Margin="15,220,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="pstate_Copy" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="116,223,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <Label Content="Тусгай төрөл" HorizontalAlignment="Left" Margin="15,264,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="pstate_Copy1" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="116,267,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
 
     </Grid>
 </Page>

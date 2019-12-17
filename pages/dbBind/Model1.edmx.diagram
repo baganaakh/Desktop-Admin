@@ -48,6 +48,7 @@
         <EntityTypeShape EntityType="demoModel.Softwares" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="demoModel.FK_boards_boards1" ManuallyRouted="false" />
         <EntityTypeShape EntityType="demoModel.Fee" Width="1.5" PointX="6.5" PointY="15.625" />
+        <EntityTypeShape EntityType="demoModel.Ptype" Width="1.5" PointX="13.375" PointY="18.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
