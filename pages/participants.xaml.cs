@@ -50,19 +50,29 @@ namespace pages
             string modifypar = value.Row[10].ToString();
             string webidpar = value.Row[11].ToString();
             string csidpar= value.Row[12].ToString();
+            string Pcity= value.Row[13].ToString();
+            string Pdistr= value.Row[14].ToString();
+            string Phoroo= value.Row[15].ToString();
+            string Pstreet= value.Row[16].ToString();
+            string webpage= value.Row[17].ToString();
+            string Numofemp= value.Row[18].ToString();
 
             pcode.Text = codepar;
             pname.Text = namepar;
             pcountry.Text = countrypar;
             pcontact.Text = contactpar;
             pstate.SelectedValue = statepar;
-            pmodify.Text = modifypar;
             paddress.Text = addresspar;
             pphone.Text = phonepar;
-            pfax.Text = faxpar;
             pmail.Text = emailpar;
             pwebid.Text = webidpar;
             pcsid.Text = csidpar;
+            pcity.Text = Pcity;
+            pdistr.Text=Pdistr;
+            phoroo.Text = Phoroo;
+            pstreet.Text=Pstreet;
+            pwebpage.Text=webpage;
+            numofemp.Text=Numofemp;
         }
         private void insertFunc(object sender, RoutedEventArgs e)
         {
@@ -71,21 +81,25 @@ namespace pages
             string country = pcountry.Text;
             string address = paddress.Text;
             string phone = pphone.Text;
-            string fax = pfax.Text;
             string email = pmail.Text;
             string contact = pcontact.Text;
-            string state = pstate.Text;
             string csid = pcsid.Text;
             string webid = pwebid.Text;
+            string Pcity = pcity.Text;
+            string Pdistr = pdistr.Text;
+            string Phoroo = phoroo.Text;
+            string Pstreet = pstreet.Text;
+            string Pwebpage = pwebpage.Text;
+            string Numofemp= numofemp.Text;
            
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.participants (code, name, country, address, phone, fax, email, contact, state, modified, csid, webid) values" +
-                " ('" + code + "',N'" + name + "',N'" + country + "',N'" + address+ "', '" + phone+ "', '" + fax+ "', '" + email+ "', '" + contact+ "', '" + cid +
-                "', getdate(), '"+csid+ "', '"+webid+"')";
+            cmd.CommandText = "insert into dbo.participants (code, name, country, address, phone, email, contact, state, modified, csid, webid,pcity,pdistr,phoroo,pstreet,pwebpage,numofemp) values" +
+                " ('" + code + "',N'" + name + "',N'" + country + "',N'" + address+ "', '" + phone+ "', '" + email+ "', '" + contact+ "', '" + cid +"', getdate(), '"+csid+ "', '"+webid+"'" +
+                ",N'"+ Pcity + "',N'" + Pdistr + "',N'" + Phoroo + "',N'" + Pstreet + "',N'" + Pwebpage + "',N'" + Numofemp + "')";
             checkDAta.Text = cmd.CommandText;
 
             cmd.Connection = sqlConnection1;
@@ -110,7 +124,7 @@ namespace pages
             string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT ALL [id], [code], [name], [country], [address], [phone], [fax], [email], [contact], [state], [modified], [webid], [csid], [webid] " +
+                CmdString = "SELECT ALL [id], [code], [name], [country], [address], [phone], [fax], [email], [contact], [state], [modified], [webid], [csid], [pcity], [pdistr],[phoroo],[pstreet],[pwebpage],[numofemp] " +
                     "FROM dbo.participants ";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
@@ -126,14 +140,18 @@ namespace pages
             pcountry.Text= null;
             pcontact.Text= null;
             pstate.Text = null;
-            pmodify.Text = null;
             paddress.Text = null;
             pphone.Text = null;
-            pfax.Text = null;
             pmail.Text = null;
             pwebid.Text= null;
             pcsid.Text= null;
             id = null;
+            pcity.Text=null;
+            pdistr.Text=null;
+            phoroo.Text=null;
+            pstreet.Text=null;
+            pwebpage.Text=null;
+            numofemp.Text=null;
         }
         private void refreshh(object sender, RoutedEventArgs e)
         {
@@ -163,12 +181,17 @@ namespace pages
             string country = pcountry.Text;
             string address = paddress.Text;
             string phone = pphone.Text;
-            string fax = pfax.Text;
             string email = pmail.Text;
             string contact = pcontact.Text;
             string state = pstate.Text;
             string csid = pcsid.Text;
             string webid = pwebid.Text;
+            string Pcity = pcity.Text;
+            string Pdistr = pdistr.Text;
+            string Phoroo = phoroo.Text;
+            string Pstreet = pstreet.Text;
+            string Pwebpage = pwebpage.Text;
+            string Numofemp = numofemp.Text;
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
@@ -181,12 +204,17 @@ namespace pages
                 "country = '" + country+ "', " +
                 "address= '" + address + "', " +
                 "phone= '" + phone+ "', " +
-                "fax= '" + fax+ "', " +
                 "email= '" + email+ "', " +
                 "contact= '" + contact+ "', " +
                 "state= '" + cid + "', " +
                 "modified = getdate(), " +
                 "webid= '" + webid+ "', " +
+                "pcity= '" + Pcity+ "', " +
+                "pdistr= '" + Pdistr+ "', " +
+                "phoroo= '" + Phoroo+ "', " +
+                "pstreet= '" + Pstreet+ "', " +
+                "pwebpage= '" + Pwebpage+ "', " +
+                "numofemp= '" + Numofemp+ "', " +
                 "csid= '" + csid+ "' " +
                 "WHERE id = '" + id + "'";
 
