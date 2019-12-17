@@ -67,5 +67,7 @@ namespace pages.dbBind
         public virtual DbSet<Session> Session { get; set; }
         public virtual DbSet<Softwares> Softwares { get; set; }
         public virtual DbSet<Fee> Fee { get; set; }
+        public virtual DbSet<API> API { get; set; }
+        public virtual DbSet<Ptype> Ptype { get; set; }
     }
 }

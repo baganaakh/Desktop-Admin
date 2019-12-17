@@ -32,5 +32,6 @@ namespace pages.dbBind
         public Nullable<decimal> dhigh { get; set; }
         public Nullable<decimal> dlow { get; set; }
         public Nullable<decimal> dclose { get; set; }
+        public Nullable<decimal> totalPrice { get; set; }
     }
 }

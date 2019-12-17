@@ -12,15 +12,12 @@ namespace pages.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class Account
+    public partial class API
     {
-        public long id { get; set; }
-        public Nullable<long> memberid { get; set; }
-        public Nullable<decimal> trading { get; set; }
-        public Nullable<decimal> clearing { get; set; }
-        public Nullable<decimal> settlement { get; set; }
-        public Nullable<decimal> collateral { get; set; }
-        public Nullable<System.DateTime> modified { get; set; }
-        public string mask { get; set; }
+        public int id { get; set; }
+        public Nullable<decimal> dopen { get; set; }
+        public Nullable<decimal> dhigh { get; set; }
+        public Nullable<decimal> dlow { get; set; }
+        public Nullable<decimal> dclose { get; set; }
     }
 }

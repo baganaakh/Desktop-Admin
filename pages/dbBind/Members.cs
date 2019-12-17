@@ -28,5 +28,7 @@ namespace pages.dbBind
         public Nullable<int> csid { get; set; }
         public Nullable<int> webid { get; set; }
         public Nullable<long> partid { get; set; }
+        public Nullable<short> isDealer { get; set; }
+        public string mask { get; set; }
     }
 }
