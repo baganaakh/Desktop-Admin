@@ -283,6 +283,18 @@ warning 6002: The table/view 'demo.dbo.InvoiceDetails' does not have a primary k
           <Property Name="state" Type="smallint" />
           <Property Name="modified" Type="datetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'demo.dbo.isactive' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="isactive">
+          <Property Name="id" Type="smallint" />
+          <Property Name="isactive" Type="nvarchar" MaxLength="20" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'demo.dbo.IsDealer' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="IsDealer">
+          <Property Name="id" Type="int" />
+          <Property Name="isDealer" Type="nvarchar" MaxLength="10" />
+        </EntityType>-->
         <EntityType Name="Margins">
           <Key>
             <PropertyRef Name="id" />
@@ -1191,10 +1203,6 @@ warning 6013: The table/view 'demo.dbo.SpecialType' does not have a primary key 
           <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="m2m" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="refPrice" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="dopen" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="dhigh" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="dlow" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="dclose" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="totalPrice" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="Dealtype">
