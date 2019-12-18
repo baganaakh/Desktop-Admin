@@ -20,10 +20,15 @@
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding type}" Header="Type"/>
                 <DataGridTextColumn Binding="{Binding code}" Header="Code"/>
-                <DataGridTextColumn Binding="{Binding name}" Header="Name"/>
                 <DataGridTextColumn Binding="{Binding state}" Header="State"/>
                 <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
                 <DataGridTextColumn Binding="{Binding mask}" Header="Mask"/>
+                <DataGridTextColumn Binding="{Binding startdate}" Header="StartDate"/>
+                <DataGridTextColumn Binding="{Binding enddate}" Header="EndDate"/>
+                <DataGridTextColumn Binding="{Binding broker}" Header="Broker"/>
+                <DataGridTextColumn Binding="{Binding dealer}" Header="Dealer"/>
+                <DataGridTextColumn Binding="{Binding ander}" Header="Ander"/>
+                <DataGridTextColumn Binding="{Binding nominal}" Header="Nominal"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="836,82,0,0"/>

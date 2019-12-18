@@ -37,19 +37,32 @@ namespace pages
             var value = DateTable2.SelectedItem as DataRowView;
             if (null == value) return;
             id = value.Row[0].ToString();
-            string typeeee = value.Row[3].ToString();
-            string codepar = value.Row[1].ToString();
-            string statepar = value.Row[9].ToString();
+            metype= value.Row[1].ToString();
+            string codepar = value.Row[2].ToString();
+            statid= value.Row[3].ToString();
+            string Mask= value.Row[5].ToString();
+            string sdate= value.Row[6].ToString();
+            string edate= value.Row[7].ToString();
+            string Broker= value.Row[8].ToString();
+            string Dealer= value.Row[9].ToString();
+            string Ander= value.Row[10].ToString();
+            string Nominal= value.Row[11].ToString();
+            partid= value.Row[12].ToString();
 
             pcode.Text = codepar;
-            mtype.SelectedValue = typeeee;
-            pstate.SelectedValue = statepar;
-            
+            mtype.SelectedValue = metype;
+            pstate.SelectedValue = statid;
+            participants.SelectedValue = partid;
+            starttime.SelectedDate = DateTime.Parse(sdate);
+            endtime.SelectedDate = DateTime.Parse(edate);
+            broker.IsChecked = bool.Parse(Broker);
+            dealer.IsChecked = bool.Parse(Dealer);
+            ander.IsChecked = bool.Parse(Ander);
+            nominal.IsChecked = bool.Parse(Nominal);
         }
         private void insertFunc(object sender, RoutedEventArgs e)
         {
             string code = pcode.Text;
-            string type = mtype.Text;
             string mask="";
             string h = "";
             if (starttime.SelectedDate == null || endtime.SelectedDate == null)
@@ -57,7 +70,6 @@ namespace pages
                 MessageBox.Show("Please Set Date !!!!!");
                 return;
             }
-            
             string startT = starttime.SelectedDate.Value.ToShortDateString();
             string endT = endtime.SelectedDate.Value.ToShortDateString();
             switch (metype)
@@ -65,15 +77,12 @@ namespace pages
                 case "0":
                     mask = mask + "70";
                     break;
-
                 case "1":
                     mask = mask + "61";
                     break;
-
                 case "2":
                     mask = mask + "70";
                     break;
-
                 default:
                     MessageBox.Show("No Me Type match");
                     break;
@@ -121,8 +130,6 @@ namespace pages
                 " (" + partid + ",'" + startT + "','" + endT + "','" + metype + "',N'" + code + "','" + statid + "','" + Broker + "','" + Dealer + "','"
                 + Ander + "','" + Nominal + "', getdate()); "+h;
             
-            
-
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
             cmd.Connection = sqlConnection1;
@@ -146,8 +153,8 @@ namespace pages
             string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT ALL [id], [code], [type], [state], [modified], [mask] " +
-                    "FROM dbo.members ";
+                CmdString = "SELECT ALL [id], [type], [code], [state], [modified], [mask]," +
+                    "[startdate], [enddate], [broker], [dealer], [ander], [nominal], [partid] FROM dbo.members ";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Participant");
@@ -158,9 +165,16 @@ namespace pages
         private void newData(object sender, RoutedEventArgs e)
         {
             pcode.Text = null;
-            mtype.Text = null;
-            pstate.Text = null;
             id = null;
+            mtype.SelectedValue = null;
+            pstate.SelectedValue = null;
+            participants.SelectedValue = null;
+            starttime.SelectedDate = null;
+            endtime.SelectedDate = null;
+            broker.IsChecked = null;
+            dealer.IsChecked = null;
+            ander.IsChecked = null;
+            nominal.IsChecked = null;
         }
         private void refreshh(object sender, RoutedEventArgs e)
         {
@@ -186,8 +200,67 @@ namespace pages
         private void update(object sender, RoutedEventArgs e)
         {
             string code = pcode.Text;
-            
-
+            string mask = "";
+            string h = "";
+            if (starttime.SelectedDate == null || endtime.SelectedDate == null)
+            {
+                MessageBox.Show("Please Set Date !!!!!");
+                return;
+            }
+            string startT = starttime.SelectedDate.Value.ToShortDateString();
+            string endT = endtime.SelectedDate.Value.ToShortDateString();
+            switch (metype)
+            {
+                case "0":
+                    mask = mask + "70";
+                    break;
+                case "1":
+                    mask = mask + "61";
+                    break;
+                case "2":
+                    mask = mask + "70";
+                    break;
+                default:
+                    MessageBox.Show("No Me Type match");
+                    break;
+            }
+            mask = mask + code;
+            string Broker = broker.IsChecked.ToString();
+            string Dealer = dealer.IsChecked.ToString();
+            string Ander = ander.IsChecked.ToString();
+            string Nominal = nominal.IsChecked.ToString();
+            if (broker.IsChecked ?? false)
+            {
+                h = h + " insert into dbo.Account(memberid,modified,mask,startdate,enddate) values " +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h100','" + startT + "','" + endT + "')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h200','" + startT + "','" + endT + "')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h300','" + startT + "','" + endT + "')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h400','" + startT + "','" + endT + "')";
+            }
+            if (dealer.IsChecked ?? false)
+            {
+                h = h + " insert into dbo.Account(memberid,modified,mask,startdate,enddate) values " +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "c100','" + startT + "','" + endT + "')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "c200','" + startT + "','" + endT + "')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "c300','" + startT + "','" + endT + "')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "c400','" + startT + "','" + endT + "')";
+            }
+            if (ander.IsChecked ?? false)
+            {
+                h = h + " insert into dbo.Account(memberid,modified,mask,startdate,enddate) values " +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "u100','" + startT + "','" + endT + "')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "u200','" + startT + "','" + endT + "')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "u300','" + startT + "','" + endT + "')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "u400','" + startT + "','" + endT + "')";
+            }
+            if (nominal.IsChecked ?? false)
+            {
+                h = h + " insert into dbo.Account(memberid,modified,mask,startdate,enddate) values " +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "o100','" + startT + "','" + endT + "')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "o200','" + startT + "','" + endT + "')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "o300','" + startT + "','" + endT + "')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "o400','" + startT + "','" + endT + "')";
+            }
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
@@ -197,6 +270,12 @@ namespace pages
                 "code = '" + code + "', " +
                 "type = '" + metype+ "', " +
                 "state= '" + statid + "', " +
+                "broker= '" + Broker+ "', " +
+                "dealer= '" + Dealer+ "', " +
+                "ander= '" + Ander+ "', " +
+                "nominal= '" + Nominal+ "', " +
+                "startdate= '" + startT+ "', " +
+                "enddate= '" + endT+ "', " +
                 "modified = getdate() " +
                 "WHERE id = '" + id + "'";
 
