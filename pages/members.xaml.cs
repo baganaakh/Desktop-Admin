@@ -55,7 +55,11 @@ namespace pages
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
-
+            if (starttime.SelectedDate == null || endtime.SelectedDate == null)
+            {
+                MessageBox.Show("Please Set Date !!!!!");
+                return;
+            }
             switch (metype)
             {
                 case "0":
@@ -78,38 +82,45 @@ namespace pages
 
             if (broker.IsChecked ?? false)
             {
-                h =h+ ", (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h100')," +
-                " (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h200')," +
-                " (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h300')," +
-                " (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h400')";
+                MessageBox.Show("broker");
+
+                h = h+ ", (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h100')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h200')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h300')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h400')";
             }
             if (dealer.IsChecked ?? false)
             {
-                h =h+ ", (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h100')," +
-                " (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h200')," +
-                " (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h300')," +
-                " (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h400')";
+                MessageBox.Show("dealer");
+
+                h = h+ ", (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h100')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h200')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h300')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h400')";
             }
             if (ander.IsChecked ?? false)
             {
-                h =h+ ", (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h100')," +
-                " (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h200')," +
-                " (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h300')," +
-                " (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h400')";
+                MessageBox.Show("Ander");
+
+                h = h+ ", (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h100')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h200')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h300')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h400')";
             }
             if (nominal.IsChecked ?? false)
             {
-                h =h+ ", (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h100')," +
-                " (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h200')," +
-                " (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h300')," +
-                " (IDENT_CURRENT('demo.dbo.members'),NULL,NULL,NULL,NULL, getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h400')";
+                MessageBox.Show("nominal");
+                h =h+ ", (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h100')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h200')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h300')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h400')";
             }
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.members (type,code, state, modified) values" +
-                " ('" + metype + "',N'" + code + "','" + statid +
+            cmd.CommandText = "insert into dbo.members (prtid,type,code, state, modified) values" +
+                " ("+ partid + ",'" + metype + "',N'" + code + "','" + statid +
                 "', getdate());"
-                + "insert into dbo.Account(memberid, trading, clearing, settlement, collateral, modified,mask) values" +h;
+                + "insert into dbo.Account(memberid,modified,mask) values" +h;
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
