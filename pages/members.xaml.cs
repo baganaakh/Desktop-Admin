@@ -52,14 +52,15 @@ namespace pages
             string type = mtype.Text;
             string mask="";
             string h = "";
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
             if (starttime.SelectedDate == null || endtime.SelectedDate == null)
             {
                 MessageBox.Show("Please Set Date !!!!!");
                 return;
             }
+            DateTime startT = starttime.SelectedDate.Value;
+            DateTime endT= endtime.SelectedDate.Value;
+            string startT2 = starttime.SelectedDate.Value.ToShortDateString();
+            string endT2 = endtime.SelectedDate.Value.ToShortDateString();
             switch (metype)
             {
                 case "0":
@@ -79,12 +80,15 @@ namespace pages
                     break;
             }
             mask = mask + code;
-
+            string Broker = broker.IsChecked.ToString();
+            string Dealer= dealer.IsChecked.ToString();
+            string Ander= ander.IsChecked.ToString();
+            string Nominal= nominal.IsChecked.ToString();
             if (broker.IsChecked ?? false)
             {
-                MessageBox.Show("broker");
+                MessageBox.Show(Broker);
 
-                h = h+ ", (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h100')," +
+                h = h + ", (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h100')," +
                 " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h200')," +
                 " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h300')," +
                 " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h400')";
@@ -93,35 +97,39 @@ namespace pages
             {
                 MessageBox.Show("dealer");
 
-                h = h+ ", (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h100')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h200')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h300')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h400')";
+                h = h + ", (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "c100')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "c200')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "c300')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "c400')";
             }
             if (ander.IsChecked ?? false)
             {
                 MessageBox.Show("Ander");
 
-                h = h+ ", (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h100')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h200')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h300')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h400')";
+                h = h + ", (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "u100')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "u200')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "u300')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "u400')";
             }
             if (nominal.IsChecked ?? false)
             {
                 MessageBox.Show("nominal");
-                h =h+ ", (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h100')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h200')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h300')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "h400')";
+                h = h + ", (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "o100')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "o200')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "o300')," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'IDENT_CURRENT('demo.dbo.members')" + mask + "o400')";
             }
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.members (prtid,type,code, state, modified) values" +
-                " ("+ partid + ",'" + metype + "',N'" + code + "','" + statid +
-                "', getdate());"
-                + "insert into dbo.Account(memberid,modified,mask) values" +h;
+            cmd.CommandText = "insert into dbo.members (partid, startdate, enddate, type, code, state, broker, dealer, ander, nominal, modified) values" +
+                " (" + partid + ",'"+startT2+"','"+endT2+"','" + metype + "',N'" + code + "','" + statid + "','" + Broker + "','" + Dealer + "','"
+                + Ander + "','" + Nominal + "', getdate());";
+            // + "insert into dbo.Account(memberid,modified,mask) values" +h;
+            cmd.Parameters.AddWithValue("@date1", SqlDbType.Date).Value=startT;
+            cmd.Parameters.AddWithValue("@date2", SqlDbType.Date).Value=endT;
 
+            System.Data.SqlClient.SqlConnection sqlConnection1 =
+           new System.Data.SqlClient.SqlConnection(connectionString);
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();

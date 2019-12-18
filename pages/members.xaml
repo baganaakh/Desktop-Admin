@@ -38,10 +38,11 @@
         <CheckBox x:Name="dealer" Content="Дилер" HorizontalAlignment="Left" Margin="139,186,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="ander" Content="Андерр" HorizontalAlignment="Left" Margin="56,219,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="nominal" Content="Номинал" HorizontalAlignment="Left" Margin="139,219,0,0" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Margin="377,137,0,0" Name="starttime" VerticalAlignment="Top"/>
-        <Label Content="Эхлэх хугацаа" HorizontalAlignment="Left" Margin="279,136,0,0" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Margin="619,134,0,0" Name="endtime" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Дуусах хугацаа" HorizontalAlignment="Left" Margin="511,137,0,0" VerticalAlignment="Top"/>
+
+        <Label Content="Эхлэх" HorizontalAlignment="Left" Margin="279,136,0,0" VerticalAlignment="Top"/>
+        <Label Content="Дуусах" HorizontalAlignment="Left" Margin="511,137,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="starttime" HorizontalAlignment="Left" Margin="359,143,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.483,-0.792"/>
+        <DatePicker x:Name="endtime" HorizontalAlignment="Left" Margin="619,143,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Page>

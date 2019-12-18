@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
+using System.Globalization;
+using System.Threading;
 
 namespace pages
 {
@@ -23,6 +25,8 @@ namespace pages
     {
         public MainWindow()
         {
+            CultureInfo ci = new CultureInfo("us-en");
+            Thread.CurrentThread.CurrentCulture = ci;
             InitializeComponent();
             Main.Content = new boards();
 
@@ -122,3 +126,8 @@ namespace pages
         }
     }
 }
+
+
+
+// insert into dbo.members (partid, startdate, enddate, type, code, state, modified, broker, dealer, ander, nominal) 
+// values (3,'12/12/2019','12/27/2019','1',N'1234','0','False','False','False','False', getdate());
