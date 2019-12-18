@@ -27,5 +27,11 @@ namespace pages.dbBind
         public Nullable<System.DateTime> modified { get; set; }
         public Nullable<int> csid { get; set; }
         public Nullable<int> webid { get; set; }
+        public string pcity { get; set; }
+        public string pdistr { get; set; }
+        public string phoroo { get; set; }
+        public string pstreet { get; set; }
+        public string pwebpage { get; set; }
+        public string numofemp { get; set; }
     }
 }

@@ -22,5 +22,7 @@ namespace pages.dbBind
         public Nullable<decimal> collateral { get; set; }
         public Nullable<System.DateTime> modified { get; set; }
         public string mask { get; set; }
+        public Nullable<System.DateTime> startdate { get; set; }
+        public Nullable<System.DateTime> enddate { get; set; }
     }
 }

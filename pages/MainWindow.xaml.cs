@@ -126,8 +126,3 @@ namespace pages
         }
     }
 }
-
-
-
-// insert into dbo.members (partid, startdate, enddate, type, code, state, modified, broker, dealer, ander, nominal) 
-// values (3,'12/12/2019','12/27/2019','1',N'1234','0','False','False','False','False', getdate());

@@ -17,18 +17,15 @@ namespace pages.dbBind
         public int id { get; set; }
         public Nullable<short> type { get; set; }
         public string code { get; set; }
-        public string name { get; set; }
-        public string address { get; set; }
-        public Nullable<int> phone { get; set; }
-        public string fax { get; set; }
-        public string email { get; set; }
-        public string contact { get; set; }
         public Nullable<short> state { get; set; }
         public Nullable<System.DateTime> modified { get; set; }
-        public Nullable<int> csid { get; set; }
-        public Nullable<int> webid { get; set; }
         public Nullable<long> partid { get; set; }
-        public Nullable<short> isDealer { get; set; }
         public string mask { get; set; }
+        public Nullable<System.DateTime> startdate { get; set; }
+        public Nullable<System.DateTime> enddate { get; set; }
+        public string broker { get; set; }
+        public string dealer { get; set; }
+        public string ander { get; set; }
+        public string nominal { get; set; }
     }
 }

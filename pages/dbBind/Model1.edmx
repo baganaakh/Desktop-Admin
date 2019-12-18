@@ -17,6 +17,8 @@
           <Property Name="collateral" Type="decimal" Precision="18" Scale="4" />
           <Property Name="modified" Type="datetime" />
           <Property Name="mask" Type="nvarchar" MaxLength="20" />
+          <Property Name="startdate" Type="date" />
+          <Property Name="enddate" Type="date" />
         </EntityType>
         <EntityType Name="ActiveSessions">
           <Key>
@@ -327,19 +329,16 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="type" Type="smallint" />
           <Property Name="code" Type="nvarchar" MaxLength="50" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
-          <Property Name="address" Type="nchar" MaxLength="100" />
-          <Property Name="phone" Type="int" />
-          <Property Name="fax" Type="nchar" MaxLength="50" />
-          <Property Name="email" Type="nchar" MaxLength="50" />
-          <Property Name="contact" Type="nchar" MaxLength="50" />
           <Property Name="state" Type="smallint" />
           <Property Name="modified" Type="datetime" />
-          <Property Name="csid" Type="int" />
-          <Property Name="webid" Type="int" />
           <Property Name="partid" Type="bigint" />
-          <Property Name="isDealer" Type="smallint" />
           <Property Name="mask" Type="nvarchar" MaxLength="20" />
+          <Property Name="startdate" Type="date" />
+          <Property Name="enddate" Type="date" />
+          <Property Name="broker" Type="nvarchar" MaxLength="20" />
+          <Property Name="dealer" Type="nvarchar" MaxLength="20" />
+          <Property Name="ander" Type="nvarchar" MaxLength="20" />
+          <Property Name="nominal" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="mtype">
           <Key>
@@ -377,6 +376,12 @@
           <Property Name="email" Type="nvarchar" MaxLength="50" />
           <Property Name="contact" Type="nvarchar" MaxLength="50" />
           <Property Name="state" Type="smallint" />
+          <Property Name="pcity" Type="nvarchar" MaxLength="20" />
+          <Property Name="pdistr" Type="nvarchar" MaxLength="20" />
+          <Property Name="phoroo" Type="nvarchar" MaxLength="20" />
+          <Property Name="pstreet" Type="nvarchar" MaxLength="20" />
+          <Property Name="pwebpage" Type="nvarchar" MaxLength="30" />
+          <Property Name="numofemp" Type="nvarchar" MaxLength="20" />
           <Property Name="modified" Type="datetime" />
           <Property Name="csid" Type="int" />
           <Property Name="webid" Type="int" />
@@ -718,6 +723,8 @@
           <Property Name="collateral" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="modified" Type="DateTime" Precision="3" />
           <Property Name="mask" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="startdate" Type="DateTime" Precision="0" />
+          <Property Name="enddate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="ActiveSessions">
           <Key>
@@ -913,19 +920,16 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="type" Type="Int16" />
           <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="address" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="phone" Type="Int32" />
-          <Property Name="fax" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="contact" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="state" Type="Int16" />
           <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="csid" Type="Int32" />
-          <Property Name="webid" Type="Int32" />
           <Property Name="partid" Type="Int64" />
-          <Property Name="isDealer" Type="Int16" />
           <Property Name="mask" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="startdate" Type="DateTime" Precision="0" />
+          <Property Name="enddate" Type="DateTime" Precision="0" />
+          <Property Name="broker" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="dealer" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ander" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="nominal" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="mtype">
           <Key>
@@ -951,6 +955,12 @@
           <Property Name="modified" Type="DateTime" Precision="3" />
           <Property Name="csid" Type="Int32" />
           <Property Name="webid" Type="Int32" />
+          <Property Name="pcity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="pdistr" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="phoroo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="pstreet" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="pwebpage" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="numofemp" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="RefPrice">
           <Key>
@@ -1424,6 +1434,8 @@
           <EntitySetMapping Name="Account">
             <EntityTypeMapping TypeName="demoModel.Account">
               <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="enddate" ColumnName="enddate" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
                 <ScalarProperty Name="mask" ColumnName="mask" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="memberid" ColumnName="memberid" />
@@ -1636,21 +1648,18 @@
           <EntitySetMapping Name="Members">
             <EntityTypeMapping TypeName="demoModel.Members">
               <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="nominal" ColumnName="nominal" />
+                <ScalarProperty Name="ander" ColumnName="ander" />
+                <ScalarProperty Name="dealer" ColumnName="dealer" />
+                <ScalarProperty Name="broker" ColumnName="broker" />
+                <ScalarProperty Name="enddate" ColumnName="enddate" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
                 <ScalarProperty Name="mask" ColumnName="mask" />
-                <ScalarProperty Name="isDealer" ColumnName="isDealer" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="code" ColumnName="code" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="fax" ColumnName="fax" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="contact" ColumnName="contact" />
                 <ScalarProperty Name="state" ColumnName="state" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="csid" ColumnName="csid" />
-                <ScalarProperty Name="webid" ColumnName="webid" />
                 <ScalarProperty Name="partid" ColumnName="partid" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1666,6 +1675,12 @@
           <EntitySetMapping Name="Participants">
             <EntityTypeMapping TypeName="demoModel.Participants">
               <MappingFragment StoreEntitySet="Participants">
+                <ScalarProperty Name="numofemp" ColumnName="numofemp" />
+                <ScalarProperty Name="pwebpage" ColumnName="pwebpage" />
+                <ScalarProperty Name="pstreet" ColumnName="pstreet" />
+                <ScalarProperty Name="phoroo" ColumnName="phoroo" />
+                <ScalarProperty Name="pdistr" ColumnName="pdistr" />
+                <ScalarProperty Name="pcity" ColumnName="pcity" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="name" ColumnName="name" />
