@@ -14,7 +14,7 @@
         <Button Content="Edit" HorizontalAlignment="Left" Margin="997,110,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="Insert" HorizontalAlignment="Left" Margin="997,143,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
         <Label Content="Code" HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top"/>
-        <Label Content="Улс" HorizontalAlignment="Left" Margin="27,173,0,0" VerticalAlignment="Top"/>
+        <Label Content="Улс" HorizontalAlignment="Left" Margin="34,173,0,0" VerticalAlignment="Top"/>
         <Label Content="хаяг" HorizontalAlignment="Left" Margin="518,76,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.969,0"/>
         <Label Content="утас" HorizontalAlignment="Left" Margin="511,114,0,0" VerticalAlignment="Top"/>
         <Label Content="Цахим хуудас" HorizontalAlignment="Left" Margin="511,158,0,0" VerticalAlignment="Top"/>
@@ -30,7 +30,7 @@
         <TextBox x:Name="pname" HorizontalAlignment="Left" Height="23" Margin="116,117,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="pcode" HorizontalAlignment="Left" Height="23" Margin="116,76,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label Content="Нэр" HorizontalAlignment="Left" Margin="34,114,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="pcountry" HorizontalAlignment="Left" Height="23" Margin="116,173,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="pcountry" HorizontalAlignment="Left" Height="23" Margin="116,173,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="paddress" HorizontalAlignment="Left" Height="23" Margin="600,76,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBlock x:Name="checkDAta" HorizontalAlignment="Left" Margin="41,325,0,532" TextWrapping="Wrap" Width="1131"><Run Text="TextBlock"/></TextBlock>
         <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="258" AutoGenerateColumns="False" Margin="34,379,0,263" VerticalAlignment="Center" Width="1138">
@@ -61,10 +61,10 @@
         <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="1090,79,0,0"/>
         <Button Content="Update" HorizontalAlignment="Left" Margin="1090,110,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
         <ComboBox x:Name="pstate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="837,79,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
-        <Label Content="төрөл" HorizontalAlignment="Left" Margin="15,220,0,0" VerticalAlignment="Top"/>
+        <Label Content="төрөл" HorizontalAlignment="Left" Margin="30,223,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="ptype" ItemsSource="{Binding}" SelectionChanged="ptype_SelectionChanged" DisplayMemberPath="ptype1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="116,223,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <Label Content="Тусгай төрөл" HorizontalAlignment="Left" Margin="268,76,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="spetype" ItemsSource="{Binding}" SelectionChanged="spetype_SelectionChanged" DisplayMemberPath="ptype1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="369,79,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox x:Name="spetype" ItemsSource="{Binding}" SelectionChanged="spetype_SelectionChanged" DisplayMemberPath="specialType1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="369,79,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <Label Content="Хот/Аймаг" HorizontalAlignment="Left" Margin="280,167,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="pcity" HorizontalAlignment="Left" Height="23" Margin="369,168,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label Content="Дүүрэг/Сум" HorizontalAlignment="Left" Margin="280,199,0,0" VerticalAlignment="Top"/>

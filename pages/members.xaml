@@ -14,7 +14,7 @@
         <Label Content="Code" HorizontalAlignment="Left" Margin="52,128,0,0" VerticalAlignment="Top"/>
         <Label Content="type" HorizontalAlignment="Left" Margin="540,81,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.302,0.501"/>
         <Label Content="төлөв" HorizontalAlignment="Left" Margin="279,81,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="pcode" HorizontalAlignment="Left" Height="23" Margin="129,128,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="pcode" HorizontalAlignment="Left" Height="23" Margin="129,128,0,0" MaxLength="2" TextWrapping="Wrap" Text="12"  VerticalAlignment="Top" Width="120"/>
         <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="27,288,0,212" VerticalAlignment="Center" Width="1138">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
@@ -48,6 +48,10 @@
         <Label Content="Дуусах" HorizontalAlignment="Left" Margin="511,137,0,0" VerticalAlignment="Top"/>
         <DatePicker x:Name="starttime" HorizontalAlignment="Left" Margin="359,143,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.483,-0.792"/>
         <DatePicker x:Name="endtime" HorizontalAlignment="Left" Margin="619,143,0,0" VerticalAlignment="Top" Width="120"/>
+        <CheckBox x:Name="broker_Copy" Content="Брокер" HorizontalAlignment="Left" Margin="56,186,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="dealer_Copy" Content="Дилер" HorizontalAlignment="Left" Margin="139,186,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="ander_Copy" Content="Андерр" HorizontalAlignment="Left" Margin="56,219,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="nominal_Copy" Content="Номинал" HorizontalAlignment="Left" Margin="139,219,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

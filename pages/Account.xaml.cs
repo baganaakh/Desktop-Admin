@@ -31,7 +31,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id, memId;
+        static string id, memId,stat;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -151,16 +151,34 @@ namespace pages
             FillDataGrid();
         }
         public List<Members> Emp { get; set; }
+        public List<States> boa{ get; set; }
 
         private void bindCombo()
         {
             demoEntities10 dc = new demoEntities10();
-            var item = dc.Members.ToList();
-            Emp = item;
+            var mitem = dc.Members.ToList();
+            Emp = mitem;
             memid.ItemsSource = Emp;
 
+            var item = dc.States.ToList();
+            boa = item;
+            pstate.ItemsSource = boa;
         }
-        
+
+        private void pstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = pstate.SelectedItem as States;
+
+            try
+            {
+                stat = item.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
+        }
+
         private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = memid.SelectedItem as Members;
