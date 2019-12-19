@@ -31,7 +31,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id,statid,metype, partid;
+        static string id,statid,metype, partid,oldMask;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -40,7 +40,7 @@ namespace pages
             metype= value.Row[1].ToString();
             string codepar = value.Row[2].ToString();
             statid= value.Row[3].ToString();
-            string Mask= value.Row[5].ToString();
+            oldMask= value.Row[5].ToString();
             string sdate= value.Row[6].ToString();
             string edate= value.Row[7].ToString();
             string Broker= value.Row[8].ToString();
@@ -94,41 +94,56 @@ namespace pages
             string Nominal= nominal.IsChecked.ToString();
             if (broker.IsChecked ?? false)
             {
-                h = h + " insert into dbo.Account(memberid,modified,mask,startdate,enddate) values " +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h100','" + startT + "','" + endT + "')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h200','" + startT + "','" + endT + "')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h300','" + startT + "','" + endT + "')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h400','" + startT + "','" + endT + "')";
+                h = h + "UPDATE DEMO.dbo.Account SET "+
+                "state = 0 "+
+                "WHERE memberid = IDENT_CURRENT('demo.dbo.members') AND mask LIKE('%h%') " +
+                "GO ";
             }
             if (dealer.IsChecked ?? false)
             {
-                h = h + " insert into dbo.Account(memberid,modified,mask,startdate,enddate) values " +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "c100','" + startT + "','" + endT + "')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "c200','" + startT + "','" + endT + "')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "c300','" + startT + "','" + endT + "')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "c400','" + startT + "','" + endT + "')";
+                h = h + "UPDATE DEMO.dbo.Account SET " +
+                 "state = 0 " +
+                 "WHERE memberid = IDENT_CURRENT('demo.dbo.members') AND mask LIKE('%c%') " +
+                 "GO ";
             }
             if (ander.IsChecked ?? false)
             {
-                h = h+" insert into dbo.Account(memberid,modified,mask,startdate,enddate) values "+
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "u100','" + startT + "','" + endT + "')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "u200','" + startT + "','" + endT + "')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "u300','" + startT + "','" + endT + "')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "u400','" + startT + "','" + endT + "')";
+                h = h + "UPDATE DEMO.dbo.Account SET " +
+                  "state = 0 " +
+                  "WHERE memberid = IDENT_CURRENT('demo.dbo.members') AND mask LIKE('%u%') " +
+                  "GO ";
             }
             if (nominal.IsChecked ?? false)
             {
-                h = h+" insert into dbo.Account(memberid,modified,mask,startdate,enddate) values "+
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "o100','" + startT + "','" + endT + "')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "o200','" + startT + "','" + endT + "')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "o300','" + startT + "','" + endT + "')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "o400','" + startT + "','" + endT + "')";
+                h = h + "UPDATE DEMO.dbo.Account SET " +
+                "state = 0 " +
+                "WHERE memberid = IDENT_CURRENT('demo.dbo.members') AND mask LIKE('%o%') " +
+                "GO ";
             }
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.members (partid, startdate, enddate, type, code, state, broker, dealer, ander, nominal, modified) values " +
+            cmd.CommandText = "insert into dbo.members (partid, startdate, enddate, type, code, state, broker, dealer, ander, nominal, modified,mask) values " +
                 " (" + partid + ",'" + startT + "','" + endT + "','" + metype + "',N'" + code + "','" + statid + "','" + Broker + "','" + Dealer + "','"
-                + Ander + "','" + Nominal + "', getdate()); "+h;
+                + Ander + "','" + Nominal + "', getdate(),'"+mask+"'); " +
+                "insert into dbo.Account(memberid,modified,mask,startdate,enddate,state) values " +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "o100','" + startT + "','" + endT + "',-1)," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "o200','" + startT + "','" + endT + "',-1)," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "o300','" + startT + "','" + endT + "',-1)," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "o400','" + startT + "','" + endT + "',-1)," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "u100','" + startT + "','" + endT + "',-1)," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "u200','" + startT + "','" + endT + "',-1)," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "u300','" + startT + "','" + endT + "',-1)," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "u400','" + startT + "','" + endT + "',-1)," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "c100','" + startT + "','" + endT + "',-1)," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "c200','" + startT + "','" + endT + "',-1)," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "c300','" + startT + "','" + endT + "',-1)," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "c400','" + startT + "','" + endT + "',-1)," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h100','" + startT + "','" + endT + "',-1)," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h200','" + startT + "','" + endT + "',-1)," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h300','" + startT + "','" + endT + "',-1)," +
+                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h400','" + startT + "','" + endT + "',-1); " +
+                "GO --insert the update \n" +
+                " "+ h;
             
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
@@ -199,7 +214,6 @@ namespace pages
         }
         private void update(object sender, RoutedEventArgs e)
         {
-            string code = pcode.Text;
             string mask = "";
             string h = "";
             if (starttime.SelectedDate == null || endtime.SelectedDate == null)
@@ -209,22 +223,6 @@ namespace pages
             }
             string startT = starttime.SelectedDate.Value.ToShortDateString();
             string endT = endtime.SelectedDate.Value.ToShortDateString();
-            switch (metype)
-            {
-                case "0":
-                    mask = mask + "70";
-                    break;
-                case "1":
-                    mask = mask + "61";
-                    break;
-                case "2":
-                    mask = mask + "70";
-                    break;
-                default:
-                    MessageBox.Show("No Me Type match");
-                    break;
-            }
-            mask = mask + code;
             string Broker = broker.IsChecked.ToString();
             string Dealer = dealer.IsChecked.ToString();
             string Ander = ander.IsChecked.ToString();
@@ -232,10 +230,10 @@ namespace pages
             if (broker.IsChecked ?? false)
             {
                 h = h + " insert into dbo.Account(memberid,modified,mask,startdate,enddate) values " +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h100','" + startT + "','" + endT + "')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h200','" + startT + "','" + endT + "')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h300','" + startT + "','" + endT + "')," +
-                " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h400','" + startT + "','" + endT + "')";
+                 " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h100','" + startT + "','" + endT + "')," +
+                 " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h200','" + startT + "','" + endT + "')," +
+                 " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h300','" + startT + "','" + endT + "')," +
+                 " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h400','" + startT + "','" + endT + "')";
             }
             if (dealer.IsChecked ?? false)
             {
@@ -267,7 +265,6 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.dbo.members SET " +
-                "code = '" + code + "', " +
                 "type = '" + metype+ "', " +
                 "state= '" + statid + "', " +
                 "broker= '" + Broker+ "', " +
@@ -277,7 +274,14 @@ namespace pages
                 "startdate= '" + startT+ "', " +
                 "enddate= '" + endT+ "', " +
                 "modified = getdate() " +
-                "WHERE id = '" + id + "'";
+                "WHERE id = '" + id + "' " +
+
+                "UPDATE DEMO.dbo.Account SET "+
+                " modified = GETDATE()," +
+                " startdate = " + startT + "," +
+                " enddate = " + endT + "," +
+                " state = " + statid + "" +
+                " WHERE memberid = " + id + "";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
