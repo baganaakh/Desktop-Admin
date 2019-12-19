@@ -15,7 +15,7 @@ namespace pages.dbBind
     public partial class Account
     {
         public long id { get; set; }
-        public string memberid { get; set; }
+        public Nullable<long> memberid { get; set; }
         public Nullable<decimal> trading { get; set; }
         public Nullable<decimal> clearing { get; set; }
         public Nullable<decimal> settlement { get; set; }
@@ -24,5 +24,6 @@ namespace pages.dbBind
         public string mask { get; set; }
         public Nullable<System.DateTime> startdate { get; set; }
         public Nullable<System.DateTime> enddate { get; set; }
+        public Nullable<short> state { get; set; }
     }
 }

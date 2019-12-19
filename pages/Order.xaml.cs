@@ -182,7 +182,7 @@ namespace pages
             dealtype.ItemsSource = Dtype;
 
             demoEntities10 ac = new demoEntities10();
-            var act = ac.Account.ToList();
+            var act = ac.Accounts.ToList();
             ACCT = act;
             accountid.ItemsSource = ACCT;
 

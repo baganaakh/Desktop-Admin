@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4cba61905fa64e09b603654d7a8251cf" Name="Diagram1">
-        <EntityTypeShape EntityType="demoModel.Account" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="demoModel.ActiveSessions" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="demoModel.Assets" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="demoModel.BoardInstruments" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
@@ -53,6 +52,7 @@
         <EntityTypeShape EntityType="demoModel.isactive" Width="1.5" PointX="0.75" PointY="19.75" />
         <EntityTypeShape EntityType="demoModel.SpecialType" Width="1.5" PointX="19.75" PointY="3.75" />
         <EntityTypeShape EntityType="demoModel.IsDealer" Width="1.5" PointX="19.375" PointY="6.75" />
+        <EntityTypeShape EntityType="demoModel.Account" Width="1.5" PointX="19.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

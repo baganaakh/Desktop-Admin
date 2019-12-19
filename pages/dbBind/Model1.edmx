@@ -10,7 +10,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="memberid" Type="nvarchar" MaxLength="20" />
+          <Property Name="memberid" Type="bigint" />
           <Property Name="trading" Type="decimal" Precision="18" Scale="4" />
           <Property Name="clearing" Type="decimal" Precision="18" Scale="4" />
           <Property Name="settlement" Type="decimal" Precision="18" Scale="4" />
@@ -19,6 +19,7 @@
           <Property Name="mask" Type="nvarchar" MaxLength="20" />
           <Property Name="startdate" Type="date" />
           <Property Name="enddate" Type="date" />
+          <Property Name="state" Type="smallint" />
         </EntityType>
         <EntityType Name="ActiveSessions">
           <Key>
@@ -442,7 +443,7 @@
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="boardid" Type="bigint" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
-          <Property Name="stime" Type="datetime" />
+          <Property Name="stime" Type="date" />
           <Property Name="duration" Type="time" Precision="7" />
           <Property Name="algorithm" Type="smallint" />
           <Property Name="match" Type="smallint" />
@@ -711,21 +712,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="demoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Account">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="memberid" Type="String" MaxLength="20" FixedLength="false" Unicode="true"/>
-          <Property Name="trading" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="clearing" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="settlement" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="collateral" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="mask" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="startdate" Type="DateTime" Precision="0" />
-          <Property Name="enddate" Type="DateTime" Precision="0" />
-        </EntityType>
         <EntityType Name="ActiveSessions">
           <Key>
             <PropertyRef Name="id" />
@@ -1211,7 +1197,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="boardid" Type="Int32" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="stime" Type="DateTime" Precision="3" />
+          <Property Name="stime" Type="DateTime" Precision="0" />
           <Property Name="duration" Type="Time" Precision="7" />
           <Property Name="algorithm" Type="Int16" />
           <Property Name="match" Type="Int16" />
@@ -1251,7 +1237,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="demoEntities10" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Account" EntityType="Self.Account" />
           <EntitySet Name="ActiveSessions" EntityType="Self.ActiveSessions" />
           <EntitySet Name="Assets" EntityType="Self.Assets" />
           <EntitySet Name="BoardInstruments" EntityType="Self.BoardInstruments" />
@@ -1332,7 +1317,8 @@
           <EntitySet Name="isactives" EntityType="demoModel.isactive" />
           <EntitySet Name="SpecialTypes" EntityType="demoModel.SpecialType" />
           <EntitySet Name="IsDealers" EntityType="demoModel.IsDealer" />
-        </EntityContainer>
+          <EntitySet Name="Accounts" EntityType="demoModel.Account" />
+          </EntityContainer>
         <EntityType Name="Fee">
           <Key>
             <PropertyRef Name="id" />
@@ -1425,28 +1411,28 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="isDealer1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="memberid" Type="Int64" />
+          <Property Name="trading" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="clearing" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="settlement" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="collateral" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="mask" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="startdate" Type="DateTime" Precision="0" />
+          <Property Name="enddate" Type="DateTime" Precision="0" />
+          <Property Name="state" Type="Int16" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="demoModelStoreContainer" CdmEntityContainer="demoEntities10">
-          <EntitySetMapping Name="Account">
-            <EntityTypeMapping TypeName="demoModel.Account">
-              <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="enddate" ColumnName="enddate" />
-                <ScalarProperty Name="startdate" ColumnName="startdate" />
-                <ScalarProperty Name="mask" ColumnName="mask" />
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="memberid" ColumnName="memberid" />
-                <ScalarProperty Name="trading" ColumnName="trading" />
-                <ScalarProperty Name="clearing" ColumnName="clearing" />
-                <ScalarProperty Name="settlement" ColumnName="settlement" />
-                <ScalarProperty Name="collateral" ColumnName="collateral" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ActiveSessions">
             <EntityTypeMapping TypeName="demoModel.ActiveSessions">
               <MappingFragment StoreEntitySet="ActiveSessions">
@@ -2107,7 +2093,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="IsTypeOf(demoModel.Account)">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="enddate" ColumnName="enddate" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
+                <ScalarProperty Name="mask" ColumnName="mask" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="collateral" ColumnName="collateral" />
+                <ScalarProperty Name="settlement" ColumnName="settlement" />
+                <ScalarProperty Name="clearing" ColumnName="clearing" />
+                <ScalarProperty Name="trading" ColumnName="trading" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
