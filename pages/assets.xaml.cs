@@ -49,7 +49,7 @@ namespace pages
             aname.Text = namev;
             aprice.Text = pricev;
             anote.Text = descv;
-            Decimal ratio = Int32.Parse(ratiov)*100;
+            Decimal ratio = Decimal.Parse(ratiov)*100;
             artio.Text =ratio.ToString();
             aexpire.SelectedDate = DateTime.Parse(expirev);
             astate.SelectedValue = statev;
@@ -67,7 +67,7 @@ namespace pages
             string note = anote.Text;
             string expireDate = aexpire.SelectedDate.Value.ToShortDateString();
             string rati = artio.Text;
-            decimal ratio = Int32.Parse(rati)/100;
+            decimal ratio = Decimal.Parse(rati)/100;
             string state = astate.Text;
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =
@@ -90,7 +90,7 @@ namespace pages
             string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT ALL [id], [code], [name], [value], [note], [expireDate], [state], [modified], [ratio] "+
+                CmdString = "SELECT ALL [id], [code], [name], [value], [note], [expireDate], [state], [modified], [ratio], [secId] "+
                     "FROM dbo.assets";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
@@ -148,8 +148,7 @@ namespace pages
             string note = anote.Text;
             string expireDate = aexpire.SelectedDate.Value.ToShortDateString();
             string rati = artio.Text;
-            decimal ratio = Int32.Parse(rati) / 100;
-
+            decimal ratio = Decimal.Parse(rati) / 100;
             string state = astate.Text;
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =

@@ -48,24 +48,25 @@ namespace pages
             string intrase = value.Row[9].ToString();
             string sdatese = value.Row[10].ToString();
             string edatese = value.Row[11].ToString();
-            string statese = value.Row[13].ToString();
             string gidse = value.Row[12].ToString();
+            string statese = value.Row[13].ToString();
 
             partId.SelectedValue= pidse;
-            stype.Text = typese;
+            stype.SelectedValue = typese;
             scode.Text = codese;
             sname.Text = namese;
             refNo.Text = refnose;
             regNo.Text = regnose;
             totalquant.Text = totqtse;
             fprice.Text = fpricese;
-            Decimal intRase = Int32.Parse(intrase) * 100;
+            Decimal intRase = Decimal.Parse(intrase) * 100;
             srate.Text = intRase.ToString();
             state.SelectedValue= statese;
             sdate.Text = sdatese;
             edate.Text = edatese;
             groupid.Text = gidse;
         }
+        #region insert func
         private void insertFunc(object sender, RoutedEventArgs e)
         {
             if (sdate.SelectedDate == null || edate.SelectedDate == null)
@@ -74,7 +75,6 @@ namespace pages
                 return;
             }
             string partid = cid;
-            string type = stype.Text;
             string code = scode.Text;
             string name = sname.Text;
             string refno = refNo.Text;
@@ -82,7 +82,7 @@ namespace pages
             string total = totalquant.Text;
             string fPirce = fprice.Text;
             string intRat = srate.Text;
-            Decimal intRate= Int32.Parse(intRat) / 100;
+            Decimal intRate= Decimal.Parse(intRat) / 100;
             string stat = state.Text;
             string starTime = sdate.SelectedDate.Value.ToShortDateString();
             string endTime = edate.SelectedDate.Value.ToShortDateString();
@@ -93,9 +93,13 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.securities (partid, type, code, name, refno, regno, totalQty, firstPrice, intRate, sdate, edate, groupid, state, modified) values" +
-                " ('" + partid + "',N'" + type + "',N'" + code + "',N'" + name + "', '" + refno + "', '" + regno + "', '" + total + "', '" + fPirce + "', '" + intRate +
-                "',N'" + starTime + "',N'" + endTime + "',N'" + groupId + "',N'" + statid + "', getdate())";
+            cmd.CommandText = "insert into dbo.securities (partid, type, code, name, refno, regno, totalQty, " +
+                "firstPrice, intRate, sdate, edate, groupid, state, modified) values" +
+                " ('" + partid + "'," + setype + ",N'" + code + "',N'" + name + "', '" + refno + "', '" + regno +
+                "', '" + total + "', '" + fPirce + "', '" + intRate +"',N'" + starTime + "',N'" + endTime + "',N'" +
+                groupId + "',N'" + statid + "', getdate())  " +
+                "insert into dbo.assets(code, name, value, expireDate, state, modified, secId) values" +
+                " ('" + code + "',N'" + name + "',N'" + fPirce + "', '" + endTime + "', '" + statid + "', getdate(), IDENT_CURRENT('securities'))";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -103,6 +107,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region number only
         private static readonly Regex _regex = new Regex("[^0-9.-]+");
         private static bool IsTextAllowed(string text)
         {
@@ -112,14 +118,15 @@ namespace pages
         {
             e.Handled = !IsTextAllowed(e.Text);
         }
+        #endregion
         private void FillDataGrid()
         {
             string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
             string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT ALL [id], [partid], [type], [code], [name], [refno], [regno], [totalQty], [firstPrice], [intRate], [sdate], [edate], [groupId], [state],[modified] " +
-                    "FROM dbo.securities";
+                CmdString = "SELECT ALL [id], [partid], [type], [code], [name], [refno], [regno], [totalQty], " +
+                "[firstPrice], [intRate], [sdate], [edate], [groupId], [state], [modified] FROM dbo.securities";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Securities");
@@ -168,7 +175,6 @@ namespace pages
         private void update(object sender, RoutedEventArgs e)
         {
             string partid = cid;
-            string type = stype.Text;
             string code = scode.Text;
             string name = sname.Text;
             string refno = refNo.Text;
@@ -176,21 +182,20 @@ namespace pages
             string total = totalquant.Text;
             string fPirce = fprice.Text;
             string intRat = srate.Text;
-            Decimal intRate = Int32.Parse(intRat) / 100;
+            Decimal intRate = Decimal.Parse(intRat) / 100;
             string stat = state.Text;
             string starTime = sdate.SelectedDate.Value.ToShortDateString();
             string endTime = edate.SelectedDate.Value.ToShortDateString();
             string groupId = groupid.Text;
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
+            new System.Data.SqlClient.SqlConnection(connectionString);
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.dbo.securities SET " +
                 "partid= '" + partid + "', " +
-                "type= '" + type + "', " +
+                "type= '" + setype + "', " +
                 "code= '" + code + "', " +
                 "name= '" + name + "', " +
                 "refno= '" + refno + "', " +
@@ -203,7 +208,16 @@ namespace pages
                 "groupId= '" + groupId + "', " +
                 "state= '" + statid + "', " +
                 "modified = getdate() " +
-                "WHERE id = " + id ;
+                "WHERE id = " + id+
+
+                " UPDATE demo.dbo.assets SET " +
+                "code= '" + code + "', " +
+                "name= '" + name + "', " +
+                "value= '" + fPirce + "', " +
+                "expireDate= '" + endTime + "', " +
+                "state= '" + statid + "', " +
+                "modified = getdate() " +
+                "WHERE secId = '" + id + "'";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();

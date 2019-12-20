@@ -41,6 +41,7 @@
                 <DataGridTextColumn Binding="{Binding state}" Header="State"/>
                 <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
                 <DataGridTextColumn Binding="{Binding ratio}" Header="Ratio"/>
+                <DataGridTextColumn Binding="{Binding secId}" Header="Sec ID"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="704,165,0,0"/>
