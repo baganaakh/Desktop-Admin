@@ -31,7 +31,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id, memId,stat;
+        static string id, memId,stat,mask;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -186,6 +186,7 @@ namespace pages
             try
             {
                 memId = item.id.ToString();
+                mask = item.mask.ToString();
             }
             catch
             {

@@ -31,7 +31,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id,statid,metype, partid,oldMask;
+        static string id,statid,metype, partid,oldMask, pname;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -48,6 +48,7 @@ namespace pages
             string Ander= value.Row[10].ToString();
             string Nominal= value.Row[11].ToString();
             partid= value.Row[12].ToString();
+            pname= value.Row[13].ToString();
 
             pcode.Text = codepar;
             mtype.SelectedValue = metype;
@@ -115,9 +116,10 @@ namespace pages
             }
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.members (partid, startdate, enddate, type, code, state, broker, dealer, ander, nominal, modified,mask) values " +
+            #region main insert query
+            cmd.CommandText = "insert into dbo.members (partid, startdate, enddate, type, code, state, broker, dealer, ander, nominal, modified,mask,name) values " +
                 " (" + partid + ",'" + startT + "','" + endT + "','" + metype + "',N'" + code + "','" + statid + "','" + Broker + "','" + Dealer + "','"
-                + Ander + "','" + Nominal + "', getdate(),'" + mask + "'); " +
+                + Ander + "','" + Nominal + "', getdate(),'" + mask + "','"+pname+"'); " +
                 "insert into dbo.Account(memberid,modified,mask,startdate,enddate,state) values " +
                 " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "o100','" + startT + "','" + endT + "'," + no + ")," +
                 " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "o200','" + startT + "','" + endT + "'," + no + ")," +
@@ -138,7 +140,7 @@ namespace pages
                 " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h200','" + startT + "','" + endT + "'," + br + ")," +
                 " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h300','" + startT + "','" + endT + "'," + br + ")," +
                 " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "h400','" + startT + "','" + endT + "'," + br + ") ";
-            
+            #endregion
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
             cmd.Connection = sqlConnection1;
@@ -163,7 +165,7 @@ namespace pages
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 CmdString = "SELECT ALL [id], [type], [code], [state], [modified], [mask]," +
-                    "[startdate], [enddate], [broker], [dealer], [ander], [nominal], [partid] FROM dbo.members ";
+                    "[startdate], [enddate], [broker], [dealer], [ander], [nominal], [partid],[name] FROM dbo.members ";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Participant");
@@ -323,6 +325,7 @@ namespace pages
             try
             {
                 partid = items.id.ToString();
+                pname = items.name.ToString();
             }
             catch
             {
