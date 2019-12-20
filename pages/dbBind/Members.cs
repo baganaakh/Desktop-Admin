@@ -27,5 +27,6 @@ namespace pages.dbBind
         public string dealer { get; set; }
         public string ander { get; set; }
         public string nominal { get; set; }
+        public string name { get; set; }
     }
 }

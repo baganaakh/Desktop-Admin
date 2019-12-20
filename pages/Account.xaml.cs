@@ -31,7 +31,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id, memId,stat,mask;
+        static string id, memId,stat,mask,cname;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -48,27 +48,63 @@ namespace pages
             settlement.Text = Settlement;
             collateral.Text = Collateral;
         }
+        #region insert func
         private void insertFunc(object sender, RoutedEventArgs e)
         {
             string Trading = trading.Text;
             string Clearing = clearing.Text;
             string Settlement = settlement.Text;
             string Collateral = collateral.Text;
-
+            string newMask = "";
+            if (broker.IsChecked == true)
+            {
+                if (newMask != "") newMask += ",";
+                newMask +=  "('" + memId + "', N'" + mask + "u" + Trading + "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "u" + Settlement+ "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "u" + Collateral+ "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "u" + Clearing+ "', getdate()," + stat + ")";
+            }
+            if (dealer.IsChecked == true)
+            {
+                if (newMask != "") newMask += ",";
+                newMask +=  "('" + memId + "', N'" + mask + "c" + Trading + "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "c" + Settlement+ "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "c" + Collateral+ "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "c" + Clearing+ "', getdate()," + stat + ")";
+            }
+            if (ander.IsChecked == true)
+            {
+                if (newMask != "") newMask += ",";
+                newMask +=  " ('" + memId + "', N'" + mask + "u" + Trading + "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "u" + Settlement+ "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "u" + Collateral+ "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "u" + Clearing+ "', getdate()," + stat + ")";
+            }
+            if (nominal.IsChecked == true)
+            {
+                if (newMask != "") newMask += ",";
+                newMask +=  " ('" + memId + "', N'" + mask + "o" + Trading + "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "o" + Settlement+ "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "o" + Collateral+ "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "o" + Clearing+"', getdate(),"+ stat +")";
+            }
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.Account (memberid, trading, clearing, settlement, collateral, modified) values" +
-                " ('" + memId + "',N'" + Trading+ "',N'" + Clearing+ "',N'" + Settlement + "',N'" + Collateral + "', getdate())";
-
+            #region main insert query 
+            cmd.CommandText = "insert into dbo.Account (memberid, mask, modified,state) values " +
+                newMask;
+            
+            #endregion
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
         private static readonly Regex _regex = new Regex("[^0-9.-]+");
         private static bool IsTextAllowed(string text)
         {
@@ -187,6 +223,8 @@ namespace pages
             {
                 memId = item.id.ToString();
                 mask = item.mask.ToString();
+                cname = item.name.ToString();
+                companyName.Content = cname;
             }
             catch
             {

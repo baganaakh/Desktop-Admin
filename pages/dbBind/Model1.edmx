@@ -340,6 +340,7 @@
           <Property Name="dealer" Type="nvarchar" MaxLength="20" />
           <Property Name="ander" Type="nvarchar" MaxLength="20" />
           <Property Name="nominal" Type="nvarchar" MaxLength="20" />
+          <Property Name="name" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="mtype">
           <Key>
@@ -903,19 +904,20 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
           <Property Name="type" Type="Int16" />
-          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="code" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
           <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="modified" Precision="3" Type="DateTime" />
           <Property Name="partid" Type="Int64" />
-          <Property Name="mask" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="startdate" Type="DateTime" Precision="0" />
-          <Property Name="enddate" Type="DateTime" Precision="0" />
-          <Property Name="broker" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="dealer" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="ander" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="nominal" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="mask" MaxLength="20" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="startdate" Precision="0" Type="DateTime" />
+          <Property Name="enddate" Precision="0" Type="DateTime" />
+          <Property Name="broker" MaxLength="20" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="dealer" MaxLength="20" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ander" MaxLength="20" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="nominal" MaxLength="20" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="name" MaxLength="20" FixedLength="false" Unicode="true" Type="String" />
         </EntityType>
         <EntityType Name="mtype">
           <Key>
@@ -1634,6 +1636,7 @@
           <EntitySetMapping Name="Members">
             <EntityTypeMapping TypeName="demoModel.Members">
               <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="nominal" ColumnName="nominal" />
                 <ScalarProperty Name="ander" ColumnName="ander" />
                 <ScalarProperty Name="dealer" ColumnName="dealer" />
@@ -2094,9 +2097,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="IsTypeOf(demoModel.Account)">
+            <EntityTypeMapping TypeName="demoModel.Account">
               <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="state" ColumnName="state" />
                 <ScalarProperty Name="enddate" ColumnName="enddate" />
                 <ScalarProperty Name="startdate" ColumnName="startdate" />
@@ -2107,6 +2109,7 @@
                 <ScalarProperty Name="clearing" ColumnName="clearing" />
                 <ScalarProperty Name="trading" ColumnName="trading" />
                 <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

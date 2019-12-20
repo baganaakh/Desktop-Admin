@@ -39,5 +39,6 @@
         <CheckBox x:Name="dealer" Content="Дилер" HorizontalAlignment="Left" Margin="190,174,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="ander" Content="Андерр" HorizontalAlignment="Left" Margin="282,174,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="nominal" Content="Номинал" HorizontalAlignment="Left" Margin="365,174,0,0" VerticalAlignment="Top"/>
+        <Label Content="Company name" x:Name="companyName" HorizontalAlignment="Left" Margin="155,34,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>
