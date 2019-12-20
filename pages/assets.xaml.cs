@@ -49,7 +49,8 @@ namespace pages
             aname.Text = namev;
             aprice.Text = pricev;
             anote.Text = descv;
-            artio.Text = ratiov;
+            Decimal ratio = Int32.Parse(ratiov)*100;
+            artio.Text =ratio.ToString();
             aexpire.SelectedDate = DateTime.Parse(expirev);
             astate.SelectedValue = statev;
         }
@@ -65,7 +66,8 @@ namespace pages
             string value = aprice.Text;
             string note = anote.Text;
             string expireDate = aexpire.SelectedDate.Value.ToShortDateString();
-            string ratio = artio.Text;
+            string rati = artio.Text;
+            decimal ratio = Int32.Parse(rati)/100;
             string state = astate.Text;
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =
@@ -145,7 +147,9 @@ namespace pages
             string value = aprice.Text;
             string note = anote.Text;
             string expireDate = aexpire.SelectedDate.Value.ToShortDateString();
-            string ratio = artio.Text;
+            string rati = artio.Text;
+            decimal ratio = Int32.Parse(rati) / 100;
+
             string state = astate.Text;
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =

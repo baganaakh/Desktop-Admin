@@ -59,34 +59,34 @@ namespace pages
             if (broker.IsChecked == true)
             {
                 if (newMask != "") newMask += ",";
-                newMask +=  "('" + memId + "', N'" + mask + "u" + Trading + "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "u" + Settlement+ "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "u" + Collateral+ "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "u" + Clearing+ "', getdate()," + stat + ")";
+                newMask +=  "('" + memId + "', N'" + mask + "u1" + Trading + "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "u3" + Settlement+ "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "u4" + Collateral+ "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "u2" + Clearing+ "', getdate()," + stat + ")";
             }
             if (dealer.IsChecked == true)
             {
                 if (newMask != "") newMask += ",";
-                newMask +=  "('" + memId + "', N'" + mask + "c" + Trading + "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "c" + Settlement+ "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "c" + Collateral+ "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "c" + Clearing+ "', getdate()," + stat + ")";
+                newMask +=  "('" + memId + "', N'" + mask + "c1" + Trading + "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "c3" + Settlement+ "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "c4" + Collateral+ "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "c2" + Clearing+ "', getdate()," + stat + ")";
             }
             if (ander.IsChecked == true)
             {
                 if (newMask != "") newMask += ",";
-                newMask +=  " ('" + memId + "', N'" + mask + "u" + Trading + "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "u" + Settlement+ "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "u" + Collateral+ "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "u" + Clearing+ "', getdate()," + stat + ")";
+                newMask +=  "('" + memId + "', N'" + mask + "u1" + Trading + "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "u3" + Settlement+ "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "u4" + Collateral+ "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "u2" + Clearing+ "', getdate()," + stat + ")";
             }
             if (nominal.IsChecked == true)
             {
                 if (newMask != "") newMask += ",";
-                newMask +=  " ('" + memId + "', N'" + mask + "o" + Trading + "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "o" + Settlement+ "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "o" + Collateral+ "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "o" + Clearing+"', getdate(),"+ stat +")";
+                newMask +=  "('" + memId + "', N'" + mask + "o1" + Trading + "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "o3" + Settlement+ "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "o4" + Collateral+ "', getdate()," + stat + ")," +
+                            "('" + memId + "', N'" + mask + "o2" + Clearing+"', getdate(),"+ stat +")";
             }
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);

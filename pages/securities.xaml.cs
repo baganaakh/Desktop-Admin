@@ -31,7 +31,7 @@ namespace pages
             bindcombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id, cid, statid;
+        static string id, cid, statid, setype;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -59,7 +59,8 @@ namespace pages
             regNo.Text = regnose;
             totalquant.Text = totqtse;
             fprice.Text = fpricese;
-            srate.Text = intrase;
+            Decimal intRase = Int32.Parse(intrase) * 100;
+            srate.Text = intRase.ToString();
             state.SelectedValue= statese;
             sdate.Text = sdatese;
             edate.Text = edatese;
@@ -80,7 +81,8 @@ namespace pages
             string regno = regNo.Text;
             string total = totalquant.Text;
             string fPirce = fprice.Text;
-            string intRate = srate.Text;
+            string intRat = srate.Text;
+            Decimal intRate= Int32.Parse(intRat) / 100;
             string stat = state.Text;
             string starTime = sdate.SelectedDate.Value.ToShortDateString();
             string endTime = edate.SelectedDate.Value.ToShortDateString();
@@ -173,7 +175,8 @@ namespace pages
             string regno = regNo.Text;
             string total = totalquant.Text;
             string fPirce = fprice.Text;
-            string intRate = srate.Text;
+            string intRat = srate.Text;
+            Decimal intRate = Int32.Parse(intRat) / 100;
             string stat = state.Text;
             string starTime = sdate.SelectedDate.Value.ToShortDateString();
             string endTime = edate.SelectedDate.Value.ToShortDateString();
@@ -200,7 +203,7 @@ namespace pages
                 "groupId= '" + groupId + "', " +
                 "state= '" + statid + "', " +
                 "modified = getdate() " +
-                "WHERE id = '" + id + "'";
+                "WHERE id = " + id ;
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -211,6 +214,7 @@ namespace pages
 
         public List<Participants> Emp { get; set; }
         public List<States> statt { get; set; }
+        public List<stype> stypes { get; set; }
 
         private void bindcombo()
         {
@@ -218,11 +222,29 @@ namespace pages
             var item = dc.Participants.ToList();
             Emp = item;
             partId.ItemsSource = Emp;
-            demoEntities10 st = new demoEntities10();
-            var items = st.States.ToList();
+
+            var items = dc.States.ToList();
             statt = items;
             state.ItemsSource = statt;
+
+            var titems = dc.stype.ToList();
+            stypes = titems;
+            stype.ItemsSource = stypes;
         }
+
+        private void stype_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = stype.SelectedItem as stype;
+            try
+            {
+                setype = item.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
+        }
+
         private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = partId.SelectedItem as Participants;

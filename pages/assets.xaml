@@ -24,10 +24,10 @@
         <Label Content="ratio" HorizontalAlignment="Left" Margin="346,63,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="iAct" HorizontalAlignment="Left" Height="23" Margin="474,64,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="aname" HorizontalAlignment="Left" Height="23" Margin="156,109,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="acode" HorizontalAlignment="Left" Height="23" Margin="156,68,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="acode" HorizontalAlignment="Left" Height="23" Margin="156,68,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label Content="нэр" HorizontalAlignment="Left" Margin="35,106,0,0" VerticalAlignment="Top"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="aprice" HorizontalAlignment="Left" Height="23" Margin="156,154,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="artio" HorizontalAlignment="Left" Height="23" Margin="474,64,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" MaxLength="2" x:Name="artio" HorizontalAlignment="Left" Height="23" Margin="474,64,0,0" TextWrapping="Wrap" Text="34"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="anote" HorizontalAlignment="Left" Height="23" Margin="156,207,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <DatePicker x:Name="aexpire" HorizontalAlignment="Left" Margin="474,114,0,0" VerticalAlignment="Top" Width="120"/>
         <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="25,255,-363,-124" VerticalAlignment="Center" Width="1138">
