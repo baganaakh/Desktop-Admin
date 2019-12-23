@@ -300,9 +300,9 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
-        public List<States> statt { get; set; }
+        public List<State> statt { get; set; }
         public List<mtype> mt { get; set; }
-        public List<Participants> part { get; set; }
+        public List<Participant> part { get; set; }
         private void bindCombo()
         {
             demoEntities10 st = new demoEntities10();
@@ -310,7 +310,7 @@ namespace pages
             statt = items;
             pstate.ItemsSource = statt;
 
-            var meitems = st.mtype.ToList();
+            var meitems = st.mtypes.ToList();
             mt = meitems;
             mtype.ItemsSource = mt;
 
@@ -321,7 +321,7 @@ namespace pages
 
         private void participants_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var items = participants.SelectedItem as Participants;
+            var items = participants.SelectedItem as Participant;
             try
             {
                 partid = items.id.ToString();
@@ -348,7 +348,7 @@ namespace pages
 
         private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var items = pstate.SelectedItem as States;
+            var items = pstate.SelectedItem as State;
             try
             {
                 statid = items.id.ToString();

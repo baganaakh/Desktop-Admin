@@ -147,7 +147,7 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
-        public List<States> statt { get; set; }
+        public List<State> statt { get; set; }
 
         private void bindCombo()
         {
@@ -158,7 +158,7 @@ namespace pages
         }
         private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var items = stat.SelectedItem as States;
+            var items = stat.SelectedItem as State;
             try
             {
                 statid = items.id.ToString();

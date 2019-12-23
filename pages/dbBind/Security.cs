@@ -12,26 +12,22 @@ namespace pages.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class Participants
+    public partial class Security
     {
         public int id { get; set; }
+        public Nullable<int> partid { get; set; }
+        public Nullable<short> type { get; set; }
         public string code { get; set; }
         public string name { get; set; }
-        public Nullable<short> country { get; set; }
-        public string address { get; set; }
-        public Nullable<int> phone { get; set; }
-        public string fax { get; set; }
-        public string email { get; set; }
-        public string contact { get; set; }
+        public string refno { get; set; }
+        public string regno { get; set; }
+        public Nullable<decimal> totalQty { get; set; }
+        public Nullable<decimal> firstPrice { get; set; }
+        public Nullable<decimal> intRate { get; set; }
+        public Nullable<System.DateTime> sdate { get; set; }
+        public Nullable<System.DateTime> edate { get; set; }
+        public Nullable<int> groupId { get; set; }
         public Nullable<short> state { get; set; }
         public Nullable<System.DateTime> modified { get; set; }
-        public Nullable<int> csid { get; set; }
-        public Nullable<int> webid { get; set; }
-        public string pcity { get; set; }
-        public string pdistr { get; set; }
-        public string phoroo { get; set; }
-        public string pstreet { get; set; }
-        public string pwebpage { get; set; }
-        public string numofemp { get; set; }
     }
 }

@@ -12,14 +12,18 @@ namespace pages.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class Spreads
+    public partial class MarketMaker
     {
         public int id { get; set; }
-        public Nullable<int> contractid { get; set; }
-        public Nullable<int> sessionid { get; set; }
-        public Nullable<int> rspread { get; set; }
-        public Nullable<int> ispread { get; set; }
-        public string rparam { get; set; }
+        public Nullable<int> contactid { get; set; }
+        public Nullable<int> memberid { get; set; }
+        public Nullable<long> accountid { get; set; }
+        public Nullable<System.DateTime> startdate { get; set; }
+        public Nullable<System.DateTime> enddate { get; set; }
+        public Nullable<int> ticks { get; set; }
+        public string description { get; set; }
+        public Nullable<int> orderlimit { get; set; }
+        public Nullable<short> state { get; set; }
         public Nullable<System.DateTime> modified { get; set; }
     }
 }

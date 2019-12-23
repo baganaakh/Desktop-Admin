@@ -12,16 +12,12 @@ namespace pages.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class Rights
+    public partial class DealerAccount
     {
-        public int ID { get; set; }
-        public Nullable<int> RightType { get; set; }
-        public string KeyName { get; set; }
-        public string RightCaption { get; set; }
-        public string RightTooltip { get; set; }
-        public Nullable<short> DefaultValue { get; set; }
-        public Nullable<int> RelationID { get; set; }
-        public Nullable<short> RightLevel { get; set; }
-        public Nullable<int> ParentID { get; set; }
+        public long id { get; set; }
+        public Nullable<long> memberid { get; set; }
+        public Nullable<long> accountid { get; set; }
+        public Nullable<short> state { get; set; }
+        public Nullable<System.DateTime> modified { get; set; }
     }
 }

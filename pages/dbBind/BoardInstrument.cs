@@ -12,12 +12,12 @@ namespace pages.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class GroupRights
+    public partial class BoardInstrument
     {
-        public long ID { get; set; }
-        public Nullable<long> GroupID { get; set; }
-        public Nullable<int> RightID { get; set; }
-        public Nullable<short> HasRight { get; set; }
-        public Nullable<System.DateTime> Modified { get; set; }
+        public int id { get; set; }
+        public Nullable<int> boardid { get; set; }
+        public Nullable<int> instrumentid { get; set; }
+        public string state { get; set; }
+        public Nullable<System.DateTime> modified { get; set; }
     }
 }

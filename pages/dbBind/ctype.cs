@@ -12,15 +12,9 @@ namespace pages.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class Margins
+    public partial class ctype
     {
-        public int id { get; set; }
-        public Nullable<decimal> buy { get; set; }
-        public Nullable<decimal> sell { get; set; }
-        public Nullable<short> buytype { get; set; }
-        public Nullable<short> selltype { get; set; }
-        public Nullable<System.DateTime> modified { get; set; }
-        public Nullable<decimal> mbuy { get; set; }
-        public Nullable<decimal> msell { get; set; }
+        public short id { get; set; }
+        public string ctype1 { get; set; }
     }
 }

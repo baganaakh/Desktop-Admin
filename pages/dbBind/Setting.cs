@@ -12,13 +12,15 @@ namespace pages.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class UserGroups
+    public partial class Setting
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public Nullable<long> manager { get; set; }
-        public Nullable<short> state { get; set; }
-        public Nullable<System.DateTime> modified { get; set; }
+        public int ID { get; set; }
+        public string SettingName { get; set; }
+        public string SettingValue { get; set; }
+        public string SettingCaption { get; set; }
+        public Nullable<int> SortOrder { get; set; }
+        public Nullable<byte> ReadOnly { get; set; }
+        public string ValueType { get; set; }
+        public string FormatString { get; set; }
     }
 }

@@ -31,7 +31,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id, cid, statid;
+        static string id, cid, statid, ctypee;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -207,8 +207,9 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
-        public List<Securities> boa { get; set; }
-        public List<States> statt { get; set; }
+        public List<Security> boa { get; set; }
+        public List<State> statt { get; set; }
+        public List<ctype> ctypp{ get; set; }
 
         private void bindCombo()
         {
@@ -217,15 +218,31 @@ namespace pages
             boa = item;
             securityid_Copy.ItemsSource = boa;
 
-            demoEntities10 st = new demoEntities10();
-            var items = st.States.ToList();
+            var items = dE.States.ToList();
             statt = items;
             cstate.ItemsSource = statt;
+            
+            var citems = dE.ctypes.ToList();
+            ctypp = citems;
+            ctype.ItemsSource = ctypp;
+        }
+
+        private void ctype_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = ctype.SelectedItem as ctype;
+            try
+            {
+                ctypee = item.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
         }
 
         private void boardid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var item = securityid_Copy.SelectedItem as Securities;
+            var item = securityid_Copy.SelectedItem as Security;
             try
             {
                 cid = item.id.ToString();
@@ -237,7 +254,7 @@ namespace pages
         }
         private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var items = cstate.SelectedItem as States;
+            var items = cstate.SelectedItem as State;
             try
             {
             statid = items.id.ToString();

@@ -226,8 +226,8 @@ namespace pages
             FillDataGrid();
         }
 
-        public List<Participants> Emp { get; set; }
-        public List<States> statt { get; set; }
+        public List<Participant> Emp { get; set; }
+        public List<State> statt { get; set; }
         public List<stype> stypes { get; set; }
 
         private void bindcombo()
@@ -241,7 +241,7 @@ namespace pages
             statt = items;
             state.ItemsSource = statt;
 
-            var titems = dc.stype.ToList();
+            var titems = dc.stypes.ToList();
             stypes = titems;
             stype.ItemsSource = stypes;
         }
@@ -261,7 +261,7 @@ namespace pages
 
         private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var item = partId.SelectedItem as Participants;
+            var item = partId.SelectedItem as Participant;
             try
             {
                 cid = item.id.ToString();
@@ -273,7 +273,7 @@ namespace pages
         }
         private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var items = state.SelectedItem as States;
+            var items = state.SelectedItem as State;
             try
             {
             statid = items.id.ToString();

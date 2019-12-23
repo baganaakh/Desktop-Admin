@@ -12,20 +12,17 @@ namespace pages.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class Trans
+    public partial class Asset
     {
-        public long id { get; set; }
-        public Nullable<long> accountId { get; set; }
-        public Nullable<short> type { get; set; }
-        public Nullable<short> type1 { get; set; }
-        public Nullable<decimal> amount { get; set; }
-        public Nullable<int> currency { get; set; }
-        public Nullable<int> rate { get; set; }
+        public int id { get; set; }
+        public string code { get; set; }
+        public string name { get; set; }
+        public Nullable<decimal> value { get; set; }
         public string note { get; set; }
-        public Nullable<System.DateTime> tdate { get; set; }
+        public Nullable<System.DateTime> expireDate { get; set; }
         public Nullable<short> state { get; set; }
         public Nullable<System.DateTime> modified { get; set; }
-        public Nullable<long> userId { get; set; }
-        public Nullable<long> memberid { get; set; }
+        public Nullable<decimal> ratio { get; set; }
+        public Nullable<long> secId { get; set; }
     }
 }

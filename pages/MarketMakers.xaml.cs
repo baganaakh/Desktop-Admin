@@ -180,9 +180,9 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
-        public List<Contracts> Cont { get; set; }
-        public List<Members> Emp { get; set; }
-        public List<States> statt { get; set; }
+        public List<Contract> Cont { get; set; }
+        public List<Member> Emp { get; set; }
+        public List<State> statt { get; set; }
 
         private void bindcombo()
         {
@@ -203,7 +203,7 @@ namespace pages
         }
         private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var item = markmember.SelectedItem as Members;
+            var item = markmember.SelectedItem as Member;
             try
             {
             meId = item.id.ToString();
@@ -215,7 +215,7 @@ namespace pages
         }
         private void contid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var citem = markcontact.SelectedItem as Contracts;
+            var citem = markcontact.SelectedItem as Contract;
             try
             {
             coId = citem.id.ToString();
@@ -227,7 +227,7 @@ namespace pages
         }
         private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var items = markstat.SelectedItem as States;
+            var items = markstat.SelectedItem as State;
             try
             {
                 statid = items.id.ToString();

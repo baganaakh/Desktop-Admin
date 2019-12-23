@@ -186,8 +186,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
-        public List<Members> Emp { get; set; }
-        public List<States> boa{ get; set; }
+        public List<Member> Emp { get; set; }
+        public List<State> boa{ get; set; }
 
         private void bindCombo()
         {
@@ -203,7 +203,7 @@ namespace pages
 
         private void pstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var item = pstate.SelectedItem as States;
+            var item = pstate.SelectedItem as State;
 
             try
             {
@@ -217,7 +217,7 @@ namespace pages
 
         private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var item = memid.SelectedItem as Members;
+            var item = memid.SelectedItem as Member;
 
             try
             {

@@ -12,22 +12,22 @@ namespace pages.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class Securities
+    public partial class Contract
     {
         public int id { get; set; }
-        public Nullable<int> partid { get; set; }
+        public Nullable<int> securityId { get; set; }
         public Nullable<short> type { get; set; }
         public string code { get; set; }
         public string name { get; set; }
-        public string refno { get; set; }
-        public string regno { get; set; }
-        public Nullable<decimal> totalQty { get; set; }
-        public Nullable<decimal> firstPrice { get; set; }
-        public Nullable<decimal> intRate { get; set; }
+        public Nullable<decimal> lot { get; set; }
+        public Nullable<decimal> tick { get; set; }
         public Nullable<System.DateTime> sdate { get; set; }
         public Nullable<System.DateTime> edate { get; set; }
-        public Nullable<int> groupId { get; set; }
+        public Nullable<short> groupId { get; set; }
         public Nullable<short> state { get; set; }
         public Nullable<System.DateTime> modified { get; set; }
+        public Nullable<int> mmorderLimit { get; set; }
+        public Nullable<int> orderLimit { get; set; }
+        public Nullable<decimal> refpriceParam { get; set; }
     }
 }

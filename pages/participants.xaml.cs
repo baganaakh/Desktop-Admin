@@ -225,7 +225,7 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
-        public List<States> boa { get; set; }
+        public List<State> boa { get; set; }
         public List<SpecialType> sptype { get; set; }
         public List<Ptype> ptyp{ get; set; }
         private void bindCombo()
@@ -241,7 +241,7 @@ namespace pages
             spetype.ItemsSource = sptype;
 
             demoEntities10 ptp = new demoEntities10();
-            var ptitem = ptp.Ptype.ToList();
+            var ptitem = ptp.Ptypes.ToList();
             ptyp= ptitem;
             ptype.ItemsSource = ptyp;
         }
@@ -274,7 +274,7 @@ namespace pages
 
         private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var item = pstate.SelectedItem as States;
+            var item = pstate.SelectedItem as State;
             try
             {
                 cid = item.id.ToString();

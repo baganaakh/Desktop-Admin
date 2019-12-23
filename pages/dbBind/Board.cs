@@ -12,12 +12,17 @@ namespace pages.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class users
+    public partial class Board
     {
-        public int id { get; set; }
-        public string uname { get; set; }
-        public string password { get; set; }
+        public short id { get; set; }
+        public string name { get; set; }
+        public Nullable<short> type { get; set; }
+        public string tdays { get; set; }
+        public Nullable<short> state { get; set; }
         public Nullable<System.DateTime> modified { get; set; }
-        public string role { get; set; }
+        public string description { get; set; }
+    
+        public virtual Board Boards1 { get; set; }
+        public virtual Board Board1 { get; set; }
     }
 }

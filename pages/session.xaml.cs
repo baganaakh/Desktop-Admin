@@ -239,8 +239,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
-        public List<Boards> boa { get; set; }
-        public List<States> statt { get; set; }
+        public List<Board> boa { get; set; }
+        public List<State> statt { get; set; }
 
         private void bindCombo()
         {
@@ -256,7 +256,7 @@ namespace pages
         }
         private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var items =sstate.SelectedItem as States;
+            var items =sstate.SelectedItem as State;
             try
             {
                 statid = items.id.ToString();
@@ -269,7 +269,7 @@ namespace pages
 
         private void boardid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var item = sboardid.SelectedItem as Boards;
+            var item = sboardid.SelectedItem as Board;
             try
             {
                 cid = item.id.ToString();

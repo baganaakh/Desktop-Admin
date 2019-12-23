@@ -23,7 +23,6 @@
         <Label Content="state" HorizontalAlignment="Left" Margin="570,120,0,0" VerticalAlignment="Top"/>
         <Label Content="mmorderlimit" HorizontalAlignment="Left" Margin="570,164,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="ccode" HorizontalAlignment="Left" Height="23" Margin="138,157,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="ctype" HorizontalAlignment="Left" Height="23" Margin="138,112,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
         <Label Content="lot" HorizontalAlignment="Left" Margin="302,79,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,0.435"/>
         <TextBox x:Name="cname" HorizontalAlignment="Left" Height="23" Margin="138,199,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="clot" HorizontalAlignment="Left" Height="23" Margin="412,75,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
@@ -59,7 +58,8 @@
         <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="973,167,0,0"/>
         <Button Content="Update" HorizontalAlignment="Left" Margin="973,209,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
         <ComboBox x:Name="securityid_Copy" ItemsSource="{Binding}" SelectionChanged="boardid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="138,75,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="cstate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="698,113,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox x:Name="cstate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="698,113,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox x:Name="ctype" ItemsSource="{Binding}" SelectionChanged="ctype_SelectionChanged" DisplayMemberPath="ctype1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="138,113,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Page>

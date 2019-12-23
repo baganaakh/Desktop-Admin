@@ -33,8 +33,8 @@ namespace pages
             InitializeComponent();
             feeViewSource = ((CollectionViewSource)(FindResource("feeViewSource")));
             DataContext = this;
-            data.Fee.Load();
-            feeViewSource.Source = data.Fee.Local;
+            data.Fees.Load();
+            feeViewSource.Source = data.Fees.Local;
             feeViewSource.View.MoveCurrentToFirst();
         }
 

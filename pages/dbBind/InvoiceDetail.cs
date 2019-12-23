@@ -12,12 +12,15 @@ namespace pages.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class InvoiceDetail
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public long id { get; set; }
+        public Nullable<long> invoiceid { get; set; }
+        public Nullable<int> assetid { get; set; }
+        public Nullable<decimal> qty { get; set; }
+        public Nullable<decimal> price { get; set; }
+        public Nullable<short> state { get; set; }
+        public Nullable<System.DateTime> modified { get; set; }
+        public string note { get; set; }
     }
 }

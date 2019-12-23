@@ -153,7 +153,7 @@ namespace pages
             desc.Text = null;
             state.SelectedValue = null;
         }
-        public List<States> boa { get; set; }
+        public List<State> boa { get; set; }
         private void bindCombo()
         {
             demoEntities10 dE = new demoEntities10();
@@ -164,7 +164,7 @@ namespace pages
 
         private void stat_change(object sender, SelectionChangedEventArgs e)
         {
-            var item = state.SelectedItem as States;
+            var item = state.SelectedItem as State;
             try
             {
                 cid = item.id.ToString();

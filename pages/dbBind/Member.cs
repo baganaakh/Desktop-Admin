@@ -12,17 +12,21 @@ namespace pages.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class ClearingAccounts
+    public partial class Member
     {
         public int id { get; set; }
-        public Nullable<int> memberid { get; set; }
-        public Nullable<int> account { get; set; }
         public Nullable<short> type { get; set; }
-        public Nullable<int> currency { get; set; }
-        public Nullable<decimal> blnc { get; set; }
-        public Nullable<decimal> sblnc { get; set; }
-        public Nullable<long> linkaccount { get; set; }
+        public string code { get; set; }
         public Nullable<short> state { get; set; }
         public Nullable<System.DateTime> modified { get; set; }
+        public Nullable<long> partid { get; set; }
+        public string mask { get; set; }
+        public Nullable<System.DateTime> startdate { get; set; }
+        public Nullable<System.DateTime> enddate { get; set; }
+        public string broker { get; set; }
+        public string dealer { get; set; }
+        public string ander { get; set; }
+        public string nominal { get; set; }
+        public string name { get; set; }
     }
 }

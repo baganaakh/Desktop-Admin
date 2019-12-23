@@ -12,15 +12,15 @@ namespace pages.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class Settings
+    public partial class Margin
     {
-        public int ID { get; set; }
-        public string SettingName { get; set; }
-        public string SettingValue { get; set; }
-        public string SettingCaption { get; set; }
-        public Nullable<int> SortOrder { get; set; }
-        public Nullable<byte> ReadOnly { get; set; }
-        public string ValueType { get; set; }
-        public string FormatString { get; set; }
+        public int id { get; set; }
+        public Nullable<decimal> buy { get; set; }
+        public Nullable<decimal> sell { get; set; }
+        public Nullable<short> buytype { get; set; }
+        public Nullable<short> selltype { get; set; }
+        public Nullable<System.DateTime> modified { get; set; }
+        public Nullable<decimal> mbuy { get; set; }
+        public Nullable<decimal> msell { get; set; }
     }
 }

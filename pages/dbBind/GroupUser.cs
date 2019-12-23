@@ -12,11 +12,11 @@ namespace pages.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class DealerAccounts
+    public partial class GroupUser
     {
         public long id { get; set; }
-        public Nullable<long> memberid { get; set; }
-        public Nullable<long> accountid { get; set; }
+        public Nullable<long> userid { get; set; }
+        public Nullable<int> groupid { get; set; }
         public Nullable<short> state { get; set; }
         public Nullable<System.DateTime> modified { get; set; }
     }

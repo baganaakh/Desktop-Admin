@@ -60,7 +60,7 @@
         <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="997,172,0,0"/>
         <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="1090,79,0,0"/>
         <Button Content="Update" HorizontalAlignment="Left" Margin="1090,110,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
-        <ComboBox x:Name="pstate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="837,79,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox x:Name="pstate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="837,79,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <Label Content="төрөл" HorizontalAlignment="Left" Margin="30,223,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="ptype" ItemsSource="{Binding}" SelectionChanged="ptype_SelectionChanged" DisplayMemberPath="ptype1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="116,223,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <Label Content="Тусгай төрөл" HorizontalAlignment="Left" Margin="268,76,0,0" VerticalAlignment="Top"/>

@@ -12,18 +12,22 @@ namespace pages.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class MarketMakers
+    public partial class Deal
     {
-        public int id { get; set; }
-        public Nullable<int> contactid { get; set; }
+        public long id { get; set; }
+        public Nullable<short> dealtype { get; set; }
+        public Nullable<long> dealno { get; set; }
+        public Nullable<short> side { get; set; }
         public Nullable<int> memberid { get; set; }
         public Nullable<long> accountid { get; set; }
-        public Nullable<System.DateTime> startdate { get; set; }
-        public Nullable<System.DateTime> enddate { get; set; }
-        public Nullable<int> ticks { get; set; }
-        public string description { get; set; }
-        public Nullable<int> orderlimit { get; set; }
+        public Nullable<int> assetid { get; set; }
+        public Nullable<decimal> qty { get; set; }
+        public Nullable<decimal> price { get; set; }
+        public Nullable<decimal> totalPrice { get; set; }
         public Nullable<short> state { get; set; }
         public Nullable<System.DateTime> modified { get; set; }
+        public Nullable<decimal> fee { get; set; }
+        public Nullable<decimal> m2m { get; set; }
+        public Nullable<decimal> refPrice { get; set; }
     }
 }

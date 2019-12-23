@@ -12,16 +12,18 @@ namespace pages.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class Assets
+    public partial class Invoice
     {
         public int id { get; set; }
-        public string code { get; set; }
-        public string name { get; set; }
-        public Nullable<decimal> value { get; set; }
-        public string note { get; set; }
-        public Nullable<System.DateTime> expireDate { get; set; }
+        public Nullable<short> type { get; set; }
+        public string invoiceno { get; set; }
+        public Nullable<System.DateTime> invoicedate { get; set; }
+        public Nullable<System.DateTime> expiredate { get; set; }
+        public Nullable<long> formid { get; set; }
+        public Nullable<long> toid { get; set; }
+        public Nullable<int> assetid { get; set; }
+        public Nullable<decimal> qty { get; set; }
         public Nullable<short> state { get; set; }
         public Nullable<System.DateTime> modified { get; set; }
-        public string ratio { get; set; }
     }
 }
