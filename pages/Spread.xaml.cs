@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using System.Data.SqlClient;
 using System.Data;
+using pages.dbBind;
+
 namespace pages
 {
     /// <summary>
@@ -26,9 +28,10 @@ namespace pages
         {
             InitializeComponent();
             FillDataGrid();
+            bindcombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id;
+        static string id, coId;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -39,7 +42,7 @@ namespace pages
             string ispre= values.Row[4].ToString();
             string rpara= values.Row[5].ToString();
 
-            contractid.Text=contId;
+            contractid.SelectedValue=contId;
             sessionid.Text=sessId;
             rspread.Text=rspre;
             ispread.Text=ispre;
@@ -47,7 +50,6 @@ namespace pages
         }
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            string contid= contractid.Text;
             string sessid= sessionid.Text;
             string rsprea= rspread.Text;
             string isprea= ispread.Text;
@@ -59,7 +61,7 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.Spreads(contractid, sessionid, rspread, ispread, rparam, modified) values" +
-                " ('" + contid + "',N'" + sessid+ "',N'"+ rsprea+ "',N'" + isprea+ "',N'" + rpara+"', getdate())";
+                " ('" + coId + "',N'" + sessid+ "',N'"+ rsprea+ "',N'" + isprea+ "',N'" + rpara+"', getdate())";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -97,9 +99,8 @@ namespace pages
         }
         private void newData(object sender, RoutedEventArgs e)
         {
-
-            contractid.Text = null;
-            sessionid.Text = null;
+            contractid.SelectedItem= null;
+            sessionid.SelectedItem = null;
             rspread.Text = null;
             ispread.Text = null;
             rparam.Text = null;
@@ -121,9 +122,39 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        public List<Contract> Cont { get; set; }
+        public List<Session> Sessionss { get; set; }
+        private void contractid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var citem = contractid.SelectedItem as Contract;
+            try
+            {
+                coId = citem.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
+        }
+        private void bindcombo()
+        {
+            demoEntities10 ct = new demoEntities10();
+            var citem = ct.Contracts.ToList();
+            Cont = citem;
+            contractid.ItemsSource = Cont;
+
+            //var meitems =ct.Sessions.ToList();
+            //Sessionss = meitems;
+            //sessionid.ItemsSource = Sessionss;
+        }
+
+        private void sessionid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
         private void update(object sender, RoutedEventArgs e)
         {
-            string contid = contractid.Text;
             string sessid = sessionid.Text;
             string rsprea = rspread.Text;
             string isprea = ispread.Text;
@@ -135,7 +166,7 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.dbo.Spreads SET " +
-                "contractid= '" + contid+ "', " +
+                "contractid= '" + coId+ "', " +
                 "sessionid= '" + sessid+ "', " +
                 "rspread= '" + rsprea+ "', " +
                 "ispread= '" + isprea+ "', " +

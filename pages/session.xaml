@@ -15,35 +15,19 @@
         <Label Content="Нэр" HorizontalAlignment="Left" Margin="22,71,0,0" VerticalAlignment="Top"/>
         <Label Content="Эхлэх хугацаа" HorizontalAlignment="Left" Margin="22,114,0,0" VerticalAlignment="Top"/>
         <Label Content="Үргэлжлэх хугацаа" HorizontalAlignment="Left" Margin="22,166,0,0" VerticalAlignment="Top"/>
-        <Label Content="Тайлбар" HorizontalAlignment="Left" Margin="313,38,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.286,0.577"/>
-        <Label Content="алгоритм" HorizontalAlignment="Left" Margin="22,215,0,0" VerticalAlignment="Top"/>
-        <Label Content="тулгах тоо" HorizontalAlignment="Left" Margin="22,255,0,0" VerticalAlignment="Top"/>
-        <Label Content="allowed types" HorizontalAlignment="Left" Margin="22,298,0,0" VerticalAlignment="Top"/>
-        <Label Content="төлөв" HorizontalAlignment="Left" Margin="313,89,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="algo" HorizontalAlignment="Left" Height="23" Margin="150,221,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="match1" HorizontalAlignment="Left" Height="23" Margin="150,256,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="150,302,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="allowT" HorizontalAlignment="Left" Height="23" Margin="150,303,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="sdesc" HorizontalAlignment="Left" Height="23" Margin="466,43,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <Label Content="идэвхжсэн эсэх" HorizontalAlignment="Left" Margin="315,151,0,0" VerticalAlignment="Top"/>
-        <Label Content="эхэлсэн хугацаа" HorizontalAlignment="Left" Margin="313,203,0,0" VerticalAlignment="Top"/>
-        <Label Content="Дуусах хугацаа" HorizontalAlignment="Left" Margin="313,268,0,0" VerticalAlignment="Top"/>
-        <Label Content="Үргэлжилсэн хугацаа" HorizontalAlignment="Left" Margin="668,43,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="iAct" HorizontalAlignment="Left" Height="23" Margin="466,163,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="837,38,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="sduration" HorizontalAlignment="Left" Height="23" Margin="837,39,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="checkDAta_Copy" Content="Market төрөл" HorizontalAlignment="Left" Margin="676,256,0,0" VerticalAlignment="Top"/>
-        <Label Content="тулгалт тоо" HorizontalAlignment="Left" Margin="668,83,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.387,0.538"/>
-        <Label Content="Edit order" HorizontalAlignment="Left" Margin="668,169,0,0" VerticalAlignment="Top"/>
-        <Label Content="Del order" HorizontalAlignment="Left" Margin="676,208,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.558"/>
-        <TextBox x:Name="matchedN" HorizontalAlignment="Left" Height="23" Margin="837,81,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="eOrder" HorizontalAlignment="Left" Height="23" Margin="837,164,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="837,210,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="dOrder" HorizontalAlignment="Left" Height="23" Margin="837,211,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="markT" HorizontalAlignment="Left" Height="23" Margin="837,262,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="Тайлбар" HorizontalAlignment="Left" Margin="313,81,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.286,0.577"/>
+        <Label Content="алгоритм" HorizontalAlignment="Left" Margin="315,163,0,0" VerticalAlignment="Top"/>
+        <Label Content="тулгах тоо" HorizontalAlignment="Left" Margin="648,38,0,0" VerticalAlignment="Top"/>
+        <Label Content="allowed types" HorizontalAlignment="Left" Margin="315,38,0,0" VerticalAlignment="Top"/>
+        <Label Content="төлөв" HorizontalAlignment="Left" Margin="313,114,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="algo" HorizontalAlignment="Left" Height="23" Margin="466,163,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="match1" HorizontalAlignment="Left" Height="23" Margin="776,39,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="466,42,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="allowT" HorizontalAlignment="Left" Height="23" Margin="466,43,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="sdesc" HorizontalAlignment="Left" Height="23" Margin="466,82,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="checkDAta_Copy" Content="Market төрөл" HorizontalAlignment="Left" Margin="648,80,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="markT" HorizontalAlignment="Left" Height="23" Margin="776,83,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="sname" HorizontalAlignment="Left" Height="23" Margin="150,72,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-        
-        <DatePicker x:Name="stime" HorizontalAlignment="Left" Margin="150,119,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="120"/>
         <ComboBox x:Name="dhour" HorizontalAlignment="Left" Margin="150,170,0,0" VerticalAlignment="Top" Width="58">
             <ComboBoxItem Content="00"/>
             <ComboBoxItem Content="1"/>
@@ -131,8 +115,6 @@
             <ComboBoxItem Content="58"/>
             <ComboBoxItem Content="59"/>
         </ComboBox>
-        <DatePicker x:Name="starttime" HorizontalAlignment="Left" Margin="466,205,0,0" VerticalAlignment="Top" Width="120"/>
-        <DatePicker x:Name="sEndTime" HorizontalAlignment="Left" Margin="466,262,0,0" VerticalAlignment="Top" Width="120"/>
         <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="22,331,0,329" VerticalAlignment="Center" Width="1362">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
@@ -161,7 +143,96 @@
         <Button Content="New" HorizontalAlignment="Left" Margin="1351,49,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData"/>
         <Button Content="Update" HorizontalAlignment="Left" Margin="1351,241,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
         <TextBlock x:Name="checkDAta" HorizontalAlignment="Left" Margin="29,755,0,262" TextWrapping="Wrap" Width="1131"><Run Text="TextBlock"/></TextBlock>
-        <ComboBox x:Name="sstate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="466,93,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox x:Name="sstate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="466,114,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox x:Name="stimehour" HorizontalAlignment="Left" Margin="150,126,0,0" VerticalAlignment="Top" Width="58">
+            <ComboBoxItem Content="00"/>
+            <ComboBoxItem Content="1"/>
+            <ComboBoxItem Content="2"/>
+            <ComboBoxItem Content="3"/>
+            <ComboBoxItem Content="4"/>
+            <ComboBoxItem Content="5"/>
+            <ComboBoxItem Content="6"/>
+            <ComboBoxItem Content="7"/>
+            <ComboBoxItem Content="8"/>
+            <ComboBoxItem Content="9"/>
+            <ComboBoxItem Content="10"/>
+            <ComboBoxItem Content="11"/>
+            <ComboBoxItem Content="12"/>
+            <ComboBoxItem Content="13"/>
+            <ComboBoxItem Content="14"/>
+            <ComboBoxItem Content="15"/>
+            <ComboBoxItem Content="16"/>
+            <ComboBoxItem Content="17"/>
+            <ComboBoxItem Content="18"/>
+            <ComboBoxItem Content="19"/>
+            <ComboBoxItem Content="20"/>
+            <ComboBoxItem Content="21"/>
+            <ComboBoxItem Content="22"/>
+            <ComboBoxItem Content="23"/>
+        </ComboBox>
+        <ComboBox x:Name="stimeminute" HorizontalAlignment="Left" Margin="213,126,0,0" VerticalAlignment="Top" Width="57">
+            <ComboBoxItem Content="00"/>
+            <ComboBoxItem Content="1"/>
+            <ComboBoxItem Content="2"/>
+            <ComboBoxItem Content="3"/>
+            <ComboBoxItem Content="4"/>
+            <ComboBoxItem Content="5"/>
+            <ComboBoxItem Content="6"/>
+            <ComboBoxItem Content="7"/>
+            <ComboBoxItem Content="8"/>
+            <ComboBoxItem Content="9"/>
+            <ComboBoxItem Content="10"/>
+            <ComboBoxItem Content="11"/>
+            <ComboBoxItem Content="12"/>
+            <ComboBoxItem Content="13"/>
+            <ComboBoxItem Content="14"/>
+            <ComboBoxItem Content="15"/>
+            <ComboBoxItem Content="16"/>
+            <ComboBoxItem Content="17"/>
+            <ComboBoxItem Content="18"/>
+            <ComboBoxItem Content="19"/>
+            <ComboBoxItem Content="20"/>
+            <ComboBoxItem Content="21"/>
+            <ComboBoxItem Content="22"/>
+            <ComboBoxItem Content="24"/>
+            <ComboBoxItem Content="25"/>
+            <ComboBoxItem Content="26"/>
+            <ComboBoxItem Content="27"/>
+            <ComboBoxItem Content="28"/>
+            <ComboBoxItem Content="29"/>
+            <ComboBoxItem Content="30"/>
+            <ComboBoxItem Content="31"/>
+            <ComboBoxItem Content="32"/>
+            <ComboBoxItem Content="33"/>
+            <ComboBoxItem Content="34"/>
+            <ComboBoxItem Content="35"/>
+            <ComboBoxItem Content="36"/>
+            <ComboBoxItem Content="37"/>
+            <ComboBoxItem Content="38"/>
+            <ComboBoxItem Content="39"/>
+            <ComboBoxItem Content="40"/>
+            <ComboBoxItem Content="41"/>
+            <ComboBoxItem Content="42"/>
+            <ComboBoxItem Content="43"/>
+            <ComboBoxItem Content="44"/>
+            <ComboBoxItem Content="45"/>
+            <ComboBoxItem Content="46"/>
+            <ComboBoxItem Content="47"/>
+            <ComboBoxItem Content="48"/>
+            <ComboBoxItem Content="49"/>
+            <ComboBoxItem Content="50"/>
+            <ComboBoxItem Content="51"/>
+            <ComboBoxItem Content="52"/>
+            <ComboBoxItem Content="53"/>
+            <ComboBoxItem Content="54"/>
+            <ComboBoxItem Content="55"/>
+            <ComboBoxItem Content="56"/>
+            <ComboBoxItem Content="57"/>
+            <ComboBoxItem Content="58"/>
+            <ComboBoxItem Content="59"/>
+        </ComboBox>
+        <CheckBox x:Name="eOrder" Content="Edit order" HorizontalAlignment="Left" Margin="776,134,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="dOrder" Content="Del order" HorizontalAlignment="Left" Margin="648,137,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

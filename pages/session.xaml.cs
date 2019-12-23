@@ -55,53 +55,50 @@ namespace pages
             string markettype = value.Row[18].ToString();
 
             char seperator = ':';
-            checkDAta.Text = duration;
             string[] arrays = duration.Split(seperator);
             string dHours = arrays[0];
             string dMinute = arrays[1];
+            string[] stimes = sTime.Split(seperator);
+            string shours = stimes[0];
+            string sminutes="";
+            try
+            {
+            sminutes= stimes[1];
+            }
+            catch
+            {
+                sminutes = "";
+            }
 
-            dminute.Text = dMinute;
-            dhour.Text = dHours;
+            dminute.SelectedValue = dMinute;
+            dhour.SelectedValue= dHours;
             sboardid.SelectedValue = bid;
             sname.Text = name;
-            stime.SelectedDate = DateTime.Parse(sTime);
+            stimehour.SelectedValue = shours;
+            stimeminute.SelectedValue = sminutes;
             algo.Text = algorithm;
             match1.Text = match;
             allowT.Text = allowtyp;
             sdesc.Text = description;
             sstate.SelectedValue = state;
-            iAct.Text = isACT;
-            starttime.SelectedDate = DateTime.Parse(startTime);
-            sEndTime.SelectedDate = DateTime.Parse(endTime);
-            sduration.Text = tduartion;
-            matchedN.Text = matched;
-            eOrder.Text = editoreder;
-            dOrder.Text = deleteorder;
+            eOrder.IsChecked =bool.Parse(editoreder);
+            dOrder.IsChecked=bool.Parse(deleteorder);
             markT.Text = markettype;
         }
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            if (stime.SelectedDate == null || starttime.SelectedDate == null || sEndTime.SelectedDate == null)
-            {
-                MessageBox.Show("Please Set Date !!!!!");
-                return;
-            }
             string boardid = cid;
             string name = sname.Text;
-            string sstime = stime.SelectedDate.Value.ToShortDateString();
+            string sstimeminute = stimeminute.Text;
+            string sstimehour = stimehour.Text;
             string dhours = dhour.Text;
             string dminutes = dminute.Text;
             string alogor = algo.Text;
             string match11 = match1.Text;
             string allowedT = allowT.Text;
             string descrip = sdesc.Text;
-            string iActive = iAct.Text;
-            string startT = starttime.SelectedDate.Value.ToShortDateString();
-            string endTime = sEndTime.SelectedDate.Value.ToShortDateString();
-            string tduration = sduration.Text;
-            string prevMatch = matchedN.Text;
-            string EDorder = eOrder.Text;
-            string DEorder = dOrder.Text;
+            string EDorder = eOrder.IsChecked.ToString();
+            string DEorder = dOrder.IsChecked.ToString();
             string markType = markT.Text;
             string state = statid;
 
@@ -110,10 +107,9 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.session (boardid, name, stime, duration, algorithm, match, allowedtypes, description, state, modified, isactive," +
-                " starttime, endtime, tduration, matched, editorder, delorder, markettype) values" +
-                " ('" + boardid + "',N'" + name + "',N'" + sstime + "',N'" + dhours + ":" + dminutes + ":00', '" + alogor + "', '" + match11 + "', '" + allowedT + "', '" + descrip + "', '" + state +
-                "', getdate(), '" + iActive + "', '" + startT + "', '" + endTime + "', '" + tduration + "',N'" + prevMatch + "', '" + EDorder + "', '" + DEorder + "', '" + markType + "')";
+            cmd.CommandText = "insert into dbo.session (boardid, name, stime, duration, algorithm, match, allowedtypes, description, state, modified, editorder, delorder, markettype) values" +
+                " ('" + boardid + "',N'" + name + "',N'" + sstimehour + ":"+sstimeminute+"',N'" + dhours + ":" + dminutes + ":00', '" + alogor + "', '" + match11 + "', '" + allowedT + "', '" + descrip + "', '" + state +
+                "', getdate(),'" + EDorder + "', '" + DEorder + "', '" + markType + "')";
             cmd.Parameters.AddWithValue("@modified", DateTime.Now);
             //checkDAta.Text = cmd.CommandText;
 
@@ -164,33 +160,25 @@ namespace pages
         {
             sboardid.SelectedValue = null;
             sname.Text = null;
-            stime.SelectedDate = null;
+            stimeminute.Text=null;
+            stimehour.Text=null;
             dhour.SelectedValue = null;
             algo.Text = null;
             match1.Text = null;
             allowT.Text = null;
             sdesc.Text = null;
             sstate.Text = null;
-            iAct.Text = null;
-            starttime.SelectedDate = null;
-            sEndTime.SelectedDate = null;
-            sduration.Text = null;
-            matchedN.Text = null;
-            eOrder.Text = null;
-            dOrder.Text = null;
+            eOrder.IsChecked = null;
+            dOrder.IsChecked= null;
             markT.Text = null;
             id = null;
         }
         private void update(object sender, RoutedEventArgs e)
         {
-            if (stime.SelectedDate == null || starttime.SelectedDate == null || sEndTime.SelectedDate == null)
-            {
-                MessageBox.Show("Please Set Date !!!!!");
-                return;
-            }
             string boardid = cid;
             string name = sname.Text;
-            string sstime = stime.SelectedDate.Value.ToShortDateString();
+            string sstimeminute = stimeminute.Text;
+            string sstimehour = stimehour.Text;
             string dhours = dhour.Text;
             string dminutes = dminute.Text;
             string alogor = algo.Text;
@@ -198,13 +186,8 @@ namespace pages
             string allowedT = allowT.Text;
             string descrip = sdesc.Text;
             string state = statid;
-            string iActive = iAct.Text;
-            string startT = starttime.SelectedDate.Value.ToShortDateString();
-            string endTime = sEndTime.SelectedDate.Value.ToShortDateString();
-            string tduration = sduration.Text;
-            string prevMatch = matchedN.Text;
-            string EDorder = eOrder.Text;
-            string DEorder = dOrder.Text;
+            string EDorder = eOrder.IsChecked.ToString();
+            string DEorder = dOrder.IsChecked.ToString();
             string markType = markT.Text;
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
@@ -214,7 +197,7 @@ namespace pages
             cmd.CommandText = "UPDATE demo.dbo.session SET " +
                 "boardid = '" + boardid + "', " +
                 "name= '" + name + "', " +
-                "stime = '" + sstime + "', " +
+                "stime = " + sstimehour + ":" + sstimeminute + ", " +
                 "duration = '" + dhours + ":" + dminutes + "', " +
                 "algorithm= '" + alogor + "', " +
                 "match= '" + match11 + "', " +
@@ -222,11 +205,6 @@ namespace pages
                 "description= '" + descrip + "', " +
                 "state= '" + state + "', " +
                 "modified = getdate(), " +
-                "isactive= '" + iActive + "', " +
-                "starttime= '" + startT + "', " +
-                "endtime= '" + endTime + "', " +
-                "tduration= '" + tduration + "', " +
-                "matched= '" + prevMatch + "', " +
                 "editorder= '" + EDorder + "', " +
                 "delorder= '" + DEorder + "', " +
                 "markettype= '" + markType + "' " +

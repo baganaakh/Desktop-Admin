@@ -51,7 +51,7 @@ namespace pages
             string refprPAram= values.Row[14].ToString();
 
             securityid_Copy.SelectedValue= SID;
-            ctype.Text = Type;
+            ctype.SelectedValue = Type;
             ccode.Text = Code;
             cname.Text = Name;
             clot.Text = Lot;
@@ -91,7 +91,7 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.contracts (securityId, type, code, name, lot, tick, sdate, edate, groupId, state, modified, mmorderLimit, orderLimit, refpriceParam) values" +
-                " ('" + secId+ "',N'" + type + "',N'" + code + "',N'" + name + "', '" + lot+ "', '" + tick+ "', '" + csdates+ "', '" + cedates+ "', '" + groupID +
+                " ('" + secId+ "',N'" + ctypee + "',N'" + code + "',N'" + name + "', '" + lot+ "', '" + tick+ "', '" + csdates+ "', '" + cedates+ "', '" + groupID +
                 "',N'" + statid+ "', getdate(),N'" + mmorderLimit+ "',N'" + orderlimit+ "',N'" + refpricePar+ "')";
 
             cmd.Connection = sqlConnection1;
@@ -131,7 +131,7 @@ namespace pages
         private void newData(object sender, RoutedEventArgs e)
         {
             securityid_Copy.Text = null;
-            ctype.Text = null;
+            ctype.SelectedValue = null;
             ccode.Text = null;
             cname.Text = null;
             clot.Text = null;
