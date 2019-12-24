@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4cba61905fa64e09b603654d7a8251cf" Name="Diagram1" ZoomLevel="95">
+      <Diagram DiagramId="4cba61905fa64e09b603654d7a8251cf" Name="Diagram1" ZoomLevel="92">
         <EntityTypeShape EntityType="demoModel.Account" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="demoModel.ActiveSession" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="demoModel.API" Width="1.5" PointX="0.75" PointY="4.75" />
@@ -36,7 +36,6 @@
         <EntityTypeShape EntityType="demoModel.RefPrice" Width="1.5" PointX="10.75" PointY="14.75" />
         <EntityTypeShape EntityType="demoModel.Right" Width="1.5" PointX="12.75" PointY="14.75" />
         <EntityTypeShape EntityType="demoModel.Security" Width="1.5" PointX="14.75" PointY="13.75" />
-        <EntityTypeShape EntityType="demoModel.Session" Width="1.5" PointX="16.75" PointY="0.75" />
         <EntityTypeShape EntityType="demoModel.Setting" Width="1.5" PointX="0.75" PointY="16.75" />
         <EntityTypeShape EntityType="demoModel.side" Width="1.5" PointX="16.75" PointY="6.75" />
         <EntityTypeShape EntityType="demoModel.Software" Width="1.5" PointX="16.75" PointY="9.75" />
@@ -54,6 +53,7 @@
         <EntityTypeShape EntityType="demoModel.user" Width="1.5" PointX="18.75" PointY="14.75" />
         <AssociationConnector Association="demoModel.FK_boards_boards1" />
         <EntityTypeShape EntityType="demoModel.ctype" Width="1.5" PointX="15.375" PointY="19.75" />
+        <EntityTypeShape EntityType="demoModel.Session" Width="1.5" PointX="19.375" PointY="17.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

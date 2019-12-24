@@ -17,5 +17,6 @@ namespace pages.dbBind
         public int id { get; set; }
         public Nullable<decimal> refprice1 { get; set; }
         public Nullable<System.DateTime> modified { get; set; }
+        public string name { get; set; }
     }
 }

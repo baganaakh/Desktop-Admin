@@ -17,7 +17,7 @@ namespace pages.dbBind
         public long id { get; set; }
         public Nullable<long> boardid { get; set; }
         public string name { get; set; }
-        public Nullable<System.DateTime> stime { get; set; }
+        public Nullable<System.TimeSpan> stime { get; set; }
         public Nullable<System.TimeSpan> duration { get; set; }
         public Nullable<short> algorithm { get; set; }
         public Nullable<short> match { get; set; }

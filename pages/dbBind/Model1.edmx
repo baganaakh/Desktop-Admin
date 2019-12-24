@@ -113,8 +113,8 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="securityId" Type="int" />
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="securityId" Type="bigint" />
           <Property Name="type" Type="smallint" />
           <Property Name="code" Type="nvarchar" MaxLength="16" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
@@ -128,6 +128,7 @@
           <Property Name="mmorderLimit" Type="int" />
           <Property Name="orderLimit" Type="int" />
           <Property Name="refpriceParam" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="bid" Type="bigint" />
         </EntityType>
         <EntityType Name="ctype">
           <Key>
@@ -408,9 +409,10 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="refprice" Type="decimal" Precision="18" Scale="6" />
           <Property Name="modified" Type="datetime" />
+          <Property Name="name" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Rights">
           <Key>
@@ -439,7 +441,7 @@
           <Property Name="regno" Type="nvarchar" MaxLength="16" />
           <Property Name="totalQty" Type="decimal" Precision="18" Scale="6" />
           <Property Name="firstPrice" Type="decimal" Precision="18" Scale="6" />
-          <Property Name="intRate" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="intRate" Type="decimal" Precision="3" Scale="2" />
           <Property Name="sdate" Type="date" />
           <Property Name="edate" Type="date" />
           <Property Name="groupId" Type="int" />
@@ -453,7 +455,7 @@
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="boardid" Type="bigint" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
-          <Property Name="stime" Type="date" />
+          <Property Name="stime" Type="time" Precision="7" />
           <Property Name="duration" Type="time" Precision="7" />
           <Property Name="algorithm" Type="smallint" />
           <Property Name="match" Type="smallint" />
@@ -785,7 +787,6 @@
           <EntitySet Name="RefPrices" EntityType="demoModel.RefPrice" />
           <EntitySet Name="Rights" EntityType="demoModel.Right" />
           <EntitySet Name="Securities" EntityType="demoModel.Security" />
-          <EntitySet Name="Sessions" EntityType="demoModel.Session" />
           <EntitySet Name="Settings" EntityType="demoModel.Setting" />
           <EntitySet Name="sides" EntityType="demoModel.side" />
           <EntitySet Name="Softwares" EntityType="demoModel.Software" />
@@ -806,6 +807,7 @@
             <End Role="Board1" EntitySet="Boards" />
           </AssociationSet>
           <EntitySet Name="ctypes" EntityType="demoModel.ctype" />
+          <EntitySet Name="Sessions" EntityType="demoModel.Session" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -943,6 +945,7 @@
           <Property Name="mmorderLimit" Type="Int32" />
           <Property Name="orderLimit" Type="Int32" />
           <Property Name="refpriceParam" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="bid" Type="Int64" />
         </EntityType>
         <EntityType Name="dayType">
           <Key>
@@ -1219,6 +1222,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="refprice1" Type="Decimal" Precision="18" Scale="6" />
           <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Right">
           <Key>
@@ -1247,36 +1251,12 @@
           <Property Name="regno" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
           <Property Name="totalQty" Type="Decimal" Precision="18" Scale="6" />
           <Property Name="firstPrice" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="intRate" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="intRate" Type="Decimal" Precision="3" Scale="2" />
           <Property Name="sdate" Type="DateTime" Precision="0" />
           <Property Name="edate" Type="DateTime" Precision="0" />
           <Property Name="groupId" Type="Int32" />
           <Property Name="state" Type="Int16" />
           <Property Name="modified" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="Session">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="boardid" Type="Int64" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="stime" Type="DateTime" Precision="0" />
-          <Property Name="duration" Type="Time" Precision="7" />
-          <Property Name="algorithm" Type="Int16" />
-          <Property Name="match" Type="Int16" />
-          <Property Name="allowedtypes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="isactive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="starttime" Type="DateTime" Precision="0" />
-          <Property Name="endtime" Type="DateTime" Precision="0" />
-          <Property Name="tduration" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="matched" Type="Int64" />
-          <Property Name="editorder" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="delorder" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="markettype" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Setting">
           <Key>
@@ -1449,6 +1429,30 @@
           <Property Name="id" Type="Int16" Nullable="false" />
           <Property Name="ctype1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="boardid" Type="Int64" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="stime" Type="Time" Precision="7" />
+          <Property Name="duration" Type="Time" Precision="7" />
+          <Property Name="algorithm" Type="Int16" />
+          <Property Name="match" Type="Int16" />
+          <Property Name="allowedtypes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="isactive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="starttime" Type="DateTime" Precision="0" />
+          <Property Name="endtime" Type="DateTime" Precision="0" />
+          <Property Name="tduration" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="matched" Type="Int64" />
+          <Property Name="editorder" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="delorder" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="markettype" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1592,6 +1596,7 @@
           <EntitySetMapping Name="Contracts">
             <EntityTypeMapping TypeName="demoModel.Contract">
               <MappingFragment StoreEntitySet="Contracts">
+                <ScalarProperty Name="bid" ColumnName="bid" />
                 <ScalarProperty Name="refpriceParam" ColumnName="refpriceParam" />
                 <ScalarProperty Name="orderLimit" ColumnName="orderLimit" />
                 <ScalarProperty Name="mmorderLimit" ColumnName="mmorderLimit" />
@@ -1900,6 +1905,7 @@
           <EntitySetMapping Name="RefPrices">
             <EntityTypeMapping TypeName="demoModel.RefPrice">
               <MappingFragment StoreEntitySet="RefPrice">
+                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
                 <ScalarProperty Name="refprice1" ColumnName="refprice" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -1938,31 +1944,6 @@
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="partid" ColumnName="partid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sessions">
-            <EntityTypeMapping TypeName="demoModel.Session">
-              <MappingFragment StoreEntitySet="Session">
-                <ScalarProperty Name="markettype" ColumnName="markettype" />
-                <ScalarProperty Name="delorder" ColumnName="delorder" />
-                <ScalarProperty Name="editorder" ColumnName="editorder" />
-                <ScalarProperty Name="matched" ColumnName="matched" />
-                <ScalarProperty Name="tduration" ColumnName="tduration" />
-                <ScalarProperty Name="endtime" ColumnName="endtime" />
-                <ScalarProperty Name="starttime" ColumnName="starttime" />
-                <ScalarProperty Name="isactive" ColumnName="isactive" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="allowedtypes" ColumnName="allowedtypes" />
-                <ScalarProperty Name="match" ColumnName="match" />
-                <ScalarProperty Name="algorithm" ColumnName="algorithm" />
-                <ScalarProperty Name="duration" ColumnName="duration" />
-                <ScalarProperty Name="stime" ColumnName="stime" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="boardid" ColumnName="boardid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2138,6 +2119,31 @@
             <EntityTypeMapping TypeName="demoModel.ctype">
               <MappingFragment StoreEntitySet="ctype">
                 <ScalarProperty Name="ctype1" ColumnName="ctype" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sessions">
+            <EntityTypeMapping TypeName="demoModel.Session">
+              <MappingFragment StoreEntitySet="Session">
+                <ScalarProperty Name="markettype" ColumnName="markettype" />
+                <ScalarProperty Name="delorder" ColumnName="delorder" />
+                <ScalarProperty Name="editorder" ColumnName="editorder" />
+                <ScalarProperty Name="matched" ColumnName="matched" />
+                <ScalarProperty Name="tduration" ColumnName="tduration" />
+                <ScalarProperty Name="endtime" ColumnName="endtime" />
+                <ScalarProperty Name="starttime" ColumnName="starttime" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="allowedtypes" ColumnName="allowedtypes" />
+                <ScalarProperty Name="match" ColumnName="match" />
+                <ScalarProperty Name="algorithm" ColumnName="algorithm" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="stime" ColumnName="stime" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="boardid" ColumnName="boardid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

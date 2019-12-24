@@ -58,24 +58,32 @@ namespace pages
             string[] arrays = duration.Split(seperator);
             string dHours = arrays[0];
             string dMinute = arrays[1];
+            string dSecond= arrays[2];
             string[] stimes = sTime.Split(seperator);
             string shours = stimes[0];
             string sminutes="";
+            string ssecond="";
             try
             {
             sminutes= stimes[1];
+            ssecond= stimes[2];
             }
             catch
             {
                 sminutes = "";
+                ssecond = "";
             }
-
-            dminute.Text = dMinute;
+            
+            stimeSecond.Text= ssecond;
+            dminute.Text= dMinute;
             dhour.Text= dHours;
-            sboardid.SelectedValue = bid;
-            sname.Text = name;
+            dsecond.Text= dSecond;
             stimehour.Text= shours;
             stimeminute.Text= sminutes;
+
+            sboardid.SelectedValue = bid;
+            sname.Text = name;
+
             algo.Text = algorithm;
             match1.Text = match;
             allowT.Text = allowtyp;
@@ -101,14 +109,15 @@ namespace pages
             string DEorder = dOrder.IsChecked.ToString();
             string markType = markT.Text;
             string state = statid;
-
+            string dSecond = dsecond.Text;
+            string sSecond = stimeSecond.Text;
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.session (boardid, name, stime, duration, algorithm, match, allowedtypes, description, state, modified, editorder, delorder, markettype) values" +
-                " ('" + boardid + "',N'" + name + "',N'" + sstimehour + ":"+sstimeminute+"',N'" + dhours + ":" + dminutes + ":00', '" + alogor + "', '" + match11 + "', '" + allowedT + "', '" + descrip + "', '" + state +
+                " ('" + boardid + "',N'" + name + "',N'" + sstimehour + ":"+sstimeminute+":"+sSecond+"' ,N'" + dhours + ":" + dminutes + ":"+dSecond+"', '" + alogor + "', '" + match11 + "', '" + allowedT + "', '" + descrip + "', '" + state +
                 "', getdate(),'" + EDorder + "', '" + DEorder + "', '" + markType + "')";
             cmd.Parameters.AddWithValue("@modified", DateTime.Now);
             //checkDAta.Text = cmd.CommandText;

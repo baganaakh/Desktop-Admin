@@ -29,5 +29,6 @@ namespace pages.dbBind
         public Nullable<int> mmorderLimit { get; set; }
         public Nullable<int> orderLimit { get; set; }
         public Nullable<decimal> refpriceParam { get; set; }
+        public Nullable<long> bid { get; set; }
     }
 }

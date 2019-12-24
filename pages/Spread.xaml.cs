@@ -143,9 +143,9 @@ namespace pages
             Cont = citem;
             contractid.ItemsSource = Cont;
 
-            //var meitems =ct.Sessions.ToList();
-            //Sessionss = meitems;
-            //sessionid.ItemsSource = Sessionss;
+            var meitems = ct.Sessions.ToList();
+            Sessionss = meitems;
+            sessionid.ItemsSource = Sessionss;
         }
 
         private void sessionid_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -58,7 +58,6 @@ namespace pages.dbBind
         public virtual DbSet<RefPrice> RefPrices { get; set; }
         public virtual DbSet<Right> Rights { get; set; }
         public virtual DbSet<Security> Securities { get; set; }
-        public virtual DbSet<Session> Sessions { get; set; }
         public virtual DbSet<Setting> Settings { get; set; }
         public virtual DbSet<side> sides { get; set; }
         public virtual DbSet<Software> Softwares { get; set; }
@@ -75,6 +74,7 @@ namespace pages.dbBind
         public virtual DbSet<UserGroup> UserGroups { get; set; }
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<ctype> ctypes { get; set; }
+        public virtual DbSet<Session> Sessions { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

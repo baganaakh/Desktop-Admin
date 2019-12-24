@@ -50,7 +50,8 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.RefPrice (id,refprice, modified) values" +
+            cmd.CommandText = "DELETE demo.dbo.RefPrice WHERE id = '" + contrid + "'; " +
+                "insert into dbo.RefPrice (id,refprice, modified) values" +
                 " ("+ contrid + ",'" + refPrice + "', getdate())";
 
             cmd.Connection = sqlConnection1;
