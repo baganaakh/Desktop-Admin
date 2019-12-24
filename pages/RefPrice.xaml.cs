@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Data;
+using pages.dbBind;
+
 namespace pages
 {
     /// <summary>
@@ -26,16 +28,17 @@ namespace pages
         {
             InitializeComponent();
             FillDataGrid();
+            bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id;
+        static string id, contrid, contName;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
             id = values.Row[0].ToString();
             string refPrice = values.Row[1].ToString();
 
-            rId.Content = id;
+            contrid = id;
             refprice.Text = refPrice;
         }
         private void insertFunc(object sender, RoutedEventArgs e)
@@ -47,12 +50,23 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.RefPrice (refprice, modified) values" +
-                " ('" + refPrice + "', getdate())";
+            cmd.CommandText = "insert into dbo.RefPrice (id,refprice, modified) values" +
+                " ("+ contrid + ",'" + refPrice + "', getdate())";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 2)
+                {
+                    MessageBox.Show("contract 2 is already price edit it !!!");
+                }
+                else throw;
+            }
             sqlConnection1.Close();
             FillDataGrid();
         }
@@ -125,6 +139,28 @@ namespace pages
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
             FillDataGrid();
+        }
+        public List<Contract> Cont { get; set; }
+        private void bindCombo()
+        {
+            demoEntities10 st = new demoEntities10();
+            var items = st.Contracts.ToList();
+            Cont= items;
+            markcontact.ItemsSource = Cont;
+        }
+
+        private void markcontact_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var items = markcontact.SelectedItem as Contract;
+            try
+            {
+                contrid= items.id.ToString();
+                contName = items.name.ToString();
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }

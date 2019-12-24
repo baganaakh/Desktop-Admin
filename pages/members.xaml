@@ -39,7 +39,7 @@
         <ComboBox x:Name="pstate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="359,81,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <ComboBox x:Name="mtype" ItemsSource="{Binding}" SelectionChanged="mtype_SelectionChanged" DisplayMemberPath="mtype1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="619,81,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <Label Content="Participant" HorizontalAlignment="Left" Margin="49,81,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="participants" ItemsSource="{Binding}" SelectionChanged="participants_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="129,81,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox IsEditable="True" x:Name="participants" ItemsSource="{Binding}" SelectionChanged="participants_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="129,81,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <CheckBox x:Name="broker" Content="Брокер" HorizontalAlignment="Left" Margin="56,186,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="dealer" Content="Дилер" HorizontalAlignment="Left" Margin="139,186,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="ander" Content="Андерр" HorizontalAlignment="Left" Margin="56,219,0,0" VerticalAlignment="Top"/>

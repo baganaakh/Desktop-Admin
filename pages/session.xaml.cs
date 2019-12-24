@@ -70,12 +70,12 @@ namespace pages
                 sminutes = "";
             }
 
-            dminute.SelectedValue = dMinute;
-            dhour.SelectedValue= dHours;
+            dminute.Text = dMinute;
+            dhour.Text= dHours;
             sboardid.SelectedValue = bid;
             sname.Text = name;
-            stimehour.SelectedValue = shours;
-            stimeminute.SelectedValue = sminutes;
+            stimehour.Text= shours;
+            stimeminute.Text= sminutes;
             algo.Text = algorithm;
             match1.Text = match;
             allowT.Text = allowtyp;

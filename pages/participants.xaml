@@ -62,9 +62,9 @@
         <Button Content="Update" HorizontalAlignment="Left" Margin="1090,110,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
         <ComboBox x:Name="pstate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="837,79,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <Label Content="төрөл" HorizontalAlignment="Left" Margin="30,223,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="ptype" ItemsSource="{Binding}" SelectionChanged="ptype_SelectionChanged" DisplayMemberPath="ptype1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="116,223,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox IsEditable="True" x:Name="ptype" ItemsSource="{Binding}" SelectionChanged="ptype_SelectionChanged" DisplayMemberPath="ptype1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="116,223,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <Label Content="Тусгай төрөл" HorizontalAlignment="Left" Margin="268,76,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="spetype" ItemsSource="{Binding}" SelectionChanged="spetype_SelectionChanged" DisplayMemberPath="specialType1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="369,79,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox IsEditable="True" x:Name="spetype" ItemsSource="{Binding}" SelectionChanged="spetype_SelectionChanged" DisplayMemberPath="specialType1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="369,79,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <Label Content="Хот/Аймаг" HorizontalAlignment="Left" Margin="280,167,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="pcity" HorizontalAlignment="Left" Height="23" Margin="369,168,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label Content="Дүүрэг/Сум" HorizontalAlignment="Left" Margin="280,199,0,0" VerticalAlignment="Top"/>
@@ -74,7 +74,7 @@
         <Label Content="Гудамж" HorizontalAlignment="Left" Margin="280,269,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="pstreet" HorizontalAlignment="Left" Height="23" Margin="369,270,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label Content="Ажилтны тоо" HorizontalAlignment="Left" Margin="518,197,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="numofemp"  HorizontalAlignment="Left" Margin="600,201,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
+        <ComboBox IsEditable="True" x:Name="numofemp"  HorizontalAlignment="Left" Margin="600,201,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>1-10</ComboBoxItem>
             <ComboBoxItem>11-50</ComboBoxItem>
             <ComboBoxItem>51-100</ComboBoxItem>

@@ -10,12 +10,8 @@
       Title="demo1"
     >
 
-    <Page.Resources>
-        <CollectionViewSource x:Key="assetsViewSource" d:DesignSource="{d:DesignInstance {x:Type dbBind:Assets}, CreateList=True}"/>
-    </Page.Resources>
-
     <Grid>
-        <Grid x:Name="grid1" DataContext="{StaticResource assetsViewSource}" HorizontalAlignment="Left" Margin="86,173,0,0" VerticalAlignment="Top">
+        <Grid x:Name="grid1"  HorizontalAlignment="Left" Margin="84,68,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
