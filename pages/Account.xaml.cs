@@ -32,6 +32,7 @@ namespace pages
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
         static string id, memId,stat,mask,cname;
+        #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -48,6 +49,7 @@ namespace pages
             settlement.Text = Settlement;
             collateral.Text = Collateral;
         }
+        #endregion
         #region insert func
         private void insertFunc(object sender, RoutedEventArgs e)
         {
@@ -105,6 +107,7 @@ namespace pages
             FillDataGrid();
         }
         #endregion
+        #region number
         private static readonly Regex _regex = new Regex("[^0-9.-]+");
         private static bool IsTextAllowed(string text)
         {
@@ -114,9 +117,10 @@ namespace pages
         {
             e.Handled = !IsTextAllowed(e.Text);
         }
+        #endregion
+        #region filldatas
         private void FillDataGrid()
         {
-            string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
             string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -129,6 +133,8 @@ namespace pages
                 DateTable2.ItemsSource = dt.DefaultView;
             }
         }
+        #endregion
+        #region ref new
         private void refreshh(object sender, RoutedEventArgs e)
         {
             FillDataGrid();
@@ -143,6 +149,8 @@ namespace pages
             id = null;
             memId= null;
         }
+        #endregion
+        #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -159,6 +167,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region update
         private void update(object sender, RoutedEventArgs e)
         {
             string Trading = trading.Text;
@@ -186,6 +196,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region combos control
         public List<Member> Emp { get; set; }
         public List<State> boa{ get; set; }
 
@@ -200,7 +212,6 @@ namespace pages
             boa = item;
             pstate.ItemsSource = boa;
         }
-
         private void pstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = pstate.SelectedItem as State;
@@ -232,5 +243,6 @@ namespace pages
             }
 
         }
+        #endregion
     }
 }

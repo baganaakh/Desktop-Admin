@@ -32,6 +32,7 @@ namespace pages
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
         static string id,statid,metype, partid,oldMask, pname;
+        #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -62,6 +63,8 @@ namespace pages
             nominal.IsChecked = bool.Parse(Nominal);
             updatebut.IsEnabled = true;
         }
+        #endregion
+        #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
             string code = pcode.Text;
@@ -149,6 +152,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region number
         private static readonly Regex _regex = new Regex("[^0-9.-]+");
         private static bool IsTextAllowed(string text)
         {
@@ -158,13 +163,13 @@ namespace pages
         {
             e.Handled = !IsTextAllowed(e.Text);
         }
+        #endregion
+        #region  fill
         private void FillDataGrid()
         {
-            string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-            string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT ALL [id], [type], [code], [state], [modified], [mask]," +
+                string CmdString = "SELECT ALL [id], [type], [code], [state], [modified], [mask]," +
                     "[startdate], [enddate], [broker], [dealer], [ander], [nominal], [partid],[name] FROM dbo.members ";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
@@ -173,6 +178,8 @@ namespace pages
                 DateTable2.ItemsSource = dt.DefaultView;
             }
         }
+        #endregion
+        #region new ref
         private void newData(object sender, RoutedEventArgs e)
         {
             pcode.Text = null;
@@ -191,6 +198,8 @@ namespace pages
         {
             FillDataGrid();
         }
+        #endregion
+        #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -208,6 +217,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region update
         private void update(object sender, RoutedEventArgs e)
         {
             string mask = "";
@@ -300,6 +311,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region combos
         public List<State> statt { get; set; }
         public List<mtype> mt { get; set; }
         public List<Participant> part { get; set; }
@@ -358,5 +371,6 @@ namespace pages
                 return;
             }
         }
+        #endregion
     }
 }

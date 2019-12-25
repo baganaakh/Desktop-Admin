@@ -32,6 +32,7 @@ namespace pages
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
         static string id,cid,statid;
+        #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -60,6 +61,8 @@ namespace pages
             trstate.SelectedValue = state;
             truser.Text = userid;
         }
+        #endregion
+        #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
             if (trtdate.SelectedDate == null)
@@ -82,7 +85,6 @@ namespace pages
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
-
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.trans(accountId, type, type1, amount, currency, rate, note, tdate, state, modified, userId,memberid) values" +
@@ -94,6 +96,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region numbers
         private static readonly Regex _regex = new Regex("[^0-9.-]+");
         private static bool IsTextAllowed(string text)
         {
@@ -103,6 +107,8 @@ namespace pages
         {
             e.Handled = !IsTextAllowed(e.Text);
         }
+        #endregion
+        #region fill
         private void FillDataGrid()
         {
             string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
@@ -122,6 +128,8 @@ namespace pages
         {
             FillDataGrid();
         }
+        #endregion
+        #region new
         private void newData(object sender, RoutedEventArgs e)
         {
             accId.Text = null;
@@ -137,6 +145,8 @@ namespace pages
             sboardid.SelectedValue = null;
             id = null;
         }
+        #endregion
+        #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -153,6 +163,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region update
         private void update(object sender, RoutedEventArgs e)
         {
             string accountId = accId.Text;
@@ -193,6 +205,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region combos
         public List<Member> Emp { get; set; }
         public List<State> statt { get; set; }
 
@@ -233,5 +247,6 @@ namespace pages
                 return;
             }
         }
+        #endregion
     }
 }

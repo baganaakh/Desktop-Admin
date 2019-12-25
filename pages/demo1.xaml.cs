@@ -32,12 +32,13 @@ namespace pages
             assetView.Source = data.Assets.Local;
         }
 
+        #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //prev
             assetView.View.MoveCurrentToPrevious();
         }
-
+        #endregion
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //next

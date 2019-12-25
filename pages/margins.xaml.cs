@@ -32,6 +32,7 @@ namespace pages
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
         static string id, coId;
+        #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -52,6 +53,8 @@ namespace pages
             mmsell.Text=mSell;
             contractid.SelectedValue = coId;
         }
+        #endregion
+        #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
             string buy = mbuy.Text;
@@ -64,7 +67,6 @@ namespace pages
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
-
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.margins (buy, sell, buyType, sellType, mbuy, msell, modified, coid) values" +
@@ -76,6 +78,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region number
         private static readonly Regex _regex = new Regex("[^0-9.-]+");
         private static bool IsTextAllowed(string text)
         {
@@ -85,9 +89,10 @@ namespace pages
         {
             e.Handled = !IsTextAllowed(e.Text);
         }
+        #endregion
+        #region fill
         private void FillDataGrid()
         {
-            string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
             string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -100,6 +105,8 @@ namespace pages
                 DateTable2.ItemsSource = dt.DefaultView;
             }
         }
+        #endregion
+        #region ref new
         private void refreshh(object sender, RoutedEventArgs e)
         {
             FillDataGrid();
@@ -115,6 +122,8 @@ namespace pages
             id = null;
             contractid.SelectedItem = null;
         }
+        #endregion
+        #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -131,6 +140,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region combos
         public List<Contract> Cont { get; set; }
 
         private void bindcombo()
@@ -183,5 +194,6 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
     }
 }

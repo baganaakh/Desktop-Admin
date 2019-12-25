@@ -32,6 +32,7 @@ namespace pages
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
         static string id,statid,cid;
+        #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -44,11 +45,11 @@ namespace pages
             accid.Text=accId;
             stat.SelectedValue=State;
         }
+        #endregion
+        #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-          //  string memberID = memid.Text;
             string accID = accid.Text;
-          //  string state = stat.Text;
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
@@ -64,6 +65,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region number
         private static readonly Regex _regex = new Regex("[^0-9.-]+");
         private static bool IsTextAllowed(string text)
         {
@@ -73,6 +76,8 @@ namespace pages
         {
             e.Handled = !IsTextAllowed(e.Text);
         }
+        #endregion
+        #region fill
         private void FillDataGrid()
         {
             string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
@@ -88,6 +93,8 @@ namespace pages
                 DateTable2.ItemsSource = dt.DefaultView;
             }
         }
+        #endregion
+        #region ref new
         private void refreshh(object sender, RoutedEventArgs e)
         {
             FillDataGrid();
@@ -101,6 +108,8 @@ namespace pages
             statid = null;
             cid = null;
         }
+        #endregion
+        #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -117,6 +126,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region
         private void update(object sender, RoutedEventArgs e)
         {
             string memberID = memid.Text;
@@ -141,6 +152,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region combos
         public List<State> statt { get; set; }
         public List<Member> Emp { get; set; }
 
@@ -182,5 +195,6 @@ namespace pages
             }
 
         }
+        #endregion
     }
 }

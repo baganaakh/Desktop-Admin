@@ -27,6 +27,7 @@ namespace pages
             InitializeComponent();
             FillDataGrid();
         }
+        #region fill
         private void FillDataGrid()
         {
             string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
@@ -41,5 +42,6 @@ namespace pages
                 DateTable2.ItemsSource = dt.DefaultView;
             }
         }
+        #endregion
     }
 }

@@ -30,6 +30,7 @@ namespace pages
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
         static string id;
+        #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -44,6 +45,8 @@ namespace pages
             userid.Text = userID;
             assetid.Text = assetID;
         }
+        #endregion
+        #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
             string arrangePrice= arrangeprice.Text;
@@ -65,6 +68,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region numbers
         private static readonly Regex _regex = new Regex("[^0-9.-]+");
         private static bool IsTextAllowed(string text)
         {
@@ -74,6 +79,8 @@ namespace pages
         {
             e.Handled = !IsTextAllowed(e.Text);
         }
+        #endregion
+        #region fill
         private void FillDataGrid()
         {
             string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
@@ -93,6 +100,8 @@ namespace pages
         {
             FillDataGrid();
         }
+        #endregion
+        #region new
         private void newData(object sender, RoutedEventArgs e)
         {
             arrangeprice.Text = null;
@@ -101,6 +110,8 @@ namespace pages
             assetid.Text = null;
             id = null;
         }
+        #endregion
+        #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -117,6 +128,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region update
         private void update(object sender, RoutedEventArgs e)
         {
             string arrangePrice = arrangeprice.Text;
@@ -144,5 +157,6 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
     }
 }

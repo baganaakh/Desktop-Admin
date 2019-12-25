@@ -30,6 +30,9 @@ namespace pages
             FillDataGrid();
             bindCombo();
         }
+        string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
+        string id, cid;
+        #region
         private static readonly Regex _regex = new Regex("[^0-9.-]+");
         private static bool IsTextAllowed(string text)
         {
@@ -39,8 +42,8 @@ namespace pages
         {
             e.Handled = !IsTextAllowed(e.Text);
         }
-        string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        string id, cid;
+        #endregion
+        #region
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var value = DateTable1.SelectedItem as DataRowView;
@@ -58,6 +61,8 @@ namespace pages
             desc.Text = description;
             state.SelectedValue = stat;
         }
+        #endregion
+        #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
             string boardName = bname.Text;
@@ -78,11 +83,11 @@ namespace pages
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
             FillDataGrid();
-
         }
+        #endregion
+        #region fill
         private void FillDataGrid()
         {
-            string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
             string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -94,7 +99,8 @@ namespace pages
                 DateTable1.ItemsSource = dt.DefaultView;
             }
         }
-
+        #endregion
+        #region update
         private void update(object sender, RoutedEventArgs e)
         {
             string boardName = bname.Text;
@@ -121,7 +127,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
-
+        #endregion
+        #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
             var value = DateTable1.SelectedItem as DataRowView;
@@ -139,7 +146,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
-
+        #endregion
+        #region reg and new
         private void refreshh(object sender, RoutedEventArgs e)
         {
             FillDataGrid();
@@ -153,6 +161,8 @@ namespace pages
             desc.Text = null;
             state.SelectedValue = null;
         }
+        #endregion
+        #region combos
         public List<State> boa { get; set; }
         private void bindCombo()
         {
@@ -174,5 +184,6 @@ namespace pages
                 return;
             }
         }
+        #endregion
     }
 }

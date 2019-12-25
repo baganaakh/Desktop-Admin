@@ -38,11 +38,13 @@ namespace pages
             feeViewSource.Source = data.Fees.Local;
             feeViewSource.View.MoveCurrentToFirst();
         }
-      
+
+        #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             data.SaveChanges();
             feeViewSource.View.Refresh();
         }
+        #endregion
     }
 }

@@ -32,9 +32,9 @@ namespace pages
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
         static string accId2,id;
+        #region fill
         private void FillDataGrid()
         {
-            string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string CmdString = "SELECT ALL [id],[dealType], [side], [memberid], [accountid], [assetid], [qty], [price], [state], [modified] " +
@@ -46,8 +46,8 @@ namespace pages
                 DateTable2.ItemsSource = dt.DefaultView;
             }
         }
-        public List<Account> ACCT { get; set; }
-
+        #endregion
+        #region okey
         private void Okey(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -92,7 +92,6 @@ namespace pages
                 side2 = -1;
             }
 
-
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
@@ -109,7 +108,9 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
-
+        #endregion
+        #region combos
+        public List<Account> ACCT { get; set; }
         private void bindCombo()
         {
             demoEntities10 ac = new demoEntities10();
@@ -135,5 +136,6 @@ namespace pages
                 return;
             }
         }
+        #endregion
     }
 }

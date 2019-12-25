@@ -32,6 +32,7 @@ namespace pages
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
         static string id, cid, statid, setype;
+        #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -66,6 +67,7 @@ namespace pages
             edate.Text = edatese;
             groupid.Text = gidse;
         }
+        #endregion
         #region insert func
         private void insertFunc(object sender, RoutedEventArgs e)
         {
@@ -119,9 +121,9 @@ namespace pages
             e.Handled = !IsTextAllowed(e.Text);
         }
         #endregion
+        #region fill
         private void FillDataGrid()
         {
-            string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
             string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -134,6 +136,8 @@ namespace pages
                 DateTable2.ItemsSource = dt.DefaultView;
             }
         }
+        #endregion
+        #region ref new
         private void refreshh(object sender, RoutedEventArgs e)
         {
             FillDataGrid();
@@ -155,6 +159,8 @@ namespace pages
             groupid.Text = null;
             id = null;
         }
+        #endregion
+        #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -172,6 +178,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region update
         private void update(object sender, RoutedEventArgs e)
         {
             string partid = cid;
@@ -225,7 +233,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
-
+        #endregion
+        #region combos
         public List<Participant> Emp { get; set; }
         public List<State> statt { get; set; }
         public List<stype> stypes { get; set; }
@@ -283,5 +292,6 @@ namespace pages
                 return;
             }
         }
+        #endregion
     }
 }

@@ -31,6 +31,7 @@ namespace pages
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
         static string id, cid, statid;
+        #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -93,6 +94,8 @@ namespace pages
             dOrder.IsChecked=bool.Parse(deleteorder);
             markT.Text = markettype;
         }
+        #endregion
+        #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
             string boardid = cid;
@@ -128,9 +131,10 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region fill
         private void FillDataGrid()
         {
-            string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
             string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -148,6 +152,8 @@ namespace pages
         {
             FillDataGrid();
         }
+        #endregion
+        #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -165,6 +171,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region new
         private void newData(object sender, RoutedEventArgs e)
         {
             sboardid.SelectedValue = null;
@@ -182,6 +190,8 @@ namespace pages
             markT.Text = null;
             id = null;
         }
+        #endregion
+        #region update
         private void update(object sender, RoutedEventArgs e)
         {
             string boardid = cid;
@@ -226,6 +236,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region combos
         public List<Board> boa { get; set; }
         public List<State> statt { get; set; }
 
@@ -266,5 +278,6 @@ namespace pages
                 return;
             }
         }
+        #endregion
     }
 }

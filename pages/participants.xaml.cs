@@ -33,6 +33,7 @@ namespace pages
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
         static string id,cid, spid, ptid;
 
+        #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -74,6 +75,8 @@ namespace pages
             pwebpage.Text=webpage;
             numofemp.Text=Numofemp;
         }
+        #endregion
+        #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
             string code = pcode.Text;
@@ -107,8 +110,9 @@ namespace pages
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
             FillDataGrid();
-
         }
+        #endregion
+        #region number
         private static readonly Regex _regex = new Regex("[^0-9.-]+");
         private static bool IsTextAllowed(string text)
         {
@@ -118,6 +122,8 @@ namespace pages
         {
             e.Handled = !IsTextAllowed(e.Text);
         }
+        #endregion
+        #region fill
         private void FillDataGrid()
         {
             string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
@@ -133,6 +139,8 @@ namespace pages
                 DateTable2.ItemsSource = dt.DefaultView;
             }
         }
+        #endregion
+        #region new ref
         private void newData(object sender, RoutedEventArgs e)
         {
             pcode.Text = null;
@@ -157,6 +165,8 @@ namespace pages
         {
             FillDataGrid();
         }
+        #endregion
+        #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -174,6 +184,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region update
         private void update(object sender, RoutedEventArgs e)
         {
             string code = pcode.Text;
@@ -225,6 +237,8 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+        #region combos
         public List<State> boa { get; set; }
         public List<SpecialType> sptype { get; set; }
         public List<Ptype> ptyp{ get; set; }
@@ -284,5 +298,6 @@ namespace pages
                 return;
             }
         }
+        #endregion
     }
 }
