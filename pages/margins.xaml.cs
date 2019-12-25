@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Data;
+using pages.dbBind;
+
 namespace pages
 {
     /// <summary>
@@ -26,9 +28,10 @@ namespace pages
         {
             InitializeComponent();
             FillDataGrid();
+            bindcombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id;
+        static string id, coId;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -39,6 +42,7 @@ namespace pages
             string selltype= values.Row[4].ToString();
             string mBuy= values.Row[5].ToString();
             string mSell= values.Row[6].ToString();
+            coId = values.Row[8].ToString();
 
             mbuy.Text=buy;
             msell.Text=sell;
@@ -46,6 +50,7 @@ namespace pages
             mselltype.Text=selltype;
             mbuy_Copy.Text=mBuy;
             mmsell.Text=mSell;
+            contractid.SelectedValue = coId;
         }
         private void insertFunc(object sender, RoutedEventArgs e)
         {
@@ -62,8 +67,8 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.margins (buy, sell, buyType, sellType, mbuy, msell, modified) values" +
-                " ('" + buy+ "',N'" + sell+ "',N'" + buyType+ "',N'" + sellType+ "', '" + mmbuy+ "', '" + mmSell+ "', getdate())";
+            cmd.CommandText = "insert into dbo.margins (buy, sell, buyType, sellType, mbuy, msell, modified, coid) values" +
+                " ('" + buy+ "',N'" + sell+ "',N'" + buyType+ "',N'" + sellType+ "', '" + mmbuy+ "', '" + mmSell+ "', getdate(), "+coId+")";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -86,7 +91,7 @@ namespace pages
             string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT ALL [id], [buy], [sell], [buytype], [selltype], [mbuy], [msell], [modified] "+
+                CmdString = "SELECT ALL [id], [buy], [sell], [buytype], [selltype], [mbuy], [msell], [modified], [coid] "+
                             "FROM [dbo].[Margins]";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
@@ -108,6 +113,7 @@ namespace pages
             mbuy_Copy.Text=null;
             mmsell.Text=null;
             id = null;
+            contractid.SelectedItem = null;
         }
         private void delete(object sender, RoutedEventArgs e)
         {
@@ -124,6 +130,27 @@ namespace pages
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
             FillDataGrid();
+        }
+        public List<Contract> Cont { get; set; }
+
+        private void bindcombo()
+        {
+            demoEntities10 ct = new demoEntities10();
+            var citem = ct.Contracts.ToList();
+            Cont = citem;
+            contractid.ItemsSource = Cont;
+        }
+        private void contractid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var citem = contractid.SelectedItem as Contract;
+            try
+            {
+                coId = citem.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
         }
         private void update(object sender, RoutedEventArgs e)
         {
@@ -146,6 +173,7 @@ namespace pages
                 "selltype= '" + sellType+ "', " +
                 "mbuy= '" + mmbuy+ "', " +
                 "msell= '" + mmSell + "', " +
+                "coid= '" + coId+ "', " +
                 "modified = getdate() " +
                 "WHERE id = '" + id + "'";
 

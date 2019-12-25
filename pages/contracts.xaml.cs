@@ -31,7 +31,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id, cid, statid, ctypee;
+        static string id, cid, statid, ctypee,boaID;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
@@ -49,6 +49,7 @@ namespace pages
             string MMol= values.Row[12].ToString();
             string Olimit= values.Row[13].ToString();
             string refprPAram= values.Row[14].ToString();
+            string bId= values.Row[15].ToString();
 
             securityid_Copy.SelectedValue= SID;
             ctype.SelectedValue = Type;
@@ -90,9 +91,9 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.contracts (securityId, type, code, name, lot, tick, sdate, edate, groupId, state, modified, mmorderLimit, orderLimit, refpriceParam) values" +
+            cmd.CommandText = "insert into dbo.contracts (securityId, type, code, name, lot, tick, sdate, edate, groupId, state, modified, mmorderLimit, orderLimit, refpriceParam,bid) values" +
                 " ('" + secId+ "',N'" + ctypee + "',N'" + code + "',N'" + name + "', '" + lot+ "', '" + tick+ "', '" + csdates+ "', '" + cedates+ "', '" + groupID +
-                "',N'" + statid+ "', getdate(),N'" + mmorderLimit+ "',N'" + orderlimit+ "',N'" + refpricePar+ "')";
+                "',N'" + statid+ "', getdate(),N'" + mmorderLimit+ "',N'" + orderlimit+ "',N'" + refpricePar+ "',"+boaID+")";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -116,7 +117,7 @@ namespace pages
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 CmdString = "SELECT ALL [id], [securityId], [type], [code], [name], [lot], [tick], [sdate], [edate], [groupId], [state], [modified], " +
-                    "[mmorderLimit], [orderLimit], [refpriceParam] FROM dbo.contracts";
+                    "[mmorderLimit], [orderLimit], [refpriceParam], [bid] FROM dbo.contracts";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Securities");
@@ -145,7 +146,9 @@ namespace pages
             refpricePara.Text = null;
             id = null;
             statid = null;
+            boardid.SelectedItem = null;
         }
+        #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
@@ -162,10 +165,12 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
+
+        #region update
         private void update(object sender, RoutedEventArgs e)
         {
             string secId = cid;
-            string type = ctype.Text;
             string code = ccode.Text;
             string name = cname.Text;
             string lot = clot.Text;
@@ -173,7 +178,6 @@ namespace pages
             string csdates = csdate.SelectedDate.Value.ToShortDateString();
             string cedates = cedate.SelectedDate.Value.ToShortDateString();
             string groupID = cgroupid.Text;
-            string stat = cstate.Text;
             string mmorderLimit = mmorderLim.Text;
             string orderlimit = orderLim.Text;
             string refpricePar = refpricePara.Text;
@@ -181,12 +185,11 @@ namespace pages
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
-
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.dbo.contracts SET " +
                 "securityId= '" + secId+ "', " +
-                "type= '" + type+ "', " +
+                "type= '" + ctypee + "', " +
                 "code= '" + code+ "', " +
                 "name= '" + name + "', " +
                 "lot= '" + lot+ "', " +
@@ -198,6 +201,7 @@ namespace pages
                 "modified = getdate(), " +
                 "mmorderLimit= '" + mmorderLimit+ "', " +
                 "orderLimit= '" + orderlimit+ "', " +
+                "bid= '" + boaID+ "', " +
                 "refpriceParam= '" + refpricePar+ "'" +
                 "WHERE id = '" + id + "'";
 
@@ -207,9 +211,11 @@ namespace pages
             sqlConnection1.Close();
             FillDataGrid();
         }
+        #endregion
         public List<Security> boa { get; set; }
         public List<State> statt { get; set; }
         public List<ctype> ctypp{ get; set; }
+        public List<Board> boardd { get; set; }
 
         private void bindCombo()
         {
@@ -225,6 +231,24 @@ namespace pages
             var citems = dE.ctypes.ToList();
             ctypp = citems;
             ctype.ItemsSource = ctypp;
+
+            var botems = dE.Boards.ToList();
+            boardd = botems;
+            boardid.ItemsSource = boardd;
+        }
+
+        private void boardid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = boardid.SelectedItem as Board;
+            try
+            {
+                boaID = item.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
+
         }
 
         private void ctype_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -240,7 +264,7 @@ namespace pages
             }
         }
 
-        private void boardid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void secid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = securityid_Copy.SelectedItem as Security;
             try

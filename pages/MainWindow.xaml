@@ -16,7 +16,7 @@
             <Button Content="contracts" Margin="10,0,0,0" Click="BtnClickP6" Background="#FFF3AEAE"/>
             <Button Content="boards" Click="BtnClickP1" RenderTransformOrigin="0.927,0.457" Background="#FF98F5AD"/>
             <Button Content="Session" Margin="10,0,0,0" Click="BtnClickP2" Background="#FF98F5AD"/>
-            <Button Content="TickSize&#xA;Table" Margin="10,0,0,0" Click="BtnClickP11" Background="#FF98F5AD"/>
+            <Button Content="TickSize&#xA;Table" Margin="10,0,0,0" Click="BtnClickP11" Background="#FFF7F7C5"/>
             <Button Content="margins" Margin="10,0,0,0" Click="BtnClickP8" Background="#FF98F5AD"/>
             <Button Content="speads" Margin="10,0,0,0" Click="BtnClickP15" Background="#FF98F5AD"/>
             <Button Content="ref&#xA;price" Margin="10,0,0,0" Click="BtnClickP14" Background="#FF98F5AD"/>

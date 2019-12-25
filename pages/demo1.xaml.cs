@@ -26,7 +26,7 @@ namespace pages
         public demo1()
         {
             InitializeComponent();
-            assetView = ((CollectionViewSource)(FindResource("assetsViewSource")));
+            //assetView = ((CollectionViewSource)(FindResource("assetsViewSource")));
             DataContext = this;
             data.Assets.Load();
             assetView.Source = data.Assets.Local;

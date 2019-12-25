@@ -33,12 +33,15 @@
                 <DataGridTextColumn Binding="{Binding mbuy}" Header="MBuy"/>
                 <DataGridTextColumn Binding="{Binding msell}" Header="MSell"/>
                 <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
+                <DataGridTextColumn Binding="{Binding coid}" Header="CID"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="781,163,0,0"/>
         <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="656,81,0,0"/>
         <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="656,116,0,0"/>
         <Button Content="Update" HorizontalAlignment="Left" Margin="656,163,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
+        <Label Content="contractid" HorizontalAlignment="Left" Margin="28,202,0,0" VerticalAlignment="Top"/>
+        <ComboBox IsEditable="True" x:Name="contractid" ItemsSource="{Binding}" SelectionChanged="contractid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="149,205,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Page>
