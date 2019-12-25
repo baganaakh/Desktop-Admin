@@ -15,9 +15,9 @@ namespace pages.dbBind
     public partial class GroupUser
     {
         public long id { get; set; }
-        public Nullable<long> userid { get; set; }
-        public Nullable<int> groupid { get; set; }
-        public Nullable<short> state { get; set; }
-        public Nullable<System.DateTime> modified { get; set; }
+        public long userid { get; set; }
+        public int groupid { get; set; }
+        public short state { get; set; }
+        public System.DateTime modified { get; set; }
     }
 }

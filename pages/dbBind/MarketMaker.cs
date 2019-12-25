@@ -15,15 +15,15 @@ namespace pages.dbBind
     public partial class MarketMaker
     {
         public int id { get; set; }
-        public Nullable<int> contactid { get; set; }
-        public Nullable<int> memberid { get; set; }
-        public Nullable<long> accountid { get; set; }
-        public Nullable<System.DateTime> startdate { get; set; }
-        public Nullable<System.DateTime> enddate { get; set; }
-        public Nullable<int> ticks { get; set; }
+        public int contactid { get; set; }
+        public int memberid { get; set; }
+        public long accountid { get; set; }
+        public System.DateTime startdate { get; set; }
+        public System.DateTime enddate { get; set; }
+        public int ticks { get; set; }
         public string description { get; set; }
-        public Nullable<int> orderlimit { get; set; }
-        public Nullable<short> state { get; set; }
-        public Nullable<System.DateTime> modified { get; set; }
+        public int orderlimit { get; set; }
+        public short state { get; set; }
+        public System.DateTime modified { get; set; }
     }
 }

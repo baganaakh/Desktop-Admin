@@ -15,9 +15,9 @@ namespace pages.dbBind
     public partial class UserAccount
     {
         public long id { get; set; }
-        public Nullable<long> userid { get; set; }
-        public Nullable<long> accountid { get; set; }
-        public Nullable<short> state { get; set; }
-        public Nullable<System.DateTime> modified { get; set; }
+        public long userid { get; set; }
+        public long accountid { get; set; }
+        public short state { get; set; }
+        public System.DateTime modified { get; set; }
     }
 }

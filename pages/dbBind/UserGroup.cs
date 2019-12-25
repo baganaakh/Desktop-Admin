@@ -17,8 +17,8 @@ namespace pages.dbBind
         public int id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
-        public Nullable<long> manager { get; set; }
-        public Nullable<short> state { get; set; }
-        public Nullable<System.DateTime> modified { get; set; }
+        public long manager { get; set; }
+        public short state { get; set; }
+        public System.DateTime modified { get; set; }
     }
 }

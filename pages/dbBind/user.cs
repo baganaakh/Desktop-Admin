@@ -17,7 +17,7 @@ namespace pages.dbBind
         public int id { get; set; }
         public string uname { get; set; }
         public string password { get; set; }
-        public Nullable<System.DateTime> modified { get; set; }
+        public System.DateTime modified { get; set; }
         public string role { get; set; }
     }
 }

@@ -15,12 +15,13 @@ namespace pages.dbBind
     public partial class Margin
     {
         public int id { get; set; }
-        public Nullable<decimal> buy { get; set; }
-        public Nullable<decimal> sell { get; set; }
-        public Nullable<short> buytype { get; set; }
-        public Nullable<short> selltype { get; set; }
-        public Nullable<System.DateTime> modified { get; set; }
-        public Nullable<decimal> mbuy { get; set; }
-        public Nullable<decimal> msell { get; set; }
+        public decimal buy { get; set; }
+        public decimal sell { get; set; }
+        public short buytype { get; set; }
+        public short selltype { get; set; }
+        public System.DateTime modified { get; set; }
+        public decimal mbuy { get; set; }
+        public decimal msell { get; set; }
+        public long coid { get; set; }
     }
 }

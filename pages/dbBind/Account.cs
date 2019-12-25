@@ -15,15 +15,15 @@ namespace pages.dbBind
     public partial class Account
     {
         public long id { get; set; }
-        public Nullable<long> memberid { get; set; }
-        public Nullable<decimal> trading { get; set; }
-        public Nullable<decimal> clearing { get; set; }
-        public Nullable<decimal> settlement { get; set; }
-        public Nullable<decimal> collateral { get; set; }
-        public Nullable<System.DateTime> modified { get; set; }
+        public long memberid { get; set; }
+        public decimal trading { get; set; }
+        public decimal clearing { get; set; }
+        public decimal settlement { get; set; }
+        public decimal collateral { get; set; }
+        public System.DateTime modified { get; set; }
         public string mask { get; set; }
-        public Nullable<System.DateTime> startdate { get; set; }
-        public Nullable<System.DateTime> enddate { get; set; }
-        public Nullable<short> state { get; set; }
+        public System.DateTime startdate { get; set; }
+        public System.DateTime enddate { get; set; }
+        public short state { get; set; }
     }
 }

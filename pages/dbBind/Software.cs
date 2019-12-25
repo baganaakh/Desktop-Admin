@@ -18,6 +18,6 @@ namespace pages.dbBind
         public string SWName { get; set; }
         public string SWCaption { get; set; }
         public string Description { get; set; }
-        public Nullable<short> IsClient { get; set; }
+        public short IsClient { get; set; }
     }
 }

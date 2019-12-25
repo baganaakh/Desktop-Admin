@@ -15,13 +15,13 @@ namespace pages.dbBind
     public partial class Right
     {
         public int ID { get; set; }
-        public Nullable<int> RightType { get; set; }
+        public int RightType { get; set; }
         public string KeyName { get; set; }
         public string RightCaption { get; set; }
         public string RightTooltip { get; set; }
-        public Nullable<short> DefaultValue { get; set; }
-        public Nullable<int> RelationID { get; set; }
-        public Nullable<short> RightLevel { get; set; }
-        public Nullable<int> ParentID { get; set; }
+        public short DefaultValue { get; set; }
+        public int RelationID { get; set; }
+        public short RightLevel { get; set; }
+        public int ParentID { get; set; }
     }
 }

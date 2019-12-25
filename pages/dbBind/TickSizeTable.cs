@@ -15,11 +15,11 @@ namespace pages.dbBind
     public partial class TickSizeTable
     {
         public int id { get; set; }
-        public Nullable<long> tableid { get; set; }
-        public Nullable<decimal> tick { get; set; }
-        public Nullable<decimal> price { get; set; }
-        public Nullable<short> state { get; set; }
-        public Nullable<System.DateTime> modified { get; set; }
-        public Nullable<long> timestamp { get; set; }
+        public long tableid { get; set; }
+        public decimal tick { get; set; }
+        public decimal price { get; set; }
+        public short state { get; set; }
+        public System.DateTime modified { get; set; }
+        public long timestamp { get; set; }
     }
 }

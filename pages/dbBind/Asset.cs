@@ -17,12 +17,12 @@ namespace pages.dbBind
         public int id { get; set; }
         public string code { get; set; }
         public string name { get; set; }
-        public Nullable<decimal> value { get; set; }
+        public decimal value { get; set; }
         public string note { get; set; }
-        public Nullable<System.DateTime> expireDate { get; set; }
-        public Nullable<short> state { get; set; }
-        public Nullable<System.DateTime> modified { get; set; }
-        public Nullable<decimal> ratio { get; set; }
-        public Nullable<long> secId { get; set; }
+        public System.DateTime expireDate { get; set; }
+        public short state { get; set; }
+        public System.DateTime modified { get; set; }
+        public decimal ratio { get; set; }
+        public long secId { get; set; }
     }
 }

@@ -15,9 +15,9 @@ namespace pages.dbBind
     public partial class GroupRight
     {
         public long ID { get; set; }
-        public Nullable<long> GroupID { get; set; }
-        public Nullable<int> RightID { get; set; }
-        public Nullable<short> HasRight { get; set; }
-        public Nullable<System.DateTime> Modified { get; set; }
+        public long GroupID { get; set; }
+        public int RightID { get; set; }
+        public short HasRight { get; set; }
+        public System.DateTime Modified { get; set; }
     }
 }

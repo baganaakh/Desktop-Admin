@@ -15,9 +15,9 @@ namespace pages.dbBind
     public partial class BoardInstrument
     {
         public int id { get; set; }
-        public Nullable<int> boardid { get; set; }
-        public Nullable<int> instrumentid { get; set; }
+        public int boardid { get; set; }
+        public int instrumentid { get; set; }
         public string state { get; set; }
-        public Nullable<System.DateTime> modified { get; set; }
+        public System.DateTime modified { get; set; }
     }
 }

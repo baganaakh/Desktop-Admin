@@ -15,12 +15,12 @@ namespace pages.dbBind
     public partial class InvoiceDetail
     {
         public long id { get; set; }
-        public Nullable<long> invoiceid { get; set; }
-        public Nullable<int> assetid { get; set; }
-        public Nullable<decimal> qty { get; set; }
-        public Nullable<decimal> price { get; set; }
-        public Nullable<short> state { get; set; }
-        public Nullable<System.DateTime> modified { get; set; }
+        public long invoiceid { get; set; }
+        public int assetid { get; set; }
+        public decimal qty { get; set; }
+        public decimal price { get; set; }
+        public short state { get; set; }
+        public System.DateTime modified { get; set; }
         public string note { get; set; }
     }
 }

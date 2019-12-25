@@ -16,10 +16,10 @@ namespace pages.dbBind
     {
         public short id { get; set; }
         public string name { get; set; }
-        public Nullable<short> type { get; set; }
+        public short type { get; set; }
         public string tdays { get; set; }
-        public Nullable<short> state { get; set; }
-        public Nullable<System.DateTime> modified { get; set; }
+        public short state { get; set; }
+        public System.DateTime modified { get; set; }
         public string description { get; set; }
     
         public virtual Board Boards1 { get; set; }

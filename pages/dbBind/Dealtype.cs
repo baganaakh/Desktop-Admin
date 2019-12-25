@@ -16,5 +16,7 @@ namespace pages.dbBind
     {
         public short id { get; set; }
         public string type { get; set; }
+        public System.DateTime date { get; set; }
+        public System.TimeSpan time { get; set; }
     }
 }

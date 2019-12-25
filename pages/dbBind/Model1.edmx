@@ -11,16 +11,16 @@
             <PropertyRef Name="mask" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="memberid" Type="bigint" />
-          <Property Name="trading" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="clearing" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="settlement" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="collateral" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="modified" Type="datetime" />
+          <Property Name="memberid" Type="bigint" Nullable="false" />
+          <Property Name="trading" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="clearing" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="settlement" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="collateral" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
           <Property Name="mask" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="startdate" Type="date" />
-          <Property Name="enddate" Type="date" />
-          <Property Name="state" Type="smallint" />
+          <Property Name="startdate" Type="date" Nullable="false" />
+          <Property Name="enddate" Type="date" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="ActiveSessions">
           <Key>
@@ -29,12 +29,26 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="sessionid" Type="int" Nullable="false" />
-          <Property Name="isactive" Type="nchar" MaxLength="10" />
-          <Property Name="starttime" Type="time" Precision="7" />
-          <Property Name="endtime" Type="time" Precision="7" />
-          <Property Name="tduration" Type="time" Precision="7" />
-          <Property Name="matched" Type="int" />
-          <Property Name="state" Type="nchar" MaxLength="10" />
+          <Property Name="isactive" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="starttime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="endtime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="tduration" Type="time" Precision="7" Nullable="false" />
+          <Property Name="matched" Type="int" Nullable="false" />
+          <Property Name="state" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="algo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="algo" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="allowedtype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="allowedtype" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="API">
           <Key>
@@ -51,98 +65,98 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="code" Type="nvarchar" MaxLength="16" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
-          <Property Name="value" Type="decimal" Precision="18" Scale="6" />
-          <Property Name="note" Type="nvarchar(max)" />
-          <Property Name="expireDate" Type="date" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
-          <Property Name="ratio" Type="decimal" Precision="3" Scale="2" />
-          <Property Name="secId" Type="bigint" />
+          <Property Name="code" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="value" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="note" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="expireDate" Type="date" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="ratio" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="secId" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="BoardInstruments">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="boardid" Type="int" />
-          <Property Name="instrumentid" Type="int" />
-          <Property Name="state" Type="nchar" MaxLength="10" />
-          <Property Name="modified" Type="datetime" />
+          <Property Name="boardid" Type="int" Nullable="false" />
+          <Property Name="instrumentid" Type="int" Nullable="false" />
+          <Property Name="state" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Boards">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
-          <Property Name="type" Type="smallint" />
-          <Property Name="tdays" Type="nvarchar" MaxLength="128" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
-          <Property Name="description" Type="nvarchar" MaxLength="1024" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="type" Type="smallint" Nullable="false" />
+          <Property Name="tdays" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="1024" Nullable="false" />
         </EntityType>
         <EntityType Name="Calendar">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="tdate" Type="date" />
-          <Property Name="type" Type="smallint" />
-          <Property Name="note" Type="nvarchar" MaxLength="1024" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
+          <Property Name="tdate" Type="date" Nullable="false" />
+          <Property Name="type" Type="smallint" Nullable="false" />
+          <Property Name="note" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="ClearingAccounts">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="memberid" Type="int" />
-          <Property Name="account" Type="int" />
-          <Property Name="type" Type="smallint" />
-          <Property Name="currency" Type="int" />
-          <Property Name="blnc" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="sblnc" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="linkaccount" Type="bigint" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
+          <Property Name="memberid" Type="int" Nullable="false" />
+          <Property Name="account" Type="int" Nullable="false" />
+          <Property Name="type" Type="smallint" Nullable="false" />
+          <Property Name="currency" Type="int" Nullable="false" />
+          <Property Name="blnc" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="sblnc" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="linkaccount" Type="bigint" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Contracts">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="securityId" Type="bigint" />
-          <Property Name="type" Type="smallint" />
-          <Property Name="code" Type="nvarchar" MaxLength="16" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
-          <Property Name="lot" Type="decimal" Precision="18" Scale="6" />
-          <Property Name="tick" Type="decimal" Precision="18" Scale="6" />
-          <Property Name="sdate" Type="date" />
-          <Property Name="edate" Type="date" />
-          <Property Name="groupId" Type="smallint" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
-          <Property Name="mmorderLimit" Type="int" />
-          <Property Name="orderLimit" Type="int" />
-          <Property Name="refpriceParam" Type="decimal" Precision="18" Scale="6" />
-          <Property Name="bid" Type="bigint" />
+          <Property Name="securityId" Type="bigint" Nullable="false" />
+          <Property Name="type" Type="smallint" Nullable="false" />
+          <Property Name="code" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="lot" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="tick" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="sdate" Type="date" Nullable="false" />
+          <Property Name="edate" Type="date" Nullable="false" />
+          <Property Name="groupId" Type="smallint" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="mmorderLimit" Type="int" Nullable="false" />
+          <Property Name="orderLimit" Type="int" Nullable="false" />
+          <Property Name="refpriceParam" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="bid" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="ctype">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="smallint" Nullable="false" />
-          <Property Name="ctype" Type="nvarchar" MaxLength="20" />
+          <Property Name="ctype" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="dayType">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="dayType" Type="nvarchar" MaxLength="20" />
+          <Property Name="dayType" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="Deal2">
           <Key>
@@ -150,15 +164,15 @@
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="dealType" Type="smallint" Nullable="false" />
-          <Property Name="side" Type="smallint" />
-          <Property Name="memberid" Type="bigint" />
-          <Property Name="accountid" Type="bigint" />
-          <Property Name="assetid" Type="bigint" />
-          <Property Name="qty" Type="int" />
-          <Property Name="price" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
-          <Property Name="account2id" Type="bigint" />
+          <Property Name="side" Type="smallint" Nullable="false" />
+          <Property Name="memberid" Type="bigint" Nullable="false" />
+          <Property Name="accountid" Type="bigint" Nullable="false" />
+          <Property Name="assetid" Type="bigint" Nullable="false" />
+          <Property Name="qty" Type="int" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="account2id" Type="bigint" Nullable="false" />
           <Property Name="member2id" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="DealerAccounts">
@@ -166,37 +180,48 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="memberid" Type="bigint" />
-          <Property Name="accountid" Type="bigint" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
+          <Property Name="memberid" Type="bigint" Nullable="false" />
+          <Property Name="accountid" Type="bigint" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Deals">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="dealtype" Type="smallint" />
-          <Property Name="dealno" Type="bigint" />
-          <Property Name="side" Type="smallint" />
-          <Property Name="memberid" Type="int" />
-          <Property Name="accountid" Type="bigint" />
-          <Property Name="assetid" Type="int" />
-          <Property Name="qty" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="price" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="totalPrice" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
-          <Property Name="fee" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="m2m" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="refPrice" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="dealtype" Type="smallint" Nullable="false" />
+          <Property Name="dealno" Type="bigint" Nullable="false" />
+          <Property Name="side" Type="smallint" Nullable="false" />
+          <Property Name="memberid" Type="int" Nullable="false" />
+          <Property Name="accountid" Type="bigint" Nullable="false" />
+          <Property Name="assetid" Type="int" Nullable="false" />
+          <Property Name="qty" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="totalPrice" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="fee" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="m2m" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="refPrice" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="boardid" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Dealtype">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="type" Type="nvarchar" MaxLength="20" />
+          <Property Name="type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="time" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="expireTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="expire" Type="datetime" Nullable="false" />
+          <Property Name="dealType" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="Fee">
           <Key>
@@ -246,294 +271,295 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="GroupID" Type="bigint" />
-          <Property Name="RightID" Type="int" />
-          <Property Name="HasRight" Type="smallint" />
-          <Property Name="Modified" Type="datetime" />
+          <Property Name="GroupID" Type="bigint" Nullable="false" />
+          <Property Name="RightID" Type="int" Nullable="false" />
+          <Property Name="HasRight" Type="smallint" Nullable="false" />
+          <Property Name="Modified" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="GroupUsers">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="userid" Type="bigint" />
-          <Property Name="groupid" Type="int" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
+          <Property Name="userid" Type="bigint" Nullable="false" />
+          <Property Name="groupid" Type="int" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="InvoiceDetails">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="invoiceid" Type="bigint" />
-          <Property Name="assetid" Type="int" />
-          <Property Name="qty" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="price" Type="decimal" Precision="18" Scale="6" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
-          <Property Name="note" Type="nvarchar(max)" />
+          <Property Name="invoiceid" Type="bigint" Nullable="false" />
+          <Property Name="assetid" Type="int" Nullable="false" />
+          <Property Name="qty" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="note" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Invoices">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="type" Type="smallint" />
-          <Property Name="invoiceno" Type="nvarchar" MaxLength="16" />
-          <Property Name="invoicedate" Type="datetime" />
-          <Property Name="expiredate" Type="datetime" />
-          <Property Name="formid" Type="bigint" />
-          <Property Name="toid" Type="bigint" />
-          <Property Name="assetid" Type="int" />
-          <Property Name="qty" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
+          <Property Name="type" Type="smallint" Nullable="false" />
+          <Property Name="invoiceno" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="invoicedate" Type="datetime" Nullable="false" />
+          <Property Name="expiredate" Type="datetime" Nullable="false" />
+          <Property Name="fromid" Type="bigint" Nullable="false" />
+          <Property Name="toid" Type="bigint" Nullable="false" />
+          <Property Name="assetid" Type="int" Nullable="false" />
+          <Property Name="qty" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="isactive">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="isactive" Type="nvarchar" MaxLength="20" />
+          <Property Name="isactive" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="IsDealer">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="isDealer" Type="nvarchar" MaxLength="10" />
+          <Property Name="isDealer" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="Margins">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="buy" Type="decimal" Precision="18" Scale="6" />
-          <Property Name="sell" Type="decimal" Precision="18" Scale="6" />
-          <Property Name="buytype" Type="smallint" />
-          <Property Name="selltype" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
-          <Property Name="mbuy" Type="decimal" Precision="18" Scale="6" />
-          <Property Name="msell" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="buy" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="sell" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="buytype" Type="smallint" Nullable="false" />
+          <Property Name="selltype" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="mbuy" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="msell" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="coid" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="MarketMakers">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="contactid" Type="int" />
-          <Property Name="memberid" Type="int" />
-          <Property Name="accountid" Type="bigint" />
-          <Property Name="startdate" Type="date" />
-          <Property Name="enddate" Type="date" />
-          <Property Name="ticks" Type="int" />
-          <Property Name="description" Type="nchar" MaxLength="10" />
-          <Property Name="orderlimit" Type="int" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
+          <Property Name="contactid" Type="int" Nullable="false" />
+          <Property Name="memberid" Type="int" Nullable="false" />
+          <Property Name="accountid" Type="bigint" Nullable="false" />
+          <Property Name="startdate" Type="date" Nullable="false" />
+          <Property Name="enddate" Type="date" Nullable="false" />
+          <Property Name="ticks" Type="int" Nullable="false" />
+          <Property Name="description" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="orderlimit" Type="int" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Members">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="type" Type="smallint" />
-          <Property Name="code" Type="nvarchar" MaxLength="50" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
-          <Property Name="partid" Type="bigint" />
-          <Property Name="mask" Type="nvarchar" MaxLength="20" />
-          <Property Name="startdate" Type="date" />
-          <Property Name="enddate" Type="date" />
-          <Property Name="broker" Type="nvarchar" MaxLength="20" />
-          <Property Name="dealer" Type="nvarchar" MaxLength="20" />
-          <Property Name="ander" Type="nvarchar" MaxLength="20" />
-          <Property Name="nominal" Type="nvarchar" MaxLength="20" />
-          <Property Name="name" Type="nvarchar" MaxLength="20" />
+          <Property Name="type" Type="smallint" Nullable="false" />
+          <Property Name="code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="partid" Type="bigint" Nullable="false" />
+          <Property Name="mask" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="startdate" Type="date" Nullable="false" />
+          <Property Name="enddate" Type="date" Nullable="false" />
+          <Property Name="broker" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="dealer" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ander" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="nominal" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="mtype">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="mtype" Type="nvarchar" MaxLength="20" />
+          <Property Name="mtype" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="dealType" Type="smallint" />
-          <Property Name="side" Type="smallint" />
-          <Property Name="memberid" Type="bigint" />
-          <Property Name="accountid" Type="bigint" />
-          <Property Name="assetid" Type="bigint" />
-          <Property Name="qty" Type="int" />
-          <Property Name="price" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
+          <Property Name="dealType" Type="smallint" Nullable="false" />
+          <Property Name="side" Type="smallint" Nullable="false" />
+          <Property Name="memberid" Type="bigint" Nullable="false" />
+          <Property Name="accountid" Type="bigint" Nullable="false" />
+          <Property Name="assetid" Type="bigint" Nullable="false" />
+          <Property Name="qty" Type="int" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Participants">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="code" Type="nchar" MaxLength="10" />
-          <Property Name="name" Type="nchar" MaxLength="50" />
-          <Property Name="country" Type="smallint" />
-          <Property Name="address" Type="nvarchar" MaxLength="255" />
-          <Property Name="phone" Type="int" />
-          <Property Name="fax" Type="nvarchar" MaxLength="50" />
-          <Property Name="email" Type="nvarchar" MaxLength="50" />
-          <Property Name="contact" Type="nvarchar" MaxLength="50" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="pcity" Type="nvarchar" MaxLength="20" />
-          <Property Name="pdistr" Type="nvarchar" MaxLength="20" />
-          <Property Name="phoroo" Type="nvarchar" MaxLength="20" />
-          <Property Name="pstreet" Type="nvarchar" MaxLength="20" />
-          <Property Name="pwebpage" Type="nvarchar" MaxLength="30" />
-          <Property Name="numofemp" Type="nvarchar" MaxLength="20" />
-          <Property Name="modified" Type="datetime" />
-          <Property Name="csid" Type="int" />
-          <Property Name="webid" Type="int" />
+          <Property Name="code" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="country" Type="smallint" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="phone" Type="int" Nullable="false" />
+          <Property Name="fax" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="contact" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="pcity" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="pdistr" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="phoroo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="pstreet" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="pwebpage" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="numofemp" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="csid" Type="int" Nullable="false" />
+          <Property Name="webid" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Ptype">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ptype" Type="nvarchar" MaxLength="20" />
+          <Property Name="ptype" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="RefPrice">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="refprice" Type="decimal" Precision="18" Scale="6" />
-          <Property Name="modified" Type="datetime" />
-          <Property Name="name" Type="nvarchar" MaxLength="20" />
+          <Property Name="refprice" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="Rights">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RightType" Type="int" />
-          <Property Name="KeyName" Type="nvarchar" MaxLength="50" />
-          <Property Name="RightCaption" Type="nvarchar" MaxLength="128" />
-          <Property Name="RightTooltip" Type="nvarchar" MaxLength="1024" />
-          <Property Name="DefaultValue" Type="smallint" />
-          <Property Name="RelationID" Type="int" />
-          <Property Name="RightLevel" Type="smallint" />
-          <Property Name="ParentID" Type="int" />
+          <Property Name="RightType" Type="int" Nullable="false" />
+          <Property Name="KeyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RightCaption" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RightTooltip" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="DefaultValue" Type="smallint" Nullable="false" />
+          <Property Name="RelationID" Type="int" Nullable="false" />
+          <Property Name="RightLevel" Type="smallint" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Securities">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="partid" Type="int" />
-          <Property Name="type" Type="smallint" />
-          <Property Name="code" Type="nvarchar" MaxLength="16" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
-          <Property Name="refno" Type="nvarchar" MaxLength="16" />
-          <Property Name="regno" Type="nvarchar" MaxLength="16" />
-          <Property Name="totalQty" Type="decimal" Precision="18" Scale="6" />
-          <Property Name="firstPrice" Type="decimal" Precision="18" Scale="6" />
-          <Property Name="intRate" Type="decimal" Precision="3" Scale="2" />
-          <Property Name="sdate" Type="date" />
-          <Property Name="edate" Type="date" />
-          <Property Name="groupId" Type="int" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
+          <Property Name="partid" Type="int" Nullable="false" />
+          <Property Name="type" Type="smallint" Nullable="false" />
+          <Property Name="code" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="refno" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="regno" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="totalQty" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="firstPrice" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="intRate" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="sdate" Type="date" Nullable="false" />
+          <Property Name="edate" Type="date" Nullable="false" />
+          <Property Name="groupId" Type="int" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Session">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="boardid" Type="bigint" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
-          <Property Name="stime" Type="time" Precision="7" />
-          <Property Name="duration" Type="time" Precision="7" />
-          <Property Name="algorithm" Type="smallint" />
-          <Property Name="match" Type="smallint" />
-          <Property Name="allowedtypes" Type="nvarchar" MaxLength="50" />
-          <Property Name="description" Type="nvarchar" MaxLength="1024" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
-          <Property Name="isactive" Type="nvarchar" MaxLength="50" />
-          <Property Name="starttime" Type="date" />
-          <Property Name="endtime" Type="date" />
-          <Property Name="tduration" Type="nchar" MaxLength="10" />
-          <Property Name="matched" Type="bigint" />
-          <Property Name="editorder" Type="nchar" MaxLength="50" />
-          <Property Name="delorder" Type="nchar" MaxLength="50" />
-          <Property Name="markettype" Type="nchar" MaxLength="50" />
+          <Property Name="boardid" Type="bigint" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="stime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="duration" Type="time" Precision="7" Nullable="false" />
+          <Property Name="algorithm" Type="smallint" Nullable="false" />
+          <Property Name="match" Type="smallint" Nullable="false" />
+          <Property Name="allowedtypes" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="isactive" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="starttime" Type="date" Nullable="false" />
+          <Property Name="endtime" Type="date" Nullable="false" />
+          <Property Name="tduration" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="matched" Type="bigint" Nullable="false" />
+          <Property Name="editorder" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="delorder" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="markettype" Type="nchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Settings">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SettingName" Type="nvarchar" MaxLength="50" />
-          <Property Name="SettingValue" Type="nvarchar" MaxLength="1024" />
-          <Property Name="SettingCaption" Type="nvarchar" MaxLength="128" />
-          <Property Name="SortOrder" Type="int" />
-          <Property Name="ReadOnly" Type="tinyint" />
-          <Property Name="ValueType" Type="nvarchar" MaxLength="50" />
-          <Property Name="FormatString" Type="nvarchar" MaxLength="1024" />
+          <Property Name="SettingName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SettingValue" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="SettingCaption" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
+          <Property Name="ReadOnly" Type="tinyint" Nullable="false" />
+          <Property Name="ValueType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FormatString" Type="nvarchar" MaxLength="1024" Nullable="false" />
         </EntityType>
         <EntityType Name="side">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="side" Type="nvarchar" MaxLength="20" />
+          <Property Name="side" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="Softwares">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SWName" Type="nvarchar" MaxLength="50" />
-          <Property Name="SWCaption" Type="nvarchar" MaxLength="128" />
-          <Property Name="Description" Type="nvarchar" MaxLength="1024" />
-          <Property Name="IsClient" Type="smallint" />
+          <Property Name="SWName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SWCaption" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="IsClient" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="SpecialType">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="specialType" Type="nvarchar" MaxLength="20" />
+          <Property Name="specialType" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="Spreads">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="contractid" Type="int" />
-          <Property Name="sessionid" Type="int" />
-          <Property Name="rspread" Type="int" />
-          <Property Name="ispread" Type="int" />
-          <Property Name="rparam" Type="nchar" MaxLength="10" />
-          <Property Name="modified" Type="datetime" />
+          <Property Name="contractid" Type="int" Nullable="false" />
+          <Property Name="sessionid" Type="int" Nullable="false" />
+          <Property Name="rspread" Type="int" Nullable="false" />
+          <Property Name="ispread" Type="int" Nullable="false" />
+          <Property Name="rparam" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="States">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="smallint" Nullable="false" />
-          <Property Name="states" Type="nvarchar" MaxLength="20" />
+          <Property Name="states" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="stype">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="stype" Type="nvarchar" MaxLength="20" />
+          <Property Name="stype" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -550,79 +576,79 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="arrangePrice" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="tickSize" Type="decimal" Precision="18" Scale="6" />
-          <Property Name="userid" Type="bigint" />
-          <Property Name="assetid" Type="bigint" />
-          <Property Name="modified" Type="datetime" />
+          <Property Name="arrangePrice" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="tickSize" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="userid" Type="bigint" Nullable="false" />
+          <Property Name="assetid" Type="bigint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="TickSizeTable">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="tableid" Type="bigint" />
-          <Property Name="tick" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="price" Type="decimal" Precision="18" Scale="6" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
-          <Property Name="timestamp" Type="bigint" />
+          <Property Name="tableid" Type="bigint" Nullable="false" />
+          <Property Name="tick" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="timestamp" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Trans">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="accountId" Type="bigint" />
-          <Property Name="type" Type="smallint" />
-          <Property Name="type1" Type="smallint" />
-          <Property Name="amount" Type="decimal" Precision="18" Scale="6" />
-          <Property Name="currency" Type="int" />
-          <Property Name="rate" Type="int" />
-          <Property Name="note" Type="nvarchar(max)" />
-          <Property Name="tdate" Type="date" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
-          <Property Name="userId" Type="bigint" />
-          <Property Name="memberid" Type="bigint" />
+          <Property Name="accountId" Type="bigint" Nullable="false" />
+          <Property Name="type" Type="smallint" Nullable="false" />
+          <Property Name="type1" Type="smallint" Nullable="false" />
+          <Property Name="amount" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="currency" Type="int" Nullable="false" />
+          <Property Name="rate" Type="int" Nullable="false" />
+          <Property Name="note" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="tdate" Type="date" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="userId" Type="bigint" Nullable="false" />
+          <Property Name="memberid" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="transType">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="type" Type="nvarchar" MaxLength="20" />
+          <Property Name="type" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="UserAccounts">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="userid" Type="bigint" />
-          <Property Name="accountid" Type="bigint" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
+          <Property Name="userid" Type="bigint" Nullable="false" />
+          <Property Name="accountid" Type="bigint" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="UserGroups">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
-          <Property Name="description" Type="nvarchar" MaxLength="1024" />
-          <Property Name="manager" Type="bigint" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="manager" Type="bigint" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="users">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="uname" Type="nchar" MaxLength="10" />
-          <Property Name="password" Type="nchar" MaxLength="10" />
-          <Property Name="modified" Type="datetime" />
-          <Property Name="role" Type="nchar" MaxLength="10" />
+          <Property Name="uname" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="password" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="role" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <Association Name="FK_boards_boards1">
           <End Role="Boards" Type="Self.Boards" Multiplicity="1" />
@@ -670,6 +696,8 @@
         <EntityContainer Name="demoModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActiveSessions" EntityType="Self.ActiveSessions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="algo" EntityType="Self.algo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="allowedtype" EntityType="Self.allowedtype" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="API" EntityType="Self.API" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Assets" EntityType="Self.Assets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BoardInstruments" EntityType="Self.BoardInstruments" Schema="dbo" store:Type="Tables" />
@@ -683,6 +711,7 @@
           <EntitySet Name="DealerAccounts" EntityType="Self.DealerAccounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Deals" EntityType="Self.Deals" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dealtype" EntityType="Self.Dealtype" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="expireTable" EntityType="Self.expireTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fee" EntityType="Self.Fee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GroupRights" EntityType="Self.GroupRights" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GroupUsers" EntityType="Self.GroupUsers" Schema="dbo" store:Type="Tables" />
@@ -774,7 +803,7 @@
           <EntitySet Name="GroupRights" EntityType="demoModel.GroupRight" />
           <EntitySet Name="GroupUsers" EntityType="demoModel.GroupUser" />
           <EntitySet Name="InvoiceDetails" EntityType="demoModel.InvoiceDetail" />
-          <EntitySet Name="Invoices" EntityType="demoModel.Invoice" />
+          <EntitySet Name="Invoices" EntityType="demoModel.Invoices" />
           <EntitySet Name="isactives" EntityType="demoModel.isactive" />
           <EntitySet Name="IsDealers" EntityType="demoModel.IsDealer" />
           <EntitySet Name="Margins" EntityType="demoModel.Margin" />
@@ -808,6 +837,9 @@
           </AssociationSet>
           <EntitySet Name="ctypes" EntityType="demoModel.ctype" />
           <EntitySet Name="Sessions" EntityType="demoModel.Session" />
+          <EntitySet Name="algoes" EntityType="demoModel.algo" />
+          <EntitySet Name="allowedtypes" EntityType="demoModel.allowedtype" />
+          <EntitySet Name="expireTables" EntityType="demoModel.expireTable" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -826,16 +858,16 @@
             <PropertyRef Name="mask" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="memberid" Type="Int64" />
-          <Property Name="trading" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="clearing" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="settlement" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="collateral" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="memberid" Type="Int64" Nullable="false" />
+          <Property Name="trading" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="clearing" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="settlement" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="collateral" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="mask" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="startdate" Type="DateTime" Precision="0" />
-          <Property Name="enddate" Type="DateTime" Precision="0" />
-          <Property Name="state" Type="Int16" />
+          <Property Name="startdate" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="enddate" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
         </EntityType>
         <EntityType Name="ActiveSession">
           <Key>
@@ -844,12 +876,12 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="sessionid" Type="Int32" Nullable="false" />
-          <Property Name="isactive" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="starttime" Type="Time" Precision="7" />
-          <Property Name="endtime" Type="Time" Precision="7" />
-          <Property Name="tduration" Type="Time" Precision="7" />
-          <Property Name="matched" Type="Int32" />
-          <Property Name="state" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="isactive" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="starttime" Type="Time" Precision="7" Nullable="false" />
+          <Property Name="endtime" Type="Time" Precision="7" Nullable="false" />
+          <Property Name="tduration" Type="Time" Precision="7" Nullable="false" />
+          <Property Name="matched" Type="Int32" Nullable="false" />
+          <Property Name="state" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="API">
           <Key>
@@ -866,37 +898,37 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="code" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="value" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="expireDate" Type="DateTime" Precision="0" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="ratio" Type="Decimal" Precision="3" Scale="2" />
-          <Property Name="secId" Type="Int64" />
+          <Property Name="code" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="value" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="expireDate" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="ratio" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="secId" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="BoardInstrument">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="boardid" Type="Int32" />
-          <Property Name="instrumentid" Type="Int32" />
-          <Property Name="state" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="boardid" Type="Int32" Nullable="false" />
+          <Property Name="instrumentid" Type="Int32" Nullable="false" />
+          <Property Name="state" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
         </EntityType>
         <EntityType Name="Board">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="type" Type="Int16" />
-          <Property Name="tdays" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type" Type="Int16" Nullable="false" />
+          <Property Name="tdays" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Boards1" Relationship="demoModel.FK_boards_boards1" FromRole="Board" ToRole="Board1" />
           <NavigationProperty Name="Board1" Relationship="demoModel.FK_boards_boards1" FromRole="Board1" ToRole="Board" />
         </EntityType>
@@ -905,54 +937,54 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tdate" Type="DateTime" Precision="0" />
-          <Property Name="type" Type="Int16" />
-          <Property Name="note" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="tdate" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="type" Type="Int16" Nullable="false" />
+          <Property Name="note" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
         </EntityType>
         <EntityType Name="ClearingAccount">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="memberid" Type="Int32" />
-          <Property Name="account" Type="Int32" />
-          <Property Name="type" Type="Int16" />
-          <Property Name="currency" Type="Int32" />
-          <Property Name="blnc" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="sblnc" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="linkaccount" Type="Int64" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="memberid" Type="Int32" Nullable="false" />
+          <Property Name="account" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="Int16" Nullable="false" />
+          <Property Name="currency" Type="Int32" Nullable="false" />
+          <Property Name="blnc" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="sblnc" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="linkaccount" Type="Int64" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
         </EntityType>
         <EntityType Name="Contract">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="securityId" Type="Int32" />
-          <Property Name="type" Type="Int16" />
-          <Property Name="code" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="lot" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="tick" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="sdate" Type="DateTime" Precision="0" />
-          <Property Name="edate" Type="DateTime" Precision="0" />
-          <Property Name="groupId" Type="Int16" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="mmorderLimit" Type="Int32" />
-          <Property Name="orderLimit" Type="Int32" />
-          <Property Name="refpriceParam" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="bid" Type="Int64" />
+          <Property Name="securityId" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="Int16" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lot" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="tick" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="sdate" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="edate" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="groupId" Type="Int16" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="mmorderLimit" Type="Int32" Nullable="false" />
+          <Property Name="orderLimit" Type="Int32" Nullable="false" />
+          <Property Name="refpriceParam" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="bid" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="dayType">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="dayType1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="dayType1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Deal2">
           <Key>
@@ -960,15 +992,15 @@
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="dealType" Type="Int16" Nullable="false" />
-          <Property Name="side" Type="Int16" />
-          <Property Name="memberid" Type="Int64" />
-          <Property Name="accountid" Type="Int64" />
-          <Property Name="assetid" Type="Int64" />
-          <Property Name="qty" Type="Int32" />
-          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="account2id" Type="Int64" />
+          <Property Name="side" Type="Int16" Nullable="false" />
+          <Property Name="memberid" Type="Int64" Nullable="false" />
+          <Property Name="accountid" Type="Int64" Nullable="false" />
+          <Property Name="assetid" Type="Int64" Nullable="false" />
+          <Property Name="qty" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="account2id" Type="Int64" Nullable="false" />
           <Property Name="member2id" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="DealerAccount">
@@ -976,37 +1008,40 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="memberid" Type="Int64" />
-          <Property Name="accountid" Type="Int64" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="memberid" Type="Int64" Nullable="false" />
+          <Property Name="accountid" Type="Int64" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
         </EntityType>
         <EntityType Name="Deal">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="dealtype" Type="Int16" />
-          <Property Name="dealno" Type="Int64" />
-          <Property Name="side" Type="Int16" />
-          <Property Name="memberid" Type="Int32" />
-          <Property Name="accountid" Type="Int64" />
-          <Property Name="assetid" Type="Int32" />
-          <Property Name="qty" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="totalPrice" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="m2m" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="refPrice" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="dealtype" Type="Int16" Nullable="false" />
+          <Property Name="dealno" Type="Int64" Nullable="false" />
+          <Property Name="side" Type="Int16" Nullable="false" />
+          <Property Name="memberid" Type="Int32" Nullable="false" />
+          <Property Name="accountid" Type="Int64" Nullable="false" />
+          <Property Name="assetid" Type="Int32" Nullable="false" />
+          <Property Name="qty" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="totalPrice" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="m2m" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="refPrice" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="boardid" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="Dealtype">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="time" Type="Time" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="Fee">
           <Key>
@@ -1056,270 +1091,272 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="GroupID" Type="Int64" />
-          <Property Name="RightID" Type="Int32" />
-          <Property Name="HasRight" Type="Int16" />
-          <Property Name="Modified" Type="DateTime" Precision="3" />
+          <Property Name="GroupID" Type="Int64" Nullable="false" />
+          <Property Name="RightID" Type="Int32" Nullable="false" />
+          <Property Name="HasRight" Type="Int16" Nullable="false" />
+          <Property Name="Modified" Type="DateTime" Precision="3" Nullable="false" />
         </EntityType>
         <EntityType Name="GroupUser">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="userid" Type="Int64" />
-          <Property Name="groupid" Type="Int32" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="userid" Type="Int64" Nullable="false" />
+          <Property Name="groupid" Type="Int32" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
         </EntityType>
         <EntityType Name="InvoiceDetail">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="invoiceid" Type="Int64" />
-          <Property Name="assetid" Type="Int32" />
-          <Property Name="qty" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="price" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="invoiceid" Type="Int64" Nullable="false" />
+          <Property Name="assetid" Type="Int32" Nullable="false" />
+          <Property Name="qty" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="Invoice">
+        <EntityType Name="Invoices">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="type" Type="Int16" />
-          <Property Name="invoiceno" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="invoicedate" Type="DateTime" Precision="3" />
-          <Property Name="expiredate" Type="DateTime" Precision="3" />
-          <Property Name="formid" Type="Int64" />
-          <Property Name="toid" Type="Int64" />
-          <Property Name="assetid" Type="Int32" />
-          <Property Name="qty" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="type" Type="Int16" Nullable="false" />
+          <Property Name="invoiceno" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="invoicedate" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="expiredate" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="formid" Type="Int64" Nullable="false" />
+          <Property Name="toid" Type="Int64" Nullable="false" />
+          <Property Name="assetid" Type="Int32" Nullable="false" />
+          <Property Name="qty" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="fromid" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="isactive">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="isactive1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="isactive1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="IsDealer">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="isDealer1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="isDealer1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Margin">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="buy" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="sell" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="buytype" Type="Int16" />
-          <Property Name="selltype" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="mbuy" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="msell" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="buy" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="sell" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="buytype" Type="Int16" Nullable="false" />
+          <Property Name="selltype" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="mbuy" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="msell" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="coid" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="MarketMaker">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="contactid" Type="Int32" />
-          <Property Name="memberid" Type="Int32" />
-          <Property Name="accountid" Type="Int64" />
-          <Property Name="startdate" Type="DateTime" Precision="0" />
-          <Property Name="enddate" Type="DateTime" Precision="0" />
-          <Property Name="ticks" Type="Int32" />
-          <Property Name="description" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="orderlimit" Type="Int32" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="contactid" Type="Int32" Nullable="false" />
+          <Property Name="memberid" Type="Int32" Nullable="false" />
+          <Property Name="accountid" Type="Int64" Nullable="false" />
+          <Property Name="startdate" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="enddate" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="ticks" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="orderlimit" Type="Int32" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
         </EntityType>
         <EntityType Name="Member">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="type" Type="Int16" />
-          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="partid" Type="Int64" />
-          <Property Name="mask" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="startdate" Type="DateTime" Precision="0" />
-          <Property Name="enddate" Type="DateTime" Precision="0" />
-          <Property Name="broker" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="dealer" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="ander" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="nominal" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="Int16" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="partid" Type="Int64" Nullable="false" />
+          <Property Name="mask" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="startdate" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="enddate" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="broker" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dealer" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ander" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nominal" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="mtype">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="mtype1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="mtype1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="dealType" Type="Int16" />
-          <Property Name="side" Type="Int16" />
-          <Property Name="memberid" Type="Int64" />
-          <Property Name="accountid" Type="Int64" />
-          <Property Name="assetid" Type="Int64" />
-          <Property Name="qty" Type="Int32" />
-          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="dealType" Type="Int16" Nullable="false" />
+          <Property Name="side" Type="Int16" Nullable="false" />
+          <Property Name="memberid" Type="Int64" Nullable="false" />
+          <Property Name="accountid" Type="Int64" Nullable="false" />
+          <Property Name="assetid" Type="Int64" Nullable="false" />
+          <Property Name="qty" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
         </EntityType>
         <EntityType Name="Participant">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="country" Type="Int16" />
-          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="Int32" />
-          <Property Name="fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="pcity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="pdistr" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="phoroo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="pstreet" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="pwebpage" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="numofemp" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="csid" Type="Int32" />
-          <Property Name="webid" Type="Int32" />
+          <Property Name="code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="country" Type="Int16" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="Int32" Nullable="false" />
+          <Property Name="fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="pcity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pdistr" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phoroo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pstreet" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pwebpage" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="numofemp" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="csid" Type="Int32" Nullable="false" />
+          <Property Name="webid" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Ptype">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ptype1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ptype1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="RefPrice">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="refprice1" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="refprice1" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Right">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RightType" Type="Int32" />
-          <Property Name="KeyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RightCaption" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="RightTooltip" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="DefaultValue" Type="Int16" />
-          <Property Name="RelationID" Type="Int32" />
-          <Property Name="RightLevel" Type="Int16" />
-          <Property Name="ParentID" Type="Int32" />
+          <Property Name="RightType" Type="Int32" Nullable="false" />
+          <Property Name="KeyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RightCaption" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RightTooltip" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DefaultValue" Type="Int16" Nullable="false" />
+          <Property Name="RelationID" Type="Int32" Nullable="false" />
+          <Property Name="RightLevel" Type="Int16" Nullable="false" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Security">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="partid" Type="Int32" />
-          <Property Name="type" Type="Int16" />
-          <Property Name="code" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="refno" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="regno" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="totalQty" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="firstPrice" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="intRate" Type="Decimal" Precision="3" Scale="2" />
-          <Property Name="sdate" Type="DateTime" Precision="0" />
-          <Property Name="edate" Type="DateTime" Precision="0" />
-          <Property Name="groupId" Type="Int32" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="partid" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="Int16" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="refno" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="regno" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="totalQty" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="firstPrice" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="intRate" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="sdate" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="edate" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="groupId" Type="Int32" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
         </EntityType>
         <EntityType Name="Setting">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SettingName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SettingValue" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="SettingCaption" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="SortOrder" Type="Int32" />
-          <Property Name="ReadOnly" Type="Byte" />
-          <Property Name="ValueType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FormatString" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="SettingName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SettingValue" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SettingCaption" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" />
+          <Property Name="ReadOnly" Type="Byte" Nullable="false" />
+          <Property Name="ValueType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FormatString" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="side">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="side1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="side1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Software">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SWName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SWCaption" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="IsClient" Type="Int16" />
+          <Property Name="SWName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SWCaption" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsClient" Type="Int16" Nullable="false" />
         </EntityType>
         <EntityType Name="SpecialType">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="specialType1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="specialType1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Spread">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="contractid" Type="Int32" />
-          <Property Name="sessionid" Type="Int32" />
-          <Property Name="rspread" Type="Int32" />
-          <Property Name="ispread" Type="Int32" />
-          <Property Name="rparam" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="contractid" Type="Int32" Nullable="false" />
+          <Property Name="sessionid" Type="Int32" Nullable="false" />
+          <Property Name="rspread" Type="Int32" Nullable="false" />
+          <Property Name="ispread" Type="Int32" Nullable="false" />
+          <Property Name="rparam" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
         </EntityType>
         <EntityType Name="State">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" />
-          <Property Name="states" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="states" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="stype">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="stype1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="stype1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -1336,79 +1373,79 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="arrangePrice" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="tickSize" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="userid" Type="Int64" />
-          <Property Name="assetid" Type="Int64" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="arrangePrice" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="tickSize" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="userid" Type="Int64" Nullable="false" />
+          <Property Name="assetid" Type="Int64" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
         </EntityType>
         <EntityType Name="TickSizeTable">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tableid" Type="Int64" />
-          <Property Name="tick" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="price" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="timestamp" Type="Int64" />
+          <Property Name="tableid" Type="Int64" Nullable="false" />
+          <Property Name="tick" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="timestamp" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="Tran">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="accountId" Type="Int64" />
-          <Property Name="type" Type="Int16" />
-          <Property Name="type1" Type="Int16" />
-          <Property Name="amount" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="currency" Type="Int32" />
-          <Property Name="rate" Type="Int32" />
-          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="tdate" Type="DateTime" Precision="0" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="userId" Type="Int64" />
-          <Property Name="memberid" Type="Int64" />
+          <Property Name="accountId" Type="Int64" Nullable="false" />
+          <Property Name="type" Type="Int16" Nullable="false" />
+          <Property Name="type1" Type="Int16" Nullable="false" />
+          <Property Name="amount" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="currency" Type="Int32" Nullable="false" />
+          <Property Name="rate" Type="Int32" Nullable="false" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tdate" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="userId" Type="Int64" Nullable="false" />
+          <Property Name="memberid" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="transType">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="UserAccount">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="userid" Type="Int64" />
-          <Property Name="accountid" Type="Int64" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="userid" Type="Int64" Nullable="false" />
+          <Property Name="accountid" Type="Int64" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
         </EntityType>
         <EntityType Name="UserGroup">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="manager" Type="Int64" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="manager" Type="Int64" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
         </EntityType>
         <EntityType Name="user">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="uname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="role" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="uname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="role" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
         </EntityType>
         <Association Name="FK_boards_boards1">
           <End Type="demoModel.Board" Role="Board" Multiplicity="1" />
@@ -1427,31 +1464,53 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" />
-          <Property Name="ctype1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ctype1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Session">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="boardid" Type="Int64" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="stime" Type="Time" Precision="7" />
-          <Property Name="duration" Type="Time" Precision="7" />
-          <Property Name="algorithm" Type="Int16" />
-          <Property Name="match" Type="Int16" />
-          <Property Name="allowedtypes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="isactive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="starttime" Type="DateTime" Precision="0" />
-          <Property Name="endtime" Type="DateTime" Precision="0" />
-          <Property Name="tduration" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="matched" Type="Int64" />
-          <Property Name="editorder" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="delorder" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="markettype" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="boardid" Type="Int64" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="stime" Type="Time" Precision="7" Nullable="false" />
+          <Property Name="duration" Type="Time" Precision="7" Nullable="false" />
+          <Property Name="algorithm" Type="Int16" Nullable="false" />
+          <Property Name="match" Type="Int16" Nullable="false" />
+          <Property Name="allowedtypes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="isactive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="starttime" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="endtime" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="tduration" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="matched" Type="Int64" Nullable="false" />
+          <Property Name="editorder" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="delorder" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="markettype" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="algo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="algo1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="allowedtype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="allowedtype1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="expireTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="expire" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dealType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1655,6 +1714,7 @@
           <EntitySetMapping Name="Deals">
             <EntityTypeMapping TypeName="demoModel.Deal">
               <MappingFragment StoreEntitySet="Deals">
+                <ScalarProperty Name="boardid" ColumnName="boardid" />
                 <ScalarProperty Name="refPrice" ColumnName="refPrice" />
                 <ScalarProperty Name="m2m" ColumnName="m2m" />
                 <ScalarProperty Name="fee" ColumnName="fee" />
@@ -1676,6 +1736,8 @@
           <EntitySetMapping Name="Dealtypes">
             <EntityTypeMapping TypeName="demoModel.Dealtype">
               <MappingFragment StoreEntitySet="Dealtype">
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
@@ -1761,23 +1823,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Invoices">
-            <EntityTypeMapping TypeName="demoModel.Invoice">
-              <MappingFragment StoreEntitySet="Invoices">
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="qty" ColumnName="qty" />
-                <ScalarProperty Name="assetid" ColumnName="assetid" />
-                <ScalarProperty Name="toid" ColumnName="toid" />
-                <ScalarProperty Name="formid" ColumnName="formid" />
-                <ScalarProperty Name="expiredate" ColumnName="expiredate" />
-                <ScalarProperty Name="invoicedate" ColumnName="invoicedate" />
-                <ScalarProperty Name="invoiceno" ColumnName="invoiceno" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="isactives">
             <EntityTypeMapping TypeName="demoModel.isactive">
               <MappingFragment StoreEntitySet="isactive">
@@ -1797,6 +1842,7 @@
           <EntitySetMapping Name="Margins">
             <EntityTypeMapping TypeName="demoModel.Margin">
               <MappingFragment StoreEntitySet="Margins">
+                <ScalarProperty Name="coid" ColumnName="coid" />
                 <ScalarProperty Name="msell" ColumnName="msell" />
                 <ScalarProperty Name="mbuy" ColumnName="mbuy" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
@@ -2144,6 +2190,31 @@
                 <ScalarProperty Name="stime" ColumnName="stime" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="boardid" ColumnName="boardid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="algoes">
+            <EntityTypeMapping TypeName="demoModel.algo">
+              <MappingFragment StoreEntitySet="algo">
+                <ScalarProperty Name="algo1" ColumnName="algo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="allowedtypes">
+            <EntityTypeMapping TypeName="demoModel.allowedtype">
+              <MappingFragment StoreEntitySet="allowedtype">
+                <ScalarProperty Name="allowedtype1" ColumnName="allowedtype" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="expireTables">
+            <EntityTypeMapping TypeName="demoModel.expireTable">
+              <MappingFragment StoreEntitySet="expireTable">
+                <ScalarProperty Name="dealType" ColumnName="dealType" />
+                <ScalarProperty Name="expire" ColumnName="expire" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

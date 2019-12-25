@@ -15,20 +15,20 @@ namespace pages.dbBind
     public partial class Contract
     {
         public int id { get; set; }
-        public Nullable<int> securityId { get; set; }
-        public Nullable<short> type { get; set; }
+        public int securityId { get; set; }
+        public short type { get; set; }
         public string code { get; set; }
         public string name { get; set; }
-        public Nullable<decimal> lot { get; set; }
-        public Nullable<decimal> tick { get; set; }
-        public Nullable<System.DateTime> sdate { get; set; }
-        public Nullable<System.DateTime> edate { get; set; }
-        public Nullable<short> groupId { get; set; }
-        public Nullable<short> state { get; set; }
-        public Nullable<System.DateTime> modified { get; set; }
-        public Nullable<int> mmorderLimit { get; set; }
-        public Nullable<int> orderLimit { get; set; }
-        public Nullable<decimal> refpriceParam { get; set; }
-        public Nullable<long> bid { get; set; }
+        public decimal lot { get; set; }
+        public decimal tick { get; set; }
+        public System.DateTime sdate { get; set; }
+        public System.DateTime edate { get; set; }
+        public short groupId { get; set; }
+        public short state { get; set; }
+        public System.DateTime modified { get; set; }
+        public int mmorderLimit { get; set; }
+        public int orderLimit { get; set; }
+        public decimal refpriceParam { get; set; }
+        public long bid { get; set; }
     }
 }

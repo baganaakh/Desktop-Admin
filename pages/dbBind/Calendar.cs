@@ -15,10 +15,10 @@ namespace pages.dbBind
     public partial class Calendar
     {
         public short id { get; set; }
-        public Nullable<System.DateTime> tdate { get; set; }
-        public Nullable<short> type { get; set; }
+        public System.DateTime tdate { get; set; }
+        public short type { get; set; }
         public string note { get; set; }
-        public Nullable<short> state { get; set; }
-        public Nullable<System.DateTime> modified { get; set; }
+        public short state { get; set; }
+        public System.DateTime modified { get; set; }
     }
 }

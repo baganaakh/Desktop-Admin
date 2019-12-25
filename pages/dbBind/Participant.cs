@@ -17,21 +17,21 @@ namespace pages.dbBind
         public int id { get; set; }
         public string code { get; set; }
         public string name { get; set; }
-        public Nullable<short> country { get; set; }
+        public short country { get; set; }
         public string address { get; set; }
-        public Nullable<int> phone { get; set; }
+        public int phone { get; set; }
         public string fax { get; set; }
         public string email { get; set; }
         public string contact { get; set; }
-        public Nullable<short> state { get; set; }
+        public short state { get; set; }
         public string pcity { get; set; }
         public string pdistr { get; set; }
         public string phoroo { get; set; }
         public string pstreet { get; set; }
         public string pwebpage { get; set; }
         public string numofemp { get; set; }
-        public Nullable<System.DateTime> modified { get; set; }
-        public Nullable<int> csid { get; set; }
-        public Nullable<int> webid { get; set; }
+        public System.DateTime modified { get; set; }
+        public int csid { get; set; }
+        public int webid { get; set; }
     }
 }
