@@ -56,7 +56,7 @@ namespace pages
             string stat = value.Row[5].ToString();
             dealTypes = value.Row[7].ToString();
             string time= value.Row[8].ToString();
-            string eday= value.Row[8].ToString();
+            string eday= value.Row[9].ToString();
 
             bname.Text = name;
             btype.Text = type;
@@ -136,8 +136,8 @@ namespace pages
                 "description = N'" + descr + "', " +
                 "state = N'" + cid + "', " +
                 "dealType = " + dealTypes + ", " +
-                "expDate= " + exdate + ", " +
-                "expTime = '"+ehour+":"+eminute+":"+esecond+"'" +
+                "expDate = " + exdate + ", " +
+                "expTime = '"+ehour+":"+eminute+":"+esecond+"', " +
                 "modified = getdate() " +
                 "WHERE id = " + id;
 

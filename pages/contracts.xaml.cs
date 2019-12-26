@@ -65,6 +65,7 @@ namespace pages
             mmorderLim.Text = MMol;
             orderLim.Text = Olimit;
             refpricePara.Text = refprPAram;
+            boardid.SelectedValue = bId;
         }
         #endregion
         #region insert

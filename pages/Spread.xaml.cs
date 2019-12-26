@@ -142,23 +142,21 @@ namespace pages
             try
             {
                 coId = citem.id.ToString();
-                string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
                 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string CmdString = "SELECT TOP (1000) [id] ,[name] FROM [demo].[dbo].[Session] WHERE [boardid] = ( SELECT [bid] FROM [demo].[dbo].[Contracts] WHERE id = "+coId+")";
+                    string CmdString = "SELECT [id] ,[name] FROM [demo].[dbo].[Session] WHERE [boardid] = ( SELECT [bid] FROM [demo].[dbo].[Contracts] WHERE id = "+coId+")";
                     SqlCommand cmd = new SqlCommand(CmdString, conn);
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable("khfjkh");
+                    sda.Fill(dt);
+                    
+                    DataView view = dt.DefaultView;
 
-
-                    //demoEntities10 cta = new demoEntities10();
-                    //var sessionItems = cta.dt.ToList();
-                    //Sessionss = sessionItems;
-                    //sessionid.ItemsSource = Sessionss;
+                    sessionid.ItemsSource = view;
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 return;
             }
@@ -169,10 +167,6 @@ namespace pages
             var citem = ct.Contracts.ToList();
             Cont = citem;
             contractid.ItemsSource = Cont;
-
-            var meitems = ct.Sessions.ToList();
-            Sessionss = meitems;
-            sessionid.ItemsSource = Sessionss;
         }
 
         private void sessionid_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -213,8 +213,8 @@ namespace pages
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.dbo.session SET " +
                 "boardid = '" + boardid + "', " +
-                "name= '" + name + "', " +
-                "stime = " + sstimehour + ":" + sstimeminute + ", " +
+                "name= N'" + name + "', " +
+                "stime = '" + sstimehour + ":" + sstimeminute + "', " +
                 "duration = '" + dhours + ":" + dminutes + "', " +
                 "algorithm= '" + alogor + "', " +
                 "match= '" + match11 + "', " +
