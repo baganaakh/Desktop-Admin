@@ -20,7 +20,6 @@ namespace pages.dbBind
         public short country { get; set; }
         public string address { get; set; }
         public int phone { get; set; }
-        public string fax { get; set; }
         public string email { get; set; }
         public string contact { get; set; }
         public short state { get; set; }

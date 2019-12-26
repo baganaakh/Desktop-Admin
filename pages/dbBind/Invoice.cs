@@ -12,7 +12,7 @@ namespace pages.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class Invoices
+    public partial class Invoice
     {
         public int id { get; set; }
         public short type { get; set; }
@@ -25,6 +25,5 @@ namespace pages.dbBind
         public decimal qty { get; set; }
         public short state { get; set; }
         public System.DateTime modified { get; set; }
-        public long fromid { get; set; }
     }
 }

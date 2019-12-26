@@ -20,6 +20,6 @@ namespace pages.dbBind
         public decimal price { get; set; }
         public short state { get; set; }
         public System.DateTime modified { get; set; }
-        public long timestamp { get; set; }
+        public Nullable<long> timestamp { get; set; }
     }
 }

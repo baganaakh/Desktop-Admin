@@ -26,10 +26,10 @@ namespace pages.dbBind
         public short state { get; set; }
         public System.DateTime modified { get; set; }
         public string isactive { get; set; }
-        public System.DateTime starttime { get; set; }
-        public System.DateTime endtime { get; set; }
+        public Nullable<System.DateTime> starttime { get; set; }
+        public Nullable<System.DateTime> endtime { get; set; }
         public string tduration { get; set; }
-        public long matched { get; set; }
+        public Nullable<long> matched { get; set; }
         public string editorder { get; set; }
         public string delorder { get; set; }
         public string markettype { get; set; }

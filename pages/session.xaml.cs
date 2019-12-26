@@ -123,7 +123,6 @@ namespace pages
                 " ('" + boardid + "',N'" + name + "',N'" + sstimehour + ":"+sstimeminute+":"+sSecond+"' ,N'" + dhours + ":" + dminutes + ":"+dSecond+"', '" + alogor + "', '" + match11 + "', '" + allowedT + "', '" + descrip + "', '" + state +
                 "', getdate(),'" + EDorder + "', '" + DEorder + "', '" + markType + "')";
             cmd.Parameters.AddWithValue("@modified", DateTime.Now);
-            //checkDAta.Text = cmd.CommandText;
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();

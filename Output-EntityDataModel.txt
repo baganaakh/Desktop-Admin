@@ -1,0 +1,26 @@
+﻿Could not parse the configuration file. The error message is: 'An item with the same key has already been added.'. Try editing the file manually and then saving it.
+The model was generated with warnings or errors.Model1.edmxPlease see the Error List for more details. These issues must be fixed before running your application.
+Loading metadata from the database took 00:00:00.9033653.
+Generating the model took 00:00:01.3868845.
+Unable to update the App.Config file because of the following exception: 'An item with the same key has already been added.'
+The model was generated with warnings or errors.Model1.edmxPlease see the Error List for more details. These issues must be fixed before running your application.
+Loading metadata from the database took 00:00:00.6602081.
+Generating the model took 00:00:01.2298584.
+Unable to update the App.Config file because of the following exception: 'An item with the same key has already been added.'
+The model was generated with warnings or errors.Model1.edmxPlease see the Error List for more details. These issues must be fixed before running your application.
+Loading metadata from the database took 00:00:00.4154749.
+Generating the model took 00:00:00.9234019.
+Unable to update the App.Config file because of the following exception: 'An item with the same key has already been added.'
+An item with the same key has already been added.
+The model was generated with warnings or errors.Model1.edmxPlease see the Error List for more details. These issues must be fixed before running your application.
+Loading metadata from the database took 00:00:00.5298947.
+Generating the model took 00:00:01.2506564.
+Unable to update the App.Config file because of the following exception: 'An item with the same key has already been added.'
+The model was generated with warnings or errors.Model1.edmxPlease see the Error List for more details. These issues must be fixed before running your application.
+Loading metadata from the database took 00:00:00.4654208.
+Generating the model took 00:00:00.4642886.
+Unable to update the App.Config file because of the following exception: 'An item with the same key has already been added.'
+The model was generated with warnings or errors.Model1.edmxPlease see the Error List for more details. These issues must be fixed before running your application.
+Loading metadata from the database took 00:00:00.6232722.
+Generating the model took 00:00:01.4150223.
+Unable to update the App.Config file because of the following exception: 'An item with the same key has already been added.'

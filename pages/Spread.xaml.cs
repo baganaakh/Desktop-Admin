@@ -171,7 +171,6 @@ namespace pages
             Cont = citem;
             contractid.ItemsSource = Cont;
 
-            //MessageBox.Show(Cont);
             var meitems = ct.Sessions.ToList();
             Sessionss = meitems;
             sessionid.ItemsSource = Sessionss;

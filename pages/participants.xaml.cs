@@ -44,19 +44,18 @@ namespace pages
             string countrypar = value.Row[3].ToString();
             string addresspar= value.Row[4].ToString();
             string phonepar= value.Row[5].ToString();
-            string faxpar = value.Row[6].ToString();
-            string emailpar= value.Row[7].ToString();
-            string contactpar= value.Row[8].ToString();
-            string statepar = value.Row[9].ToString();
-            string modifypar = value.Row[10].ToString();
-            string webidpar = value.Row[11].ToString();
-            string csidpar= value.Row[12].ToString();
-            string Pcity= value.Row[13].ToString();
-            string Pdistr= value.Row[14].ToString();
-            string Phoroo= value.Row[15].ToString();
-            string Pstreet= value.Row[16].ToString();
-            string webpage= value.Row[17].ToString();
-            string Numofemp= value.Row[18].ToString();
+            string emailpar= value.Row[6].ToString();
+            string contactpar= value.Row[7].ToString();
+            string statepar = value.Row[8].ToString();
+            string modifypar = value.Row[9].ToString();
+            string webidpar = value.Row[10].ToString();
+            string csidpar= value.Row[11].ToString();
+            string Pcity= value.Row[12].ToString();
+            string Pdistr= value.Row[13].ToString();
+            string Phoroo= value.Row[14].ToString();
+            string Pstreet= value.Row[15].ToString();
+            string webpage= value.Row[16].ToString();
+            string Numofemp= value.Row[17].ToString();
 
             pcode.Text = codepar;
             pname.Text = namepar;
@@ -130,7 +129,7 @@ namespace pages
             string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT ALL [id], [code], [name], [country], [address], [phone], [fax], [email], [contact], [state], [modified], [webid], [csid], [pcity], [pdistr],[phoroo],[pstreet],[pwebpage],[numofemp] " +
+                CmdString = "SELECT ALL [id], [code], [name], [country], [address], [phone], [email], [contact], [state], [modified], [webid], [csid], [pcity], [pdistr],[phoroo],[pstreet],[pwebpage],[numofemp] " +
                     "FROM dbo.participants ";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);

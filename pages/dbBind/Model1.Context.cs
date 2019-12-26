@@ -45,7 +45,6 @@ namespace pages.dbBind
         public virtual DbSet<GroupRight> GroupRights { get; set; }
         public virtual DbSet<GroupUser> GroupUsers { get; set; }
         public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; }
-        public virtual DbSet<Invoices> Invoices { get; set; }
         public virtual DbSet<isactive> isactives { get; set; }
         public virtual DbSet<IsDealer> IsDealers { get; set; }
         public virtual DbSet<Margin> Margins { get; set; }
@@ -78,6 +77,7 @@ namespace pages.dbBind
         public virtual DbSet<algo> algoes { get; set; }
         public virtual DbSet<allowedtype> allowedtypes { get; set; }
         public virtual DbSet<expireTable> expireTables { get; set; }
+        public virtual DbSet<Invoice> Invoices { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

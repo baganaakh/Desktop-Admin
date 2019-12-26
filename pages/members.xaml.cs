@@ -327,7 +327,7 @@ namespace pages
             mt = meitems;
             mtype.ItemsSource = mt;
 
-            var paitems = st.Participants.ToList();
+            List<Participant> paitems = st.Participants.ToList();
             part = paitems;
             participants.ItemsSource = part;
         }
