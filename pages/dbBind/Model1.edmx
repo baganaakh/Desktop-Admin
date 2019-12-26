@@ -96,6 +96,9 @@
           <Property Name="state" Type="smallint" Nullable="false" />
           <Property Name="modified" Type="datetime" Nullable="false" />
           <Property Name="description" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="dealType" Type="smallint" />
+          <Property Name="expdate" Type="smallint" />
+          <Property Name="expTime" Type="time" Precision="7" />
         </EntityType>
         <EntityType Name="Calendar">
           <Key>
@@ -212,8 +215,6 @@
           </Key>
           <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="type" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="date" Type="date" Nullable="false" />
-          <Property Name="time" Type="time" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="expireTable">
           <Key>
@@ -437,7 +438,7 @@
           <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="refprice" Type="decimal" Precision="18" Scale="6" Nullable="false" />
           <Property Name="modified" Type="datetime" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Rights">
           <Key>
@@ -930,6 +931,9 @@
           <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Boards1" Relationship="demoModel.FK_boards_boards1" FromRole="Board" ToRole="Board1" />
           <NavigationProperty Name="Board1" Relationship="demoModel.FK_boards_boards1" FromRole="Board1" ToRole="Board" />
+          <Property Name="dealType" Type="Int16" />
+          <Property Name="expdate" Type="Int16" />
+          <Property Name="expTime" Type="Time" Precision="7" />
         </EntityType>
         <EntityType Name="Calendar">
           <Key>
@@ -1039,8 +1043,6 @@
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="time" Type="Time" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="Fee">
           <Key>
@@ -1240,7 +1242,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="refprice1" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
           <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Right">
           <Key>
@@ -1611,6 +1613,9 @@
           <EntitySetMapping Name="Boards">
             <EntityTypeMapping TypeName="demoModel.Board">
               <MappingFragment StoreEntitySet="Boards">
+                <ScalarProperty Name="expTime" ColumnName="expTime" />
+                <ScalarProperty Name="expdate" ColumnName="expdate" />
+                <ScalarProperty Name="dealType" ColumnName="dealType" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
                 <ScalarProperty Name="state" ColumnName="state" />
@@ -1733,8 +1738,6 @@
           <EntitySetMapping Name="Dealtypes">
             <EntityTypeMapping TypeName="demoModel.Dealtype">
               <MappingFragment StoreEntitySet="Dealtype">
-                <ScalarProperty Name="time" ColumnName="time" />
-                <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>

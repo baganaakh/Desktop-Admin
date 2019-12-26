@@ -184,23 +184,19 @@ namespace pages
             Emp = item;
             memid.ItemsSource = Emp;
 
-            demoEntities10 st = new demoEntities10();
-            var items = st.States.ToList();
+            var items = dc.States.ToList();
             statt = items;
             stat.ItemsSource = statt;
             
-            demoEntities10 dt= new demoEntities10();
-            var dts = dt.Dealtypes.ToList();
+            var dts = dc.Dealtypes.ToList();
             Dtype = dts;
             dealtype.ItemsSource = Dtype;
 
-            demoEntities10 ac = new demoEntities10();
-            var act = ac.Accounts.ToList();
+            var act = dc.Accounts.ToList();
             ACCT = act;
             accountid.ItemsSource = ACCT;
 
-            demoEntities10 ass = new demoEntities10();
-            var asst = ass.Assets.ToList();
+            var asst = dc.Assets.ToList();
             ASST = asst;
             assetid.ItemsSource = ASST;
         }

@@ -31,8 +31,8 @@ namespace pages
             bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        string id, cid;
-        #region
+        string id, cid, dealTypes;
+        #region number
         private static readonly Regex _regex = new Regex("[^0-9.-]+");
         private static bool IsTextAllowed(string text)
         {
@@ -43,7 +43,7 @@ namespace pages
             e.Handled = !IsTextAllowed(e.Text);
         }
         #endregion
-        #region
+        #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var value = DateTable1.SelectedItem as DataRowView;
@@ -54,12 +54,20 @@ namespace pages
             string tdays = value.Row[3].ToString();
             string description = value.Row[4].ToString();
             string stat = value.Row[5].ToString();
+            dealTypes = value.Row[7].ToString();
+            string time= value.Row[8].ToString();
 
             bname.Text = name;
             btype.Text = type;
             tdayss.Text = tdays;
             desc.Text = description;
             state.SelectedValue = stat;
+            dealtype.SelectedValue = dealTypes;
+            string[] times = time.Split(':');
+            dhour.Text= times[0];
+            dminute.Text= times[1];
+            dsecond.Text= times[2];
+
         }
         #endregion
         #region insert
@@ -69,14 +77,18 @@ namespace pages
             string type = btype.Text;
             string tdays = tdayss.Text;
             string descr = desc.Text;
-           
+            string ehour = dhour.Text;
+            string eminute = dminute.Text;
+            string esecond = dsecond.Text;
+            
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.boards (name, type, tdays, description, state) values" +
-                " (N'" + boardName + "',N'" + type + "',N'" + tdays + "', N'" + descr + "', N'" + cid + "')";
+            cmd.CommandText = "insert into dbo.boards (name, type, tdays, description, state,dealType,expTime) values" +
+                " (N'" + boardName + "',N'" + type + "',N'" + tdays + "', N'" + descr + "', N'" + cid + "',"+ dealTypes + "," +
+                "'"+ehour+":"+eminute+":"+esecond+"')";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -91,7 +103,7 @@ namespace pages
             string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT ALL [id],[name],[type],[tdays],[description],[state],[modified] FROM dbo.boards ";
+                CmdString = "SELECT [id],[name],[type],[tdays],[description],[state],[modified],[dealType],[expTime] FROM dbo.boards ";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Employee");
@@ -107,6 +119,9 @@ namespace pages
             string type = btype.Text;
             string tdays = tdayss.Text;
             string descr = desc.Text;
+            string ehour = dhour.Text;
+            string eminute = dminute.Text;
+            string esecond = dsecond.Text;
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
@@ -118,8 +133,10 @@ namespace pages
                 "tdays = N'" + tdays + "', " +
                 "description = N'" + descr + "', " +
                 "state = N'" + cid + "', " +
+                "dealType = " + dealTypes + ", " +
+                "expTime = '"+ehour+":"+eminute+":"+esecond+"'" +
                 "modified = getdate() " +
-                "WHERE id = N'" + id + "N'";
+                "WHERE id = " + id;
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -159,17 +176,40 @@ namespace pages
             btype.Text = null;
             tdayss.Text = null;
             desc.Text = null;
-            state.SelectedValue = null;
+            state.SelectedValue = null; 
+            dhour.Text=null;
+            dminute.Text=null;
+            dsecond.Text=null;
+            dealtype.SelectedItem = null;
         }
         #endregion
         #region combos
         public List<State> boa { get; set; }
+        public List<Dealtype> Dtype { get; set; }
+
         private void bindCombo()
         {
             demoEntities10 dE = new demoEntities10();
             var item = dE.States.ToList();
             boa = item;
             state.ItemsSource = boa;
+
+            var dts = dE.Dealtypes.ToList();
+            Dtype = dts;
+            dealtype.ItemsSource = Dtype;
+        }
+
+        private void dealtype_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var dti = dealtype.SelectedItem as Dealtype;
+            try
+            {
+                dealTypes = dti.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
         }
 
         private void stat_change(object sender, SelectionChangedEventArgs e)

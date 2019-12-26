@@ -144,6 +144,8 @@
         <Button Content="Update" HorizontalAlignment="Left" Margin="1351,241,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
         <TextBlock x:Name="checkDAta" HorizontalAlignment="Left" Margin="29,755,0,262" TextWrapping="Wrap" Width="1131"><Run Text="TextBlock"/></TextBlock>
         <ComboBox x:Name="sstate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="466,114,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <CheckBox x:Name="eOrder" Content="Edit order" HorizontalAlignment="Left" Margin="776,134,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="dOrder" Content="Del order" HorizontalAlignment="Left" Margin="648,137,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="stimehour" HorizontalAlignment="Left" Margin="127,127,0,0" VerticalAlignment="Top" Width="38" RenderTransformOrigin="-0.053,0.409">
             <ComboBoxItem Content="00"/>
             <ComboBoxItem Content="01"/>
@@ -231,8 +233,6 @@
             <ComboBoxItem Content="58"/>
             <ComboBoxItem Content="59"/>
         </ComboBox>
-        <CheckBox x:Name="eOrder" Content="Edit order" HorizontalAlignment="Left" Margin="776,134,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="dOrder" Content="Del order" HorizontalAlignment="Left" Margin="648,137,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="stimeSecond" HorizontalAlignment="Left" Margin="260,126,0,0" VerticalAlignment="Top" Width="35">
             <ComboBoxItem Content="00"/>
             <ComboBoxItem Content="01"/>

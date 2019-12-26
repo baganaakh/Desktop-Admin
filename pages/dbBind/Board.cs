@@ -21,6 +21,9 @@ namespace pages.dbBind
         public short state { get; set; }
         public System.DateTime modified { get; set; }
         public string description { get; set; }
+        public Nullable<short> dealType { get; set; }
+        public Nullable<short> expdate { get; set; }
+        public Nullable<System.TimeSpan> expTime { get; set; }
     
         public virtual Board Boards1 { get; set; }
         public virtual Board Board1 { get; set; }

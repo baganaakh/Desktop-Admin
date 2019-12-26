@@ -22,7 +22,7 @@
         <TextBox x:Name="desc" HorizontalAlignment="Left" Height="23" Margin="282,97,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="state" ItemsSource="{Binding}" SelectionChanged="stat_change" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="483,61,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <Button Content="Insert" HorizontalAlignment="Left" Margin="426,99,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
-        <DataGrid x:Name="DateTable1" HorizontalAlignment="Left" Height="341" AutoGenerateColumns="False" Margin="16,193,0,0" VerticalAlignment="Top" Width="712">
+        <DataGrid x:Name="DateTable1" HorizontalAlignment="Left" Height="341" AutoGenerateColumns="False" Margin="16,207,0,0" VerticalAlignment="Top" Width="712">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding name}" Header="Name"/>
@@ -31,15 +31,169 @@
                 <DataGridTextColumn Binding="{Binding description}" Width="200" Header="Description"/>
                 <DataGridTextColumn Binding="{Binding state}" Header="State"/>
                 <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
+                <DataGridTextColumn Binding="{Binding dealType}" Header="dealType"/>
+                <DataGridTextColumn Binding="{Binding expTime}" Header="Exp Time"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Update" HorizontalAlignment="Left" Margin="625,99,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="Delete" HorizontalAlignment="Left" Margin="728,99,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete"/>
         <Button Content="Refresh" HorizontalAlignment="Left" Margin="625,61,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh"/>
         <Button Content="New" HorizontalAlignment="Left" Margin="728,61,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData"/>
-        
+
 
         <TextBlock x:Name="checkDAta" HorizontalAlignment="Left" Margin="832,65,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="54" Width="149"/>
+        <Label Content="dealtype" HorizontalAlignment="Left" Margin="128,134,0,0" VerticalAlignment="Top" RenderTransformOrigin="0,0.077"/>
+        <ComboBox IsEditable="True" x:Name="dealtype" ItemsSource="{Binding}" SelectionChanged="dealtype_SelectionChanged" DisplayMemberPath="type" SelectedValuePath="id" HorizontalAlignment="Left" Margin="282,138,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <Label Content="цаг" HorizontalAlignment="Left" Margin="16,134,0,0" VerticalAlignment="Top"/>
+        <Label Content="dealType" HorizontalAlignment="Left" Margin="207,134,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="dhour" HorizontalAlignment="Left" Margin="65,138,0,0" VerticalAlignment="Top" Width="58">
+            <ComboBoxItem Content="00"/>
+            <ComboBoxItem Content="01"/>
+            <ComboBoxItem Content="02"/>
+            <ComboBoxItem Content="03"/>
+            <ComboBoxItem Content="04"/>
+            <ComboBoxItem Content="05"/>
+            <ComboBoxItem Content="06"/>
+            <ComboBoxItem Content="07"/>
+            <ComboBoxItem Content="08"/>
+            <ComboBoxItem Content="09"/>
+            <ComboBoxItem Content="10"/>
+            <ComboBoxItem Content="11"/>
+            <ComboBoxItem Content="12"/>
+            <ComboBoxItem Content="13"/>
+            <ComboBoxItem Content="14"/>
+            <ComboBoxItem Content="15"/>
+            <ComboBoxItem Content="16"/>
+            <ComboBoxItem Content="17"/>
+            <ComboBoxItem Content="18"/>
+            <ComboBoxItem Content="19"/>
+            <ComboBoxItem Content="20"/>
+            <ComboBoxItem Content="21"/>
+            <ComboBoxItem Content="22"/>
+            <ComboBoxItem Content="23"/>
+        </ComboBox>
+        <ComboBox x:Name="dminute" HorizontalAlignment="Left" Margin="128,138,0,0" VerticalAlignment="Top" Width="57">
+            <ComboBoxItem Content="00"/>
+            <ComboBoxItem Content="01"/>
+            <ComboBoxItem Content="02"/>
+            <ComboBoxItem Content="03"/>
+            <ComboBoxItem Content="04"/>
+            <ComboBoxItem Content="05"/>
+            <ComboBoxItem Content="06"/>
+            <ComboBoxItem Content="07"/>
+            <ComboBoxItem Content="08"/>
+            <ComboBoxItem Content="09"/>
+            <ComboBoxItem Content="10"/>
+            <ComboBoxItem Content="11"/>
+            <ComboBoxItem Content="12"/>
+            <ComboBoxItem Content="13"/>
+            <ComboBoxItem Content="14"/>
+            <ComboBoxItem Content="15"/>
+            <ComboBoxItem Content="16"/>
+            <ComboBoxItem Content="17"/>
+            <ComboBoxItem Content="18"/>
+            <ComboBoxItem Content="19"/>
+            <ComboBoxItem Content="20"/>
+            <ComboBoxItem Content="21"/>
+            <ComboBoxItem Content="22"/>
+            <ComboBoxItem Content="24"/>
+            <ComboBoxItem Content="25"/>
+            <ComboBoxItem Content="26"/>
+            <ComboBoxItem Content="27"/>
+            <ComboBoxItem Content="28"/>
+            <ComboBoxItem Content="29"/>
+            <ComboBoxItem Content="30"/>
+            <ComboBoxItem Content="31"/>
+            <ComboBoxItem Content="32"/>
+            <ComboBoxItem Content="33"/>
+            <ComboBoxItem Content="34"/>
+            <ComboBoxItem Content="35"/>
+            <ComboBoxItem Content="36"/>
+            <ComboBoxItem Content="37"/>
+            <ComboBoxItem Content="38"/>
+            <ComboBoxItem Content="39"/>
+            <ComboBoxItem Content="40"/>
+            <ComboBoxItem Content="41"/>
+            <ComboBoxItem Content="42"/>
+            <ComboBoxItem Content="43"/>
+            <ComboBoxItem Content="44"/>
+            <ComboBoxItem Content="45"/>
+            <ComboBoxItem Content="46"/>
+            <ComboBoxItem Content="47"/>
+            <ComboBoxItem Content="48"/>
+            <ComboBoxItem Content="49"/>
+            <ComboBoxItem Content="50"/>
+            <ComboBoxItem Content="51"/>
+            <ComboBoxItem Content="52"/>
+            <ComboBoxItem Content="53"/>
+            <ComboBoxItem Content="54"/>
+            <ComboBoxItem Content="55"/>
+            <ComboBoxItem Content="56"/>
+            <ComboBoxItem Content="57"/>
+            <ComboBoxItem Content="58"/>
+            <ComboBoxItem Content="59"/>
+        </ComboBox>
+        <ComboBox x:Name="dsecond" HorizontalAlignment="Left" Margin="128,171,0,0" VerticalAlignment="Top" Width="57">
+            <ComboBoxItem Content="00"/>
+            <ComboBoxItem Content="01"/>
+            <ComboBoxItem Content="02"/>
+            <ComboBoxItem Content="03"/>
+            <ComboBoxItem Content="04"/>
+            <ComboBoxItem Content="05"/>
+            <ComboBoxItem Content="06"/>
+            <ComboBoxItem Content="07"/>
+            <ComboBoxItem Content="08"/>
+            <ComboBoxItem Content="09"/>
+            <ComboBoxItem Content="10"/>
+            <ComboBoxItem Content="11"/>
+            <ComboBoxItem Content="12"/>
+            <ComboBoxItem Content="13"/>
+            <ComboBoxItem Content="14"/>
+            <ComboBoxItem Content="15"/>
+            <ComboBoxItem Content="16"/>
+            <ComboBoxItem Content="17"/>
+            <ComboBoxItem Content="18"/>
+            <ComboBoxItem Content="19"/>
+            <ComboBoxItem Content="20"/>
+            <ComboBoxItem Content="21"/>
+            <ComboBoxItem Content="22"/>
+            <ComboBoxItem Content="24"/>
+            <ComboBoxItem Content="25"/>
+            <ComboBoxItem Content="26"/>
+            <ComboBoxItem Content="27"/>
+            <ComboBoxItem Content="28"/>
+            <ComboBoxItem Content="29"/>
+            <ComboBoxItem Content="30"/>
+            <ComboBoxItem Content="31"/>
+            <ComboBoxItem Content="32"/>
+            <ComboBoxItem Content="33"/>
+            <ComboBoxItem Content="34"/>
+            <ComboBoxItem Content="35"/>
+            <ComboBoxItem Content="36"/>
+            <ComboBoxItem Content="37"/>
+            <ComboBoxItem Content="38"/>
+            <ComboBoxItem Content="39"/>
+            <ComboBoxItem Content="40"/>
+            <ComboBoxItem Content="41"/>
+            <ComboBoxItem Content="42"/>
+            <ComboBoxItem Content="43"/>
+            <ComboBoxItem Content="44"/>
+            <ComboBoxItem Content="45"/>
+            <ComboBoxItem Content="46"/>
+            <ComboBoxItem Content="47"/>
+            <ComboBoxItem Content="48"/>
+            <ComboBoxItem Content="49"/>
+            <ComboBoxItem Content="50"/>
+            <ComboBoxItem Content="51"/>
+            <ComboBoxItem Content="52"/>
+            <ComboBoxItem Content="53"/>
+            <ComboBoxItem Content="54"/>
+            <ComboBoxItem Content="55"/>
+            <ComboBoxItem Content="56"/>
+            <ComboBoxItem Content="57"/>
+            <ComboBoxItem Content="58"/>
+            <ComboBoxItem Content="59"/>
+        </ComboBox>
 
     </Grid>
 </Page>
