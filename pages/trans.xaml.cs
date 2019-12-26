@@ -112,11 +112,11 @@ namespace pages
         private void FillDataGrid()
         {
             string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-            string CmdString = string.Empty;
+            
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT ALL [id], [accountId], [type], [type1], [amount], [currency], [rate], [note], [tdate], [state], [modified], [userId], [memberid] "+
-        "FROM dbo.trans";
+                string CmdString = "SELECT ALL [id], [accountId], [type], [type1], [amount], [currency], [rate], [note]," +
+                    " [tdate], [state], [modified], [userId], [memberid] FROM dbo.trans";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Securities");

@@ -125,11 +125,10 @@ namespace pages
         #region fill
         private void FillDataGrid()
         {
-            string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-            string CmdString = string.Empty;
+            
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT ALL [id], [code], [name], [country], [address], [phone], [email], [contact], [state], [modified], [webid], [csid], [pcity], [pdistr],[phoroo],[pstreet],[pwebpage],[numofemp] " +
+                string CmdString = "SELECT ALL [id], [code], [name], [country], [address], [phone], [email], [contact], [state], [modified], [webid], [csid], [pcity], [pdistr],[phoroo],[pstreet],[pwebpage],[numofemp] " +
                     "FROM dbo.participants ";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);

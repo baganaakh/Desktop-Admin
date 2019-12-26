@@ -97,10 +97,9 @@ namespace pages
         #region fill
         private void FillDataGrid()
         {
-            string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT ALL [id], [memberid], [account], [type], [currency], [blnc], [sblnc], [linkaccount], [state], [modified] " +
+                string CmdString = "SELECT ALL [id], [memberid], [account], [type], [currency], [blnc], [sblnc], [linkaccount], [state], [modified] " +
                             "FROM dbo.ClearingAccounts";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);

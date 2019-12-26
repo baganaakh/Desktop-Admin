@@ -33,6 +33,7 @@
                 <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
                 <DataGridTextColumn Binding="{Binding dealType}" Header="dealType"/>
                 <DataGridTextColumn Binding="{Binding expTime}" Header="Exp Time"/>
+                <DataGridTextColumn Binding="{Binding expDate}" Header="expDay"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Update" HorizontalAlignment="Left" Margin="625,99,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
@@ -194,6 +195,8 @@
             <ComboBoxItem Content="58"/>
             <ComboBoxItem Content="59"/>
         </ComboBox>
+        <Label Content="End day" HorizontalAlignment="Left" Margin="421,134,0,0" VerticalAlignment="Top"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="enddate" HorizontalAlignment="Left" Height="23" Margin="496,138,0,0" TextWrapping="Wrap" Text="1"  VerticalAlignment="Top" Width="33"/>
 
     </Grid>
 </Page>

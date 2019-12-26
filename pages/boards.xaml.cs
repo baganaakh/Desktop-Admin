@@ -56,6 +56,7 @@ namespace pages
             string stat = value.Row[5].ToString();
             dealTypes = value.Row[7].ToString();
             string time= value.Row[8].ToString();
+            string eday= value.Row[8].ToString();
 
             bname.Text = name;
             btype.Text = type;
@@ -67,7 +68,7 @@ namespace pages
             dhour.Text= times[0];
             dminute.Text= times[1];
             dsecond.Text= times[2];
-
+            enddate.Text = eday;
         }
         #endregion
         #region insert
@@ -80,15 +81,15 @@ namespace pages
             string ehour = dhour.Text;
             string eminute = dminute.Text;
             string esecond = dsecond.Text;
-            
+            string exdate = enddate.Text;
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.boards (name, type, tdays, description, state,dealType,expTime) values" +
+            cmd.CommandText = "insert into dbo.boards (name, type, tdays, description, state,dealType,expTime,expDate) values" +
                 " (N'" + boardName + "',N'" + type + "',N'" + tdays + "', N'" + descr + "', N'" + cid + "',"+ dealTypes + "," +
-                "'"+ehour+":"+eminute+":"+esecond+"')";
+                "'"+ehour+":"+eminute+":"+esecond+"',"+exdate+")";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -100,10 +101,10 @@ namespace pages
         #region fill
         private void FillDataGrid()
         {
-            string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT [id],[name],[type],[tdays],[description],[state],[modified],[dealType],[expTime] FROM dbo.boards ";
+                string CmdString = "SELECT [id],[name],[type],[tdays],[description],[state]," +
+                    "[modified],[dealType],[expTime],[expDate] FROM dbo.boards ";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Employee");
@@ -122,6 +123,7 @@ namespace pages
             string ehour = dhour.Text;
             string eminute = dminute.Text;
             string esecond = dsecond.Text;
+            string exdate = enddate.Text;
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
@@ -134,6 +136,7 @@ namespace pages
                 "description = N'" + descr + "', " +
                 "state = N'" + cid + "', " +
                 "dealType = " + dealTypes + ", " +
+                "expDate= " + exdate + ", " +
                 "expTime = '"+ehour+":"+eminute+":"+esecond+"'" +
                 "modified = getdate() " +
                 "WHERE id = " + id;
@@ -181,6 +184,7 @@ namespace pages
             dminute.Text=null;
             dsecond.Text=null;
             dealtype.SelectedItem = null;
+            enddate.Text = null;
         }
         #endregion
         #region combos
@@ -225,5 +229,6 @@ namespace pages
             }
         }
         #endregion
+
     }
 }

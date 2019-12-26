@@ -93,10 +93,10 @@ namespace pages
         #region fill
         private void FillDataGrid()
         {
-            string CmdString = string.Empty;
+            
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT ALL [id], [buy], [sell], [buytype], [selltype], [mbuy], [msell], [modified], [coid] "+
+                string CmdString = "SELECT ALL [id], [buy], [sell], [buytype], [selltype], [mbuy], [msell], [modified], [coid] "+
                             "FROM [dbo].[Margins]";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);

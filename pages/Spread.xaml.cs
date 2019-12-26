@@ -87,11 +87,10 @@ namespace pages
         #region fill
         private void FillDataGrid()
         {
-            string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-            string CmdString = string.Empty;
+            
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT ALL [id], [contractid], [sessionid], [rspread], [ispread], [rparam], [modified] " +
+                string CmdString = "SELECT ALL [id], [contractid], [sessionid], [rspread], [ispread], [rparam], [modified] " +
                             "FROM dbo.Spreads";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
@@ -144,10 +143,10 @@ namespace pages
             {
                 coId = citem.id.ToString();
                 string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-                string CmdString = string.Empty;
+                
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    CmdString = "SELECT TOP (1000) [id] ,[name] FROM [demo].[dbo].[Session] WHERE [boardid] = ( SELECT [bid] FROM [demo].[dbo].[Contracts] WHERE id = "+coId+")";
+                    string CmdString = "SELECT TOP (1000) [id] ,[name] FROM [demo].[dbo].[Session] WHERE [boardid] = ( SELECT [bid] FROM [demo].[dbo].[Contracts] WHERE id = "+coId+")";
                     SqlCommand cmd = new SqlCommand(CmdString, conn);
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable("khfjkh");

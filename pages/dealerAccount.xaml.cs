@@ -80,11 +80,9 @@ namespace pages
         #region fill
         private void FillDataGrid()
         {
-            string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-            string CmdString = string.Empty;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT ALL [id], [memberid], [accountid],[state], [modified] " +
+                string CmdString = "SELECT ALL [id], [memberid], [accountid],[state], [modified] " +
                             "FROM dbo.DealerAccounts";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);

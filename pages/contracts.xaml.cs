@@ -117,10 +117,10 @@ namespace pages
         #region fill
         private void FillDataGrid()
         {
-            string CmdString = string.Empty;
+            
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                CmdString = "SELECT ALL [id], [securityId], [type], [code], [name], [lot], [tick], [sdate], [edate], [groupId], [state], [modified], " +
+                string CmdString = "SELECT ALL [id], [securityId], [type], [code], [name], [lot], [tick], [sdate], [edate], [groupId], [state], [modified], " +
                     "[mmorderLimit], [orderLimit], [refpriceParam], [bid] FROM dbo.contracts";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);

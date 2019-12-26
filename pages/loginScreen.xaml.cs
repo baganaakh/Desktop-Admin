@@ -39,8 +39,7 @@ namespace pages
                 if (conn.State == System.Data.ConnectionState.Closed)
                 {
                     conn.Open();
-                    string CmdString = string.Empty;
-                    CmdString = "SELECT role ,id FROM [dbo].[users] WHERE uname= '" + userName.Text + "' AND password= '" + passBox.Password + "'";
+                    string CmdString = "SELECT role ,id FROM [dbo].[users] WHERE uname= '" + userName.Text + "' AND password= '" + passBox.Password + "'";
                     SqlCommand cmd = new SqlCommand(CmdString, conn);
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable("Securities");
