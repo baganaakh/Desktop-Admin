@@ -37,7 +37,7 @@ namespace pages
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string CmdString = "SELECT ALL [id],[dealType], [side], [memberid], [accountid], [assetid], [qty], [price], [state], [modified] " +
+                string CmdString = "SELECT ALL [id],[bid], [side], [memberid], [accountid], [assetid], [qty], [price], [state], [modified] " +
                             "FROM [demo].[dbo].[Order]";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);

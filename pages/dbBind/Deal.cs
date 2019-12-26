@@ -15,7 +15,6 @@ namespace pages.dbBind
     public partial class Deal
     {
         public long id { get; set; }
-        public short dealtype { get; set; }
         public long dealno { get; set; }
         public short side { get; set; }
         public int memberid { get; set; }

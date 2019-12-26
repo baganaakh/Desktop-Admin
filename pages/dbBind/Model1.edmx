@@ -97,8 +97,8 @@
           <Property Name="modified" Type="datetime" Nullable="false" />
           <Property Name="description" Type="nvarchar" MaxLength="1024" Nullable="false" />
           <Property Name="dealType" Type="smallint" />
-          <Property Name="expdate" Type="smallint" />
           <Property Name="expTime" Type="time" Precision="7" />
+          <Property Name="expDate" Type="smallint" />
         </EntityType>
         <EntityType Name="Calendar">
           <Key>
@@ -193,7 +193,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="dealtype" Type="smallint" Nullable="false" />
+          <Property Name="boardid" Type="bigint" Nullable="false" />
           <Property Name="dealno" Type="bigint" Nullable="false" />
           <Property Name="side" Type="smallint" Nullable="false" />
           <Property Name="memberid" Type="int" Nullable="false" />
@@ -207,7 +207,6 @@
           <Property Name="fee" Type="decimal" Precision="18" Scale="4" Nullable="false" />
           <Property Name="m2m" Type="decimal" Precision="18" Scale="4" Nullable="false" />
           <Property Name="refPrice" Type="decimal" Precision="18" Scale="4" Nullable="false" />
-          <Property Name="boardid" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Dealtype">
           <Key>
@@ -391,7 +390,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="dealType" Type="smallint" Nullable="false" />
+          <Property Name="bid" Type="bigint" Nullable="false" />
           <Property Name="side" Type="smallint" Nullable="false" />
           <Property Name="memberid" Type="bigint" Nullable="false" />
           <Property Name="accountid" Type="bigint" Nullable="false" />
@@ -932,8 +931,8 @@
           <NavigationProperty Name="Boards1" Relationship="demoModel.FK_boards_boards1" FromRole="Board" ToRole="Board1" />
           <NavigationProperty Name="Board1" Relationship="demoModel.FK_boards_boards1" FromRole="Board1" ToRole="Board" />
           <Property Name="dealType" Type="Int16" />
-          <Property Name="expdate" Type="Int16" />
           <Property Name="expTime" Type="Time" Precision="7" />
+          <Property Name="expDate" Type="Int16" />
         </EntityType>
         <EntityType Name="Calendar">
           <Key>
@@ -1021,7 +1020,6 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="dealtype" Type="Int16" Nullable="false" />
           <Property Name="dealno" Type="Int64" Nullable="false" />
           <Property Name="side" Type="Int16" Nullable="false" />
           <Property Name="memberid" Type="Int32" Nullable="false" />
@@ -1195,7 +1193,6 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="dealType" Type="Int16" Nullable="false" />
           <Property Name="side" Type="Int16" Nullable="false" />
           <Property Name="memberid" Type="Int64" Nullable="false" />
           <Property Name="accountid" Type="Int64" Nullable="false" />
@@ -1204,6 +1201,7 @@
           <Property Name="price" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
           <Property Name="state" Type="Int16" Nullable="false" />
           <Property Name="modified" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="bid" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="Participant">
           <Key>
@@ -1613,8 +1611,8 @@
           <EntitySetMapping Name="Boards">
             <EntityTypeMapping TypeName="demoModel.Board">
               <MappingFragment StoreEntitySet="Boards">
+                <ScalarProperty Name="expDate" ColumnName="expDate" />
                 <ScalarProperty Name="expTime" ColumnName="expTime" />
-                <ScalarProperty Name="expdate" ColumnName="expdate" />
                 <ScalarProperty Name="dealType" ColumnName="dealType" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
@@ -1730,7 +1728,6 @@
                 <ScalarProperty Name="memberid" ColumnName="memberid" />
                 <ScalarProperty Name="side" ColumnName="side" />
                 <ScalarProperty Name="dealno" ColumnName="dealno" />
-                <ScalarProperty Name="dealtype" ColumnName="dealtype" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1902,6 +1899,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="demoModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="bid" ColumnName="bid" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
                 <ScalarProperty Name="state" ColumnName="state" />
                 <ScalarProperty Name="price" ColumnName="price" />
@@ -1910,7 +1908,6 @@
                 <ScalarProperty Name="accountid" ColumnName="accountid" />
                 <ScalarProperty Name="memberid" ColumnName="memberid" />
                 <ScalarProperty Name="side" ColumnName="side" />
-                <ScalarProperty Name="dealType" ColumnName="dealType" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

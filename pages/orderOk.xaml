@@ -15,7 +15,7 @@
                 <DataGridTextColumn Binding="{Binding memberid}" Header="MID"/>
                 <DataGridTextColumn Binding="{Binding accountid}" Header="AID"/>
                 <DataGridTextColumn Binding="{Binding assetid}" Header="assetid"/>
-                <DataGridTextColumn Binding="{Binding dealType}" Header="DealType"/>
+                <DataGridTextColumn Binding="{Binding bid}" Header="BID"/>
                 <DataGridTextColumn Binding="{Binding side}" Header="Side"/>
                 <DataGridTextColumn Binding="{Binding qty}" Header="QTY"/>
                 <DataGridTextColumn Binding="{Binding price}" Header="Price"/>
