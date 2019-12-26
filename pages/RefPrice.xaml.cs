@@ -132,28 +132,7 @@ namespace pages
             FillDataGrid();
         }
         #endregion
-        #region update
-        private void update(object sender, RoutedEventArgs e)
-        {
-            string refPrice = refprice.Text;
-
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "UPDATE demo.dbo.RefPrice SET " +
-                "refprice= '" + refPrice+ "', " +
-                "modified = getdate() " +
-                "WHERE id = '" + id + "'";
-
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
-            FillDataGrid();
-        }
-        #endregion
+        
         #region combos
         public List<Contract> Cont { get; set; }
         private void bindCombo()

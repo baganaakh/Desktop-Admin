@@ -68,7 +68,7 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into [demo].[dbo].[Order] (dealType, side, memberid, accountid, assetid, qty, price, state, modified) values" +
+            cmd.CommandText = "insert into [demo].[dbo].[Order] (bid, side, memberid, accountid, assetid, qty, price, state, modified) values" +
                 " ('" +  dealTypes + "',N'" + Side+ "',N'" + memId+ "',N'" + accId + "',N'" + assetId+ "',N'" + QTY+ "',N'" + Price+ "',N'" + statid+ "', getdate())";
 
             cmd.Connection = sqlConnection1;
@@ -94,7 +94,7 @@ namespace pages
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string CmdString = "SELECT ALL [id],[dealType], [side], [memberid], [accountid], [assetid], [qty], [price], [state], [modified] " +
+                string CmdString = "SELECT [id],[bid], [side], [memberid], [accountid], [assetid], [qty], [price], [state], [modified] " +
                             "FROM [demo].[dbo].[Order]";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
@@ -152,7 +152,7 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.[dbo].[Order] SET " +
-                "dealType= '" + dealTypes+ "', " +
+                "bid= '" + dealTypes+ "', " +
                 "side= '" + Side+ "', " +
                 "memberid= '" + memId + "', " +
                 "accountid= '" + accId+ "', " +
@@ -173,7 +173,7 @@ namespace pages
         #region combos
         public List<State> statt { get; set; }
         public List<Member> Emp { get; set; }
-        public List<Dealtype> Dtype { get; set; }
+        public List<Board> Dtype { get; set; }
         public List<Account> ACCT { get; set; }
         public List<Asset> ASST { get; set; }
 
@@ -188,7 +188,7 @@ namespace pages
             statt = items;
             stat.ItemsSource = statt;
             
-            var dts = dc.Dealtypes.ToList();
+            var dts = dc.Boards.ToList();
             Dtype = dts;
             dealtype.ItemsSource = Dtype;
 
@@ -228,7 +228,7 @@ namespace pages
         }
         private void dealtype_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var dti = dealtype.SelectedItem as Dealtype;
+            var dti = dealtype.SelectedItem as Board;
             try
             {
                 dealTypes = dti.id.ToString();

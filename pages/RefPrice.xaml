@@ -9,8 +9,7 @@
       Title="RefPrice">
 
     <Grid>
-        <Button Content="Connect" HorizontalAlignment="Left" Margin="777,71,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Insert" HorizontalAlignment="Left" Margin="777,113,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Insert" HorizontalAlignment="Left" Margin="648,76,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
         <Label Content="Contract id" HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="refprice" HorizontalAlignment="Left" Height="23" Margin="438,75,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label x:Name="rId" HorizontalAlignment="Left" Height="23" Margin="85,76,0,0" VerticalAlignment="Top" Width="47"/>
@@ -22,10 +21,8 @@
                 <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="777,155,0,0"/>
-        <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="648,73,0,0"/>
-        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="648,108,0,0"/>
-        <Button Content="Update" HorizontalAlignment="Left" Margin="648,155,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="860,76,0,0"/>
+        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="750,76,0,0"/>
         <ComboBox x:Name="markcontact" IsEditable="True" ItemsSource="{Binding}" SelectionChanged="markcontact_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,76,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
