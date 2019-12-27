@@ -10,8 +10,12 @@
       Title="boards">
 
     <Grid Margin="0,0,0,10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="583*"/>
+            <ColumnDefinition Width="417*"/>
+        </Grid.ColumnDefinitions>
         <Label Content="Нэр" HorizontalAlignment="Left" Margin="16,61,0,0" VerticalAlignment="Top"/>
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="528,99,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="528,99,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633" Grid.ColumnSpan="2"/>
         <Label Content="Type" HorizontalAlignment="Left" Margin="16,96,0,0" VerticalAlignment="Top"/>
         <Label Content="tdays" HorizontalAlignment="Left" Margin="207,61,0,0" VerticalAlignment="Top"/>
         <Label Content="тайлбар" HorizontalAlignment="Left" Margin="207,93,0,0" VerticalAlignment="Top"/>
@@ -20,9 +24,9 @@
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="btype" HorizontalAlignment="Left" Height="23" Margin="65,96,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="tdayss" HorizontalAlignment="Left" Height="23" Margin="282,61,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="desc" HorizontalAlignment="Left" Height="23" Margin="282,97,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="state" ItemsSource="{Binding}" SelectionChanged="stat_change" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="483,61,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox x:Name="state" ItemsSource="{Binding}" SelectionChanged="stat_change" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="483,61,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1" Grid.ColumnSpan="2"/>
         <Button Content="Insert" HorizontalAlignment="Left" Margin="426,99,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
-        <DataGrid x:Name="DateTable1" HorizontalAlignment="Left" Height="341" AutoGenerateColumns="False" Margin="16,207,0,0" VerticalAlignment="Top" Width="712">
+        <DataGrid x:Name="DateTable1" HorizontalAlignment="Left" Height="341" AutoGenerateColumns="False" Margin="16,207,0,0" VerticalAlignment="Top" Width="712" Grid.ColumnSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding name}" Header="Name"/>
@@ -36,13 +40,13 @@
                 <DataGridTextColumn Binding="{Binding expDate}" Header="expDay"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Update" HorizontalAlignment="Left" Margin="625,99,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Delete" HorizontalAlignment="Left" Margin="728,99,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete"/>
-        <Button Content="Refresh" HorizontalAlignment="Left" Margin="625,61,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh"/>
-        <Button Content="New" HorizontalAlignment="Left" Margin="728,61,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData"/>
+        <Button Content="Update" HorizontalAlignment="Left" Margin="42,99,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633" Grid.Column="1"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="145,99,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Grid.Column="1"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" Margin="42,61,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Grid.Column="1"/>
+        <Button Content="New" HorizontalAlignment="Left" Margin="145,61,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Grid.Column="1"/>
 
 
-        <TextBlock x:Name="checkDAta" HorizontalAlignment="Left" Margin="832,65,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="54" Width="149"/>
+        <TextBlock x:Name="checkDAta" HorizontalAlignment="Left" Margin="249,65,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="54" Width="149" Grid.Column="1"/>
         <Label Content="dealtype" HorizontalAlignment="Left" Margin="128,134,0,0" VerticalAlignment="Top" RenderTransformOrigin="0,0.077"/>
         <ComboBox IsEditable="True" x:Name="dealtype" ItemsSource="{Binding}" SelectionChanged="dealtype_SelectionChanged" DisplayMemberPath="type" SelectedValuePath="id" HorizontalAlignment="Left" Margin="282,138,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <Label Content="цаг" HorizontalAlignment="Left" Margin="16,134,0,0" VerticalAlignment="Top"/>

@@ -14,6 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.Entity;
+using System.Data.SqlClient;
+using System.Data;
+
 namespace pages
 {
     /// <summary>
@@ -21,28 +24,56 @@ namespace pages
     /// </summary>
     public partial class demo1 : Page
     {
-        private demoEntities10 data = new demoEntities10();
-        private CollectionViewSource assetView;
         public demo1()
         {
             InitializeComponent();
-            //assetView = ((CollectionViewSource)(FindResource("assetsViewSource")));
-            DataContext = this;
-            data.Assets.Load();
-            assetView.Source = data.Assets.Local;
+            FillDataGrid();
+            bindCombo();
         }
-
-        #region edit
-        private void Button_Click(object sender, RoutedEventArgs e)
+        string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
+        string id, cid, dealTypes;
+        #region fill
+        private void FillDataGrid()
         {
-            //prev
-            assetView.View.MoveCurrentToPrevious();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string CmdString = "SELECT [id],[name],[type],[tdays],[description],[state]," +
+                    "[modified],[dealType],[expTime],[expDate] FROM dbo.boards ";
+                SqlCommand cmd = new SqlCommand(CmdString, conn);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable("Employee");
+                sda.Fill(dt);
+                DateTable1.ItemsSource = dt.DefaultView;
+            }
         }
         #endregion
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        #region combo
+        public List<Dealtype> Dtype { get; set; }
+        private void bindCombo()
         {
-            //next
-            assetView.View.MoveCurrentToNext();
+            demoEntities10 dE = new demoEntities10();
+            var dts = dE.Dealtypes.ToList();
+            Dtype = dts;
+            dealtype.ItemsSource = Dtype;
         }
+        private void dealtype_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var dti = dealtype.SelectedItem as Dealtype;
+            try
+            {
+                dealTypes = dti.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
+        }
+        #endregion
+        #region button
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
     }
 }

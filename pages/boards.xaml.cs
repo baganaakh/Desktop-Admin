@@ -74,6 +74,10 @@ namespace pages
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
+            if (bname.Text == null)
+            {
+                MessageBox.Show("bname null!!!!");
+            }
             string boardName = bname.Text;
             string type = btype.Text;
             string tdays = tdayss.Text;

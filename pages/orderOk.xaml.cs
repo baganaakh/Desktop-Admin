@@ -97,9 +97,16 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into [dbo].[Deals] (dealType, side, memberid, accountid, assetid, qty, price, state, modified,dealno,totalPrice) values" +
-                " ('" + dealTypes + "'," + side1 + ",N'" + memId + "',N'" + accId + "',N'" + assetId + "',N'" + QTY + "',N'" + Price + "',N'" + statid + "', getdate(),IDENT_CURRENT('deals')+1," + total1 + "),"+
-                " ('" + dealTypes + "'," + side2 + ",N'" + MyGlobals.U_ID + "',N'" + accId2 + "',N'" + assetId + "',N'" + QTY + "',N'" + Price + "',N'" + statid + "', getdate(),IDENT_CURRENT('deals')+1," + total2 + ")";
+            cmd.CommandText = "insert into [dbo].[Deals] (dealType, side, memberid, accountid, assetid" +
+                ", qty, price, state, modified,dealno,totalPrice,boardid) values" +
+
+                " ((SELECT [dealType] as dealType from [demo].[dbo].[Boards] where id=" + dealTypes + ")," + side1 + ",N'" + memId + "',N'" + accId + "',N'" +
+                assetId + "',N'" + QTY + "',N'" + Price + "',N'" + statid + "', getdate()," +
+                "IDENT_CURRENT('deals')+1," + total1 + ","+dealTypes+")," +
+
+                "((SELECT [dealType] as dealType from [demo].[dbo].[Boards] where id=" + dealTypes + ")," + side2 + ",N'" +
+                MyGlobals.U_ID + "',N'" + accId2 + "',N'" + assetId + "',N'" + QTY + "',N'" + Price 
+                + "',N'" + statid + "', getdate(),IDENT_CURRENT('deals')+1," + total2 + "," + dealTypes + ")";
 
 
             cmd.Connection = sqlConnection1;
