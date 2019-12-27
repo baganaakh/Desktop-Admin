@@ -31,7 +31,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id, statid, memId, accId, dealTypes,assetId;
+        static string id, statid, memId, accId, dealTypes,assetId, sides;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -42,7 +42,7 @@ namespace pages
             assetId = values.Row[5].ToString();
             accId = values.Row[4].ToString();
             statid= values.Row[8].ToString();
-            string Side = values.Row[2].ToString();
+            sides= values.Row[2].ToString();
             string QTY= values.Row[6].ToString();
             string Price= values.Row[7].ToString();
 
@@ -53,7 +53,7 @@ namespace pages
             assetid.SelectedValue = accId;
             quantity.Text = QTY;
             price.Text = Price;
-            side.Text = Side;
+            Side.SelectedValue= sides;
         }
         #endregion
         #region insert
@@ -61,7 +61,6 @@ namespace pages
         {
             string QTY = quantity.Text;
             string Price = price.Text;
-            string Side = side.Text;
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
@@ -69,7 +68,7 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into [demo].[dbo].[Order] (bid, side, memberid, accountid, assetid, qty, price, state, modified) values" +
-                " ('" +  dealTypes + "',N'" + Side+ "',N'" + memId+ "',N'" + accId + "',N'" + assetId+ "',N'" + QTY+ "',N'" + Price+ "',N'" + statid+ "', getdate())";
+                " ('" +  dealTypes + "',N'" + sides+ "',N'" + memId+ "',N'" + accId + "',N'" + assetId+ "',N'" + QTY+ "',N'" + Price+ "',N'" + statid+ "', getdate())";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -118,7 +117,7 @@ namespace pages
             assetid.SelectedValue = null;
             quantity.Text = null;
             price.Text = null;
-            side.Text = null;
+            Side.SelectedValue = null;
         }
         #endregion
         #region delete
@@ -144,7 +143,6 @@ namespace pages
         {
             string QTY = quantity.Text;
             string Price = price.Text;
-            string Side = side.Text;
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
@@ -153,7 +151,7 @@ namespace pages
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.[dbo].[Order] SET " +
                 "bid= '" + dealTypes+ "', " +
-                "side= '" + Side+ "', " +
+                "side= '" + sides+ "', " +
                 "memberid= '" + memId + "', " +
                 "accountid= '" + accId+ "', " +
                 "assetid= '" + assetId + "', " +
@@ -176,6 +174,7 @@ namespace pages
         public List<Board> Dtype { get; set; }
         public List<Account> ACCT { get; set; }
         public List<Asset> ASST { get; set; }
+        public List<side> sid { get; set; }
 
         private void bindCombo()
         {
@@ -199,8 +198,24 @@ namespace pages
             var asst = dc.Assets.ToList();
             ASST = asst;
             assetid.ItemsSource = ASST;
+            
+            var sside= dc.sides.ToList();
+            sid = sside;
+            Side.ItemsSource = sid;
         }
 
+        private void side_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var items = Side.SelectedItem as side;
+            try
+            {
+                sides= items.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
+        }
 
         private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

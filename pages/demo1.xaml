@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:pages"
       xmlns:dbBind="clr-namespace:pages.dbBind" x:Class="pages.demo1"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      Height="850" Width="1000"
       Title="demo1"
     >
 
@@ -14,18 +14,24 @@
         <ComboBox IsEditable="True" x:Name="dealtype" ItemsSource="{Binding}" SelectionChanged="dealtype_SelectionChanged" DisplayMemberPath="type" SelectedValuePath="id" HorizontalAlignment="Left" Margin="126,31,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <Label Content="dealType" HorizontalAlignment="Left" Margin="51,27,0,0" VerticalAlignment="Top"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="330,31,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <DataGrid x:Name="DateTable1" HorizontalAlignment="Left" Height="341" AutoGenerateColumns="False" Margin="23,89,0,0" VerticalAlignment="Top" Width="712">
+        <DataGrid x:Name="DateTable1" HorizontalAlignment="Left" Height="341" AutoGenerateColumns="False" Margin="23,89,0,0" VerticalAlignment="Top" Width="912">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
-                <DataGridTextColumn Binding="{Binding name}" Header="Name"/>
-                <DataGridTextColumn Binding="{Binding type}" Header="Type"/>
-                <DataGridTextColumn Binding="{Binding tdays}" Header="Tdays"/>
-                <DataGridTextColumn Binding="{Binding description}" Width="200" Header="Description"/>
-                <DataGridTextColumn Binding="{Binding state}" Header="State"/>
-                <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
+                <DataGridTextColumn Binding="{Binding boardid}" Header="BID"/>
+                <DataGridTextColumn Binding="{Binding dealno}"  Header="DNumber"/>
+                <DataGridTextColumn Binding="{Binding side}" Header="side"/>
+                <DataGridTextColumn Binding="{Binding memberid}" Header="MID"/>
+                <DataGridTextColumn Binding="{Binding accountid}" Header="AID"/>
+                <DataGridTextColumn Binding="{Binding assetid}" Width="30" Header="AssID"/>
+                <DataGridTextColumn Binding="{Binding qty}" Header="QTY"/>
+                <DataGridTextColumn Binding="{Binding price}" Header="Price"/>
+                <DataGridTextColumn Binding="{Binding totalPrice}" Header="totalPrice"/>
+                <DataGridTextColumn Binding="{Binding state}" Header="state"/>
+                <DataGridTextColumn Binding="{Binding modified}" Header="modified"/>
+                <DataGridTextColumn Binding="{Binding fee}" Header="fee"/>
+                <DataGridTextColumn Binding="{Binding m2m}" Header="m2m"/>
+                <DataGridTextColumn Binding="{Binding refPrice}" Header="refPrice"/>
                 <DataGridTextColumn Binding="{Binding dealType}" Header="dealType"/>
-                <DataGridTextColumn Binding="{Binding expTime}" Header="Exp Time"/>
-                <DataGridTextColumn Binding="{Binding expDate}" Header="expDay"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

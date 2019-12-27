@@ -37,8 +37,8 @@ namespace pages
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string CmdString = "SELECT ALL [id],[bid], [side], [memberid], [accountid], [assetid], [qty], [price], [state], [modified] " +
-                            "FROM [demo].[dbo].[Order]";
+                string CmdString = "SELECT ALL [id],[bid], [side], [memberid], [accountid], [assetid], [qty], [price]," +
+                    " [state], [modified] " +"FROM [demo].[dbo].[Order]";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Securities");
@@ -100,8 +100,8 @@ namespace pages
             cmd.CommandText = "insert into [dbo].[Deals] (dealType, side, memberid, accountid, assetid" +
                 ", qty, price, state, modified,dealno,totalPrice,boardid) values" +
 
-                " ((SELECT [dealType] as dealType from [demo].[dbo].[Boards] where id=" + dealTypes + ")," + side1 + ",N'" + memId + "',N'" + accId + "',N'" +
-                assetId + "',N'" + QTY + "',N'" + Price + "',N'" + statid + "', getdate()," +
+                " ((SELECT [dealType] as dealType from [demo].[dbo].[Boards] where id=" + dealTypes + ")," + side1 + ",N'" +
+                memId + "',N'" + accId + "',N'" +assetId + "',N'" + QTY + "',N'" + Price + "',N'" + statid + "', getdate()," +
                 "IDENT_CURRENT('deals')+1," + total1 + ","+dealTypes+")," +
 
                 "((SELECT [dealType] as dealType from [demo].[dbo].[Boards] where id=" + dealTypes + ")," + side2 + ",N'" +

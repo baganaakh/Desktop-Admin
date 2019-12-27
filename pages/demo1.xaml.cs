@@ -37,8 +37,7 @@ namespace pages
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string CmdString = "SELECT [id],[name],[type],[tdays],[description],[state]," +
-                    "[modified],[dealType],[expTime],[expDate] FROM dbo.boards ";
+                string CmdString = "SELECT * FROM dbo.deals";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Employee");
