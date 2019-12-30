@@ -71,7 +71,14 @@ namespace pages
         #region button
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string CmdString = "insert into dbo.Deal2 (accountid, assetid, price, dealType)"+
+                    "SELECT [accountid], [assetid], SUM([totalPrice]) as price, dealType FROM [demo].[dbo].[Deals]"+
+                        "where dealType = "+dealTypes+" " +
+                                "group by accountid, dealType, assetid ";
+                SqlCommand cmd = new SqlCommand(CmdString, conn);
+            }
         }
         #endregion
     }

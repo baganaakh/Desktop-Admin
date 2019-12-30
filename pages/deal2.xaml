@@ -23,7 +23,7 @@
                 <DataGridTextColumn Binding="{Binding state}" Header="State"/>
                 <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
                 <DataGridTextColumn Binding="{Binding account2id}" Header="Account 2"/>
-                <DataGridTextColumn Binding="{Binding member2id}" Header="Member 2"/>
+                <DataGridTextColumn Binding="{Binding dealType}" Header="dealType"/>
             </DataGrid.Columns>
         </DataGrid>
 

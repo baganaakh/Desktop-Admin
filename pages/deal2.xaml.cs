@@ -33,8 +33,7 @@ namespace pages
             string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string CmdString = "SELECT  [id],[boardid], [side], [memberid], [accountid], [assetid], [qty], [price], [state], [modified] ,[account2id], [member2id] " +
-                            "FROM [demo].[dbo].[Deal2]";
+                string CmdString = "SELECT * FROM [dbo].[Deal2]";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Securities");
