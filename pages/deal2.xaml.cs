@@ -27,6 +27,8 @@ namespace pages
             InitializeComponent();
             FillDataGrid();
         }
+        string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
+        string id;
         #region fill
         private void FillDataGrid()
         {
@@ -39,6 +41,21 @@ namespace pages
                 DataTable dt = new DataTable("Securities");
                 sda.Fill(dt);
                 DateTable2.ItemsSource = dt.DefaultView;
+            }
+        }
+        #endregion
+        #region deal to invoice 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var values = DateTable2.SelectedItem as DataRowView;
+            id = values.Row[0].ToString();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string CmdString = "insert into dbo.Deal2 (accountid, assetid, price, dealType)" +
+                    "SELECT [accountid], [assetid], SUM([totalPrice]) as price, dealType FROM [demo].[dbo].[Deals]" +
+                        "where cast(modified as date) =cast(GETDATE() as date) and dealType =  " +
+                                "group by accountid, dealType, assetid ";
+                SqlCommand cmd = new SqlCommand(CmdString, conn);
             }
         }
         #endregion
