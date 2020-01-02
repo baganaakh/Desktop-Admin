@@ -76,7 +76,7 @@ namespace pages
                 string CmdString = "insert into dbo.Deal2 (accountid, assetid, price, dealType, boardid)"+
                     "SELECT [boardid], [accountid], [assetid], SUM([totalPrice]) as price, dealType FROM [demo].[dbo].[Deals]" +
                         "where cast(modified as date) =cast(GETDATE() as date) and dealType = " + dealTypes+" " +
-                                "group by accountid, dealType, assetid ";
+                                "group by accountid, dealType, assetid, boardid ";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
             }
         }

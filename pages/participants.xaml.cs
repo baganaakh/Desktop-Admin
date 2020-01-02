@@ -24,6 +24,7 @@ namespace pages
     /// </summary>
     public partial class participants : Page
     {
+        
         public participants()
         {
             InitializeComponent();
@@ -47,32 +48,31 @@ namespace pages
             string emailpar= value.Row[6].ToString();
             string contactpar= value.Row[7].ToString();
             string statepar = value.Row[8].ToString();
-            string modifypar = value.Row[9].ToString();
-            string webidpar = value.Row[10].ToString();
-            string csidpar= value.Row[11].ToString();
-            string Pcity= value.Row[12].ToString();
-            string Pdistr= value.Row[13].ToString();
-            string Phoroo= value.Row[14].ToString();
-            string Pstreet= value.Row[15].ToString();
-            string webpage= value.Row[16].ToString();
-            string Numofemp= value.Row[17].ToString();
+            string Pcity= value.Row[9].ToString();
+            string Pdistr = value.Row[10].ToString();
+            string Phoroo= value.Row[11].ToString();
+            string Pstreet= value.Row[12].ToString();
+            string Pwebpage= value.Row[13].ToString();
+            string numEmploy= value.Row[14].ToString();
+            string CSid= value.Row[16].ToString();
+            string WEBid= value.Row[17].ToString();
 
             pcode.Text = codepar;
             pname.Text = namepar;
             pcountry.Text = countrypar;
-            pcontact.Text = contactpar;
-            pstate.SelectedValue = statepar;
-            paddress.Text = addresspar;
             pphone.Text = phonepar;
             pmail.Text = emailpar;
-            pwebid.Text = webidpar;
-            pcsid.Text = csidpar;
+            pcontact.Text = contactpar;
+            pstate.SelectedValue = statepar; cid = statepar;
             pcity.Text = Pcity;
-            pdistr.Text=Pdistr;
+            pdistr.Text = Pdistr;
             phoroo.Text = Phoroo;
-            pstreet.Text=Pstreet;
-            pwebpage.Text=webpage;
-            numofemp.Text=Numofemp;
+            pstreet.Text = Pstreet;
+            pwebpage.Text = Pwebpage;
+            numofemp.Text = numEmploy;
+            pcsid.Text = CSid;
+            pwebid.Text = WEBid;
+
         }
         #endregion
         #region insert
@@ -81,7 +81,6 @@ namespace pages
             string code = pcode.Text;
             string name = pname.Text;
             string country = pcountry.Text;
-            string address = paddress.Text;
             string phone = pphone.Text;
             string email = pmail.Text;
             string contact = pcontact.Text;
@@ -93,14 +92,13 @@ namespace pages
             string Pstreet = pstreet.Text;
             string Pwebpage = pwebpage.Text;
             string Numofemp= numofemp.Text;
-           
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.participants (code, name, country, address, phone, email, contact, state, modified, csid, webid,pcity,pdistr,phoroo,pstreet,pwebpage,numofemp) values" +
-                " ('" + code + "',N'" + name + "',N'" + country + "',N'" + address+ "', '" + phone+ "', '" + email+ "', '" + contact+ "', '" + cid +"', getdate(), '"+csid+ "', '"+webid+"'" +
+            cmd.CommandText = "insert into dbo.participants (code, name, country, phone, email, contact, state, modified, csid, webid,pcity,pdistr,phoroo,pstreet,pwebpage,numofemp) values" +
+                " ('" + code + "',N'" + name + "',N'" + country + "', '" + phone+ "', '" + email+ "', '" + contact+ "', '" + cid +"', getdate(), '"+csid+ "', '"+webid+"'" +
                 ",N'"+ Pcity + "',N'" + Pdistr + "',N'" + Phoroo + "',N'" + Pstreet + "',N'" + Pwebpage + "',N'" + Numofemp + "')";
             checkDAta.Text = cmd.CommandText;
 
@@ -128,8 +126,7 @@ namespace pages
             
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string CmdString = "SELECT ALL [id], [code], [name], [country], [address], [phone], [email], [contact], [state], [modified], [webid], [csid], [pcity], [pdistr],[phoroo],[pstreet],[pwebpage],[numofemp] " +
-                    "FROM dbo.participants ";
+                string CmdString = "SELECT * FROM dbo.participants ";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Participant");
@@ -146,7 +143,6 @@ namespace pages
             pcountry.Text= null;
             pcontact.Text= null;
             pstate.Text = null;
-            paddress.Text = null;
             pphone.Text = null;
             pmail.Text = null;
             pwebid.Text= null;
@@ -189,11 +185,9 @@ namespace pages
             string code = pcode.Text;
             string name = pname.Text;
             string country = pcountry.Text;
-            string address = paddress.Text;
             string phone = pphone.Text;
             string email = pmail.Text;
             string contact = pcontact.Text;
-            string state = pstate.Text;
             string csid = pcsid.Text;
             string webid = pwebid.Text;
             string Pcity = pcity.Text;
@@ -210,9 +204,8 @@ namespace pages
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.dbo.participants SET " +
                 "code = '" + code+ "', " +
-                "name= '" + name + "', " +
+                "name= N'" + name + "', " +
                 "country = '" + country+ "', " +
-                "address= '" + address + "', " +
                 "phone= '" + phone+ "', " +
                 "email= '" + email+ "', " +
                 "contact= '" + contact+ "', " +
@@ -236,6 +229,34 @@ namespace pages
             FillDataGrid();
         }
         #endregion
+        #region email validation
+        //bool IsValidEmail(string email)
+        //{
+        //    try
+        //    {
+        //        var addr = new System.Net.Mail.MailAddress(email);
+        //        return addr.Address == email;
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
+        //public static class ValidatorExtensions
+        //{
+        //    public static bool IsValidEmailAddress(this string s)
+        //    {
+        //        Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+        //        return regex.IsMatch(s);
+        //    }
+        //}
+
+        //private void pmail_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    bool result = ValidatorExtensions.IsValidEmailAddress(pmail.Text);
+        //}
+
+        #endregion
         #region combos
         public List<State> boa { get; set; }
         public List<SpecialType> sptype { get; set; }
@@ -257,7 +278,6 @@ namespace pages
             ptyp= ptitem;
             ptype.ItemsSource = ptyp;
         }
-
         private void ptype_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var spitem = ptype.SelectedItem as SpecialType;

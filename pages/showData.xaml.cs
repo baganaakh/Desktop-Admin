@@ -25,19 +25,24 @@ namespace pages
     /// </summary>
     public partial class showData : Page
     {
-        demoEntities10 data = new demoEntities10();
-        CollectionViewSource feeViewSource;
+        string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
 
-        public showData()
+        #region fill
+        private void FillDataGrid()
         {
-            InitializeComponent();
-            feeViewSource = ((CollectionViewSource)(FindResource("feeViewSource")));
-            DataContext = this;
-            data.Fees.Load();
-            feeViewSource.Source = data.Fees.Local;
-            feeViewSource.View.MoveCurrentToFirst();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string CmdString = "SELECT * FROM dbo.deals";
+                SqlCommand cmd = new SqlCommand(CmdString, conn);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable("Employee");
+                sda.Fill(dt);
+                DateTable1.ItemsSource = dt.DefaultView;
+            }
         }
+        #endregion
 
-        
+
     }
+
 }
