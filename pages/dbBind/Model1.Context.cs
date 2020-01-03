@@ -78,6 +78,7 @@ namespace pages.dbBind
         public virtual DbSet<allowedtype> allowedtypes { get; set; }
         public virtual DbSet<expireTable> expireTables { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
+        public virtual DbSet<netting> nettings { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

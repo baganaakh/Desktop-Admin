@@ -25,9 +25,10 @@ namespace pages.dbBind
         public decimal totalPrice { get; set; }
         public short state { get; set; }
         public System.DateTime modified { get; set; }
-        public decimal fee { get; set; }
-        public decimal m2m { get; set; }
-        public decimal refPrice { get; set; }
+        public Nullable<decimal> fee { get; set; }
+        public Nullable<decimal> m2m { get; set; }
+        public Nullable<decimal> refPrice { get; set; }
         public long boardid { get; set; }
+        public Nullable<short> dealType { get; set; }
     }
 }

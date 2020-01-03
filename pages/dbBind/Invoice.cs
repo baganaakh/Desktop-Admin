@@ -15,7 +15,7 @@ namespace pages.dbBind
     public partial class Invoice
     {
         public int id { get; set; }
-        public short type { get; set; }
+        public short dealType { get; set; }
         public string invoiceno { get; set; }
         public System.DateTime invoicedate { get; set; }
         public System.DateTime expiredate { get; set; }

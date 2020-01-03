@@ -24,5 +24,6 @@ namespace pages.dbBind
         public short state { get; set; }
         public System.DateTime modified { get; set; }
         public long bid { get; set; }
+        public Nullable<short> dealType { get; set; }
     }
 }

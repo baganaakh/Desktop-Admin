@@ -50,6 +50,8 @@
                 <DataGridTextColumn Binding="{Binding modified}" Header="modified"/>
                 <DataGridTextColumn Binding="{Binding csid}" Header="csid"/>
                 <DataGridTextColumn Binding="{Binding webid}" Header="webid"/>
+                <DataGridTextColumn Binding="{Binding spType}" Header="spType"/>
+                <DataGridTextColumn Binding="{Binding coType}" Header="coType"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="997,79,0,0"/>

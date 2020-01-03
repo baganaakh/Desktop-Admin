@@ -53,7 +53,8 @@
         <AssociationConnector Association="demoModel.FK_boards_boards1" />
         <EntityTypeShape EntityType="demoModel.ctype" Width="1.5" PointX="8.75" PointY="15.75" />
         <EntityTypeShape EntityType="demoModel.Session" Width="1.5" PointX="2.875" PointY="12.125" />
-        <EntityTypeShape EntityType="demoModel.Invoice" Width="1.5" PointX="17.375" PointY="12.75" />
+        <EntityTypeShape EntityType="demoModel.Invoice" Width="1.5" PointX="16.75" PointY="12.875" />
+        <EntityTypeShape EntityType="demoModel.netting" Width="1.5" PointX="16.75" PointY="16.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

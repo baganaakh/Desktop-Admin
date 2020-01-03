@@ -56,6 +56,8 @@ namespace pages
             string numEmploy= value.Row[14].ToString();
             string CSid= value.Row[16].ToString();
             string WEBid= value.Row[17].ToString();
+            string speType= value.Row[18].ToString();
+            string coType= value.Row[19].ToString();
 
             pcode.Text = codepar;
             pname.Text = namepar;
@@ -72,7 +74,8 @@ namespace pages
             numofemp.Text = numEmploy;
             pcsid.Text = CSid;
             pwebid.Text = WEBid;
-
+            ptype.SelectedValue = coType; ptid = coType; //cotype
+            spetype.SelectedValue = speType; spid = speType; //special type
         }
         #endregion
         #region insert
@@ -92,14 +95,20 @@ namespace pages
             string Pstreet = pstreet.Text;
             string Pwebpage = pwebpage.Text;
             string Numofemp= numofemp.Text;
+            if(ptid == null || spid == null)
+            {
+                MessageBox.Show("please set the participant types");
+                return;
+            }
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
-
+            
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.participants (code, name, country, phone, email, contact, state, modified, csid, webid,pcity,pdistr,phoroo,pstreet,pwebpage,numofemp) values" +
-                " ('" + code + "',N'" + name + "',N'" + country + "', '" + phone+ "', '" + email+ "', '" + contact+ "', '" + cid +"', getdate(), '"+csid+ "', '"+webid+"'" +
-                ",N'"+ Pcity + "',N'" + Pdistr + "',N'" + Phoroo + "',N'" + Pstreet + "',N'" + Pwebpage + "',N'" + Numofemp + "')";
+            cmd.CommandText = "SET ANSI_PADDING OFF; insert into dbo.participants (code, name, country, phone, email, contact, state, modified," +
+                " csid, webid,pcity,pdistr,phoroo,pstreet,pwebpage,numofemp,coType,spType) values" +
+                " ('" + code + "',N'" + name + "',N'" + country + "', '" + phone+ "', '" + email+ "', '" + contact+ "', '" + cid +"', getdate(), '"+csid+ 
+                "', '"+webid+"',N'"+ Pcity + "',N'" + Pdistr + "',N'" + Phoroo + "',N'" + Pstreet + "',N'" + Pwebpage + "',N'" + Numofemp + "',"+ptid+","+spid+")";
             checkDAta.Text = cmd.CommandText;
 
             cmd.Connection = sqlConnection1;
@@ -123,7 +132,6 @@ namespace pages
         #region fill
         private void FillDataGrid()
         {
-            
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string CmdString = "SELECT * FROM dbo.participants ";
@@ -154,6 +162,8 @@ namespace pages
             pstreet.Text=null;
             pwebpage.Text=null;
             numofemp.Text=null;
+            spetype.SelectedItem = null;
+            ptype.SelectedItem = null;
         }
         private void refreshh(object sender, RoutedEventArgs e)
         {
@@ -218,6 +228,8 @@ namespace pages
                 "pstreet= '" + Pstreet+ "', " +
                 "pwebpage= '" + Pwebpage+ "', " +
                 "numofemp= '" + Numofemp+ "', " +
+                "coType= '" + ptid+ "', " +
+                "spType= '" + spid+ "', " +
                 "csid= '" + csid+ "' " +
                 "WHERE id = '" + id + "'";
 
@@ -280,7 +292,7 @@ namespace pages
         }
         private void ptype_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var spitem = ptype.SelectedItem as SpecialType;
+            var spitem = ptype.SelectedItem as Ptype;
             try
             {
                 ptid = spitem.id.ToString();

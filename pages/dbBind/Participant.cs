@@ -32,5 +32,7 @@ namespace pages.dbBind
         public System.DateTime modified { get; set; }
         public int csid { get; set; }
         public int webid { get; set; }
+        public Nullable<short> spType { get; set; }
+        public Nullable<short> coType { get; set; }
     }
 }
