@@ -31,13 +31,13 @@ namespace pages
             bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id, statid, memId, accId, dealTypes,assetId, sides;
+        static string id, statid, memId, accId, bid,assetId, sides;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
             id = values.Row[0].ToString();
-            dealTypes = values.Row[1].ToString();
+            bid = values.Row[1].ToString();
             memId = values.Row[3].ToString();
             assetId = values.Row[5].ToString();
             accId = values.Row[4].ToString();
@@ -49,7 +49,7 @@ namespace pages
             memid.SelectedValue = memId;
             accountid.SelectedValue = accId;
             stat.SelectedValue = statid;
-            dealtype.SelectedValue = dealTypes;
+            boardid.SelectedValue = bid;
             assetid.SelectedValue = accId;
             quantity.Text = QTY;
             price.Text = Price;
@@ -68,7 +68,7 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into [demo].[dbo].[Order] (bid, side, memberid, accountid, assetid, qty, price, state, modified) values" +
-                " ('" +  dealTypes + "',N'" + sides+ "',N'" + memId+ "',N'" + accId + "',N'" + assetId+ "',N'" + QTY+ "',N'" + Price+ "',N'" + statid+ "', getdate())";
+                " ('" +  bid + "',N'" + sides+ "',N'" + memId+ "',N'" + accId + "',N'" + assetId+ "',N'" + QTY+ "',N'" + Price+ "',N'" + statid+ "', getdate())";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -113,7 +113,7 @@ namespace pages
             memid.SelectedValue = null;
             accountid.SelectedValue = null;
             stat.SelectedValue = null;
-            dealtype.SelectedValue = null;
+            boardid.SelectedValue = null;
             assetid.SelectedValue = null;
             quantity.Text = null;
             price.Text = null;
@@ -150,7 +150,7 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.[dbo].[Order] SET " +
-                "bid= '" + dealTypes+ "', " +
+                "bid= '" + bid+ "', " +
                 "side= '" + sides+ "', " +
                 "memberid= '" + memId + "', " +
                 "accountid= '" + accId+ "', " +
@@ -189,7 +189,7 @@ namespace pages
             
             var dts = dc.Boards.ToList();
             Dtype = dts;
-            dealtype.ItemsSource = Dtype;
+            boardid.ItemsSource = Dtype;
 
             var act = dc.Accounts.ToList();
             ACCT = act;
@@ -241,12 +241,12 @@ namespace pages
                 return;
             }
         }
-        private void dealtype_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void boardid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var dti = dealtype.SelectedItem as Board;
+            var dti = boardid.SelectedItem as Board;
             try
             {
-                dealTypes = dti.id.ToString();
+                bid = dti.id.ToString();
             }
             catch
             {

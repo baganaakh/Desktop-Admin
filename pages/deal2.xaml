@@ -9,20 +9,8 @@
       Title="deal2">
 
     <Grid>
-        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="21,145,0,355" VerticalAlignment="Center" Width="1138">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
-                <DataGridTextColumn Binding="{Binding boardid}" Header="BID"/>
-                <DataGridTextColumn Binding="{Binding side}" Header="Side"/>
-                <DataGridTextColumn Binding="{Binding memeberid}" Header="MID"/>
-                <DataGridTextColumn Binding="{Binding accountid}" Header="ACCID"/>
-                <DataGridTextColumn Binding="{Binding assetid}" Header="ASSID"/>
-                <DataGridTextColumn Binding="{Binding qty}" Header="QTY"/>
-                <DataGridTextColumn Binding="{Binding price}" Header="Price"/>
-                <DataGridTextColumn Binding="{Binding state}" Header="State"/>
-                <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
-                <DataGridTextColumn Binding="{Binding dealType}" Header="dealType"/>
-            </DataGrid.Columns>
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" Margin="21,145,0,355" VerticalAlignment="Center" Width="1138">
+            
         </DataGrid>
         <Button Content="Invoice" HorizontalAlignment="Left" Click="Button_Click" Margin="799,106,0,0" VerticalAlignment="Top" Width="75"/>
 

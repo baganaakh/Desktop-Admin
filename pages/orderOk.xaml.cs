@@ -37,8 +37,7 @@ namespace pages
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string CmdString = "SELECT ALL [id],[bid], [side], [memberid], [accountid], [assetid], [qty], [price]," +
-                    " [state], [modified] " +"FROM [demo].[dbo].[Order]";
+                string CmdString = "SELECT * FROM [demo].[dbo].[Order]";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Securities");
@@ -65,7 +64,7 @@ namespace pages
                 MessageBox.Show("table ee songolno uuu !!!!");
                 return;
             }
-            string dealTypes = values.Row[1].ToString();
+            string dealTypes = values.Row[10].ToString();
             string memId = values.Row[3].ToString();
             string assetId = values.Row[5].ToString();
             string accId = values.Row[4].ToString();
@@ -106,7 +105,8 @@ namespace pages
 
                 "((SELECT [dealType] as dealType from [demo].[dbo].[Boards] where id=" + dealTypes + ")," + side2 + ",N'" +
                 MyGlobals.U_ID + "',N'" + accId2 + "',N'" + assetId + "',N'" + QTY + "',N'" + Price 
-                + "',N'" + statid + "', getdate(),IDENT_CURRENT('deals')+1," + total2 + "," + dealTypes + ")";
+                + "',N'" + statid + "', getdate(),IDENT_CURRENT('deals')+1," + total2 + "," + dealTypes + "); " +
+                "DELETE demo.[dbo].[Order] WHERE id= " + id + " ";
 
 
             cmd.Connection = sqlConnection1;
@@ -124,11 +124,6 @@ namespace pages
             var act = ac.Accounts.ToList();
             ACCT = act;
             accountid.ItemsSource = ACCT;
-        }
-
-        private void DateTable2_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            accountid.SelectedItem = null;
         }
 
         private void accountid_SelectionChanged(object sender, SelectionChangedEventArgs e)

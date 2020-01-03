@@ -37,7 +37,7 @@ namespace pages
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string CmdString = "SELECT * FROM dbo.deals";
+                string CmdString = "SELECT * FROM dbo.deal2";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Employee");
@@ -73,11 +73,12 @@ namespace pages
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string CmdString = "insert into dbo.Deal2 (accountid, assetid, price, dealType, boardid)"+
-                    "SELECT [boardid], [accountid], [assetid], SUM([totalPrice]) as price, dealType FROM [demo].[dbo].[Deals]" +
+                string CmdString = "insert into demo.dbo.Deal2 (boardid, accountid, assetid, price, dealType) " +
+                    "SELECT [boardid], [accountid], [assetid], SUM([totalPrice]) as price, dealType FROM [demo].[dbo].[Deals] " +
                         "where cast(modified as date) =cast(GETDATE() as date) and dealType = " + dealTypes+" " +
                                 "group by accountid, dealType, assetid, boardid ";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
+                FillDataGrid();
             }
         }
         #endregion

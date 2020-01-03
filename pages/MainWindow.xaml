@@ -23,6 +23,7 @@
             <Button Content="Market&#xA;Makers" Margin="10,0,0,0" Click="BtnClickP9" Background="#FF98F5AD"/>
             <Button Content="Order" Margin="10,0,0,0" Click="BtnClickP19" Background="#FFADC0F3"/>
             <Button Content="Order &#xA;Ok" Margin="10,0,0,0" Click="BtnClickP21" Background="#FFADC0F3"/>
+            <Button Content="demo1" Margin="10,0,0,0" Click="BtnClickP23"/>
             <Button Content="Deal2" Margin="10,0,0,0" Click="BtnClickP20" Background="#FFADC0F3"/>
             <Button Content="Fee" Margin="10,0,0,0" Click="BtnClickP22" Background="#FFADC0F3"/>
             <Button Content="trans" Margin="10,0,0,0" Click="BtnClickP7" Background="#FFADC0F3"/>
@@ -30,7 +31,6 @@
             <Button Content="dealer&#xA;Acc" Margin="10,0,0,0" Click="BtnClickP13"/>
             <Button Content="show&#xA;Data" Margin="10,0,0,0" Click="BtnClickP16"/>
             <Button Content="Table" Margin="10,0,0,0" Click="BtnClickP18"/>
-            <Button Content="demo1" Margin="10,0,0,0" Click="BtnClickP23"/>
         </StackPanel>
         <Frame x:Name="Main" Margin="28,25,0,0" NavigationUIVisibility="Hidden" MinHeight="350" VerticalAlignment="Top" Content="" />
 
