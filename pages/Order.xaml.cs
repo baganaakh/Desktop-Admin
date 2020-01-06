@@ -31,7 +31,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id, statid, memId, accId, bid,assetId, sides;
+        static string id, statid, memId, accId, bid,assetId, sides, dealtype;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -67,8 +67,8 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into [demo].[dbo].[Order] (bid, side, memberid, accountid, assetid, qty, price, state, modified) values" +
-                " ('" +  bid + "',N'" + sides+ "',N'" + memId+ "',N'" + accId + "',N'" + assetId+ "',N'" + QTY+ "',N'" + Price+ "',N'" + statid+ "', getdate())";
+            cmd.CommandText = "insert into [demo].[dbo].[Order] (bid, side, memberid, accountid, assetid, qty, price, state, modified,dealtype) values" +
+                " ('" +  bid + "',N'" + sides+ "',N'" + memId+ "',N'" + accId + "',N'" + assetId+ "',N'" + QTY+ "',N'" + Price+ "',N'" + statid+ "', getdate(), "+dealtype+")";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -93,8 +93,7 @@ namespace pages
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string CmdString = "SELECT [id],[bid], [side], [memberid], [accountid], [assetid], [qty], [price], [state], [modified] " +
-                            "FROM [demo].[dbo].[Order]";
+                string CmdString = "SELECT * FROM [demo].[dbo].[Order]";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Securities");
@@ -158,6 +157,7 @@ namespace pages
                 "qty= '" + QTY+ "', " +
                 "price= '" + Price+ "', " +
                 "state= '" + statid + "', " +
+                "dealType= '" + dealtype+ "', " +
                 "modified = getdate() " +
                 "WHERE id = '" + id + "'";
 
@@ -247,6 +247,7 @@ namespace pages
             try
             {
                 bid = dti.id.ToString();
+                dealtype = dti.dealType.ToString();
             }
             catch
             {

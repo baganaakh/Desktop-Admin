@@ -17,15 +17,16 @@
         <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="10,263,0,237" VerticalAlignment="Center" Width="1138">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
-                <DataGridTextColumn Binding="{Binding memberid}" Header="MID"/>
-                <DataGridTextColumn Binding="{Binding accountid}" Header="AID"/>
-                <DataGridTextColumn Binding="{Binding assetid}" Header="assetid"/>
                 <DataGridTextColumn Binding="{Binding bid}" Header="BID"/>
-                <DataGridTextColumn Binding="{Binding side}" Header="Side"/>
+                <DataGridTextColumn Binding="{Binding side}" Header="SIDE"/>
+                <DataGridTextColumn Binding="{Binding memberid}" Header="memberid"/>
+                <DataGridTextColumn Binding="{Binding accountid}" Header="ACCID"/>
+                <DataGridTextColumn Binding="{Binding assetid}" Header="ASSID"/>
                 <DataGridTextColumn Binding="{Binding qty}" Header="QTY"/>
                 <DataGridTextColumn Binding="{Binding price}" Header="Price"/>
                 <DataGridTextColumn Binding="{Binding state}" Header="State"/>
                 <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
+                <DataGridTextColumn Binding="{Binding dealType}" Header="Dtype"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="1081,155,0,0"/>

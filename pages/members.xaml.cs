@@ -101,19 +101,19 @@ namespace pages
             string Dealer= dealer.IsChecked.ToString();
             string Ander= ander.IsChecked.ToString();
             string Nominal= nominal.IsChecked.ToString();
-            if (broker.IsChecked ?? false)
+            if (broker.IsChecked == false)
             {
                 br = "0";
             }
-            if (dealer.IsChecked ?? false)
+            if (dealer.IsChecked == false)
             {
                 dl = "0";
             }
-            if (ander.IsChecked ?? false)
+            if (ander.IsChecked == false)
             {
                 an = "0";
             }
-            if (nominal.IsChecked ?? false)
+            if (nominal.IsChecked == false)
             {
                 no = "0";
             }
@@ -122,7 +122,7 @@ namespace pages
             #region main insert query
             cmd.CommandText = "insert into dbo.members (partid, startdate, enddate, type, code, state, broker, dealer, ander, nominal, modified,mask,name) values " +
                 " (" + partid + ",'" + startT + "','" + endT + "','" + metype + "',N'" + code + "','" + statid + "','" + Broker + "','" + Dealer + "','"
-                + Ander + "','" + Nominal + "', getdate(),'" + mask + "','"+pname+"'); " +
+                + Ander + "','" + Nominal + "', getdate(),'" + mask + "',N'"+pname+"'); " +
                 "insert into dbo.Account(memberid,modified,mask,startdate,enddate,state) values " +
                 " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "o100','" + startT + "','" + endT + "'," + no + ")," +
                 " (IDENT_CURRENT('demo.dbo.members'),getdate(),'" + mask + "o200','" + startT + "','" + endT + "'," + no + ")," +

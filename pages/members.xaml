@@ -49,10 +49,6 @@
         <Label Content="Дуусах" HorizontalAlignment="Left" Margin="511,137,0,0" VerticalAlignment="Top"/>
         <DatePicker x:Name="starttime" HorizontalAlignment="Left" Margin="359,143,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.483,-0.792"/>
         <DatePicker x:Name="endtime" HorizontalAlignment="Left" Margin="619,143,0,0" VerticalAlignment="Top" Width="120"/>
-        <CheckBox x:Name="broker_Copy" Content="Брокер" HorizontalAlignment="Left" Margin="56,186,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="dealer_Copy" Content="Дилер" HorizontalAlignment="Left" Margin="139,186,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="ander_Copy" Content="Андерр" HorizontalAlignment="Left" Margin="56,219,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="nominal_Copy" Content="Номинал" HorizontalAlignment="Left" Margin="139,219,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>
