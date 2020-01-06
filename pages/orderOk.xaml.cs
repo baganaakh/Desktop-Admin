@@ -75,13 +75,15 @@ namespace pages
             int qty = Int32.Parse(QTY);
             Decimal price = Decimal.Parse(Price);
             decimal total1, total2;
-            int side1=0, side2=0;
+            int side1=0, side2=0, s1qty=0, s2qty=0;
             if (Side == "-1")
             {
                 total1 = qty*price;
                 total2 = qty*price*(-1);
                 side1 = -1;
                 side2 = 1;
+                s2qty = qty * (-1);
+                s1qty = qty;
             }
             else
             {
@@ -89,6 +91,8 @@ namespace pages
                 total2 = qty*price;
                 side1 = 1;
                 side2 = -1;
+                s1qty = qty * (-1);
+                s2qty = qty;
             }
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =
@@ -100,14 +104,13 @@ namespace pages
                 ", qty, price, state, modified,dealno,totalPrice,boardid) values" +
 
                 " ((SELECT [dealType] as dealType from [demo].[dbo].[Boards] where id=" + dealTypes + ")," + side1 + ",N'" +
-                memId + "',N'" + accId + "',N'" +assetId + "',N'" + QTY + "',N'" + Price + "',N'" + statid + "', getdate()," +
+                memId + "',N'" + accId + "',N'" +assetId + "',N'" + s1qty + "',N'" + Price + "',N'" + statid + "', getdate()," +
                 "IDENT_CURRENT('deals')+1," + total1 + ","+dealTypes+")," +
 
                 "((SELECT [dealType] as dealType from [demo].[dbo].[Boards] where id=" + dealTypes + ")," + side2 + ",N'" +
-                MyGlobals.U_ID + "',N'" + accId2 + "',N'" + assetId + "',N'" + QTY + "',N'" + Price 
+                MyGlobals.U_ID + "',N'" + accId2 + "',N'" + assetId + "',N'" + s2qty + "',N'" + Price 
                 + "',N'" + statid + "', getdate(),IDENT_CURRENT('deals')+1," + total2 + "," + dealTypes + "); " +
                 "DELETE demo.[dbo].[Order] WHERE id= " + id + " ";
-
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();

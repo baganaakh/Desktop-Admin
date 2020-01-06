@@ -37,7 +37,7 @@ namespace pages
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string CmdString = "SELECT * FROM dbo.deal2";
+                string CmdString = "SELECT * FROM dbo.deals";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Employee");
@@ -71,15 +71,20 @@ namespace pages
         #region button
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string CmdString = "insert into demo.dbo.Deal2 (boardid, accountid, assetid, price, dealType) " +
-                    "SELECT [boardid], [accountid], [assetid], SUM([totalPrice]) as price, dealType FROM [demo].[dbo].[Deals] " +
-                        "where cast(modified as date) =cast(GETDATE() as date) and dealType = " + dealTypes+" " +
-                                "group by accountid, dealType, assetid, boardid ";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
+            System.Data.SqlClient.SqlConnection sqlConnection1 =
+           new System.Data.SqlClient.SqlConnection(connectionString);
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText="insert into demo.dbo.Deal2 (boardid, accountid, assetid, totalPrice, dealType, qty, side, memberid) " +
+                    "SELECT [boardid], [accountid], [assetid], SUM([totalPrice]) as totalPrice, dealType, qty,side, memberid FROM [demo].[dbo].[Deals] " +
+                        "where cast(modified as date) = cast(GETDATE() as date) and dealType = " + dealTypes+" " +
+                                "group by accountid, dealType, assetid, boardid, qty, side, memberid ";
+            cmd.Connection = sqlConnection1;
+            sqlConnection1.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection1.Close();
                 FillDataGrid();
-            }
+            
         }
         #endregion
     }
