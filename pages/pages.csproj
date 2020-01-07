@@ -99,6 +99,9 @@
     <Compile Include="dbBind\Account.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="dbBind\accType.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="dbBind\ActiveSession.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -282,6 +285,9 @@
     <Compile Include="demo1.xaml.cs">
       <DependentUpon>demo1.xaml</DependentUpon>
     </Compile>
+    <Compile Include="invoices.xaml.cs">
+      <DependentUpon>invoices.xaml</DependentUpon>
+    </Compile>
     <Compile Include="loginScreen.xaml.cs">
       <DependentUpon>loginScreen.xaml</DependentUpon>
     </Compile>
@@ -305,9 +311,6 @@
     </Compile>
     <Compile Include="RefPrice.xaml.cs">
       <DependentUpon>RefPrice.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="showData.xaml.cs">
-      <DependentUpon>showData.xaml</DependentUpon>
     </Compile>
     <Compile Include="Spread.xaml.cs">
       <DependentUpon>Spread.xaml</DependentUpon>
@@ -350,6 +353,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="demo1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="invoices.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -416,10 +423,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="session.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="showData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

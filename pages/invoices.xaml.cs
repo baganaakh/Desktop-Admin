@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,37 +14,34 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Data.SqlClient;
-using System.Configuration;
-using System.Data;
-using System.Data.Entity;
-using pages.dbBind;
 
 namespace pages
 {
     /// <summary>
-    /// Interaction logic for showData.xaml
+    /// Interaction logic for invoices.xaml
     /// </summary>
-    public partial class showData : Page
+    public partial class invoices : Page
     {
-        string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-
-        #region fill
+        public invoices()
+        {
+            InitializeComponent();
+            FillDataGrid();
+        }
+        #region filldatas
         private void FillDataGrid()
         {
+            string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string CmdString = "SELECT * FROM dbo.deals";
+                string CmdString = "SELECT * FROM demo.dbo.Invoices";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Employee");
+                DataTable dt = new DataTable("Securities");
                 sda.Fill(dt);
-                DateTable1.ItemsSource = dt.DefaultView;
+                DateTable2.ItemsSource = dt.DefaultView;
             }
         }
         #endregion
-
-
     }
-
 }

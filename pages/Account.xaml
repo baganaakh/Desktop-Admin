@@ -12,33 +12,20 @@
         <Button Content="Edit" HorizontalAlignment="Left" Margin="1055,75,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="Insert" HorizontalAlignment="Left" Margin="1055,109,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
         <Label Content="memberid" HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top"/>
-        <Label Content="clearing" HorizontalAlignment="Left" Margin="345,71,0,0" VerticalAlignment="Top"/>
+        <Label Content="дансны төрөл" HorizontalAlignment="Left" Margin="345,71,0,0" VerticalAlignment="Top"/>
         <TextBox PreviewTextInput="PreviewTextInput" Name="trading" HorizontalAlignment="Left" Height="23" Margin="155,117,0,0" MaxLength="2" TextWrapping="Wrap" Text="12"  VerticalAlignment="Top" Width="120"/>
-        <Label Content="trading" HorizontalAlignment="Left" Margin="34,117,0,0" VerticalAlignment="Top"/>
-        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="34,211,0,289" VerticalAlignment="Center" Width="1138">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
-                <DataGridTextColumn Binding="{Binding memberid}" Header="Member id"/>
-                <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
-                <DataGridTextColumn Binding="{Binding mask}" Header="Mask"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Label Content="дансны дугаар" HorizontalAlignment="Left" Margin="34,117,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" Margin="34,211,0,289" VerticalAlignment="Center" Width="1138"></DataGrid>
         <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="1055,157,0,0"/>
         <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="927,75,0,0"/>
         <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="927,110,0,0"/>
         <Button Content="Update" HorizontalAlignment="Left" Margin="927,157,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
         <ComboBox IsEditable="True" x:Name="memid" ItemsSource="{Binding}" SelectionChanged="partid_SelectionChanged" DisplayMemberPath="mask" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,75,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="settlement" MaxLength="2" HorizontalAlignment="Left" Height="23" Margin="466,117,0,0" TextWrapping="Wrap" Text="12"  VerticalAlignment="Top" Width="120"/>
-        <Label Content="settlement" HorizontalAlignment="Left" Margin="345,117,0,0" VerticalAlignment="Top"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="collateral" HorizontalAlignment="Left" Height="23" MaxLength="2" Margin="736,79,0,0" TextWrapping="Wrap" Text="12"  VerticalAlignment="Top" Width="120"/>
-        <Label Content="collateral" HorizontalAlignment="Left" Margin="615,79,0,0" VerticalAlignment="Top"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="clearing" HorizontalAlignment="Left" MaxLength="2" Height="23" Margin="466,79,0,0" TextWrapping="Wrap" Text="12"  VerticalAlignment="Top" Width="120"/>
-        <Label Content="төлөв" HorizontalAlignment="Left" Margin="635,118,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="pstate" ItemsSource="{Binding}" SelectionChanged="pstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="736,121,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
-        <CheckBox x:Name="broker" Content="Брокер" HorizontalAlignment="Left" Margin="107,174,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="dealer" Content="Дилер" HorizontalAlignment="Left" Margin="190,174,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="ander" Content="Андерр" HorizontalAlignment="Left" Margin="282,174,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="nominal" Content="Номинал" HorizontalAlignment="Left" Margin="365,174,0,0" VerticalAlignment="Top"/>
+        <Label Content="холбох данс" HorizontalAlignment="Left" Margin="345,117,0,0" VerticalAlignment="Top"/>
+        <Label Content="төлөв" HorizontalAlignment="Left" Margin="627,80,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="pstate" ItemsSource="{Binding}" SelectionChanged="pstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="728,83,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <Label Content="Company name" x:Name="companyName" HorizontalAlignment="Left" Margin="155,34,0,0" VerticalAlignment="Top"/>
+        <ComboBox IsEditable="True" x:Name="linkacc" ItemsSource="{Binding}" SelectionChanged="linkacc_SelectionChanged" DisplayMemberPath="mask" SelectedValuePath="id" HorizontalAlignment="Left" Margin="451,110,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox IsEditable="True" x:Name="acctype" ItemsSource="{Binding}" SelectionChanged="acctype_SelectionChanged" DisplayMemberPath="accType1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="451,75,0,0" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Page>

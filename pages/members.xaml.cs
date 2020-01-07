@@ -79,6 +79,11 @@ namespace pages
                 MessageBox.Show("Please Set Date !!!!!");
                 return;
             }
+            if (broker.IsChecked == false && dealer.IsChecked == false && ander.IsChecked == false && nominal.IsChecked == false)
+            {
+                MessageBox.Show("Please please check dealerTypes !!!!!");
+                return;
+            }
             string startT = starttime.SelectedDate.Value.ToShortDateString();
             string endT = endtime.SelectedDate.Value.ToShortDateString();
             switch (metype)
@@ -352,11 +357,23 @@ namespace pages
             try
             {
                 metype = items.id.ToString();
+
+                if(metype == "1")
+                    {
+                    nominal.IsChecked = true;
+                    }
+                else
+                {
+                    nominal.IsChecked = false;
+                }
+
+
             }
             catch
             {
                 return;
             }
+            
         }
 
         private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)

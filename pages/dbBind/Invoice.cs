@@ -14,16 +14,20 @@ namespace pages.dbBind
     
     public partial class Invoice
     {
-        public int id { get; set; }
-        public short dealType { get; set; }
-        public string invoiceno { get; set; }
-        public System.DateTime invoicedate { get; set; }
-        public System.DateTime expiredate { get; set; }
-        public long formid { get; set; }
-        public long toid { get; set; }
-        public int assetid { get; set; }
-        public decimal qty { get; set; }
-        public short state { get; set; }
-        public System.DateTime modified { get; set; }
+        public long id { get; set; }
+        public Nullable<short> dealType { get; set; }
+        public long invoiceno { get; set; }
+        public Nullable<System.DateTime> invoicedate { get; set; }
+        public Nullable<System.DateTime> expiredate { get; set; }
+        public Nullable<long> formid { get; set; }
+        public Nullable<long> toid { get; set; }
+        public Nullable<int> assetid { get; set; }
+        public Nullable<decimal> qty { get; set; }
+        public Nullable<short> state { get; set; }
+        public Nullable<System.DateTime> modified { get; set; }
+        public Nullable<long> boardid { get; set; }
+        public Nullable<short> side { get; set; }
+        public Nullable<long> memberid { get; set; }
+        public Nullable<long> accountid { get; set; }
     }
 }

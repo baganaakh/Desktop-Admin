@@ -92,10 +92,7 @@ namespace pages
         {
             Main.Content = new Spread();
         }
-        private void BtnClickP16(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new showData();
-        }
+        
         private void BtnClickP17(object sender, RoutedEventArgs e)
         {
             Main.Content = new account();
@@ -123,6 +120,10 @@ namespace pages
         private void BtnClickP23(object sender, RoutedEventArgs e)
         {
             Main.Content = new demo1();
+        }
+        private void BtnClickP24(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new invoices();
         }
     }
 }

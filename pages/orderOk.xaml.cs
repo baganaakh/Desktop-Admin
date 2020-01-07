@@ -64,19 +64,19 @@ namespace pages
                 MessageBox.Show("table ee songolno uuu !!!!");
                 return;
             }
-            string dealTypes = values.Row[10].ToString();
-            string memId = values.Row[3].ToString();
-            string assetId = values.Row[5].ToString();
-            string accId = values.Row[4].ToString();
-            string statid = values.Row[8].ToString();
+            string boardid = values.Row[1].ToString();
             string Side = values.Row[2].ToString();
+            string memId = values.Row[3].ToString();
+            string accId = values.Row[4].ToString();
+            string assetId = values.Row[5].ToString();
             string QTY = values.Row[6].ToString();
             string Price = values.Row[7].ToString();
+            string statid = values.Row[8].ToString();
             int qty = Int32.Parse(QTY);
             Decimal price = Decimal.Parse(Price);
             decimal total1, total2;
             int side1=0, side2=0, s1qty=0, s2qty=0;
-            if (Side == "-1")
+            if (Side == "1")
             {
                 total1 = qty*price;
                 total2 = qty*price*(-1);
@@ -103,13 +103,13 @@ namespace pages
             cmd.CommandText = "insert into [dbo].[Deals] (dealType, side, memberid, accountid, assetid" +
                 ", qty, price, state, modified,dealno,totalPrice,boardid) values" +
 
-                " ((SELECT [dealType] as dealType from [demo].[dbo].[Boards] where id=" + dealTypes + ")," + side1 + ",N'" +
+                " ((SELECT [dealType] as dealType from [demo].[dbo].[Boards] where id=" + boardid + ")," + side1 + ",N'" +
                 memId + "',N'" + accId + "',N'" +assetId + "',N'" + s1qty + "',N'" + Price + "',N'" + statid + "', getdate()," +
-                "IDENT_CURRENT('deals')+1," + total1 + ","+dealTypes+")," +
+                "IDENT_CURRENT('deals')+1," + total1 + ","+boardid+")," +
 
-                "((SELECT [dealType] as dealType from [demo].[dbo].[Boards] where id=" + dealTypes + ")," + side2 + ",N'" +
+                "((SELECT [dealType] as dealType from [demo].[dbo].[Boards] where id=" + boardid + ")," + side2 + ",N'" +
                 MyGlobals.U_ID + "',N'" + accId2 + "',N'" + assetId + "',N'" + s2qty + "',N'" + Price 
-                + "',N'" + statid + "', getdate(),IDENT_CURRENT('deals')+1," + total2 + "," + dealTypes + "); " +
+                + "',N'" + statid + "', getdate(),IDENT_CURRENT('deals')+1," + total2 + "," + boardid + "); " +
                 "DELETE demo.[dbo].[Order] WHERE id= " + id + " ";
 
             cmd.Connection = sqlConnection1;

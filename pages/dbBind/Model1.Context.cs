@@ -27,7 +27,6 @@ namespace pages.dbBind
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<ActiveSession> ActiveSessions { get; set; }
         public virtual DbSet<API> APIs { get; set; }
         public virtual DbSet<Asset> Assets { get; set; }
@@ -37,7 +36,6 @@ namespace pages.dbBind
         public virtual DbSet<ClearingAccount> ClearingAccounts { get; set; }
         public virtual DbSet<Contract> Contracts { get; set; }
         public virtual DbSet<dayType> dayTypes { get; set; }
-        public virtual DbSet<Deal2> Deal2 { get; set; }
         public virtual DbSet<DealerAccount> DealerAccounts { get; set; }
         public virtual DbSet<Deal> Deals { get; set; }
         public virtual DbSet<Dealtype> Dealtypes { get; set; }
@@ -77,8 +75,11 @@ namespace pages.dbBind
         public virtual DbSet<algo> algoes { get; set; }
         public virtual DbSet<allowedtype> allowedtypes { get; set; }
         public virtual DbSet<expireTable> expireTables { get; set; }
-        public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<netting> nettings { get; set; }
+        public virtual DbSet<accType> accTypes { get; set; }
+        public virtual DbSet<Deal2> Deal2 { get; set; }
+        public virtual DbSet<Invoice> Invoices { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

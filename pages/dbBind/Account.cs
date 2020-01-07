@@ -16,9 +16,9 @@ namespace pages.dbBind
     {
         public long id { get; set; }
         public long memberid { get; set; }
-        public Nullable<decimal> trading { get; set; }
-        public Nullable<decimal> clearing { get; set; }
-        public Nullable<decimal> settlement { get; set; }
+        public Nullable<long> accNum { get; set; }
+        public string accType { get; set; }
+        public string LinkAcc { get; set; }
         public Nullable<decimal> collateral { get; set; }
         public System.DateTime modified { get; set; }
         public string mask { get; set; }

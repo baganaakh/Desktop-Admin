@@ -31,7 +31,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id, memId,stat,mask,cname;
+        static string id, memId,stat,mnominal,cname, acType;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -40,56 +40,25 @@ namespace pages
             string memId= values[1].ToString();
             string Trading = values[2].ToString();
             string Clearing = values[3].ToString();
-            string Settlement = values[4].ToString();
-            string Collateral = values[5].ToString();
+        
 
             memid.SelectedValue = memId;
             trading.Text = Trading;
-            clearing.Text= Clearing;
-            settlement.Text = Settlement;
-            collateral.Text = Collateral;
+           
         }
         #endregion
         #region insert func
         private void insertFunc(object sender, RoutedEventArgs e)
         {
             string Trading = trading.Text;
-            string Clearing = clearing.Text;
-            string Settlement = settlement.Text;
-            string Collateral = collateral.Text;
+      
             string newMask = "";
-            if (broker.IsChecked == true)
+            if (memid.SelectedItem == null || pstate.SelectedItem == null)
             {
-                if (newMask != "") newMask += ",";
-                newMask +=  "('" + memId + "', N'" + mask + "u1" + Trading + "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "u3" + Settlement+ "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "u4" + Collateral+ "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "u2" + Clearing+ "', getdate()," + stat + ")";
+                MessageBox.Show("Please Set  values !!!!!");
+                return;
             }
-            if (dealer.IsChecked == true)
-            {
-                if (newMask != "") newMask += ",";
-                newMask +=  "('" + memId + "', N'" + mask + "c1" + Trading + "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "c3" + Settlement+ "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "c4" + Collateral+ "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "c2" + Clearing+ "', getdate()," + stat + ")";
-            }
-            if (ander.IsChecked == true)
-            {
-                if (newMask != "") newMask += ",";
-                newMask +=  "('" + memId + "', N'" + mask + "u1" + Trading + "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "u3" + Settlement+ "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "u4" + Collateral+ "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "u2" + Clearing+ "', getdate()," + stat + ")";
-            }
-            if (nominal.IsChecked == true)
-            {
-                if (newMask != "") newMask += ",";
-                newMask +=  "('" + memId + "', N'" + mask + "o1" + Trading + "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "o3" + Settlement+ "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "o4" + Collateral+ "', getdate()," + stat + ")," +
-                            "('" + memId + "', N'" + mask + "o2" + Clearing+"', getdate(),"+ stat +")";
-            }
+            
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
@@ -143,9 +112,6 @@ namespace pages
         {
             memid.Text = null;
             trading.Text = null;
-            clearing.Text = null;
-            settlement.Text = null;
-            collateral.Text = null;
             id = null;
             memId= null;
         }
@@ -172,9 +138,7 @@ namespace pages
         private void update(object sender, RoutedEventArgs e)
         {
             string Trading = trading.Text;
-            string Clearing = clearing.Text;
-            string Settlement = settlement.Text;
-            string Collateral = collateral.Text;
+         
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
@@ -184,9 +148,6 @@ namespace pages
             cmd.CommandText = "UPDATE demo.dbo.Account SET " +
                 "memberid= '" + memId + "', " +
                 "trading= '" + Trading+ "', " +
-                "clearing= '" + Clearing + "', " +
-                "settlement= '" + Settlement+ "', " +
-                "collateral= '" + Collateral+ "', " +
                 "modified = getdate() " +
                 "WHERE id = '" + id + "'";
 
@@ -199,6 +160,13 @@ namespace pages
         #endregion
         #region combos control
         public List<Member> Emp { get; set; }
+        public List<accType> acct { get; set; }
+
+        private void linkacc_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
         public List<State> boa{ get; set; }
 
         private void bindCombo()
@@ -211,7 +179,32 @@ namespace pages
             var item = dc.States.ToList();
             boa = item;
             pstate.ItemsSource = boa;
+            
+            var accitem = dc.accTypes.ToList();
+            acct = accitem;
+            acctype.ItemsSource = acct;
         }
+        private void acctype_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = acctype.SelectedItem as accType;
+            try
+            {
+                acType = item.id.ToString();
+                if(acType == "0")
+                {
+                    linkacc.IsEnabled = false;
+                }
+                else
+                {
+                    linkacc.IsEnabled = true;
+                }
+            }
+            catch
+            {
+                return;
+            }
+        }
+
         private void pstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = pstate.SelectedItem as State;
@@ -233,9 +226,13 @@ namespace pages
             try
             {
                 memId = item.id.ToString();
-                mask = item.mask.ToString();
                 cname = item.name.ToString();
+                mnominal= item.nominal.ToString();
                 companyName.Content = cname;
+                if(mnominal == "True")
+                {
+
+                }
             }
             catch
             {
