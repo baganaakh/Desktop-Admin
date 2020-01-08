@@ -31,44 +31,38 @@ namespace pages
             bindCombo();
         }
         string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
-        static string id, memId,stat,mnominal,cname, acType;
+        static string id, memId,stat,mnominal,cname, acType, linkA,values;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            upd.IsEnabled = true;
             var values = DateTable2.SelectedItem as DataRowView;
             id = values.Row[0].ToString();
             string memId= values[1].ToString();
-            string Trading = values[2].ToString();
-            string Clearing = values[3].ToString();
+            string accNum = values[2].ToString();
+            string accType = values[3].ToString();
+            string linkAcc = values[4].ToString();
+            string stat= values[10].ToString();
         
-
             memid.SelectedValue = memId;
-            trading.Text = Trading;
-           
+            accno.Text = accNum;
+            acctype.SelectedValue = accType;
+            pstate.SelectedValue = stat;
         }
         #endregion
         #region insert func
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            string Trading = trading.Text;
-      
-            string newMask = "";
-            if (memid.SelectedItem == null || pstate.SelectedItem == null)
-            {
-                MessageBox.Show("Please Set  values !!!!!");
-                return;
-            }
-            
+            string accNo = accno.Text;
+            linkA = linkacc.SelectedValue.ToString();
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            #region main insert query 
-            cmd.CommandText = "insert into dbo.Account (memberid, mask, modified,state) values " +
-                newMask;
+            cmd.CommandText = "insert into dbo.Account (memberid, accNum, accType, LinkAcc, state) values " +
+                "("+memId+", "+accNo+", "+acType+", "+linkA+", "+stat+")";
             
-            #endregion
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();
@@ -93,8 +87,7 @@ namespace pages
             
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string CmdString = "SELECT ALL [id], [memberid], [trading], [clearing], [settlement], [collateral], [modified], [mask] " +
-                            "FROM dbo.Account";
+                string CmdString = "SELECT * FROM dbo.Account";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Securities");
@@ -111,9 +104,12 @@ namespace pages
         private void newData(object sender, RoutedEventArgs e)
         {
             memid.Text = null;
-            trading.Text = null;
             id = null;
             memId= null;
+            pstate.SelectedItem = null;
+            linkacc.SelectedItem = null;
+            acctype.SelectedItem = null;
+            accno.Text = null;
         }
         #endregion
         #region delete
@@ -137,8 +133,21 @@ namespace pages
         #region update
         private void update(object sender, RoutedEventArgs e)
         {
-            string Trading = trading.Text;
-         
+            string accNo = accno.Text;
+            try
+            {
+                linkA = linkacc.SelectedValue.ToString();
+            }
+            catch (NullReferenceException)
+            {
+                MessageBoxResult res = MessageBox.Show("link acc is Empty is it okey ? ", "Empty",MessageBoxButton.OK);
+                switch (res)
+                {
+                    case MessageBoxResult.OK:
+                        linkA = "NULL";
+                        break;
+                }
+            }
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
@@ -147,7 +156,10 @@ namespace pages
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.dbo.Account SET " +
                 "memberid= '" + memId + "', " +
-                "trading= '" + Trading+ "', " +
+                "accNum= '" + accNo + "', " +
+                "accType= '" + acType + "', " +
+                "LinkAcc= '" + linkA+ "', " +
+                "state= '" + stat+ "', " +
                 "modified = getdate() " +
                 "WHERE id = '" + id + "'";
 
@@ -161,14 +173,7 @@ namespace pages
         #region combos control
         public List<Member> Emp { get; set; }
         public List<accType> acct { get; set; }
-
-        private void linkacc_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         public List<State> boa{ get; set; }
-
         private void bindCombo()
         {
             demoEntities10 dc = new demoEntities10();
@@ -186,6 +191,8 @@ namespace pages
         }
         private void acctype_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            linkacc.SelectedItem = null;
+            linkacc.ItemsSource = null;
             var item = acctype.SelectedItem as accType;
             try
             {
@@ -198,13 +205,24 @@ namespace pages
                 {
                     linkacc.IsEnabled = true;
                 }
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    string CmdString = "SELECT [id] FROM [demo].[dbo].[Account] WHERE accType = " +acType;
+                    SqlCommand cmd = new SqlCommand(CmdString, conn);
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable("khfjkh");
+                    sda.Fill(dt);
+
+                    DataView view = dt.DefaultView;
+
+                    linkacc.ItemsSource = view;
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return;
+                MessageBox.Show(ex.ToString());
             }
         }
-
         private void pstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = pstate.SelectedItem as State;
@@ -218,11 +236,9 @@ namespace pages
                 return;
             }
         }
-
-        private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void memid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = memid.SelectedItem as Member;
-
             try
             {
                 memId = item.id.ToString();
@@ -231,15 +247,20 @@ namespace pages
                 companyName.Content = cname;
                 if(mnominal == "True")
                 {
-
+                    acctype.SelectedValue = 3;
+                    acctype.IsEnabled = false;
+                }
+                else
+                {
+                    acctype.IsEnabled = true;
                 }
             }
             catch
             {
                 return;
             }
-
         }
+        
         #endregion
     }
 }

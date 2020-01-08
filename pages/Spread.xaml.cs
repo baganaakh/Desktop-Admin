@@ -35,6 +35,7 @@ namespace pages
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            upd.IsEnabled = true;
             var values = DateTable2.SelectedItem as DataRowView;
             id = values.Row[0].ToString();
             string contId= values.Row[1].ToString();
@@ -145,7 +146,8 @@ namespace pages
                 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string CmdString = "SELECT [id] ,[name] FROM [demo].[dbo].[Session] WHERE [boardid] = ( SELECT [bid] FROM [demo].[dbo].[Contracts] WHERE id = "+coId+")";
+                    string CmdString = "SELECT [id] ,[name] FROM [demo].[dbo].[Session] WHERE [boardid] =" +
+                        " ( SELECT [bid] FROM [demo].[dbo].[Contracts] WHERE id = "+coId+")";
                     SqlCommand cmd = new SqlCommand(CmdString, conn);
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable("khfjkh");

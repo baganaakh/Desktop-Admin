@@ -46,6 +46,7 @@ namespace pages
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            upd.IsEnabled = true;
             var value = DateTable1.SelectedItem as DataRowView;
             if (null == value) return;
             id = value.Row[0].ToString();

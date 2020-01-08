@@ -57,7 +57,7 @@
         <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="847,209,0,0"/>
         <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="973,122,0,0"/>
         <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="973,167,0,0"/>
-        <Button Content="Update" HorizontalAlignment="Left" Margin="973,209,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Update" IsEnabled="False" Name="upd" HorizontalAlignment="Left" Margin="973,209,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
         <ComboBox IsEditable="True" x:Name="securityid_Copy" ItemsSource="{Binding}" SelectionChanged="secid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="138,75,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="cstate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="698,113,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <ComboBox IsEditable="True" x:Name="ctype" ItemsSource="{Binding}" SelectionChanged="ctype_SelectionChanged" DisplayMemberPath="ctype1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="138,113,0,0" VerticalAlignment="Top" Width="120"/>

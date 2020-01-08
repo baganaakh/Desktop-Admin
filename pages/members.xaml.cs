@@ -35,6 +35,7 @@ namespace pages
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            upd.IsEnabled = true;
             var value = DateTable2.SelectedItem as DataRowView;
             if (null == value) return;
             id = value.Row[0].ToString();
@@ -61,7 +62,6 @@ namespace pages
             dealer.IsChecked = bool.Parse(Dealer);
             ander.IsChecked = bool.Parse(Ander);
             nominal.IsChecked = bool.Parse(Nominal);
-            updatebut.IsEnabled = true;
         }
         #endregion
         #region insert

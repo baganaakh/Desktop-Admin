@@ -13,19 +13,19 @@
         <Button Content="Insert" HorizontalAlignment="Left" Margin="1055,109,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
         <Label Content="memberid" HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top"/>
         <Label Content="дансны төрөл" HorizontalAlignment="Left" Margin="345,71,0,0" VerticalAlignment="Top"/>
-        <TextBox PreviewTextInput="PreviewTextInput" Name="trading" HorizontalAlignment="Left" Height="23" Margin="155,117,0,0" MaxLength="2" TextWrapping="Wrap" Text="12"  VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" Name="accno" HorizontalAlignment="Left" Height="23" Margin="155,117,0,0" MaxLength="2" TextWrapping="Wrap" Text="12"  VerticalAlignment="Top" Width="120"/>
         <Label Content="дансны дугаар" HorizontalAlignment="Left" Margin="34,117,0,0" VerticalAlignment="Top"/>
         <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" Margin="34,211,0,289" VerticalAlignment="Center" Width="1138"></DataGrid>
         <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="1055,157,0,0"/>
         <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="927,75,0,0"/>
         <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="927,110,0,0"/>
-        <Button Content="Update" HorizontalAlignment="Left" Margin="927,157,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
-        <ComboBox IsEditable="True" x:Name="memid" ItemsSource="{Binding}" SelectionChanged="partid_SelectionChanged" DisplayMemberPath="mask" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,75,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="холбох данс" HorizontalAlignment="Left" Margin="345,117,0,0" VerticalAlignment="Top"/>
+        <Button Content="Update"  IsEnabled="False" Name="upd"  HorizontalAlignment="Left" Margin="927,157,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
+        <ComboBox IsEditable="True" x:Name="memid" ItemsSource="{Binding}" SelectionChanged="memid_SelectionChanged" DisplayMemberPath="mask" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,75,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="холбох данс" HorizontalAlignment="Left" Margin="345,109,0,0" VerticalAlignment="Top"/>
         <Label Content="төлөв" HorizontalAlignment="Left" Margin="627,80,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="pstate" ItemsSource="{Binding}" SelectionChanged="pstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="728,83,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <Label Content="Company name" x:Name="companyName" HorizontalAlignment="Left" Margin="155,34,0,0" VerticalAlignment="Top"/>
-        <ComboBox IsEditable="True" x:Name="linkacc" ItemsSource="{Binding}" SelectionChanged="linkacc_SelectionChanged" DisplayMemberPath="mask" SelectedValuePath="id" HorizontalAlignment="Left" Margin="451,110,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox IsEditable="True" x:Name="linkacc" ItemsSource="{Binding}" DisplayMemberPath="id" SelectedValuePath="id" HorizontalAlignment="Left" Margin="451,110,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox IsEditable="True" x:Name="acctype" ItemsSource="{Binding}" SelectionChanged="acctype_SelectionChanged" DisplayMemberPath="accType1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="451,75,0,0" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Page>

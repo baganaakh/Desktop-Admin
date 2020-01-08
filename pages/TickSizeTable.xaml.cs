@@ -51,6 +51,7 @@ namespace pages
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
+            upd.IsEnabled = true;
             string tableId = tableid.Text;
             string tick= tickk.Text;
             string price = pricee.Text;

@@ -34,6 +34,7 @@ namespace pages
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            upd.IsEnabled = true;
             var values = DateTable2.SelectedItem as DataRowView;
             id = values.Row[0].ToString();
             string CID = values.Row[1].ToString();
