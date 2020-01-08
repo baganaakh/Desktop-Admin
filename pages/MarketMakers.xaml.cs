@@ -36,6 +36,7 @@ namespace pages
         {
             upd.IsEnabled = true;
             var values = DateTable2.SelectedItem as DataRowView;
+            if (null == values) return;
             id = values.Row[0].ToString();
             string CID = values.Row[1].ToString();
             string MID = values.Row[2].ToString();
@@ -141,6 +142,7 @@ namespace pages
         private void delete(object sender, RoutedEventArgs e)
         {
             var value = DateTable2.SelectedItem as DataRowView;
+            if (null == value) return;
             id = value.Row[0].ToString();
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);

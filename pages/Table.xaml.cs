@@ -35,6 +35,7 @@ namespace pages
         {
             upd.IsEnabled = true;
             var values = DateTable2.SelectedItem as DataRowView;
+            if (null == values) return;
             id = values.Row[0].ToString();
             string arrangePrice= values.Row[1].ToString();
             string tickSize= values.Row[2].ToString();

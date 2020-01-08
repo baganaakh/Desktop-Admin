@@ -48,6 +48,7 @@ namespace pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
+            if (null == values) return;
             id = values.Row[0].ToString();
             string boardid= values.Row[1].ToString();
             string dealno= values.Row[2].ToString();
