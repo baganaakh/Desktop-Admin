@@ -168,7 +168,6 @@ namespace pages
             string ticks = markticks.Text;
             string desc = markdesc.Text;
             string orderL = markorderl.Text;
-            string state = markstat.Text;
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);

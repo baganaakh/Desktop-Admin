@@ -5,18 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="demoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'demo.dbo.Account' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Account">
           <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="memberid" />
-            <PropertyRef Name="modified" />
-            <PropertyRef Name="state" />
+            <PropertyRef Name="accNum" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="memberid" Type="bigint" Nullable="false" />
-          <Property Name="accNum" Type="bigint" />
+          <Property Name="accNum" Type="bigint" Nullable="false" />
           <Property Name="accType" Type="nvarchar" MaxLength="20" />
           <Property Name="LinkAcc" Type="nvarchar" MaxLength="20" />
           <Property Name="collateral" Type="decimal" Precision="18" Scale="4" />
@@ -182,16 +177,16 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <Property Name="boardid" Type="bigint" />
           <Property Name="dealno" Type="bigint" />
           <Property Name="side" Type="smallint" />
-          <Property Name="memberid" Type="bigint" />
           <Property Name="accountid" Type="bigint" Nullable="false" />
           <Property Name="assetid" Type="bigint" Nullable="false" />
+          <Property Name="dealType" Type="smallint" />
           <Property Name="qty" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="price" Type="decimal" Precision="18" Scale="4" />
           <Property Name="totalPrice" Type="decimal" Precision="18" Scale="4" />
           <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
           <Property Name="fee" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="dealType" Type="smallint" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="memberid" Type="bigint" />
+          <Property Name="invoice" Type="bit" />
         </EntityType>
         <EntityType Name="DealerAccounts">
           <Key>
@@ -318,22 +313,24 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
         <EntityType Name="Invoices">
           <Key>
             <PropertyRef Name="id" />
+            <PropertyRef Name="invoiceno" />
           </Key>
-          <Property Name="id" Type="bigint" Nullable="false" />
-          <Property Name="dealType" Type="smallint" />
-          <Property Name="invoiceno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="invoicedate" Type="date" />
-          <Property Name="expiredate" Type="datetime" />
-          <Property Name="formid" Type="bigint" />
-          <Property Name="toid" Type="bigint" />
-          <Property Name="assetid" Type="int" />
-          <Property Name="qty" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" />
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="boardid" Type="bigint" />
+          <Property Name="dealno" Type="bigint" />
           <Property Name="side" Type="smallint" />
-          <Property Name="memberid" Type="bigint" />
           <Property Name="accountid" Type="bigint" />
+          <Property Name="assetid" Type="bigint" />
+          <Property Name="dealType" Type="smallint" />
+          <Property Name="qty" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="totalPrice" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="fee" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="invoiceno" Type="datetime" Nullable="false" />
+          <Property Name="invoicedate" Type="date" />
+          <Property Name="expiredate" Type="date" />
+          <Property Name="expiretime" Type="time" Precision="7" />
         </EntityType>
         <EntityType Name="isactive">
           <Key>
@@ -728,6 +725,7 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="demoModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActiveSessions" EntityType="Self.ActiveSessions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="algo" EntityType="Self.algo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="allowedtype" EntityType="Self.allowedtype" Schema="dbo" store:Type="Tables" />
@@ -779,21 +777,6 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <EntitySet Name="UserAccounts" EntityType="Self.UserAccounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserGroups" EntityType="Self.UserGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Account" EntityType="Self.Account" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Account].[id] AS [id], 
-    [Account].[memberid] AS [memberid], 
-    [Account].[accNum] AS [accNum], 
-    [Account].[accType] AS [accType], 
-    [Account].[LinkAcc] AS [LinkAcc], 
-    [Account].[collateral] AS [collateral], 
-    [Account].[modified] AS [modified], 
-    [Account].[mask] AS [mask], 
-    [Account].[startdate] AS [startdate], 
-    [Account].[enddate] AS [enddate], 
-    [Account].[state] AS [state]
-    FROM [dbo].[Account] AS [Account]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="accType" EntityType="Self.accType" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [accType].[id] AS [id], 
@@ -1548,47 +1531,46 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <Property Name="boardid" Type="Int64" />
           <Property Name="dealno" Type="Int64" />
           <Property Name="side" Type="Int16" />
-          <Property Name="memberid" Type="Int64" />
           <Property Name="accountid" Type="Int64" Nullable="false" />
           <Property Name="assetid" Type="Int64" Nullable="false" />
+          <Property Name="dealType" Type="Int16" />
           <Property Name="qty" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="totalPrice" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="dealType" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="memberid" Type="Int64" />
+          <Property Name="invoice" Type="Boolean" />
         </EntityType>
         <EntityType Name="Invoice">
           <Key>
             <PropertyRef Name="id" />
+            <PropertyRef Name="invoiceno" />
           </Key>
-          <Property Name="id" Type="Int64" Nullable="false" />
-          <Property Name="dealType" Type="Int16" />
-          <Property Name="invoiceno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="invoicedate" Type="DateTime" Precision="0" />
-          <Property Name="expiredate" Type="DateTime" Precision="3" />
-          <Property Name="formid" Type="Int64" />
-          <Property Name="toid" Type="Int64" />
-          <Property Name="assetid" Type="Int32" />
-          <Property Name="qty" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="boardid" Type="Int64" />
+          <Property Name="dealno" Type="Int64" />
           <Property Name="side" Type="Int16" />
-          <Property Name="memberid" Type="Int64" />
           <Property Name="accountid" Type="Int64" />
+          <Property Name="assetid" Type="Int64" />
+          <Property Name="dealType" Type="Int16" />
+          <Property Name="qty" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="totalPrice" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="invoiceno" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="invoicedate" Type="DateTime" Precision="0" />
+          <Property Name="expiredate" Type="DateTime" Precision="0" />
+          <Property Name="expiretime" Type="Time" Precision="7" />
         </EntityType>
         <EntityType Name="Account">
           <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="memberid" />
-            <PropertyRef Name="modified" />
-            <PropertyRef Name="state" />
+            <PropertyRef Name="accNum" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="memberid" Type="Int64" Nullable="false" />
-          <Property Name="accNum" Type="Int64" />
+          <Property Name="accNum" Type="Int64" Nullable="false" />
           <Property Name="accType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="LinkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="collateral" Type="Decimal" Precision="18" Scale="4" />
@@ -2297,16 +2279,16 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <EntitySetMapping Name="Deal2">
             <EntityTypeMapping TypeName="demoModel.Deal2">
               <MappingFragment StoreEntitySet="Deal2">
-                <ScalarProperty Name="dealType" ColumnName="dealType" />
-                <ScalarProperty Name="fee" ColumnName="fee" />
+                <ScalarProperty Name="invoice" ColumnName="invoice" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="fee" ColumnName="fee" />
                 <ScalarProperty Name="state" ColumnName="state" />
                 <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
-                <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="dealType" ColumnName="dealType" />
                 <ScalarProperty Name="assetid" ColumnName="assetid" />
                 <ScalarProperty Name="accountid" ColumnName="accountid" />
-                <ScalarProperty Name="memberid" ColumnName="memberid" />
                 <ScalarProperty Name="side" ColumnName="side" />
                 <ScalarProperty Name="dealno" ColumnName="dealno" />
                 <ScalarProperty Name="boardid" ColumnName="boardid" />
@@ -2317,20 +2299,21 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <EntitySetMapping Name="Invoices">
             <EntityTypeMapping TypeName="demoModel.Invoice">
               <MappingFragment StoreEntitySet="Invoices">
-                <ScalarProperty Name="accountid" ColumnName="accountid" />
-                <ScalarProperty Name="memberid" ColumnName="memberid" />
-                <ScalarProperty Name="side" ColumnName="side" />
-                <ScalarProperty Name="boardid" ColumnName="boardid" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="qty" ColumnName="qty" />
-                <ScalarProperty Name="assetid" ColumnName="assetid" />
-                <ScalarProperty Name="toid" ColumnName="toid" />
-                <ScalarProperty Name="formid" ColumnName="formid" />
+                <ScalarProperty Name="expiretime" ColumnName="expiretime" />
                 <ScalarProperty Name="expiredate" ColumnName="expiredate" />
                 <ScalarProperty Name="invoicedate" ColumnName="invoicedate" />
                 <ScalarProperty Name="invoiceno" ColumnName="invoiceno" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="fee" ColumnName="fee" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
                 <ScalarProperty Name="dealType" ColumnName="dealType" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="accountid" ColumnName="accountid" />
+                <ScalarProperty Name="side" ColumnName="side" />
+                <ScalarProperty Name="dealno" ColumnName="dealno" />
+                <ScalarProperty Name="boardid" ColumnName="boardid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

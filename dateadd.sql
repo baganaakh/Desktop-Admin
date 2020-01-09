@@ -12,10 +12,14 @@
 --											)
 --							)
 --				)
-
-insert into demo.dbo.Invoices (assetid,qty,boardid,memberid,expireadate)
-select a.id, a.assetid, a.qty, a.boardid, a.memberid, a.accountid,  a.side, a.dealType,
-	dateadd(second, datepart(second, b.expTime), dateadd(minute, datepart(minute, b.expTime), dateadd(hour, datepart(hour, b.expTime), cast(dateadd(day, b.expDate, cast(GETDATE() as date)) as datetime)))) as expireadate
-from demo.dbo.Deal2 a
-left outer join demo.dbo.Boards b on a.boardid=b.id
-where cast(a.modified as date) = cast(GETDATE() as date)
+ 
+insert into demo.dbo.Invoices (boardid, dealno, side, accountid, assetid, dealType, qty, totalPrice, state, fee, expiredate, expiretime)
+select						 a.boardid, a.dealno, a.side, a.accountid, a.assetid, a.dealType, a.qty, a.totalPrice, a.state, a.fee, 
+	dateadd(day, b.expDate, cast(GETDATE() as date)), 
+	b.expTime
+from demo.dbo.Deal2 a 
+left outer join demo.dbo.Boards b on a.boardid=b.id 
+where a.invoice=0 
+update demo.dbo.Deal2
+set invoice=1
+where invoice=0;

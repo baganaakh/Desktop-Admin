@@ -11,23 +11,27 @@
 
     <Grid>
         <ComboBox x:Name="memid" IsEditable="True" ItemsSource="{Binding}" SelectionChanged="partid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,84,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="978,77,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Insert" HorizontalAlignment="Left" Margin="978,126,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="balanc"  HorizontalAlignment="Left" Height="23" Margin="463,83,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120" />
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="accid" HorizontalAlignment="Left" Height="23" Margin="155,117,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="sbalanc" HorizontalAlignment="Left" Height="23" Margin="463,126,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="typee" HorizontalAlignment="Left" Height="23" Margin="155,159,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="linkacc" HorizontalAlignment="Left" Height="23" Margin="463,166,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="currency" HorizontalAlignment="Left" Height="23" Margin="155,208,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="stat" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="463,208,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <Label Content="memberID" HorizontalAlignment="Left" Margin="34,81,0,0" VerticalAlignment="Top"/>
         <Label Content="account" HorizontalAlignment="Left" Margin="34,114,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.497,0.786"/>
         <Label Content="type" HorizontalAlignment="Left" Margin="34,159,0,0" VerticalAlignment="Top"/>
         <Label Content="blnc" HorizontalAlignment="Left" Margin="341,80,0,0" VerticalAlignment="Top"/>
         <Label Content="sblnc" HorizontalAlignment="Left" Margin="335,125,0,0" VerticalAlignment="Top"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="balanc"  HorizontalAlignment="Left" Height="23" Margin="463,83,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120" />
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="sbalanc" HorizontalAlignment="Left" Height="23" Margin="463,126,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
         <Label Content="linkAcount" HorizontalAlignment="Left" Margin="335,165,0,0" VerticalAlignment="Top"/>
         <Label Content="state" HorizontalAlignment="Left" Margin="335,208,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="totQuant" HorizontalAlignment="Left" Height="23" Margin="463,166,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="accid" HorizontalAlignment="Left" Height="23" Margin="155,117,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label Content="currency" HorizontalAlignment="Left" Margin="34,204,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,0.435"/>
-        <TextBox x:Name="typee" HorizontalAlignment="Left" Height="23" Margin="155,159,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="currency" HorizontalAlignment="Left" Height="23" Margin="155,208,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox  x:Name="linkacc" HorizontalAlignment="Left" Height="23" Margin="463,166,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Insert" HorizontalAlignment="Left" Margin="768,87,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="869,87,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="768,119,0,0"/>
+        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="869,119,0,0"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="768,181,0,0"/>
+        <Button Content="Update" IsEnabled="False" Name="upd" HorizontalAlignment="Left" Margin="869,181,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
         <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="10,263,0,237" VerticalAlignment="Center" Width="1138">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
@@ -42,11 +46,6 @@
                 <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="994,181,0,0"/>
-        <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="869,99,0,0"/>
-        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="869,134,0,0"/>
-        <Button Content="Update" IsEnabled="False" Name="upd" HorizontalAlignment="Left" Margin="869,181,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
-        <ComboBox x:Name="stat" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="463,208,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
 
     </Grid>
 </Page>

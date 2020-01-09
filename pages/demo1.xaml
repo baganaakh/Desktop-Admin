@@ -12,8 +12,8 @@
 
     <Grid>
         <ComboBox IsEditable="True" x:Name="dealtype" ItemsSource="{Binding}" SelectionChanged="dealtype_SelectionChanged" DisplayMemberPath="type" SelectedValuePath="id" HorizontalAlignment="Left" Margin="126,31,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.483,0.545"/>
-        <Label Content="dealType" HorizontalAlignment="Left" Margin="51,27,0,0" VerticalAlignment="Top"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="330,31,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Label Content="dealType" HorizontalAlignment="Left" Margin="51,27,0,0" VerticalAlignment="Top"/>
         <DataGrid x:Name="DateTable1" HorizontalAlignment="Left" Height="341" Margin="23,89,0,0" VerticalAlignment="Top" Width="912" RenderTransformOrigin="0.5,0.51">
            
         </DataGrid>

@@ -55,6 +55,10 @@ namespace pages
         private void insertFunc(object sender, RoutedEventArgs e)
         {
             string accNo = accno.Text;
+            if (stat == null) {
+                MessageBox.Show("Please select state !!!");
+                return;
+            }
             linkA = linkacc.SelectedValue.ToString();
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
@@ -66,7 +70,24 @@ namespace pages
             
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException EX)
+            {
+                if(EX.Number == 2627)
+                {
+                    MessageBox.Show("Account number " + accNo + " is already inserted try different number");
+                    return;
+                }
+                else
+                throw;
+            }
+            catch(Exception)
+            {
+                throw;
+            }
             sqlConnection1.Close();
             FillDataGrid();
         }
@@ -203,20 +224,29 @@ namespace pages
                 {
                     linkacc.IsEnabled = false;
                 }
-                else
+                else if(acType == "1")
                 {
+                    acType = "0";
+                    linkacc.IsEnabled = true;
+                }
+                else if(acType == "2")
+                {
+                    acType = "1";
+                    linkacc.IsEnabled = true;
+                }
+                else if(acType == "3")
+                {
+                    acType = "2";
                     linkacc.IsEnabled = true;
                 }
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string CmdString = "SELECT [id] FROM [demo].[dbo].[Account] WHERE accType = " +acType;
+                    string CmdString = "SELECT [id],[accNum] FROM [demo].[dbo].[Account] WHERE accType = " +acType;
                     SqlCommand cmd = new SqlCommand(CmdString, conn);
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable("khfjkh");
                     sda.Fill(dt);
-
                     DataView view = dt.DefaultView;
-
                     linkacc.ItemsSource = view;
                 }
             }
@@ -254,6 +284,7 @@ namespace pages
                 }
                 else
                 {
+                    linkacc.IsEnabled = true;
                     acctype.IsEnabled = true;
                 }
             }

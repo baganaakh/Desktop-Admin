@@ -207,6 +207,11 @@ namespace pages
             dealtype.ItemsSource = Dtype;
         }
 
+        private void tdayss_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
         private void dealtype_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var dti = dealtype.SelectedItem as Dealtype;

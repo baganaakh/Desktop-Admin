@@ -47,33 +47,22 @@ namespace pages
         #region deal2 to invoice 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var values = DateTable2.SelectedItem as DataRowView;
-            if (null == values) return;
-            id = values.Row[0].ToString();
-            string boardid= values.Row[1].ToString();
-            string dealno= values.Row[2].ToString();
-            string side= values.Row[3].ToString();
-            string memberid= values.Row[4].ToString();
-            string accountid= values.Row[5].ToString();
-            string assetid= values.Row[6].ToString();
-            string qty= values.Row[7].ToString();
-            string price= values.Row[8].ToString();
-            string totalPrice= values.Row[9].ToString();
-            string state= values.Row[10].ToString();
-            string fee= values.Row[12].ToString();
-            string acc2id= values.Row[13].ToString();
-            string mem2id= values.Row[14].ToString();
-            string dealType= values.Row[15].ToString();
+            System.Data.SqlClient.SqlConnection sqlConnection1 =
+         new System.Data.SqlClient.SqlConnection(connectionString);
 
-            
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string CmdString = "insert into dbo.Deal2 (accountid, assetid, price, dealType)" +
-                    "SELECT [accountid], [assetid], SUM([totalPrice]) as price, dealType FROM [demo].[dbo].[Deals]" +
-                        "where cast(modified as date) =cast(GETDATE() as date) and dealType =  " +
-                                "group by accountid, dealType, assetid ";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-            }
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "insert into demo.dbo.Invoices (boardid, dealno, side, accountid, assetid," +
+                " dealType, qty, totalPrice, state, fee, expiredate, expiretime) select a.boardid, a.dealno, " +
+                " a.side, a.accountid, a.assetid, a.dealType, a.qty, a.totalPrice, a.state, a.fee, " +
+                "dateadd(day, b.expDate, cast(GETDATE() as date)), b.expTime from demo.dbo.Deal2 a " +
+                "left outer join demo.dbo.Boards b on a.boardid = b.id where a.invoice = 0 " +
+                "update demo.dbo.Deal2 set invoice = 1 where invoice = 0; ";
+
+            cmd.Connection = sqlConnection1;
+            sqlConnection1.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection1.Close();
         }
         #endregion
     }
