@@ -27,7 +27,7 @@ namespace pages
         demoEntities10 data = new demoEntities10();
         CollectionViewSource feeViewSource;
 
-        readonly string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
+        readonly string connectionString = Properties.Settings.Default.ConnectionString;
 
         public Fee()
         {

@@ -29,9 +29,10 @@ namespace pages
             public const string Prefix = "ID_";
             public static string U_ID;
         }
+        #region first submit
         private void log_submit(object sender, RoutedEventArgs e)
         {
-            string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
+            string connectionString = Properties.Settings.Default.ConnectionString;
             string roless;
             SqlConnection conn = new SqlConnection(connectionString);
             try
@@ -53,31 +54,24 @@ namespace pages
                         MyGlobals.U_ID = dt.Rows[0][1].ToString();
 
                         dashboard.Show();
-                        //dashboard.Content = new adminPage();
                         this.Close();
-                        //foreach (DataRow row in dt.Rows)
-                        //{
-                        //    roless = row[0].ToString();
-                        //    if(string.Equals(roless, "admin"))
-                        //    {
-                        //            MessageBox.Show("in admin");
-                        //    }
-                        //    else if(string.Equals(roless, "subs"))
-                        //    {
-                        //            MessageBox.Show("not admin");
-                        //    }
-                        //    else
-                        //    {
-                        //            MessageBox.Show("outside");
-                        //    }
-
-                        //}
-
                     }
                     else
                     {
                         MessageBox.Show("Username and password is incorrect");
                     }
+                }
+
+
+
+
+
+
+
+                using (DatabaseEntities context = new DatabaseEntities())
+                {
+                    context.Connection.Open();
+                    // the rest
                 }
             }
             catch (Exception ex)
@@ -117,5 +111,6 @@ namespace pages
                 }
             }
         }
+        #endregion
     }
 }

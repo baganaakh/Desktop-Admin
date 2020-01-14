@@ -30,7 +30,7 @@ namespace pages
             FillDataGrid();
             bindCombo();
         }
-        string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
+        string connectionString = Properties.Settings.Default.ConnectionString;
         string id, cid, dealTypes;
         #region fill
         private void FillDataGrid()

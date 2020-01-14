@@ -25,7 +25,7 @@ namespace pages
     {
         public MainWindow()
         {
-            CultureInfo ci = new CultureInfo("us-en");
+            CultureInfo ci = new CultureInfo("en-US");
             Thread.CurrentThread.CurrentCulture = ci;
             InitializeComponent();
             Main.Content = new boards();

@@ -23,3 +23,4 @@ where a.invoice=0
 update demo.dbo.Deal2
 set invoice=1
 where invoice=0;
+select DATEPART(NANOSECOND, GETDATE())

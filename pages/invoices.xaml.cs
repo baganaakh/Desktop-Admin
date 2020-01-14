@@ -30,7 +30,7 @@ namespace pages
         #region filldatas
         private void FillDataGrid()
         {
-            string connectionString = @"Server=MSX-1003; Database=demo;Integrated Security=True;";
+            string connectionString = Properties.Settings.Default.ConnectionString;
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
