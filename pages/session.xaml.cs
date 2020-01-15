@@ -228,7 +228,6 @@ namespace pages
                 "markettype= '" + markType + "' " +
                 "WHERE id = '" + id + "'";
 
-            checkDAta.Text = cmd.CommandText;
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();

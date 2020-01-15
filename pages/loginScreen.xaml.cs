@@ -37,14 +37,16 @@ namespace pages
             SqlConnection conn = new SqlConnection(connectionString);
             try
             {
-                if (conn.State == System.Data.ConnectionState.Closed)
-                {
                     conn.Open();
                     string CmdString = "SELECT role ,id FROM [dbo].[users] WHERE uname= '" + userName.Text + "' AND password= '" + passBox.Password + "'";
                     SqlCommand cmd = new SqlCommand(CmdString, conn);
-                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable("Securities");
-                    sda.Fill(dt);
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+                dt.Load(rdr);
+
+                //SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                //sda.Fill(dt);
                     string neo = dt.Rows[0][0].ToString();
                     string adminstr = "admin     ";
                     string substr = "subs     ";
@@ -60,23 +62,12 @@ namespace pages
                     {
                         MessageBox.Show("Username and password is incorrect");
                     }
-                }
+                
 
-
-
-
-
-
-
-                using (DatabaseEntities context = new DatabaseEntities())
-                {
-                    context.Connection.Open();
-                    // the rest
-                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.ToString());
             }
             finally
             {

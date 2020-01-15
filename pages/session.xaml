@@ -163,7 +163,6 @@
             <ComboBoxItem Content="59"/>
         </ComboBox>
         <ComboBox x:Name="sstate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="534,114,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
-        <TextBlock x:Name="checkDAta" HorizontalAlignment="Left" Margin="29,755,0,262" TextWrapping="Wrap" Width="1131"><Run Text="TextBlock"/></TextBlock>
         <CheckBox x:Name="dOrder" Content="Del order" HorizontalAlignment="Left" Margin="716,137,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="eOrder" Content="Edit order" HorizontalAlignment="Left" Margin="844,134,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="dhour" HorizontalAlignment="Left" Margin="150,170,0,0" VerticalAlignment="Top" Width="45">
@@ -332,7 +331,7 @@
         <Button Content="Delete" HorizontalAlignment="Left" Margin="1256,124,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete"/>
         <Button Content="Update" IsEnabled="False" Name="upd"  HorizontalAlignment="Left" Margin="1257,162,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
 
-        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" AutoGenerateColumns="False" Margin="22,331,0,329" VerticalAlignment="Center" Width="1362">
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" Margin="22,331,0,10" VerticalAlignment="Center" Width="1362">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding boardid}" Header="BID"/>

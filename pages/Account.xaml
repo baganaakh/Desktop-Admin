@@ -26,6 +26,6 @@
         <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="927,110,0,0"/>
         <Button Content="Update" IsEnabled="False" Name="upd"  HorizontalAlignment="Left" Margin="1055,151,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="Edit" HorizontalAlignment="Left" Margin="1055,75,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
-        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Height="400" Margin="34,211,0,289" VerticalAlignment="Center" Width="1138"></DataGrid>
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" Margin="34,211,0,289" VerticalAlignment="Center" Width="1138"></DataGrid>
     </Grid>
 </Page>
