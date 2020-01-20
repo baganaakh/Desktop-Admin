@@ -171,9 +171,9 @@ namespace pages
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.dbo.assets SET " +
                 "code= '" + code+ "', " +
-                "name= '" + name + "', " +
+                "name= N'" + name + "', " +
                 "value= '" + value+ "', " +
-                "note= '" + note + "', " +
+                "note= N'" + note + "', " +
                 "expireDate= '" + expireDate+ "', " +
                 "state= '" + statid + "', " +
                 "modified = getdate(), " +

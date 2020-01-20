@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:pages"
         mc:Ignorable="d"
         Title="MainWindow" Height="1000" Width="1500">
+
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True" />

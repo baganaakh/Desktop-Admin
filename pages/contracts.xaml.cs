@@ -200,8 +200,8 @@ namespace pages
             cmd.CommandText = "UPDATE demo.dbo.contracts SET " +
                 "securityId= '" + secId+ "', " +
                 "type= '" + ctypee + "', " +
-                "code= '" + code+ "', " +
-                "name= '" + name + "', " +
+                "code= N'" + code+ "', " +
+                "name= N'" + name + "', " +
                 "lot= '" + lot+ "', " +
                 "tick= '" + tick + "', " +
                 "sdate= '" + csdates+ "', " +

@@ -206,7 +206,7 @@ namespace pages
                 "partid= '" + partid + "', " +
                 "type= '" + setype + "', " +
                 "code= '" + code + "', " +
-                "name= '" + name + "', " +
+                "name= N'" + name + "', " +
                 "refno= '" + refno + "', " +
                 "regno= '" + regno + "', " +
                 "totalQty= '" + total + "', " +
