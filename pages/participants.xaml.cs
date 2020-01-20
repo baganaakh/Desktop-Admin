@@ -110,7 +110,6 @@ namespace pages
                 " csid, webid,pcity,pdistr,phoroo,pstreet,pwebpage,numofemp,coType,spType) values" +
                 " ('" + code + "',N'" + name + "',N'" + country + "', '" + phone+ "', '" + email+ "', '" + contact+ "', '" + cid +"', getdate(), '"+csid+ 
                 "', '"+webid+"',N'"+ Pcity + "',N'" + Pdistr + "',N'" + Phoroo + "',N'" + Pstreet + "',N'" + Pwebpage + "',N'" + Numofemp + "',"+ptid+","+spid+")";
-            checkDAta.Text = cmd.CommandText;
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -214,19 +213,19 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.dbo.participants SET " +
-                "code = '" + code+ "', " +
+                "code = N'" + code+ "', " +
                 "name= N'" + name + "', " +
-                "country = '" + country+ "', " +
+                "country = N'" + country+ "', " +
                 "phone= '" + phone+ "', " +
                 "email= '" + email+ "', " +
                 "contact= '" + contact+ "', " +
                 "state= '" + cid + "', " +
                 "modified = getdate(), " +
                 "webid= '" + webid+ "', " +
-                "pcity= '" + Pcity+ "', " +
-                "pdistr= '" + Pdistr+ "', " +
-                "phoroo= '" + Phoroo+ "', " +
-                "pstreet= '" + Pstreet+ "', " +
+                "pcity= N'" + Pcity+ "', " +
+                "pdistr= N'" + Pdistr+ "', " +
+                "phoroo= N'" + Phoroo+ "', " +
+                "pstreet= N'" + Pstreet+ "', " +
                 "pwebpage= '" + Pwebpage+ "', " +
                 "numofemp= '" + Numofemp+ "', " +
                 "coType= '" + ptid+ "', " +
@@ -234,7 +233,6 @@ namespace pages
                 "csid= '" + csid+ "' " +
                 "WHERE id = '" + id + "'";
 
-            checkDAta.Text = cmd.CommandText;
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();

@@ -26,8 +26,6 @@
                             </Trigger>
                             <Trigger Property="Button.IsFocused" Value="True">
                                 <Setter Property="FontWeight" Value="Bold"/>
-                                <Setter Property="BorderBrush" Value="Red"/>
-                                
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

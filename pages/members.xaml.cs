@@ -62,6 +62,7 @@ namespace pages
             dealer.IsChecked = bool.Parse(Dealer);
             ander.IsChecked = bool.Parse(Ander);
             nominal.IsChecked = bool.Parse(Nominal);
+            pcode.IsEnabled = false;
         }
         #endregion
         #region insert
@@ -153,8 +154,27 @@ namespace pages
            new System.Data.SqlClient.SqlConnection(connectionString);
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException EX)
+            {
+                if (EX.Number == 2627)
+                {
+                    MessageBox.Show("mask " + mask + " and "+ code +" is already inserted try different code");
+                    return;
+                }
+                else
+                    throw;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
             sqlConnection1.Close();
+            
             FillDataGrid();
         }
         #endregion
@@ -198,6 +218,7 @@ namespace pages
             dealer.IsChecked = null;
             ander.IsChecked = null;
             nominal.IsChecked = null;
+            pcode.IsEnabled = true;
         }
         private void refreshh(object sender, RoutedEventArgs e)
         {
