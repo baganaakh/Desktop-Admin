@@ -14,7 +14,7 @@ namespace pages.dbBind
     
     public partial class RefPrice
     {
-        public int id { get; set; }
+        public long id { get; set; }
         public decimal refprice1 { get; set; }
         public System.DateTime modified { get; set; }
         public string name { get; set; }

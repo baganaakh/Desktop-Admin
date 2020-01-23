@@ -15,6 +15,7 @@ namespace pages.dbBind
     public partial class Order
     {
         public long id { get; set; }
+        public long bid { get; set; }
         public short side { get; set; }
         public long memberid { get; set; }
         public long accountid { get; set; }
@@ -23,7 +24,6 @@ namespace pages.dbBind
         public decimal price { get; set; }
         public short state { get; set; }
         public System.DateTime modified { get; set; }
-        public long bid { get; set; }
         public Nullable<short> dealType { get; set; }
     }
 }

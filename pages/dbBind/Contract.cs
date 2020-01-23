@@ -14,8 +14,8 @@ namespace pages.dbBind
     
     public partial class Contract
     {
-        public int id { get; set; }
-        public int securityId { get; set; }
+        public long id { get; set; }
+        public long securityId { get; set; }
         public short type { get; set; }
         public string code { get; set; }
         public string name { get; set; }

@@ -35,7 +35,7 @@
         </Style>
     </Window.Resources>
     <Grid >
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Height="35" Margin="58,0,166,0" Width="1268">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Height="35" Margin="149,0,75,0" Width="1268">
             <Button Content="Participants" Margin="10,0,0,0" Click="BtnClickP3" Background="#FFF3F318"/>
             <Button Content="member" Margin="10,0,0,0" Click="BtnClickP12" Background="#FFF3F318"/>
             <Button Content="Account" Margin="10,0,0,0" Click="BtnClickP17" Background="#FFF3F318"/>

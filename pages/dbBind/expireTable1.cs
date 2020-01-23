@@ -12,7 +12,7 @@ namespace pages.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class expireTable
+    public partial class expireTable1
     {
         public short id { get; set; }
         public System.DateTime expire { get; set; }
