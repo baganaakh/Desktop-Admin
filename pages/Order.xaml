@@ -9,30 +9,30 @@
       Title="Order">
 
     <Grid>
-        <ComboBox IsEditable="True" x:Name="memid" ItemsSource="{Binding}" SelectionChanged="partid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,75,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="stat" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="415,74,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="price" HorizontalAlignment="Left" Height="23" Margin="644,75,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <ComboBox IsEditable="True" x:Name="accountid" ItemsSource="{Binding}" SelectionChanged="accountid_SelectionChanged" DisplayMemberPath="id" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,119,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
-        <ComboBox IsEditable="True" x:Name="assetid" ItemsSource="{Binding}" SelectionChanged="assetid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="415,118,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
-        <ComboBox x:Name="Side" ItemsSource="{Binding}" SelectionChanged="side_SelectionChanged" DisplayMemberPath="side1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="644,119,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
-        <ComboBox IsEditable="True" x:Name="boardid" ItemsSource="{Binding}" SelectionChanged="boardid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,155,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="quantity" HorizontalAlignment="Left" Height="23" Margin="415,154,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <Label Content="memberid" HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top"/>
-        <Label Content="side" HorizontalAlignment="Left" Margin="574,116,0,0" VerticalAlignment="Top"/>
-        <Label Content="accountid" HorizontalAlignment="Left" Margin="34,114,0,0" VerticalAlignment="Top"/>
-        <Label Content="board Id" HorizontalAlignment="Left" Margin="34,155,0,0" VerticalAlignment="Top"/>
-        <Label Content="assetid" HorizontalAlignment="Left" Margin="345,115,0,0" VerticalAlignment="Top"/>
-        <Label Content="quantity" HorizontalAlignment="Left" Margin="345,151,0,0" VerticalAlignment="Top"/>
-        <Label Content="price" HorizontalAlignment="Left" Margin="574,72,0,0" VerticalAlignment="Top"/>
-        <Label Content="state" HorizontalAlignment="Left" Margin="345,70,0,0" VerticalAlignment="Top"/>
-        <Button Content="Insert" HorizontalAlignment="Left" Margin="977,70,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="1081,70,0,0"/>
-        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="977,113,0,0"/>
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="1081,113,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Update"  IsEnabled="False" Name="upd"  HorizontalAlignment="Left" Margin="977,155,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="1081,155,0,0"/>
+        <ComboBox IsEditable="True" x:Name="memid" ItemsSource="{Binding}" SelectionChanged="partid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,19,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="stat" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="410,18,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="price" HorizontalAlignment="Left" Height="23" Margin="639,19,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <ComboBox IsEditable="True" x:Name="accountid" ItemsSource="{Binding}" SelectionChanged="accountid_SelectionChanged" DisplayMemberPath="id" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,63,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox IsEditable="True" x:Name="assetid" ItemsSource="{Binding}" SelectionChanged="assetid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="410,62,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox x:Name="Side" ItemsSource="{Binding}" SelectionChanged="side_SelectionChanged" DisplayMemberPath="side1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="639,63,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox IsEditable="True" x:Name="boardid" ItemsSource="{Binding}" SelectionChanged="boardid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,99,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="quantity" HorizontalAlignment="Left" Height="23" Margin="410,98,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="memberid" HorizontalAlignment="Left" Margin="29,16,0,0" VerticalAlignment="Top"/>
+        <Label Content="side" HorizontalAlignment="Left" Margin="569,60,0,0" VerticalAlignment="Top"/>
+        <Label Content="accountid" HorizontalAlignment="Left" Margin="29,58,0,0" VerticalAlignment="Top"/>
+        <Label Content="board Id" HorizontalAlignment="Left" Margin="29,99,0,0" VerticalAlignment="Top"/>
+        <Label Content="assetid" HorizontalAlignment="Left" Margin="340,59,0,0" VerticalAlignment="Top"/>
+        <Label Content="quantity" HorizontalAlignment="Left" Margin="340,95,0,0" VerticalAlignment="Top"/>
+        <Label Content="price" HorizontalAlignment="Left" Margin="569,16,0,0" VerticalAlignment="Top"/>
+        <Label Content="state" HorizontalAlignment="Left" Margin="340,14,0,0" VerticalAlignment="Top"/>
+        <Button Content="Insert" HorizontalAlignment="Left" Margin="972,14,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="1076,14,0,0"/>
+        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="972,57,0,0"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="1076,57,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Update"  IsEnabled="False" Name="upd"  HorizontalAlignment="Left" Margin="972,99,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="1076,99,0,0"/>
 
-        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" Margin="10,263,0,10" VerticalAlignment="Center" Width="1138">
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" Margin="29,146,0,10" VerticalAlignment="Center" Width="1138" Height="744">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding bid}" Header="BID"/>

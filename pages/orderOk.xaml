@@ -9,10 +9,10 @@
       Title="orderOk">
 
     <Grid>
-        <ComboBox IsEditable="True" x:Name="accountid" ItemsSource="{Binding}" SelectionChanged="accountid_SelectionChanged" DisplayMemberPath="id" SelectedValuePath="id" HorizontalAlignment="Left" Margin="139,155,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
-        <Button Content="OK" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="Okey" Margin="281,157,0,0"/>
-        <Label Content="accountid" HorizontalAlignment="Left" Margin="35,153,0,0" VerticalAlignment="Top"/>
-        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" Margin="10,263,0,10" VerticalAlignment="Center" Width="1138" ></DataGrid>
+        <ComboBox IsEditable="True" x:Name="accountid" ItemsSource="{Binding}" SelectionChanged="accountid_SelectionChanged" DisplayMemberPath="id" SelectedValuePath="id" HorizontalAlignment="Left" Margin="141,25,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <Button Content="OK" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="Okey" Margin="283,27,0,0"/>
+        <Label Content="accountid" HorizontalAlignment="Left" Margin="37,23,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" Margin="23,68,0,10" VerticalAlignment="Center" Width="1138" Height="822" ></DataGrid>
 
     </Grid>
 </Page>

@@ -53,8 +53,8 @@ namespace pages
             string name = value.Row[1].ToString();
             string type = value.Row[2].ToString();
             string tdays = value.Row[3].ToString();
-            string description = value.Row[4].ToString();
-            string stat = value.Row[5].ToString();
+            string stat = value.Row[4].ToString();
+            string description = value.Row[6].ToString();
             dealTypes = value.Row[7].ToString();
             string time= value.Row[8].ToString();
             string eday= value.Row[9].ToString();

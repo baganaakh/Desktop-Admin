@@ -9,31 +9,31 @@
       Title="MarketMakers">
 
     <Grid>
-        <ComboBox IsEditable="True" x:Name="markcontact" ItemsSource="{Binding}" SelectionChanged="contid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,76,0,0" VerticalAlignment="Top" Width="120"/>
-        <DatePicker x:Name="sdat" HorizontalAlignment="Left" Margin="425,76,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="markdesc" HorizontalAlignment="Left" Height="23" Margin="705,75,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <ComboBox IsEditable="True" x:Name="markmember" ItemsSource="{Binding}" SelectionChanged="partid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,117,0,0" VerticalAlignment="Top" Width="120"/>
-        <DatePicker x:Name="edat" HorizontalAlignment="Left" Margin="425,117,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="markorderl" HorizontalAlignment="Left" Height="23" Margin="705,117,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="markaccount" HorizontalAlignment="Left" Height="23" Margin="155,159,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="markticks" HorizontalAlignment="Left" Height="23" Margin="425,159,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="markstat" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="705,158,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
-        <Label Content="contactID" HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top"/>
-        <Label Content="accountId" HorizontalAlignment="Left" Margin="27,159,0,0" VerticalAlignment="Top"/>
-        <Label Content="startdate" HorizontalAlignment="Left" Margin="297,74,0,0" VerticalAlignment="Top"/>
-        <Label Content="enddate" HorizontalAlignment="Left" Margin="297,117,0,0" VerticalAlignment="Top"/>
-        <Label Content="ticks" HorizontalAlignment="Left" Margin="297,158,0,0" VerticalAlignment="Top"/>
-        <Label Content="description" HorizontalAlignment="Left" Margin="577,74,0,0" VerticalAlignment="Top"/>
-        <Label Content="orderLimit" HorizontalAlignment="Left" Margin="577,117,0,0" VerticalAlignment="Top"/>
-        <Label Content="state" HorizontalAlignment="Left" Margin="577,155,0,0" VerticalAlignment="Top"/>
-        <Label Content="memberId" HorizontalAlignment="Left" Margin="34,114,0,0" VerticalAlignment="Top"/>
-        <Button Content="Insert" HorizontalAlignment="Left" Margin="869,80,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="994,80,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="869,113,0,0"/>
-        <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="994,114,0,0"/>
-        <Button Content="Update"  IsEnabled="False" Name="upd"  HorizontalAlignment="Left" Margin="869,160,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="994,160,0,0"/>
-        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" Margin="10,242,0,10" VerticalAlignment="Center" Width="1138">
+        <ComboBox IsEditable="True" x:Name="markcontact" ItemsSource="{Binding}" SelectionChanged="contid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="152,31,0,0" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="sdat" HorizontalAlignment="Left" Margin="422,31,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="markdesc" HorizontalAlignment="Left" Height="23" Margin="702,30,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <ComboBox IsEditable="True" x:Name="markmember" ItemsSource="{Binding}" SelectionChanged="partid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="152,72,0,0" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="edat" HorizontalAlignment="Left" Margin="422,72,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="markorderl" HorizontalAlignment="Left" Height="23" Margin="702,72,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="markaccount" HorizontalAlignment="Left" Height="23" Margin="152,114,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="markticks" HorizontalAlignment="Left" Height="23" Margin="422,114,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="markstat" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="702,113,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <Label Content="contactID" HorizontalAlignment="Left" Margin="31,27,0,0" VerticalAlignment="Top"/>
+        <Label Content="accountId" HorizontalAlignment="Left" Margin="24,114,0,0" VerticalAlignment="Top"/>
+        <Label Content="startdate" HorizontalAlignment="Left" Margin="294,29,0,0" VerticalAlignment="Top"/>
+        <Label Content="enddate" HorizontalAlignment="Left" Margin="294,72,0,0" VerticalAlignment="Top"/>
+        <Label Content="ticks" HorizontalAlignment="Left" Margin="294,113,0,0" VerticalAlignment="Top"/>
+        <Label Content="description" HorizontalAlignment="Left" Margin="574,29,0,0" VerticalAlignment="Top"/>
+        <Label Content="orderLimit" HorizontalAlignment="Left" Margin="574,72,0,0" VerticalAlignment="Top"/>
+        <Label Content="state" HorizontalAlignment="Left" Margin="574,110,0,0" VerticalAlignment="Top"/>
+        <Label Content="memberId" HorizontalAlignment="Left" Margin="31,69,0,0" VerticalAlignment="Top"/>
+        <Button Content="Insert" HorizontalAlignment="Left" Margin="866,35,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="991,35,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="866,68,0,0"/>
+        <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="991,69,0,0"/>
+        <Button Content="Update"  IsEnabled="False" Name="upd"  HorizontalAlignment="Left" Margin="866,115,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="991,115,0,0"/>
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" Margin="24,164,0,36" VerticalAlignment="Center" Width="1138" Height="700">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding contactid}" Header="CID"/>

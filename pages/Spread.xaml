@@ -9,24 +9,24 @@
       Title="Spread">
 
     <Grid>
-        <ComboBox IsEditable="True" x:Name="contractid" ItemsSource="{Binding}" SelectionChanged="contractid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,75,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="ispread" HorizontalAlignment="Left" Height="23" Margin="438,75,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <ComboBox IsEditable="True" x:Name="sessionid" ItemsSource="{Binding}" SelectionChanged="sessionid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,124,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox  x:Name="rparam" HorizontalAlignment="Left" Height="23" Margin="438,124,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="rspread" HorizontalAlignment="Left" Height="23" Margin="155,170,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <Label Content="ispread" HorizontalAlignment="Left" Margin="317,72,0,0" VerticalAlignment="Top"/>
-        <Label Content="sessionid" HorizontalAlignment="Left" Margin="34,121,0,0" VerticalAlignment="Top"/>
-        <Label Content="rparam" HorizontalAlignment="Left" Margin="317,121,0,0" VerticalAlignment="Top"/>
-        <Label Content="rspread" HorizontalAlignment="Left" Margin="34,166,0,0" VerticalAlignment="Top"/>
-        <Label Content="contractid" HorizontalAlignment="Left" Margin="34,72,0,0" VerticalAlignment="Top"/>
-        <Button Content="Insert" HorizontalAlignment="Left" Margin="648,72,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="777,72,0,0"/>
-        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="648,108,0,0"/>
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="777,106,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Update" IsEnabled="False" Name="upd"  HorizontalAlignment="Left" Margin="648,155,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="777,155,0,0"/>
+        <ComboBox IsEditable="True" x:Name="contractid" ItemsSource="{Binding}" SelectionChanged="contractid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="151,18,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="ispread" HorizontalAlignment="Left" Height="23" Margin="434,18,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <ComboBox IsEditable="True" x:Name="sessionid" ItemsSource="{Binding}" SelectionChanged="sessionid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="151,67,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox  x:Name="rparam" HorizontalAlignment="Left" Height="23" Margin="434,67,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="rspread" HorizontalAlignment="Left" Height="23" Margin="715,22,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="ispread" HorizontalAlignment="Left" Margin="313,15,0,0" VerticalAlignment="Top"/>
+        <Label Content="sessionid" HorizontalAlignment="Left" Margin="30,64,0,0" VerticalAlignment="Top"/>
+        <Label Content="rparam" HorizontalAlignment="Left" Margin="313,64,0,0" VerticalAlignment="Top"/>
+        <Label Content="rspread" HorizontalAlignment="Left" Margin="594,18,0,0" VerticalAlignment="Top"/>
+        <Label Content="contractid" HorizontalAlignment="Left" Margin="30,15,0,0" VerticalAlignment="Top"/>
+        <Button Content="Insert" HorizontalAlignment="Left" Margin="900,26,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="1029,26,0,0"/>
+        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="900,62,0,0"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="1029,60,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Update" IsEnabled="False" Name="upd"  HorizontalAlignment="Left" Margin="900,109,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="1029,109,0,0"/>
 
-        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" Margin="40,232,0,10" VerticalAlignment="Center" Width="1138">
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" Margin="36,150,0,321" VerticalAlignment="Center" Width="1138" Height="429">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding contractid}" Header="Contact id"/>

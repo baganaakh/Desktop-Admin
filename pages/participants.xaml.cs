@@ -108,7 +108,7 @@ namespace pages
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "SET ANSI_PADDING OFF; insert into dbo.participants (code, name, country, phone, email, contact, state, modified," +
                 " csid, webid,pcity,pdistr,phoroo,pstreet,pwebpage,numofemp,coType,spType) values" +
-                " ('" + code + "',N'" + name + "',N'" + country + "', '" + phone+ "', '" + email+ "', '" + contact+ "', '" + cid +"', getdate(), '"+csid+ 
+                " (N'" + code + "',N'" + name + "',N'" + country + "', '" + phone+ "', '" + email+ "', '" + contact+ "', '" + cid +"', getdate(), '"+csid+ 
                 "', '"+webid+"',N'"+ Pcity + "',N'" + Pdistr + "',N'" + Phoroo + "',N'" + Pstreet + "',N'" + Pwebpage + "',N'" + Numofemp + "',"+ptid+","+spid+")";
 
             cmd.Connection = sqlConnection1;

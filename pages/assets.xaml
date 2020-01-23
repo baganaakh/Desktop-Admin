@@ -9,28 +9,28 @@
       Title="assets" >
 
     <Grid >
-        <Label Content="Code" HorizontalAlignment="Left" Margin="35,64,0,0" VerticalAlignment="Top"/>
-        <Label Content="үнэ" HorizontalAlignment="Left" Margin="28,151,0,0" VerticalAlignment="Top"/>
-        <Label Content="тайлбар" HorizontalAlignment="Left" Margin="28,203,0,0" VerticalAlignment="Top"/>
-        <Label Content="дуусах хугацаа" HorizontalAlignment="Left" Margin="346,114,0,0" VerticalAlignment="Top"/>
-        <Label Content="төлөв" HorizontalAlignment="Left" Margin="346,154,0,0" VerticalAlignment="Top"/>
-        <Label Content="ratio" HorizontalAlignment="Left" Margin="346,63,0,0" VerticalAlignment="Top"/>
-        <Label Content="нэр" HorizontalAlignment="Left" Margin="35,106,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="iAct" HorizontalAlignment="Left" Height="23" Margin="474,64,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="aname" HorizontalAlignment="Left" Height="23" Margin="156,109,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="acode" HorizontalAlignment="Left" Height="23" Margin="156,68,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="aprice" HorizontalAlignment="Left" Height="23" Margin="156,154,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" MaxLength="2" x:Name="artio" HorizontalAlignment="Left" Height="23" Margin="474,64,0,0" TextWrapping="Wrap" Text="34"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="anote" HorizontalAlignment="Left" Height="23" Margin="156,207,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="astate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="474,155,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
-        <DatePicker x:Name="aexpire" HorizontalAlignment="Left" Margin="474,114,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="704,119,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Insert" HorizontalAlignment="Left" Margin="704,70,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="704,165,0,0"/>
-        <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="823,70,0,0"/>
-        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="823,119,0,0"/>
-        <Button Content="Update" Name="upd" IsEnabled="False" HorizontalAlignment="Left" Margin="823,165,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
-        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" Margin="28,263,0,0" VerticalAlignment="Top" Width="1138">
+        <Label Content="Symbol" HorizontalAlignment="Left" Margin="34,21,0,0" VerticalAlignment="Top"/>
+        <Label Content="үнэ" HorizontalAlignment="Left" Margin="27,108,0,0" VerticalAlignment="Top"/>
+        <Label Content="тайлбар" HorizontalAlignment="Left" Margin="27,160,0,0" VerticalAlignment="Top"/>
+        <Label Content="дуусах хугацаа" HorizontalAlignment="Left" Margin="345,71,0,0" VerticalAlignment="Top"/>
+        <Label Content="төлөв" HorizontalAlignment="Left" Margin="345,111,0,0" VerticalAlignment="Top"/>
+        <Label Content="ratio" HorizontalAlignment="Left" Margin="345,20,0,0" VerticalAlignment="Top"/>
+        <Label Content="нэр" HorizontalAlignment="Left" Margin="34,63,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="iAct" HorizontalAlignment="Left" Height="23" Margin="473,21,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="aname" HorizontalAlignment="Left" Height="23" Margin="155,66,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="acode" HorizontalAlignment="Left" Height="23" Margin="155,25,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="aprice" HorizontalAlignment="Left" Height="23" Margin="155,111,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" MaxLength="5" x:Name="artio" HorizontalAlignment="Left" Height="23" Margin="473,21,0,0" TextWrapping="Wrap" Text="00.00"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="anote" HorizontalAlignment="Left" Height="23" Margin="155,164,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="astate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="473,112,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <DatePicker x:Name="aexpire" HorizontalAlignment="Left" Margin="473,71,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="703,76,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Insert" HorizontalAlignment="Left" Margin="703,27,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="703,122,0,0"/>
+        <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="822,27,0,0"/>
+        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="822,76,0,0"/>
+        <Button Content="Update" Name="upd" IsEnabled="False" HorizontalAlignment="Left" Margin="822,122,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" Margin="27,220,0,0" VerticalAlignment="Top" Width="1138" Height="513">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding code}" Header="Code"/>

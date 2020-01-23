@@ -60,7 +60,7 @@
             <Button Content="Table" Margin="10,0,0,0" Click="BtnClickP18"/>
             <Button Content="Invoices" Margin="10,0,0,0" Click="BtnClickP24"/>
         </StackPanel>
-        <Frame x:Name="Main" Margin="28,25,0,0" NavigationUIVisibility="Hidden" MinHeight="350" VerticalAlignment="Top" Content="" />
+        <Frame x:Name="Main" Margin="28,25,0,0" NavigationUIVisibility="Hidden" MinHeight="350" VerticalAlignment="Top" Content="" Height="934" />
 
 
     </Grid>

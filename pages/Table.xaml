@@ -9,22 +9,22 @@
       Title="Table">
 
     <Grid>
-        <TextBox x:Name="arrangeprice" HorizontalAlignment="Left" Height="23" Margin="149,72,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="userid" HorizontalAlignment="Left" Height="23" Margin="439,72,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="ticksize" HorizontalAlignment="Left" Height="23" Margin="149,117,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="assetid" HorizontalAlignment="Left" Height="23" Margin="439,117,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Arrange Price" HorizontalAlignment="Left" Margin="28,68,0,0" VerticalAlignment="Top"/>
-        <Label Content="TickSize" HorizontalAlignment="Left" Margin="28,114,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.497,0.786"/>
-        <Label Content="userId" HorizontalAlignment="Left" Margin="318,72,0,0" VerticalAlignment="Top"/>
-        <Label Content="AssetId" HorizontalAlignment="Left" Margin="318,117,0,0" VerticalAlignment="Top"/>
-        <Button Content="Insert" HorizontalAlignment="Left" Margin="656,75,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="781,75,0,0"/>
-        <Button IsEnabled="False" Name="upd"  Content="Update" HorizontalAlignment="Left" Margin="882,75,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="656,114,0,0"/>
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="781,114,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="882,114,0,0"/>
+        <TextBox x:Name="arrangeprice" HorizontalAlignment="Left" Height="23" Margin="162,26,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="userid" HorizontalAlignment="Left" Height="23" Margin="452,26,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="ticksize" HorizontalAlignment="Left" Height="23" Margin="162,71,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="assetid" HorizontalAlignment="Left" Height="23" Margin="452,71,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Arrange Price" HorizontalAlignment="Left" Margin="41,22,0,0" VerticalAlignment="Top"/>
+        <Label Content="TickSize" HorizontalAlignment="Left" Margin="41,68,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.497,0.786"/>
+        <Label Content="userId" HorizontalAlignment="Left" Margin="331,26,0,0" VerticalAlignment="Top"/>
+        <Label Content="AssetId" HorizontalAlignment="Left" Margin="331,71,0,0" VerticalAlignment="Top"/>
+        <Button Content="Insert" HorizontalAlignment="Left" Margin="669,29,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="794,29,0,0"/>
+        <Button IsEnabled="False" Name="upd"  Content="Update" HorizontalAlignment="Left" Margin="895,29,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="669,68,0,0"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="794,68,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="895,68,0,0"/>
 
-        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" Margin="10,242,0,10" VerticalAlignment="Center" Width="1138">
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" Margin="23,129,0,10" VerticalAlignment="Center" Width="1138" Height="761">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding arrangePrice}" Header="Arrange Price"/>
