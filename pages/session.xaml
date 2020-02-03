@@ -324,12 +324,12 @@
         <Label Content="allowed types" HorizontalAlignment="Left" Margin="383,38,0,0" VerticalAlignment="Top"/>
         <Label Content="төлөв" HorizontalAlignment="Left" Margin="381,114,0,0" VerticalAlignment="Top"/>
         <Label x:Name="checkDAta_Copy" Content="Market төрөл" HorizontalAlignment="Left" Margin="716,80,0,0" VerticalAlignment="Top"/>
-        <Button Content="Insert" HorizontalAlignment="Left" Margin="1256,47,0,0" VerticalAlignment="Top" Width="76" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="New" HorizontalAlignment="Left" Margin="1351,49,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData"/>
-        <Button Content="Refresh" HorizontalAlignment="Left" Margin="1256,84,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh"/>
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="1350,86,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
-        <Button Content="Delete" HorizontalAlignment="Left" Margin="1256,124,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete"/>
-        <Button Content="Update" IsEnabled="False" Name="upd"  HorizontalAlignment="Left" Margin="1257,162,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Insert" HorizontalAlignment="Left" Margin="1062,47,0,0" VerticalAlignment="Top" Width="76" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="New" HorizontalAlignment="Left" Margin="1157,49,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" Margin="1062,84,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="1156,86,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="1062,124,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete"/>
+        <Button Content="Update" IsEnabled="False" Name="upd"  HorizontalAlignment="Left" Margin="1063,162,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
 
         <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" Margin="22,232,0,10" VerticalAlignment="Center" Width="1362" Height="818">
             <DataGrid.Columns>

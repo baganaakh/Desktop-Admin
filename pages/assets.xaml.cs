@@ -80,7 +80,7 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.assets(code, name, value, note, expireDate, state, modified, ratio) values" +
-                " ('" + code + "',N'" + name + "',N'" + value + "',N'" + note + "', '" + expireDate+ "', '" + statid+ "', getdate(), '" + ratio+ "')";
+                " (N'" + code + "',N'" + name + "',N'" + value + "',N'" + note + "', '" + expireDate+ "', '" + statid+ "', getdate(), '" + ratio+ "')";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -115,7 +115,7 @@ namespace pages
             aname.Text = null;
             aprice.Text = null;
             anote.Text = null;
-            artio.Text = null;
+            artio.Text = "00.00";
             aexpire.SelectedDate = null;
             astate.Text = null;
             id = null;
@@ -170,7 +170,7 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.dbo.assets SET " +
-                "code= '" + code+ "', " +
+                "code= N'" + code+ "', " +
                 "name= N'" + name + "', " +
                 "value= '" + value+ "', " +
                 "note= N'" + note + "', " +

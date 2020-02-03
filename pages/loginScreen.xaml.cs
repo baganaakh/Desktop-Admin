@@ -48,8 +48,8 @@ namespace pages
                 //SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 //sda.Fill(dt);
                     string neo = dt.Rows[0][0].ToString();
-                    string adminstr = "admin     ";
-                    string substr = "subs     ";
+                    string adminstr = "admin";
+                    string substr = "subs";
                     if (Equals(neo, adminstr))
                     {
                         MainWindow dashboard = new MainWindow();

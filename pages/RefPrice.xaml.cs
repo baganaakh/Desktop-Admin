@@ -93,8 +93,7 @@ namespace pages
             
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string CmdString = "SELECT ALL [id], [refprice], [modified] " +
-                            "FROM dbo.RefPrice";
+                string CmdString = "SELECT * FROM dbo.RefPrice";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Securities");

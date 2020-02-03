@@ -184,6 +184,6 @@
         <Button Content="Delete" HorizontalAlignment="Left" Margin="149,53,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Grid.Column="1"/>
         <Button Content="Refresh" HorizontalAlignment="Left" Margin="430,53,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh"/>
         <Button Content="New" HorizontalAlignment="Left" Margin="149,15,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Grid.Column="1"/>
-        <DataGrid x:Name="DateTable1" HorizontalAlignment="Left" Margin="20,161,0,56" Width="900" Grid.ColumnSpan="2"/>
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" Margin="20,161,0,56" Width="900" Grid.ColumnSpan="2"/>
     </Grid>
 </Page>

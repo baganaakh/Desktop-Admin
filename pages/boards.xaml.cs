@@ -47,7 +47,7 @@ namespace pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             upd.IsEnabled = true;
-            var value = DateTable1.SelectedItem as DataRowView;
+            var value = DateTable2.SelectedItem as DataRowView;
             if (null == value) return;
             id = value.Row[0].ToString();
             string name = value.Row[1].ToString();
@@ -113,7 +113,7 @@ namespace pages
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Employee");
                 sda.Fill(dt);
-                DateTable1.ItemsSource = dt.DefaultView;
+                DateTable2.ItemsSource = dt.DefaultView;
             }
         }
         #endregion
@@ -155,7 +155,7 @@ namespace pages
         #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
-            var value = DateTable1.SelectedItem as DataRowView;
+            var value = DateTable2.SelectedItem as DataRowView;
             if (null == value) return;
             id = value.Row[0].ToString();
             System.Data.SqlClient.SqlConnection sqlConnection1 =

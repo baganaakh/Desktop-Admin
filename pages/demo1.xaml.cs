@@ -42,7 +42,7 @@ namespace pages
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Employee");
                 sda.Fill(dt);
-                DateTable1.ItemsSource = dt.DefaultView;
+                DateTable2.ItemsSource = dt.DefaultView;
             }
         }
         #endregion

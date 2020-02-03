@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:pages"
              StartupUri="loginScreen.xaml">
     <Application.Resources>
-         
+        <!--<Style TargetType="DataGridColumnHeader">
+            <Setter Property="Padding" Value="2,0" />
+        </Style>-->
     </Application.Resources>
 </Application>
