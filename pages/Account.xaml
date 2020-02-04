@@ -9,7 +9,7 @@
       Title="Account">
 
     <Grid>
-        <ComboBox IsEditable="True" x:Name="memid" ItemsSource="{Binding}" SelectionChanged="memid_SelectionChanged" DisplayMemberPath="mask" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,55,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox IsEditable="True" x:Name="memid" ItemsSource="{Binding}" SelectionChanged="memid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,55,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="pstate" ItemsSource="{Binding}" SelectionChanged="pstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="724,55,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <ComboBox IsEditable="True" x:Name="linkacc" ItemsSource="{Binding}" IsEnabled="False" DisplayMemberPath="accNum" SelectedValuePath="id" HorizontalAlignment="Left" Margin="451,90,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox IsEditable="True" x:Name="acctype" ItemsSource="{Binding}" IsEnabled="False" SelectionChanged="acctype_SelectionChanged" DisplayMemberPath="accType1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="451,55,0,0" VerticalAlignment="Top" Width="120"/>

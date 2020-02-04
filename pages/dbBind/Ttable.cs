@@ -12,13 +12,14 @@ namespace pages.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class Table
+    public partial class Ttable
     {
         public long id { get; set; }
-        public decimal arrangePrice { get; set; }
-        public decimal tickSize { get; set; }
-        public long userid { get; set; }
-        public long assetid { get; set; }
-        public System.DateTime modified { get; set; }
+        public Nullable<decimal> arrangePrice { get; set; }
+        public Nullable<decimal> tickSize { get; set; }
+        public Nullable<long> userid { get; set; }
+        public Nullable<long> assetid { get; set; }
+        public Nullable<System.DateTime> modified { get; set; }
+        public string name { get; set; }
     }
 }

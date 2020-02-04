@@ -81,7 +81,7 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <Property Name="expireDate" Type="date" Nullable="false" />
           <Property Name="state" Type="smallint" Nullable="false" />
           <Property Name="modified" Type="datetime" Nullable="false" />
-          <Property Name="ratio" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="ratio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="secId" Type="bigint" />
         </EntityType>
         <EntityType Name="BoardInstruments">
@@ -500,7 +500,7 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <Property Name="regno" Type="nvarchar" MaxLength="16" Nullable="false" />
           <Property Name="totalQty" Type="decimal" Precision="18" Scale="6" Nullable="false" />
           <Property Name="firstPrice" Type="decimal" Precision="18" Scale="6" Nullable="false" />
-          <Property Name="intRate" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="intRate" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="sdate" Type="date" Nullable="false" />
           <Property Name="edate" Type="date" Nullable="false" />
           <Property Name="groupId" Type="int" Nullable="false" />
@@ -604,17 +604,6 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="Table">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="arrangePrice" Type="decimal" Precision="18" Scale="4" Nullable="false" />
-          <Property Name="tickSize" Type="decimal" Precision="18" Scale="6" Nullable="false" />
-          <Property Name="userid" Type="bigint" Nullable="false" />
-          <Property Name="assetid" Type="bigint" Nullable="false" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
-        </EntityType>
         <EntityType Name="TickSizeTable">
           <Key>
             <PropertyRef Name="id" />
@@ -626,6 +615,7 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <Property Name="state" Type="smallint" Nullable="false" />
           <Property Name="modified" Type="datetime" Nullable="false" />
           <Property Name="timestamp" Type="bigint" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Trans">
           <Key>
@@ -651,6 +641,18 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           </Key>
           <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="type" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ttable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="arrangePrice" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="tickSize" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="userid" Type="bigint" />
+          <Property Name="assetid" Type="bigint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="UserAccounts">
           <Key>
@@ -678,10 +680,10 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="uname" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="password" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="uname" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="modified" Type="datetime" Nullable="false" />
-          <Property Name="role" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_boards_boards1">
           <End Role="Boards" Type="Self.Boards" Multiplicity="1" />
@@ -741,10 +743,10 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="stype" EntityType="Self.stype" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TickSizeTable" EntityType="Self.TickSizeTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Trans" EntityType="Self.Trans" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="transType" EntityType="Self.transType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ttable" EntityType="Self.Ttable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAccounts" EntityType="Self.UserAccounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserGroups" EntityType="Self.UserGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
@@ -837,8 +839,6 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <EntitySet Name="States" EntityType="demoModel.State" />
           <EntitySet Name="stypes" EntityType="demoModel.stype" />
           <EntitySet Name="sysdiagrams" EntityType="demoModel.sysdiagram" />
-          <EntitySet Name="Tables" EntityType="demoModel.Table" />
-          <EntitySet Name="TickSizeTables" EntityType="demoModel.TickSizeTable" />
           <EntitySet Name="Trans" EntityType="demoModel.Tran" />
           <EntitySet Name="transTypes" EntityType="demoModel.transType" />
           <EntitySet Name="UserAccounts" EntityType="demoModel.UserAccount" />
@@ -851,6 +851,8 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           </AssociationSet>
           <EntitySet Name="algoes" EntityType="demoModel.algo" />
           <EntitySet Name="allowedtypes" EntityType="demoModel.allowedtype" />
+          <EntitySet Name="Ttables" EntityType="demoModel.Ttable" />
+          <EntitySet Name="TickSizeTables" EntityType="demoModel.TickSizeTable" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -916,7 +918,7 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <Property Name="expireDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="state" Type="Int16" Nullable="false" />
           <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ratio" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+          <Property Name="ratio" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="secId" Type="Int64" />
         </EntityType>
         <EntityType Name="BoardInstrument">
@@ -1337,7 +1339,7 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <Property Name="regno" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
           <Property Name="totalQty" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
           <Property Name="firstPrice" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
-          <Property Name="intRate" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+          <Property Name="intRate" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="sdate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="edate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="groupId" Type="Int32" Nullable="false" />
@@ -1441,29 +1443,6 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Table">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="arrangePrice" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
-          <Property Name="tickSize" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
-          <Property Name="userid" Type="Int64" Nullable="false" />
-          <Property Name="assetid" Type="Int64" Nullable="false" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="TickSizeTable">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tableid" Type="Int64" Nullable="false" />
-          <Property Name="tick" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
-          <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="timestamp" Type="Int64" />
-        </EntityType>
         <EntityType Name="Tran">
           <Key>
             <PropertyRef Name="id" />
@@ -1515,10 +1494,10 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="uname" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="password" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="uname" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="role" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="accType">
           <Key>
@@ -1552,6 +1531,31 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="allowedtype1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Ttable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="arrangePrice" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="tickSize" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="userid" Type="Int64" />
+          <Property Name="assetid" Type="Int64" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TickSizeTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tableid" Type="Int64" Nullable="false" />
+          <Property Name="tick" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="timestamp" Type="Int64" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2174,31 +2178,6 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tables">
-            <EntityTypeMapping TypeName="demoModel.Table">
-              <MappingFragment StoreEntitySet="Table">
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="assetid" ColumnName="assetid" />
-                <ScalarProperty Name="userid" ColumnName="userid" />
-                <ScalarProperty Name="tickSize" ColumnName="tickSize" />
-                <ScalarProperty Name="arrangePrice" ColumnName="arrangePrice" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TickSizeTables">
-            <EntityTypeMapping TypeName="demoModel.TickSizeTable">
-              <MappingFragment StoreEntitySet="TickSizeTable">
-                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="tick" ColumnName="tick" />
-                <ScalarProperty Name="tableid" ColumnName="tableid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Trans">
             <EntityTypeMapping TypeName="demoModel.Tran">
               <MappingFragment StoreEntitySet="Trans">
@@ -2280,6 +2259,33 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
             <EntityTypeMapping TypeName="demoModel.allowedtype">
               <MappingFragment StoreEntitySet="allowedtype">
                 <ScalarProperty Name="allowedtype1" ColumnName="allowedtype" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ttables">
+            <EntityTypeMapping TypeName="demoModel.Ttable">
+              <MappingFragment StoreEntitySet="Ttable">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="tickSize" ColumnName="tickSize" />
+                <ScalarProperty Name="arrangePrice" ColumnName="arrangePrice" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TickSizeTables">
+            <EntityTypeMapping TypeName="demoModel.TickSizeTable">
+              <MappingFragment StoreEntitySet="TickSizeTable">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="tick" ColumnName="tick" />
+                <ScalarProperty Name="tableid" ColumnName="tableid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

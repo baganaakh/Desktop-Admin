@@ -31,7 +31,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = Properties.Settings.Default.ConnectionString;
-        static string id, memId,stat,mnominal,cname, acType, linkA,values;
+        static string id, memId,stat,mnominal,mask, acType, linkA,values;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -274,9 +274,9 @@ namespace pages
             try
             {
                 memId = item.id.ToString();
-                cname = item.name.ToString();
+                mask = item.mask.ToString();
                 mnominal= item.nominal.ToString();
-                companyName.Content = cname;
+                companyName.Content = mask;
                 if(mnominal == "True")
                 {
                     acctype.SelectedValue = 3;
@@ -293,7 +293,6 @@ namespace pages
                 return;
             }
         }
-        
         #endregion
     }
 }

@@ -31,7 +31,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = Properties.Settings.Default.ConnectionString;
-        static string id,statid;
+        static string id,statid,tid,name;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -43,28 +43,29 @@ namespace pages
             string price = values.Row[3].ToString();
             string State = values.Row[4].ToString();
 
-            tableid.Text=tableId;
+            tableid.SelectedValue=tableId;
             tickk.Text=Tick;
             pricee.Text=price;
             stat.SelectedValue= State ;
+            upd.IsEnabled = true;
         }
         #endregion
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
+            if (statid == null || tid == null)
+                return;
             upd.IsEnabled = true;
-            string tableId = tableid.Text;
             string tick= tickk.Text;
             string price = pricee.Text;
-            string state = stat.Text;
           
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.TickSizeTable (tableid, tick, price, state, modified) values" +
-                " ('" + tableId+ "',N'" + tick+ "',N'" + price+ "',N'" + statid+ "', getdate())";
+            cmd.CommandText = "insert into dbo.TickSizeTable (tableid, tick, price, state, name) values" +
+                " ('" + tid+ "',N'" + tick+ "',N'" + price+ "',N'" + statid+ "', N'"+ name+"')";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -90,8 +91,7 @@ namespace pages
             
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                 string CmdString = "SELECT ALL [id], [tableid], [tick], [price], [state], [modified] " +
-                            "FROM dbo.TickSizeTable";
+                 string CmdString = "SELECT * FROM dbo.TickSizeTable";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Securities");
@@ -137,10 +137,8 @@ namespace pages
         #region update
         private void update(object sender, RoutedEventArgs e)
         {
-            string tableId = tableid.Text;
             string tick = tickk.Text;
             string price = pricee.Text;
-            string state = stat.Text;
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
@@ -148,11 +146,11 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.dbo.TickSizeTable SET " +
-                "tableid= '" + tableId + "', " +
+                "tableid= '" + tid + "', " +
                 "tick= '" + tick+ "', " +
                 "price= '" + price + "', " +
                 "state= '" + statid + "', " +
-                "modified = getdate() " +
+                "name= N'" + name + "' " +
                 "WHERE id = '" + id + "'";
 
             cmd.Connection = sqlConnection1;
@@ -164,6 +162,7 @@ namespace pages
         #endregion
         #region combos
         public List<State> statt { get; set; }
+        public List<Ttable> tabble { get; set; }
 
         private void bindCombo()
         {
@@ -171,7 +170,26 @@ namespace pages
             var items = st.States.ToList();
             statt = items;
             stat.ItemsSource = statt;
+            
+            var titems = st.Ttables.ToList();
+            tabble = titems;
+            tableid.ItemsSource = tabble;
         }
+
+        private void tableid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var items = tableid.SelectedItem as Ttable;
+            try
+            {
+                name = items.name.ToString();
+                tid = items.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
+        }
+
         private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var items = stat.SelectedItem as State;

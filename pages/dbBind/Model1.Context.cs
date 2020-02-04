@@ -70,8 +70,6 @@ namespace pages.dbBind
         public virtual DbSet<State> States { get; set; }
         public virtual DbSet<stype> stypes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<Table> Tables { get; set; }
-        public virtual DbSet<TickSizeTable> TickSizeTables { get; set; }
         public virtual DbSet<Tran> Trans { get; set; }
         public virtual DbSet<transType> transTypes { get; set; }
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
@@ -80,6 +78,8 @@ namespace pages.dbBind
         public virtual DbSet<accType> accTypes { get; set; }
         public virtual DbSet<algo> algoes { get; set; }
         public virtual DbSet<allowedtype> allowedtypes { get; set; }
+        public virtual DbSet<Ttable> Ttables { get; set; }
+        public virtual DbSet<TickSizeTable> TickSizeTables { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

@@ -37,32 +37,20 @@ namespace pages
             var values = DateTable2.SelectedItem as DataRowView;
             if (null == values) return;
             id = values.Row[0].ToString();
-            string arrangePrice= values.Row[1].ToString();
-            string tickSize= values.Row[2].ToString();
-            string userID = values.Row[3].ToString();
-            string assetID = values.Row[4].ToString();
-
-            arrangeprice.Text = arrangePrice;
-            ticksize.Text = tickSize;
-            userid.Text = userID;
-            assetid.Text = assetID;
+            string Name = values.Row[6].ToString();
+            name.Text = Name;
         }
         #endregion
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            string arrangePrice= arrangeprice.Text;
-            string tickSize= ticksize.Text;
-            string userID= userid.Text;
-            string assetID = assetid.Text;
-
+            string Name = name.Text;
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into [dbo].[Table] (arrangePrice, tickSize, userid, assetid, modified) values" +
-                " ('" + arrangePrice+ "',N'" + tickSize+ "',N'" + userID+ "',N'" + assetID+ "', getdate())";
+            cmd.CommandText = "insert into [dbo].[Table] (name) values(N'"+Name+"')";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -88,8 +76,7 @@ namespace pages
             
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string CmdString = "SELECT ALL [id], [arrangePrice], [tickSize], [userid], [assetid], [modified] " +
-                            "FROM [dbo].[Table]";
+                string CmdString = "SELECT * FROM [dbo].[Table]";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable("Securities");
@@ -105,10 +92,7 @@ namespace pages
         #region new
         private void newData(object sender, RoutedEventArgs e)
         {
-            arrangeprice.Text = null;
-            ticksize.Text = null;
-            userid.Text = null;
-            assetid.Text = null;
+            name.Text = null;
             id = null;
         }
         #endregion
@@ -133,23 +117,13 @@ namespace pages
         #region update
         private void update(object sender, RoutedEventArgs e)
         {
-            string arrangePrice = arrangeprice.Text;
-            string tickSize = ticksize.Text;
-            string userID = userid.Text;
-            string assetID = assetid.Text;
-
-
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE [demo].[dbo].[Table] SET " +
-                "arrangePrice= '" + arrangePrice+ "', " +
-                "tickSize= '" + tickSize+ "', " +
-                "userid= '" + userID+ "', " +
-                "assetid= '" + assetID + "', " +
-                "modified = getdate() " +
+                "name= N'" + name.Text+ "' " +
                 "WHERE id = '" + id + "'";
 
             cmd.Connection = sqlConnection1;

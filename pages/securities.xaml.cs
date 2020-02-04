@@ -85,7 +85,7 @@ namespace pages
             string total = totalquant.Text;
             string fPirce = fprice.Text;
             string intRat = srate.Text;
-            Decimal intRate= Decimal.Parse(intRat) / 100;
+            //Decimal intRate= Decimal.Parse(intRat) / 100;
             string stat = state.Text;
             string starTime = sdate.SelectedDate.Value.ToShortDateString();
             string endTime = edate.SelectedDate.Value.ToShortDateString();
@@ -99,7 +99,7 @@ namespace pages
             cmd.CommandText = "insert into dbo.securities (partid, type, code, name, refno, regno, totalQty, " +
                 "firstPrice, intRate, sdate, edate, groupid, state, modified) values" +
                 " ('" + partid + "'," + setype + ",N'" + code + "',N'" + name + "', '" + refno + "', '" + regno +
-                "', '" + total + "', '" + fPirce + "', '" + intRate +"',N'" + starTime + "',N'" + endTime + "',N'" +
+                "', '" + total + "', '" + fPirce + "', '" + intRat +"',N'" + starTime + "',N'" + endTime + "',N'" +
                 groupId + "',N'" + statid + "', getdate())  " +
                 "insert into dbo.assets(code, name, value, expireDate, state, modified, secId) values" +
                 " ('" + code + "',N'" + name + "',N'" + fPirce + "', '" + endTime + "', '" + statid + "', getdate(), IDENT_CURRENT('securities'))";
@@ -191,7 +191,7 @@ namespace pages
             string total = totalquant.Text;
             string fPirce = fprice.Text;
             string intRat = srate.Text;
-            Decimal intRate = Decimal.Parse(intRat) / 100;
+            //Decimal intRate = Decimal.Parse(intRat) / 100;
             string stat = state.Text;
             string starTime = sdate.SelectedDate.Value.ToShortDateString();
             string endTime = edate.SelectedDate.Value.ToShortDateString();
@@ -211,7 +211,7 @@ namespace pages
                 "regno= '" + regno + "', " +
                 "totalQty= '" + total + "', " +
                 "firstPrice= '" + fPirce + "', " +
-                "intRate= '" + intRate + "', " +
+                "intRate= '" + intRat + "', " +
                 "sdate= '" + starTime + "', " +
                 "edate= '" + endTime + "', " +
                 "groupId= '" + groupId + "', " +

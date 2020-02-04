@@ -14,7 +14,6 @@
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="cgroupid" HorizontalAlignment="Left" Height="23" Margin="698,27,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
         <TextBox  x:Name="refpricePara" HorizontalAlignment="Left" Height="23" Margin="973,27,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
         <ComboBox IsEditable="True" x:Name="ctype" ItemsSource="{Binding}" SelectionChanged="ctype_SelectionChanged" DisplayMemberPath="ctype1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="138,65,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="ctick"  HorizontalAlignment="Left" Height="23" Margin="412,64,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120" />
         <ComboBox x:Name="cstate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="698,65,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <TextBox x:Name="ccode" HorizontalAlignment="Left" Height="23" Margin="138,109,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <DatePicker x:Name="csdate" HorizontalAlignment="Left" Margin="412,106,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-2.663,4.375"/>
@@ -28,13 +27,13 @@
         <Label Content="type" HorizontalAlignment="Left" Margin="29,60,0,0" VerticalAlignment="Top"/>
         <Label Content="code" HorizontalAlignment="Left" Margin="29,106,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.497,0.786"/>
         <Label Content="name" HorizontalAlignment="Left" Margin="29,151,0,0" VerticalAlignment="Top"/>
-        <Label Content="tick" HorizontalAlignment="Left" Margin="298,68,0,0" VerticalAlignment="Top"/>
-        <Label Content="sdate" HorizontalAlignment="Left" Margin="294,112,0,0" VerticalAlignment="Top"/>
-        <Label Content="edate" HorizontalAlignment="Left" Margin="294,151,0,0" VerticalAlignment="Top"/>
+        <Label Content="tick" HorizontalAlignment="Left" Margin="298,65,0,0" VerticalAlignment="Top"/>
+        <Label Content="sdate" HorizontalAlignment="Left" Margin="295,105,0,0" VerticalAlignment="Top"/>
+        <Label Content="edate" HorizontalAlignment="Left" Margin="294,148,0,0" VerticalAlignment="Top"/>
         <Label Content="groupid" HorizontalAlignment="Left" Margin="570,31,0,0" VerticalAlignment="Top"/>
         <Label Content="state" HorizontalAlignment="Left" Margin="570,72,0,0" VerticalAlignment="Top"/>
         <Label Content="mmorderlimit" HorizontalAlignment="Left" Margin="570,104,0,0" VerticalAlignment="Top"/>
-        <Label Content="lot" HorizontalAlignment="Left" Margin="302,31,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,0.435"/>
+        <Label Content="lot" HorizontalAlignment="Left" Margin="302,27,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.458,0.154"/>
         <Label Content="orderimit" HorizontalAlignment="Left" Margin="570,143,0,0" VerticalAlignment="Top"/>
         <Label Content="refpriceparam" HorizontalAlignment="Left" Margin="847,27,0,0" VerticalAlignment="Top"/>
         <Button Content="Insert" HorizontalAlignment="Left" Margin="847,72,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
@@ -43,7 +42,7 @@
         <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="973,119,0,0"/>
         <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="847,161,0,0"/>
         <Button Content="Update" IsEnabled="False" Name="upd" HorizontalAlignment="Left" Margin="973,161,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
-        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" Margin="21,235,0,10" VerticalAlignment="Center" Width="1169" Height="655">
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" Margin="21,235,0,10" VerticalAlignment="Center" Width="1158" Height="655">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding securityId}" Header="SID"/>
@@ -63,6 +62,7 @@
                 <DataGridTextColumn Binding="{Binding bid}" Header="BID"/>
             </DataGrid.Columns>
         </DataGrid>
+        <ComboBox IsEditable="True" x:Name="ctick" ItemsSource="{Binding}" SelectionChanged="boardid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="412,64,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Page>

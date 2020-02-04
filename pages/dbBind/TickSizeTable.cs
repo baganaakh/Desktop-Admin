@@ -21,5 +21,6 @@ namespace pages.dbBind
         public short state { get; set; }
         public System.DateTime modified { get; set; }
         public Nullable<long> timestamp { get; set; }
+        public string name { get; set; }
     }
 }

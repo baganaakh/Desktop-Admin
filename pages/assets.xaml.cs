@@ -51,8 +51,7 @@ namespace pages
             aname.Text = namev;
             aprice.Text = pricev;
             anote.Text = descv;
-            Decimal ratio = Decimal.Parse(ratiov)*100;
-            artio.Text =ratio.ToString();
+            artio.Text =ratiov.ToString();
             aexpire.SelectedDate = DateTime.Parse(expirev);
             astate.SelectedValue = statev;
         }
@@ -70,8 +69,8 @@ namespace pages
             string value = aprice.Text;
             string note = anote.Text;
             string expireDate = aexpire.SelectedDate.Value.ToShortDateString();
-            string rati = artio.Text;
-            decimal ratio = Decimal.Parse(rati)/100;
+            string rati =artio.Text;
+            //decimal ratio = Decimal.Parse(rati)/100;
             string state = astate.Text;
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =
@@ -79,8 +78,8 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.assets(code, name, value, note, expireDate, state, modified, ratio) values" +
-                " (N'" + code + "',N'" + name + "',N'" + value + "',N'" + note + "', '" + expireDate+ "', '" + statid+ "', getdate(), '" + ratio+ "')";
+            cmd.CommandText = "insert into dbo.assets(code, name, value, note, expireDate, state, ratio) values" +
+                " (N'" + code + "',N'" + name + "',N'" + value + "',N'" + note + "', '" + expireDate+ "', '" + statid+ "', '" + rati+ "')";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
