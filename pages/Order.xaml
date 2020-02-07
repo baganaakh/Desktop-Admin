@@ -32,7 +32,7 @@
         <Button Content="Update"  IsEnabled="False" Name="upd"  HorizontalAlignment="Left" Margin="972,99,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="1076,99,0,0"/>
 
-        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" Margin="29,146,0,10" VerticalAlignment="Center" Width="1138" Height="744">
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" VerticalAlignment="Center" Width="1138" Height="609" Margin="0,223,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding bid}" Header="BID"/>

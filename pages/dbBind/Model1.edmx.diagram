@@ -34,7 +34,6 @@
         <EntityTypeShape EntityType="demoModel.mtype" Width="1.5" PointX="14.75" PointY="9.75" />
         <EntityTypeShape EntityType="demoModel.netting" Width="1.5" PointX="14.75" PointY="12.75" />
         <EntityTypeShape EntityType="demoModel.Order" Width="1.5" PointX="0.75" PointY="15.75" />
-        <EntityTypeShape EntityType="demoModel.Participant" Width="1.5" PointX="6.75" PointY="15.75" />
         <EntityTypeShape EntityType="demoModel.Ptype" Width="1.5" PointX="16.75" PointY="0.75" />
         <EntityTypeShape EntityType="demoModel.RefPrice" Width="1.5" PointX="16.75" PointY="3.75" />
         <EntityTypeShape EntityType="demoModel.Right" Width="1.5" PointX="16.75" PointY="6.75" />
@@ -59,6 +58,7 @@
         <EntityTypeShape EntityType="demoModel.allowedtype" Width="1.5" PointX="5.375" PointY="21.75" />
         <EntityTypeShape EntityType="demoModel.Ttable" Width="1.5" PointX="21.375" PointY="6.75" />
         <EntityTypeShape EntityType="demoModel.TickSizeTable" Width="1.5" PointX="9.375" PointY="19.75" />
+        <EntityTypeShape EntityType="demoModel.Participant" Width="1.5" PointX="21.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

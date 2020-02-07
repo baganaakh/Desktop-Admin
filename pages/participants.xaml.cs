@@ -68,7 +68,7 @@ namespace pages
             pcontact.Text = contactpar;
             pstate.SelectedValue = statepar; cid = statepar;
             pcity.Text = Pcity;
-            pdistr.Text = Pdistr;
+            pdistr1.Text = Pdistr;
             phoroo.Text = Phoroo;
             pstreet.Text = Pstreet;
             pwebpage.Text = Pwebpage;
@@ -82,39 +82,48 @@ namespace pages
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            string code = pcode.Text;
-            string name = pname.Text;
-            string country = pcountry.Text;
-            string phone = pphone.Text;
-            string email = pmail.Text;
-            string contact = pcontact.Text;
-            string csid = pcsid.Text;
-            string webid = pwebid.Text;
-            string Pcity = pcity.Text;
-            string Pdistr = pdistr.Text;
-            string Phoroo = phoroo.Text;
-            string Pstreet = pstreet.Text;
-            string Pwebpage = pwebpage.Text;
-            string Numofemp= numofemp.Text;
             if(ptid == null || spid == null)
             {
                 MessageBox.Show("please set the participant types");
                 return;
             }
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-            
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "SET ANSI_PADDING OFF; insert into dbo.participants (code, name, country, phone, email, contact, state, modified," +
-                " csid, webid,pcity,pdistr,phoroo,pstreet,pwebpage,numofemp,coType,spType) values" +
-                " (N'" + code + "',N'" + name + "',N'" + country + "', '" + phone+ "', N'" + email+ "', '" + contact+ "', '" + cid +"', getdate(), '"+csid+ 
-                "', '"+webid+"',N'"+ Pcity + "',N'" + Pdistr + "',N'" + Phoroo + "',N'" + Pstreet + "',N'" + Pwebpage + "',N'" + Numofemp + "',"+ptid+","+spid+")";
-
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            try
+            {
+                using (var context = new demoEntities10())
+                {
+                    var std = new Participant()
+                    {
+                        code = pcode.Text,
+                        name = pname.Text,
+                        country=pcountry.Text,
+                        phone = pphone.Text,
+                        email = pmail.Text,
+                        contact = pcontact.Text,
+                        state = Convert.ToInt16(cid),
+                        pcity = pcity.Text,
+                        pdistr = pdistr1.Text,
+                        phoroo = phoroo.Text,
+                        pstreet = pstreet.Text,
+                        pwebpage = pwebpage.Text,
+                        numofemp = numofemp.Text,
+                        spType = Convert.ToInt16(spid),
+                        coType = Convert.ToInt16(ptid),
+                        modified = DateTime.Now
+                    };
+                    context.Participants.Add(std);
+                    context.SaveChanges();
+                }
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
+            {
+                MessageBox.Show("Code " + pcode.Text.ToString() + " Бүртгэгдсэн байна та өөр Code сонго нуу ");
+                return;
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.ToString());
+                return;
+            }
             FillDataGrid();
         }
         #endregion
@@ -157,7 +166,7 @@ namespace pages
             pcsid.Text= null;
             id = null;
             pcity.Text=null;
-            pdistr.Text=null;
+            pdistr1.Text=null;
             phoroo.Text=null;
             pstreet.Text=null;
             pwebpage.Text=null;
@@ -201,7 +210,7 @@ namespace pages
             string csid = pcsid.Text;
             string webid = pwebid.Text;
             string Pcity = pcity.Text;
-            string Pdistr = pdistr.Text;
+            string Pdistr = pdistr1.Text;
             string Phoroo = phoroo.Text;
             string Pstreet = pstreet.Text;
             string Pwebpage = pwebpage.Text;

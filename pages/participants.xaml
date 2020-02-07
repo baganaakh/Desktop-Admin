@@ -13,9 +13,9 @@
         <TextBox x:Name="pcity" HorizontalAlignment="Left" Height="23" Margin="362,23,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <ComboBox IsEditable="True" x:Name="spetype" ItemsSource="{Binding}" SelectionChanged="spetype_SelectionChanged" DisplayMemberPath="specialType1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="593,22,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <TextBox x:Name="pname" HorizontalAlignment="Left" Height="23" Margin="109,60,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="pdistr" HorizontalAlignment="Left" Height="23" Margin="362,55,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="pdistr1" HorizontalAlignment="Left" Height="23" Margin="362,55,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="pphone" HorizontalAlignment="Left" Height="23" Margin="593,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="PreviewTextInput"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="pcountry" HorizontalAlignment="Left" Height="23" Margin="109,95,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="pcountry" HorizontalAlignment="Left" Height="23" Margin="109,95,0,0" TextWrapping="Wrap" Text="үсэг"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="phoroo" HorizontalAlignment="Left" Height="23" Margin="362,93,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="pwebpage" HorizontalAlignment="Left" Height="23" Margin="594,93,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <ComboBox IsEditable="True" x:Name="ptype" ItemsSource="{Binding}" SelectionChanged="ptype_SelectionChanged" DisplayMemberPath="ptype1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="109,135,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
@@ -56,7 +56,7 @@
         <Button Content="Update" IsEnabled="False" Name="upd" HorizontalAlignment="Left" Margin="990,86,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="1083,86,0,0"/>
 
-        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" Margin="23,225,0,158" VerticalAlignment="Center" Width="1138" Height="517">
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False"  VerticalAlignment="Center" Width="1138" Height="516" Margin="0,280,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding code}" Header="Code"/>

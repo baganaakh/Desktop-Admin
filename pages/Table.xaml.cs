@@ -50,7 +50,7 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into [dbo].[Table] (name) values(N'"+Name+"')";
+            cmd.CommandText = "insert into [dbo].[Ttable] (name) values(N'"+Name+"')";
 
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -76,10 +76,10 @@ namespace pages
             
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string CmdString = "SELECT * FROM [dbo].[Table]";
+                string CmdString = "SELECT * FROM [dbo].[Ttable]";
                 SqlCommand cmd = new SqlCommand(CmdString, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Securities");
+                DataTable dt = new DataTable("Ttable");
                 sda.Fill(dt);
                 DateTable2.ItemsSource = dt.DefaultView;
             }
@@ -106,7 +106,7 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE demo.dbo.Table WHERE id='" + id + "'";
+            cmd.CommandText = "DELETE demo.dbo.Ttable WHERE id='" + id + "'";
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();
@@ -122,7 +122,7 @@ namespace pages
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "UPDATE [demo].[dbo].[Table] SET " +
+            cmd.CommandText = "UPDATE [demo].[dbo].[Ttable] SET " +
                 "name= N'" + name.Text+ "' " +
                 "WHERE id = '" + id + "'";
 

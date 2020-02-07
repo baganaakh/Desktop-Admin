@@ -17,7 +17,7 @@ namespace pages.dbBind
         public int id { get; set; }
         public string code { get; set; }
         public string name { get; set; }
-        public short country { get; set; }
+        public string country { get; set; }
         public string address { get; set; }
         public string phone { get; set; }
         public string email { get; set; }

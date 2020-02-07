@@ -434,12 +434,12 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
         </EntityType>
         <EntityType Name="Participants">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="code" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="code" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="country" Type="smallint" Nullable="false" />
+          <Property Name="country" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="address" Type="nvarchar" MaxLength="255" />
           <Property Name="phone" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -697,6 +697,37 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="demoModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActiveSessions" EntityType="Self.ActiveSessions" Schema="dbo" store:Type="Tables" />
@@ -825,7 +856,6 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <EntitySet Name="mtypes" EntityType="demoModel.mtype" />
           <EntitySet Name="nettings" EntityType="demoModel.netting" />
           <EntitySet Name="Orders" EntityType="demoModel.Order" />
-          <EntitySet Name="Participants" EntityType="demoModel.Participant" />
           <EntitySet Name="Ptypes" EntityType="demoModel.Ptype" />
           <EntitySet Name="RefPrices" EntityType="demoModel.RefPrice" />
           <EntitySet Name="Rights" EntityType="demoModel.Right" />
@@ -853,6 +883,37 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <EntitySet Name="allowedtypes" EntityType="demoModel.allowedtype" />
           <EntitySet Name="Ttables" EntityType="demoModel.Ttable" />
           <EntitySet Name="TickSizeTables" EntityType="demoModel.TickSizeTable" />
+          <FunctionImport Name="sp_alterdiagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams1" />
+          <EntitySet Name="Participants" EntityType="demoModel.Participant" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1271,31 +1332,6 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="dealType" Type="Int16" />
         </EntityType>
-        <EntityType Name="Participant">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="country" Type="Int16" Nullable="false" />
-          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="contact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="pcity" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="pdistr" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="phoroo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="pstreet" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="pwebpage" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="numofemp" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="csid" Type="Int32" Nullable="false" />
-          <Property Name="webid" Type="Int32" Nullable="false" />
-          <Property Name="spType" Type="Int16" />
-          <Property Name="coType" Type="Int16" />
-        </EntityType>
         <EntityType Name="Ptype">
           <Key>
             <PropertyRef Name="id" />
@@ -1556,6 +1592,31 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="timestamp" Type="Int64" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Participant">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="pcity" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="pdistr" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="phoroo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="pstreet" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="pwebpage" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="numofemp" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="csid" Type="Int32" Nullable="false" />
+          <Property Name="webid" Type="Int32" Nullable="false" />
+          <Property Name="spType" Type="Int16" />
+          <Property Name="coType" Type="Int16" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1992,32 +2053,6 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Participants">
-            <EntityTypeMapping TypeName="demoModel.Participant">
-              <MappingFragment StoreEntitySet="Participants">
-                <ScalarProperty Name="coType" ColumnName="coType" />
-                <ScalarProperty Name="spType" ColumnName="spType" />
-                <ScalarProperty Name="webid" ColumnName="webid" />
-                <ScalarProperty Name="csid" ColumnName="csid" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="numofemp" ColumnName="numofemp" />
-                <ScalarProperty Name="pwebpage" ColumnName="pwebpage" />
-                <ScalarProperty Name="pstreet" ColumnName="pstreet" />
-                <ScalarProperty Name="phoroo" ColumnName="phoroo" />
-                <ScalarProperty Name="pdistr" ColumnName="pdistr" />
-                <ScalarProperty Name="pcity" ColumnName="pcity" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="contact" ColumnName="contact" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="country" ColumnName="country" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="code" ColumnName="code" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Ptypes">
             <EntityTypeMapping TypeName="demoModel.Ptype">
               <MappingFragment StoreEntitySet="Ptype">
@@ -2286,6 +2321,39 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
                 <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="tick" ColumnName="tick" />
                 <ScalarProperty Name="tableid" ColumnName="tableid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram1" FunctionName="demoModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram1" FunctionName="demoModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram1" FunctionName="demoModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition1" FunctionName="demoModel.Store.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams1" FunctionName="demoModel.Store.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram1" FunctionName="demoModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams1" FunctionName="demoModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Participants">
+            <EntityTypeMapping TypeName="demoModel.Participant">
+              <MappingFragment StoreEntitySet="Participants">
+                <ScalarProperty Name="coType" ColumnName="coType" />
+                <ScalarProperty Name="spType" ColumnName="spType" />
+                <ScalarProperty Name="webid" ColumnName="webid" />
+                <ScalarProperty Name="csid" ColumnName="csid" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="numofemp" ColumnName="numofemp" />
+                <ScalarProperty Name="pwebpage" ColumnName="pwebpage" />
+                <ScalarProperty Name="pstreet" ColumnName="pstreet" />
+                <ScalarProperty Name="phoroo" ColumnName="phoroo" />
+                <ScalarProperty Name="pdistr" ColumnName="pdistr" />
+                <ScalarProperty Name="pcity" ColumnName="pcity" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="contact" ColumnName="contact" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
