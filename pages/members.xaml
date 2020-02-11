@@ -15,12 +15,8 @@
         <TextBox x:Name="pcode" HorizontalAlignment="Left" Height="23" Margin="132,68,0,0" MaxLength="2" TextWrapping="Wrap" Text="12"  VerticalAlignment="Top" Width="120"/>
         <DatePicker x:Name="starttime" HorizontalAlignment="Left" Margin="362,67,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.483,-0.792"/>
         <DatePicker x:Name="endtime" HorizontalAlignment="Left" Margin="624,64,0,0" VerticalAlignment="Top" Width="120"/>
-        <CheckBox x:Name="broker" Content="Брокер" HorizontalAlignment="Left" Margin="59,126,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="dealer" Content="Дилер" HorizontalAlignment="Left" Margin="142,126,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="ander" Content="Андерр" HorizontalAlignment="Left" Margin="229,126,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="nominal" Content="Номинал" HorizontalAlignment="Left" Margin="312,126,0,0" VerticalAlignment="Top"/>
         <Label Content="Code" HorizontalAlignment="Left" Margin="55,68,0,0" VerticalAlignment="Top"/>
-        <Label Content="type" HorizontalAlignment="Left" Margin="543,21,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.302,0.501"/>
+        <Label Content="mtype" HorizontalAlignment="Left" Margin="543,21,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.302,0.501"/>
         <Label Content="төлөв" HorizontalAlignment="Left" Margin="282,21,0,0" VerticalAlignment="Top"/>
         <Label Content="Participant" HorizontalAlignment="Left" Margin="52,21,0,0" VerticalAlignment="Top"/>
         <Label Content="Эхлэх" HorizontalAlignment="Left" Margin="282,66,0,0" VerticalAlignment="Top"/>
@@ -31,8 +27,12 @@
         <Button Content="Update" Name="upd" IsEnabled="False" HorizontalAlignment="Left" Margin="958,53,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="839,87,0,0"/>
         <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="958,87,0,0"/>
+        <CheckBox x:Name="broker" Content="Брокер" HorizontalAlignment="Left" Margin="59,126,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="dealer" Content="Дилер" HorizontalAlignment="Left" Margin="142,126,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="ander" Content="Андерр" HorizontalAlignment="Left" Margin="229,126,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="nominal" Content="Номинал" HorizontalAlignment="Left" Margin="312,126,0,0" VerticalAlignment="Top"/>
 
-        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" VerticalAlignment="Center" Width="1138" Height="704" Margin="0,209,0,0">
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" VerticalAlignment="Center" Width="1138" Height="606" Margin="0,40,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding name}" Header="NAME"/>

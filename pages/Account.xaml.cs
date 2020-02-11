@@ -31,7 +31,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = Properties.Settings.Default.ConnectionString;
-        static string id, memId,stat,mnominal,mask, acType, linkA,values;
+        static string id, memId,stat,mnominal,ander,dealer,broker,mask, acType, linkA="NULL",values,mtypee;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -59,7 +59,6 @@ namespace pages
                 MessageBox.Show("Please select state !!!");
                 return;
             }
-            linkA = linkacc.SelectedValue.ToString();
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
@@ -219,22 +218,24 @@ namespace pages
             var item = acctype.SelectedItem as accType;
             try
             {
+                if (item == null)
+                    return;
                 acType = item.id.ToString();
-                if(acType == "0")
+                if(acType == "0")  //Төлбөр
                 {
                     linkacc.IsEnabled = false;
                 }
-                else if(acType == "1")
+                else if(acType == "1")  //Барьцаа
                 {
                     acType = "0";
                     linkacc.IsEnabled = true;
                 }
-                else if(acType == "2")
+                else if(acType == "2")  //Клиринг
                 {
                     acType = "1";
                     linkacc.IsEnabled = true;
                 }
-                else if(acType == "3")
+                else if(acType == "3")  //Арилжаа
                 {
                     acType = "2";
                     linkacc.IsEnabled = true;
@@ -270,28 +271,50 @@ namespace pages
         }
         private void memid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            demoEntities10 dc = new demoEntities10();
+            var accitem = dc.accTypes.ToList();
+            var accitem2 = dc.accTypes.ToList();
+            accitem2.RemoveAt(3);
             var item = memid.SelectedItem as Member;
             try
             {
+                mtypee = item.type.ToString();
                 memId = item.id.ToString();
                 mask = item.mask.ToString();
+
                 mnominal= item.nominal.ToString();
+                ander = item.ander.ToString();
+                dealer = item.dealer.ToString();
+                broker = item.broker.ToString();
+
                 companyName.Content = mask;
-                if(mnominal == "True")
+                if(mtypee == "0")
                 {
+                    acctype.ItemsSource = accitem;
                     acctype.SelectedValue = 3;
                     acctype.IsEnabled = false;
+                    linkacc.IsEnabled = false;
                 }
-                else
+                else if(mtypee == "1" && (broker == "False" && dealer == "False" && ander == "False"))
                 {
+                    acctype.ItemsSource = accitem2;
+                    linkacc.IsEnabled = true;
+                    acctype.IsEnabled = true;
+                }
+                else if(mtypee == "1" && (broker == "True" || dealer == "True" || ander == "True"))
+                {
+                    acctype.ItemsSource = accitem;
+                    acctype.SelectedItem = null;
                     linkacc.IsEnabled = true;
                     acctype.IsEnabled = true;
                 }
             }
-            catch
+            catch (Exception EX)
             {
-                return;
+                MessageBox.Show(EX.ToString());
+                    return;
             }
+            
         }
         #endregion
     }

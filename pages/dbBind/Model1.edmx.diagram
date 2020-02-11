@@ -56,9 +56,9 @@
         <AssociationConnector Association="demoModel.FK_boards_boards1" />
         <EntityTypeShape EntityType="demoModel.algo" Width="1.5" PointX="3.375" PointY="4.75" />
         <EntityTypeShape EntityType="demoModel.allowedtype" Width="1.5" PointX="5.375" PointY="21.75" />
-        <EntityTypeShape EntityType="demoModel.Ttable" Width="1.5" PointX="21.375" PointY="6.75" />
+        <EntityTypeShape EntityType="demoModel.Ttable" Width="1.5" PointX="20.75" PointY="5.75" />
         <EntityTypeShape EntityType="demoModel.TickSizeTable" Width="1.5" PointX="9.375" PointY="19.75" />
-        <EntityTypeShape EntityType="demoModel.Participant" Width="1.5" PointX="21.375" PointY="10.75" />
+        <EntityTypeShape EntityType="demoModel.Participant" Width="1.5" PointX="20.75" PointY="8.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

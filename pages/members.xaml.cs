@@ -166,7 +166,9 @@ namespace pages
                     MessageBox.Show("mask " + mask + " and "+ code +" is already inserted try different code");
                     return;
                 }
+
                 else
+
                     throw;
             }
             catch (Exception)
