@@ -8,22 +8,19 @@
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="mask" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="memberid" Type="bigint" Nullable="false" />
-          <Property Name="accNum" Type="bigint" />
+          <Property Name="accNum" Type="nvarchar" MaxLength="16" />
           <Property Name="accType" Type="nvarchar" MaxLength="20" />
-          <Property Name="LinkAcc" Type="nvarchar" MaxLength="20" />
+          <Property Name="LinkAcc" Type="bigint" />
           <Property Name="collateral" Type="decimal" Precision="18" Scale="4" />
           <Property Name="modified" Type="datetime" Nullable="false" />
-          <Property Name="mask" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="mask" Type="nvarchar" MaxLength="20" />
           <Property Name="startdate" Type="date" />
           <Property Name="enddate" Type="date" />
           <Property Name="state" Type="smallint" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="accType">
           <Key>
             <PropertyRef Name="id" />
@@ -170,6 +167,18 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="dayType" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
+        <EntityType Name="dbo_logs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="logDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="logThread" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="logLevel" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="logSource" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="logMessage" Type="varchar" MaxLength="4000" Nullable="false" />
+          <Property Name="exception" Type="varchar" MaxLength="4000" Nullable="false" />
+        </EntityType>
         <EntityType Name="Deal2">
           <Key>
             <PropertyRef Name="id" />
@@ -204,8 +213,8 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="boardid" Type="bigint" Nullable="false" />
-          <Property Name="dealno" Type="bigint" Nullable="false" />
+          <Property Name="boardid" Type="smallint" Nullable="false" />
+          <Property Name="dealno" Type="nvarchar" MaxLength="16" Nullable="false" />
           <Property Name="side" Type="smallint" Nullable="false" />
           <Property Name="memberid" Type="int" Nullable="false" />
           <Property Name="accountid" Type="bigint" Nullable="false" />
@@ -395,7 +404,7 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <Property Name="dealer" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="ander" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="nominal" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="mtype">
           <Key>
@@ -434,6 +443,7 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
         </EntityType>
         <EntityType Name="Participants">
           <Key>
+            <PropertyRef Name="id" />
             <PropertyRef Name="code" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
@@ -730,6 +740,7 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="demoModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="accType" EntityType="Self.accType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActiveSessions" EntityType="Self.ActiveSessions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="algo" EntityType="Self.algo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="allowedtype" EntityType="Self.allowedtype" Schema="dbo" store:Type="Tables" />
@@ -742,6 +753,7 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <EntitySet Name="Contracts" EntityType="Self.Contracts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ctype" EntityType="Self.ctype" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="dayType" EntityType="Self.dayType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dbo_logs" EntityType="Self.dbo_logs" Schema="dbo" Table="dbo.logs" store:Type="Tables" />
           <EntitySet Name="Deal2" EntityType="Self.Deal2" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DealerAccounts" EntityType="Self.DealerAccounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Deals" EntityType="Self.Deals" Schema="dbo" store:Type="Tables" />
@@ -781,12 +793,6 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <EntitySet Name="UserAccounts" EntityType="Self.UserAccounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserGroups" EntityType="Self.UserGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="accType" EntityType="Self.accType" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [accType].[id] AS [id], 
-    [accType].[accType] AS [accType]
-    FROM [dbo].[accType] AS [accType]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_boards_boards1" Association="Self.FK_boards_boards1">
             <End Role="Boards" EntitySet="Boards" />
             <End Role="Boards1" EntitySet="Boards" />
@@ -827,7 +833,6 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="Accounts" EntityType="demoModel.Account" />
           <EntitySet Name="ActiveSessions" EntityType="demoModel.ActiveSession" />
           <EntitySet Name="APIs" EntityType="demoModel.API" />
           <EntitySet Name="Assets" EntityType="demoModel.Asset" />
@@ -840,7 +845,6 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <EntitySet Name="dayTypes" EntityType="demoModel.dayType" />
           <EntitySet Name="Deal2" EntityType="demoModel.Deal2" />
           <EntitySet Name="DealerAccounts" EntityType="demoModel.DealerAccount" />
-          <EntitySet Name="Deals" EntityType="demoModel.Deal" />
           <EntitySet Name="Dealtypes" EntityType="demoModel.Dealtype" />
           <EntitySet Name="expireTable1" EntityType="demoModel.expireTable1" />
           <EntitySet Name="Fees" EntityType="demoModel.Fee" />
@@ -913,6 +917,9 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams1" />
+          <EntitySet Name="dbo_logs" EntityType="demoModel.dbo_logs" />
+          <EntitySet Name="Deals" EntityType="demoModel.Deal" />
+          <EntitySet Name="Accounts" EntityType="demoModel.Account" />
           <EntitySet Name="Participants" EntityType="demoModel.Participant" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -926,23 +933,6 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-        <EntityType Name="Account">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="mask" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="memberid" Type="Int64" Nullable="false" />
-          <Property Name="accNum" Type="Int64" />
-          <Property Name="accType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="LinkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="collateral" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="mask" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="startdate" Type="DateTime" Precision="0" />
-          <Property Name="enddate" Type="DateTime" Precision="0" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-        </EntityType>
         <EntityType Name="ActiveSession">
           <Key>
             <PropertyRef Name="id" />
@@ -1098,27 +1088,6 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <Property Name="accountid" Type="Int64" Nullable="false" />
           <Property Name="state" Type="Int16" Nullable="false" />
           <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="Deal">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="boardid" Type="Int64" Nullable="false" />
-          <Property Name="dealno" Type="Int64" Nullable="false" />
-          <Property Name="side" Type="Int16" Nullable="false" />
-          <Property Name="memberid" Type="Int32" Nullable="false" />
-          <Property Name="accountid" Type="Int64" Nullable="false" />
-          <Property Name="assetid" Type="Int32" Nullable="false" />
-          <Property Name="qty" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
-          <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
-          <Property Name="totalPrice" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="m2m" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="refPrice" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="dealType" Type="Int16" />
         </EntityType>
         <EntityType Name="Dealtype">
           <Key>
@@ -1295,7 +1264,7 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <Property Name="dealer" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="ander" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="nominal" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="mtype">
           <Key>
@@ -1593,8 +1562,58 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <Property Name="timestamp" Type="Int64" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="dbo_logs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="logDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="logThread" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="logLevel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="logSource" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="logMessage" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="exception" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Deal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="boardid" Type="Int16" Nullable="false" />
+          <Property Name="dealno" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="side" Type="Int16" Nullable="false" />
+          <Property Name="memberid" Type="Int32" Nullable="false" />
+          <Property Name="accountid" Type="Int64" Nullable="false" />
+          <Property Name="assetid" Type="Int32" Nullable="false" />
+          <Property Name="qty" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="totalPrice" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="m2m" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="refPrice" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="dealType" Type="Int16" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="memberid" Type="Int64" Nullable="false" />
+          <Property Name="accNum" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="accType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LinkAcc" Type="Int64" />
+          <Property Name="collateral" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="mask" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="startdate" Type="DateTime" Precision="0" />
+          <Property Name="enddate" Type="DateTime" Precision="0" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+        </EntityType>
         <EntityType Name="Participant">
           <Key>
+            <PropertyRef Name="id" />
             <PropertyRef Name="code" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
@@ -1624,23 +1643,6 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="demoModelStoreContainer" CdmEntityContainer="demoEntities10">
-          <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="demoModel.Account">
-              <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="enddate" ColumnName="enddate" />
-                <ScalarProperty Name="startdate" ColumnName="startdate" />
-                <ScalarProperty Name="mask" ColumnName="mask" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="collateral" ColumnName="collateral" />
-                <ScalarProperty Name="LinkAcc" ColumnName="LinkAcc" />
-                <ScalarProperty Name="accType" ColumnName="accType" />
-                <ScalarProperty Name="accNum" ColumnName="accNum" />
-                <ScalarProperty Name="memberid" ColumnName="memberid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ActiveSessions">
             <EntityTypeMapping TypeName="demoModel.ActiveSession">
               <MappingFragment StoreEntitySet="ActiveSessions">
@@ -1802,28 +1804,6 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
                 <ScalarProperty Name="state" ColumnName="state" />
                 <ScalarProperty Name="accountid" ColumnName="accountid" />
                 <ScalarProperty Name="memberid" ColumnName="memberid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Deals">
-            <EntityTypeMapping TypeName="demoModel.Deal">
-              <MappingFragment StoreEntitySet="Deals">
-                <ScalarProperty Name="dealType" ColumnName="dealType" />
-                <ScalarProperty Name="refPrice" ColumnName="refPrice" />
-                <ScalarProperty Name="m2m" ColumnName="m2m" />
-                <ScalarProperty Name="fee" ColumnName="fee" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="qty" ColumnName="qty" />
-                <ScalarProperty Name="assetid" ColumnName="assetid" />
-                <ScalarProperty Name="accountid" ColumnName="accountid" />
-                <ScalarProperty Name="memberid" ColumnName="memberid" />
-                <ScalarProperty Name="side" ColumnName="side" />
-                <ScalarProperty Name="dealno" ColumnName="dealno" />
-                <ScalarProperty Name="boardid" ColumnName="boardid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2332,6 +2312,58 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <FunctionImportMapping FunctionImportName="sp_helpdiagrams1" FunctionName="demoModel.Store.sp_helpdiagrams" />
           <FunctionImportMapping FunctionImportName="sp_renamediagram1" FunctionName="demoModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams1" FunctionName="demoModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="dbo_logs">
+            <EntityTypeMapping TypeName="demoModel.dbo_logs">
+              <MappingFragment StoreEntitySet="dbo_logs">
+                <ScalarProperty Name="exception" ColumnName="exception" />
+                <ScalarProperty Name="logMessage" ColumnName="logMessage" />
+                <ScalarProperty Name="logSource" ColumnName="logSource" />
+                <ScalarProperty Name="logLevel" ColumnName="logLevel" />
+                <ScalarProperty Name="logThread" ColumnName="logThread" />
+                <ScalarProperty Name="logDate" ColumnName="logDate" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Deals">
+            <EntityTypeMapping TypeName="demoModel.Deal">
+              <MappingFragment StoreEntitySet="Deals">
+                <ScalarProperty Name="dealType" ColumnName="dealType" />
+                <ScalarProperty Name="refPrice" ColumnName="refPrice" />
+                <ScalarProperty Name="m2m" ColumnName="m2m" />
+                <ScalarProperty Name="fee" ColumnName="fee" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="accountid" ColumnName="accountid" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="side" ColumnName="side" />
+                <ScalarProperty Name="dealno" ColumnName="dealno" />
+                <ScalarProperty Name="boardid" ColumnName="boardid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="demoModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="enddate" ColumnName="enddate" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
+                <ScalarProperty Name="mask" ColumnName="mask" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="collateral" ColumnName="collateral" />
+                <ScalarProperty Name="LinkAcc" ColumnName="LinkAcc" />
+                <ScalarProperty Name="accType" ColumnName="accType" />
+                <ScalarProperty Name="accNum" ColumnName="accNum" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Participants">
             <EntityTypeMapping TypeName="demoModel.Participant">
               <MappingFragment StoreEntitySet="Participants">
