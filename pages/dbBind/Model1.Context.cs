@@ -71,7 +71,6 @@ namespace pages.dbBind
         public virtual DbSet<transType> transTypes { get; set; }
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
         public virtual DbSet<UserGroup> UserGroups { get; set; }
-        public virtual DbSet<user> users { get; set; }
         public virtual DbSet<accType> accTypes { get; set; }
         public virtual DbSet<algo> algoes { get; set; }
         public virtual DbSet<allowedtype> allowedtypes { get; set; }
@@ -81,6 +80,7 @@ namespace pages.dbBind
         public virtual DbSet<Deal> Deals { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Participant> Participants { get; set; }
+        public virtual DbSet<user> users { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

@@ -694,19 +694,8 @@
           <Property Name="password" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="modified" Type="datetime" Nullable="false" />
           <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="parId" Type="int" />
         </EntityType>
-        <Association Name="FK_boards_boards1">
-          <End Role="Boards" Type="Self.Boards" Multiplicity="1" />
-          <End Role="Boards1" Type="Self.Boards" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Boards">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Boards1">
-              <PropertyRef Name="id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -793,10 +782,6 @@
           <EntitySet Name="UserAccounts" EntityType="Self.UserAccounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserGroups" EntityType="Self.UserGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_boards_boards1" Association="Self.FK_boards_boards1">
-            <End Role="Boards" EntitySet="Boards" />
-            <End Role="Boards1" EntitySet="Boards" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -877,7 +862,6 @@
           <EntitySet Name="transTypes" EntityType="demoModel.transType" />
           <EntitySet Name="UserAccounts" EntityType="demoModel.UserAccount" />
           <EntitySet Name="UserGroups" EntityType="demoModel.UserGroup" />
-          <EntitySet Name="users" EntityType="demoModel.user" />
           <EntitySet Name="accTypes" EntityType="demoModel.accType" />
           <AssociationSet Name="FK_boards_boards1" Association="demoModel.FK_boards_boards1">
             <End Role="Board" EntitySet="Boards" />
@@ -921,6 +905,7 @@
           <EntitySet Name="Deals" EntityType="demoModel.Deal" />
           <EntitySet Name="Accounts" EntityType="demoModel.Account" />
           <EntitySet Name="Participants" EntityType="demoModel.Participant" />
+          <EntitySet Name="users" EntityType="demoModel.user" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1494,16 +1479,6 @@
           <Property Name="state" Type="Int16" Nullable="false" />
           <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="user">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="uname" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="accType">
           <Key>
             <PropertyRef Name="id" />
@@ -1636,6 +1611,17 @@
           <Property Name="webid" Type="Int32" Nullable="false" />
           <Property Name="spType" Type="Int16" />
           <Property Name="coType" Type="Int16" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uname" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="parId" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2243,17 +2229,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="demoModel.user">
-              <MappingFragment StoreEntitySet="users">
-                <ScalarProperty Name="role" ColumnName="role" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="uname" ColumnName="uname" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="accTypes">
             <EntityTypeMapping TypeName="demoModel.accType">
               <MappingFragment StoreEntitySet="accType">
@@ -2386,6 +2361,18 @@
                 <ScalarProperty Name="country" ColumnName="country" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="demoModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="parId" ColumnName="parId" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="uname" ColumnName="uname" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

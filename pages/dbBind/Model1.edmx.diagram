@@ -49,7 +49,6 @@
         <EntityTypeShape EntityType="demoModel.transType" Width="1.5" PointX="18.75" PointY="19.75" />
         <EntityTypeShape EntityType="demoModel.UserAccount" Width="1.5" PointX="20.75" PointY="0.75" />
         <EntityTypeShape EntityType="demoModel.UserGroup" Width="1.5" PointX="0.75" PointY="20.75" />
-        <EntityTypeShape EntityType="demoModel.user" Width="1.5" PointX="2.75" PointY="20.75" />
         <EntityTypeShape EntityType="demoModel.accType" Width="1.5" PointX="20.75" PointY="3.75" />
         <AssociationConnector Association="demoModel.FK_boards_boards1" />
         <EntityTypeShape EntityType="demoModel.algo" Width="1.5" PointX="2.75" PointY="4.625" />
@@ -60,6 +59,7 @@
         <EntityTypeShape EntityType="demoModel.Deal" Width="1.5" PointX="21.75" PointY="14.75" />
         <EntityTypeShape EntityType="demoModel.Account" Width="1.5" PointX="7.375" PointY="15.75" />
         <EntityTypeShape EntityType="demoModel.Participant" Width="1.5" PointX="21.375" PointY="19.75" />
+        <EntityTypeShape EntityType="demoModel.user" Width="1.5" PointX="0.75" PointY="14.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

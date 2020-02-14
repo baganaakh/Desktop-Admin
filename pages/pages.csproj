@@ -308,8 +308,8 @@
     <Compile Include="page\invoices.xaml.cs">
       <DependentUpon>invoices.xaml</DependentUpon>
     </Compile>
-    <Compile Include="page\user.xaml.cs">
-      <DependentUpon>user.xaml</DependentUpon>
+    <Compile Include="page\userPage.xaml.cs">
+      <DependentUpon>userPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\loginScreen.xaml.cs">
       <DependentUpon>loginScreen.xaml</DependentUpon>
@@ -383,7 +383,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="page\user.xaml">
+    <Page Include="page\userPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
