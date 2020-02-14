@@ -34,7 +34,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>\\192.168.1.109\Test\</InstallUrl>
-    <ApplicationRevision>34</ApplicationRevision>
+    <ApplicationRevision>35</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -104,13 +104,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="account.xaml.cs">
+    <Compile Include="page\account.xaml.cs">
       <DependentUpon>account.xaml</DependentUpon>
     </Compile>
-    <Compile Include="adminPage.xaml.cs">
+    <Compile Include="page\adminPage.xaml.cs">
       <DependentUpon>adminPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ClearingAccount.xaml.cs">
+    <Compile Include="page\ClearingAccount.xaml.cs">
       <DependentUpon>ClearingAccount.xaml</DependentUpon>
     </Compile>
     <Compile Include="dbBind\Account.cs">
@@ -296,95 +296,102 @@
     <Compile Include="dbBind\UserGroup.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="deal2.xaml.cs">
+    <Compile Include="page\deal2.xaml.cs">
       <DependentUpon>deal2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="dealerAccount.xaml.cs">
+    <Compile Include="page\dealerAccount.xaml.cs">
       <DependentUpon>dealerAccount.xaml</DependentUpon>
     </Compile>
-    <Compile Include="demo1.xaml.cs">
+    <Compile Include="page\demo1.xaml.cs">
       <DependentUpon>demo1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="invoices.xaml.cs">
+    <Compile Include="page\invoices.xaml.cs">
       <DependentUpon>invoices.xaml</DependentUpon>
     </Compile>
-    <Compile Include="loginScreen.xaml.cs">
+    <Compile Include="page\user.xaml.cs">
+      <DependentUpon>user.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\loginScreen.xaml.cs">
       <DependentUpon>loginScreen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="margins.xaml.cs">
+    <Compile Include="page\margins.xaml.cs">
       <DependentUpon>margins.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MarketMakers.xaml.cs">
+    <Compile Include="page\MarketMakers.xaml.cs">
       <DependentUpon>MarketMakers.xaml</DependentUpon>
     </Compile>
-    <Compile Include="members.xaml.cs">
+    <Compile Include="page\members.xaml.cs">
       <DependentUpon>members.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Order.xaml.cs">
+    <Compile Include="page\Order.xaml.cs">
       <DependentUpon>Order.xaml</DependentUpon>
     </Compile>
-    <Compile Include="orderOk.xaml.cs">
+    <Compile Include="page\orderOk.xaml.cs">
       <DependentUpon>orderOk.xaml</DependentUpon>
     </Compile>
-    <Compile Include="fee.xaml.cs">
+    <Compile Include="page\fee.xaml.cs">
       <DependentUpon>fee.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RefPrice.xaml.cs">
+    <Compile Include="page\RefPrice.xaml.cs">
       <DependentUpon>RefPrice.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Spread.xaml.cs">
+    <Compile Include="page\Spread.xaml.cs">
       <DependentUpon>Spread.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Table.xaml.cs">
+    <Compile Include="page\Table.xaml.cs">
       <DependentUpon>Table.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TickSizeTable.xaml.cs">
+    <Compile Include="page\TickSizeTable.xaml.cs">
       <DependentUpon>TickSizeTable.xaml</DependentUpon>
     </Compile>
-    <Compile Include="trans.xaml.cs">
+    <Compile Include="page\trans.xaml.cs">
       <DependentUpon>trans.xaml</DependentUpon>
     </Compile>
-    <Page Include="account.xaml">
+    <Page Include="page\account.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="adminPage.xaml">
+    <Page Include="page\adminPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="assets.xaml">
+    <Page Include="page\assets.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ClearingAccount.xaml">
+    <Page Include="page\ClearingAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="contracts.xaml">
+    <Page Include="page\contracts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="deal2.xaml">
+    <Page Include="page\deal2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="dealerAccount.xaml">
+    <Page Include="page\dealerAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="demo1.xaml">
+    <Page Include="page\demo1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="invoices.xaml">
+    <Page Include="page\invoices.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="loginScreen.xaml">
+    <Page Include="page\user.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="windows\loginScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -392,88 +399,88 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="assets.xaml.cs">
+    <Compile Include="page\assets.xaml.cs">
       <DependentUpon>assets.xaml</DependentUpon>
     </Compile>
-    <Compile Include="contracts.xaml.cs">
+    <Compile Include="page\contracts.xaml.cs">
       <DependentUpon>contracts.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="margins.xaml">
+    <Page Include="page\margins.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MarketMakers.xaml">
+    <Page Include="page\MarketMakers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="members.xaml">
+    <Page Include="page\members.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="boards.xaml">
+    <Page Include="page\boards.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Order.xaml">
+    <Page Include="page\Order.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="orderOk.xaml">
+    <Page Include="page\orderOk.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="participants.xaml">
+    <Page Include="page\participants.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="fee.xaml">
+    <Page Include="page\fee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RefPrice.xaml">
+    <Page Include="page\RefPrice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="securities.xaml">
+    <Page Include="page\securities.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="session.xaml">
+    <Page Include="page\session.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Spread.xaml">
+    <Page Include="page\Spread.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Table.xaml">
+    <Page Include="page\Table.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TickSizeTable.xaml">
+    <Page Include="page\TickSizeTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="trans.xaml">
+    <Page Include="page\trans.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="boards.xaml.cs">
+    <Compile Include="page\boards.xaml.cs">
       <DependentUpon>boards.xaml</DependentUpon>
     </Compile>
-    <Compile Include="participants.xaml.cs">
+    <Compile Include="page\participants.xaml.cs">
       <DependentUpon>participants.xaml</DependentUpon>
     </Compile>
-    <Compile Include="securities.xaml.cs">
+    <Compile Include="page\securities.xaml.cs">
       <DependentUpon>securities.xaml</DependentUpon>
     </Compile>
-    <Compile Include="session.xaml.cs">
+    <Compile Include="page\session.xaml.cs">
       <DependentUpon>session.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -502,10 +509,10 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <None Include="pages_1_TemporaryKey.pfx" />
-    <None Include="pages_2_TemporaryKey.pfx" />
-    <None Include="pages_3_TemporaryKey.pfx" />
-    <None Include="pages_TemporaryKey.pfx" />
+    <None Include="keys\pages_1_TemporaryKey.pfx" />
+    <None Include="keys\pages_2_TemporaryKey.pfx" />
+    <None Include="keys\pages_3_TemporaryKey.pfx" />
+    <None Include="keys\pages_TemporaryKey.pfx" />
     <None Include="Properties\DataSources\pages.dbBind.Assets.datasource" />
     <None Include="Properties\DataSources\pages.dbBind.Fee.datasource" />
     <None Include="Properties\Settings.settings">

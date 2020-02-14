@@ -31,7 +31,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = Properties.Settings.Default.ConnectionString;
-        static string id,statid,metype, partid,oldMask, pname;
+        string id,statid,metype, partid,oldMask, pname;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {

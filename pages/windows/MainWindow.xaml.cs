@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Threading;
+using pages.page;
 
 namespace pages
 {
@@ -31,7 +32,6 @@ namespace pages
             Main.Content = new boards();
 
         }
-
         private void BtnClickP1(object sender, RoutedEventArgs e)
         {
             Main.Content = new boards();
@@ -146,6 +146,11 @@ namespace pages
         {
             Main.Content = new invoices();
             this.Title = "Invoices";
+        }
+        private void BtnClickP25(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new user();
+            this.Title = "User";
         }
     }
 }

@@ -60,6 +60,7 @@
             <Button Content="dealer&#xA;Acc" Margin="10,0,0,0" Click="BtnClickP13"/>
             <Button Content="Table" Margin="10,0,0,0" Click="BtnClickP18"/>
             <Button Content="Invoices" Margin="10,0,0,0" Click="BtnClickP24"/>
+            <Button Content="User" Margin="10,0,0,0" Click="BtnClickP25"/>
         </StackPanel>
         <Frame x:Name="Main" Margin="28,90,0,0" NavigationUIVisibility="Hidden" MinHeight="350" VerticalAlignment="Top" Content="" Height="869" Grid.ColumnSpan="2" />
 
