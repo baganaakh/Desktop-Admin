@@ -9,17 +9,17 @@
       Title="user">
 
     <Grid>
-        <ComboBox IsEditable="True" x:Name="participants" ItemsSource="{Binding}" SelectionChanged="participants_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="132,21,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox IsEditable="True" x:Name="members" ItemsSource="{Binding}" SelectionChanged="members_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="132,21,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <TextBox x:Name="usname" HorizontalAlignment="Left" Height="23" Margin="364,21,0,0" TextWrapping="Wrap" Text="12"  VerticalAlignment="Top" Width="120"/>
         <Label Content="User Name" HorizontalAlignment="Left" Margin="287,21,0,0" VerticalAlignment="Top"/>
-        <Label Content="Participant" HorizontalAlignment="Left" Margin="52,21,0,0" VerticalAlignment="Top"/>
+        <Label Content="Member" HorizontalAlignment="Left" Margin="52,21,0,0" VerticalAlignment="Top"/>
         <PasswordBox x:Name="upass" HorizontalAlignment="Left" Height="23" Margin="600,21,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="523,21,0,0" VerticalAlignment="Top"/>
         <Button Content="Insert" HorizontalAlignment="Left" Margin="52,66,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
         <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" VerticalAlignment="Center" Width="1138" Height="606" Margin="30,134,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
-                <DataGridTextColumn Binding="{Binding parId}" Header="Participant"/>
+                <DataGridTextColumn Binding="{Binding memId}" Header="MemId"/>
                 <DataGridTextColumn Binding="{Binding uname}" Header="Username"/>
                 <DataGridTextColumn Binding="{Binding password}" Header="password"/>
                 <DataGridTextColumn Binding="{Binding role}" Header="Role"/>

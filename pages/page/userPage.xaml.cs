@@ -27,24 +27,24 @@ namespace pages.page
             bindCombo();
             FillGrid();
         }
-        int partid;
+        int memid;
         #region combos
         private void bindCombo()
         {
             demoEntities10 st = new demoEntities10();
             
-            List<Participant> paitems = st.Participants.ToList();
+            List<Member> paitems = st.Members.ToList();
             part = paitems;
-            participants.ItemsSource = part;
+            members.ItemsSource = part;
         }
-        public List<Participant> part { get; set; }
+        public List<Member> part { get; set; }
 
-        private void participants_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void members_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var items = participants.SelectedItem as Participant;
+            var items = members.SelectedItem as Member;
             try
             {
-                partid = Convert.ToInt32(items.id);
+                memid = Convert.ToInt32(items.id);
             }
             catch
             {
@@ -52,11 +52,12 @@ namespace pages.page
             }
         }
         #endregion
+        #region insert
         private void Button_Click(object sender, RoutedEventArgs e)//insert
         {
-            if(participants.SelectedItem == null)
+            if(members.SelectedItem == null)
             {
-                MessageBox.Show("Please select participant:");
+                MessageBox.Show("Please select Member:");
                 return;
             }
             using (var context = new demoEntities10())
@@ -66,7 +67,7 @@ namespace pages.page
                     uname = usname.Text,
                     password = upass.Password,
                     role = urole.Text,
-                    parId = partid,
+                    memId = memid,
                     modified = DateTime.Now
                 };
                 context.users.Add(std);
@@ -74,13 +75,13 @@ namespace pages.page
             }
             FillGrid();
         }
-
+        #endregion
         private void Button_Click_1(object sender, RoutedEventArgs e)//delete
         {
             user iiid = DateTable2.SelectedItem as user;
             using (demoEntities10 context = new demoEntities10())
             {
-                user acc = context.users.FirstOrDefault(r => r.parId == iiid.parId);
+                user acc = context.users.FirstOrDefault(r => r.memId == iiid.memId);
                 context.users.Remove(acc);
                 context.SaveChanges();
             }
