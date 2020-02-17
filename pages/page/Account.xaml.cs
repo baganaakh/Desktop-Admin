@@ -47,8 +47,12 @@ namespace pages
         
             memid.SelectedValue = memId;
             accno.Text = accNum;
-            acctype.SelectedValue = accType;
+            if (accType.Equals("")) { acctype.SelectedItem = null;}
+            else {acctype.SelectedValue = accType;}
+            if (linkacc.Equals("")) { linkacc.SelectedItem= null;}
+            else { linkacc.SelectedValue = linkAcc; }
             pstate.SelectedValue = stat;
+
         }
         #endregion
         #region insert func
@@ -59,7 +63,21 @@ namespace pages
                 MessageBox.Show("Please select state !!!");
                 return;
             }
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
+            if (acType != "0" && linkacc.SelectedItem == null)
+            {
+                MessageBox.Show("Нэмэх боломжгүй");
+                return;
+            }
+            using (demoEntities10 context = new demoEntities10())
+            {
+                var exist = context.Accounts.Count(a => a.accNum == accNo);
+                if (exist != 0)
+                {
+                    MessageBox.Show("Account number exists " +accNo+ " !!!");
+                    return;
+                }
+            }
+                System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
@@ -73,19 +91,10 @@ namespace pages
             {
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException EX)
+            catch(Exception ex)
             {
-                if(EX.Number == 2627)
-                {
-                    MessageBox.Show("Account number " + accNo + " is already inserted try different number");
+                MessageBox.Show(ex.ToString());
                     return;
-                }
-                else
-                throw;
-            }
-            catch(Exception)
-            {
-                throw;
             }
             sqlConnection1.Close();
             FillDataGrid();
@@ -232,7 +241,7 @@ namespace pages
                 }
                 else if(acType == "2")  //Клиринг
                 {
-                    acType = "1";
+                    acType = "0";
                     linkacc.IsEnabled = true;
                 }
                 else if(acType == "3")  //Арилжаа
@@ -293,7 +302,7 @@ namespace pages
                     acctype.ItemsSource = accitem;
                     acctype.SelectedValue = 3;
                     acctype.IsEnabled = false;
-                    linkacc.IsEnabled = false;
+                    linkacc.IsEnabled = true;
                 }
                 else if(mtypee == "1" && (broker == "False" && dealer == "False" && ander == "False"))
                 {

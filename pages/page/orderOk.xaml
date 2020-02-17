@@ -12,7 +12,7 @@
         <ComboBox IsEditable="True" x:Name="accountid" ItemsSource="{Binding}" SelectionChanged="accountid_SelectionChanged" DisplayMemberPath="id" SelectedValuePath="id" HorizontalAlignment="Left" Margin="141,25,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <Button Content="OK" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="Okey" Margin="283,27,0,0"/>
         <Label Content="accountid" HorizontalAlignment="Left" Margin="37,23,0,0" VerticalAlignment="Top"/>
-        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150"  VerticalAlignment="Center" Width="1138" Height="822" Margin="10,112,0,0" ></DataGrid>
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150"  VerticalAlignment="Center" Width="1138" Height="822" Margin="10,60,0,0" ></DataGrid>
 
     </Grid>
 </Page>

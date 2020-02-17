@@ -248,6 +248,11 @@ namespace pages
             boardid.ItemsSource = boardd;
         }
 
+        private void ctick_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
         private void boardid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = boardid.SelectedItem as Board;
@@ -259,7 +264,6 @@ namespace pages
             {
                 return;
             }
-
         }
 
         private void ctype_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -274,7 +278,6 @@ namespace pages
                 return;
             }
         }
-
         private void secid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = securityid_Copy.SelectedItem as Security;

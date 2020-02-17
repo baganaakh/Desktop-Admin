@@ -21,7 +21,6 @@
         <TextBox x:Name="cname" HorizontalAlignment="Left" Height="23" Margin="138,151,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <DatePicker x:Name="cedate" HorizontalAlignment="Left" Margin="412,148,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBox  x:Name="orderLim" HorizontalAlignment="Left" Height="23" Margin="698,147,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
-        <ComboBox IsEditable="True" x:Name="boardid" ItemsSource="{Binding}" SelectionChanged="boardid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="138,190,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Board ID" HorizontalAlignment="Left" Margin="29,186,0,0" VerticalAlignment="Top"/>
         <Label Content="securityId" HorizontalAlignment="Left" Margin="29,23,0,0" VerticalAlignment="Top"/>
         <Label Content="type" HorizontalAlignment="Left" Margin="29,60,0,0" VerticalAlignment="Top"/>
@@ -42,7 +41,8 @@
         <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="973,119,0,0"/>
         <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="847,161,0,0"/>
         <Button Content="Update" IsEnabled="False" Name="upd" HorizontalAlignment="Left" Margin="973,161,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
-        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" VerticalAlignment="Center" Width="1158" Height="655" Margin="0,245,0,0">
+        <ComboBox IsEditable="True" x:Name="boardid" ItemsSource="{Binding}" SelectionChanged="boardid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="138,190,0,0" VerticalAlignment="Top" Width="120"/>
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" VerticalAlignment="Center" Width="1158" Height="655" Margin="0,240,0,-10">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding securityId}" Header="SID"/>
@@ -62,7 +62,7 @@
                 <DataGridTextColumn Binding="{Binding bid}" Header="BID"/>
             </DataGrid.Columns>
         </DataGrid>
-        <ComboBox IsEditable="True" x:Name="ctick" ItemsSource="{Binding}" SelectionChanged="boardid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="412,64,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox IsEditable="True" x:Name="ctick" ItemsSource="{Binding}" SelectionChanged="ctick_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="412,64,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Page>
