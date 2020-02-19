@@ -57,9 +57,9 @@
         <EntityTypeShape EntityType="demoModel.TickSizeTable" Width="1.5" PointX="9.375" PointY="19.75" />
         <EntityTypeShape EntityType="demoModel.dbo_logs" Width="1.5" PointX="0.75" PointY="7.75" />
         <EntityTypeShape EntityType="demoModel.Deal" Width="1.5" PointX="21.75" PointY="14.75" />
-        <EntityTypeShape EntityType="demoModel.Account" Width="1.5" PointX="7.375" PointY="15.75" />
         <EntityTypeShape EntityType="demoModel.Participant" Width="1.5" PointX="21.375" PointY="19.75" />
         <EntityTypeShape EntityType="demoModel.user" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="demoModel.Account" Width="1.5" PointX="7.375" PointY="15.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

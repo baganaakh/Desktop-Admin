@@ -31,7 +31,7 @@ namespace pages
             bindCombo();
         }
         string connectionString = Properties.Settings.Default.ConnectionString;
-        static string id, memId,stat,mnominal,ander,dealer,broker,mask, acType, linkA="NULL",values,mtypee;
+        static string id, memId,stat,ander,dealer,broker,mask, acType,linkType, linkA="NULL",mtypee,accNum;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -40,7 +40,7 @@ namespace pages
             if (null == values) return;
             id = values.Row[0].ToString();
             string memId= values[1].ToString();
-            string accNum = values[2].ToString();
+            accNum = values[2].ToString();
             string accType = values[3].ToString();
             string linkAcc = values[4].ToString();
             string stat= values[10].ToString();
@@ -59,6 +59,7 @@ namespace pages
         private void insertFunc(object sender, RoutedEventArgs e)
         {
             string accNo = accno.Text;
+            string accnu = string.Format(accNo.ToString().PadLeft(8,'0'));
             if (stat == null) {
                 MessageBox.Show("Please select state !!!");
                 return;
@@ -70,10 +71,10 @@ namespace pages
             }
             using (demoEntities10 context = new demoEntities10())
             {
-                var exist = context.Accounts.Count(a => a.accNum == accNo);
+                var exist = context.Accounts.Count(a => a.accNum == accnu);
                 if (exist != 0)
                 {
-                    MessageBox.Show("Account number exists " +accNo+ " !!!");
+                    MessageBox.Show("Account number exists " +accnu+ " !!!");
                     return;
                 }
             }
@@ -83,7 +84,7 @@ namespace pages
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "insert into dbo.Account (memberid, accNum, accType, LinkAcc, state) values " +
-                "("+memId+", "+accNo+", "+acType+", "+linkA+", "+stat+")";
+                "("+memId+", "+accnu+", "+ acctype.SelectedValue + ", "+linkacc.SelectedValue+", "+stat+")";
             
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
@@ -164,19 +165,26 @@ namespace pages
         #region update
         private void update(object sender, RoutedEventArgs e)
         {
-            string accNo = accno.Text;
-            try
+            if (stat == null)
             {
-                linkA = linkacc.SelectedValue.ToString();
+                MessageBox.Show("Please select state !!!");
+                return;
             }
-            catch (NullReferenceException)
+            if (acType != "0" && linkacc.SelectedItem == null)
             {
-                MessageBoxResult res = MessageBox.Show("link acc is Empty is it okey ? ", "Empty",MessageBoxButton.OK);
-                switch (res)
+                MessageBox.Show("Нэмэх боломжгүй");
+                return;
+            }
+            string accnu = string.Format(accno.Text.ToString().PadLeft(8, '0'));
+            if (accNum !=accnu) { 
+                using (demoEntities10 context = new demoEntities10())
                 {
-                    case MessageBoxResult.OK:
-                        linkA = "NULL";
-                        break;
+                    var exist = context.Accounts.Count(a => a.accNum == accnu);
+                    if (exist != 0)
+                    {
+                        MessageBox.Show("Account number exists " + accnu + " !!!");
+                        return;
+                    }
                 }
             }
 
@@ -187,9 +195,9 @@ namespace pages
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.dbo.Account SET " +
                 "memberid= '" + memId + "', " +
-                "accNum= '" + accNo + "', " +
-                "accType= '" + acType + "', " +
-                "LinkAcc= '" + linkA+ "', " +
+                "accNum= '" + accnu + "', " +
+                "accType= '" + acctype.SelectedValue + "', " +
+                "LinkAcc= '" + linkacc.SelectedValue + "', " +
                 "state= '" + stat+ "', " +
                 "modified = getdate() " +
                 "WHERE id = '" + id + "'";
@@ -236,22 +244,22 @@ namespace pages
                 }
                 else if(acType == "1")  //Барьцаа
                 {
-                    acType = "0";
+                    linkType = "0";
                     linkacc.IsEnabled = true;
                 }
                 else if(acType == "2")  //Клиринг
                 {
-                    acType = "0";
+                    linkType = "0";
                     linkacc.IsEnabled = true;
                 }
                 else if(acType == "3")  //Арилжаа
                 {
-                    acType = "2";
+                    linkType = "1";
                     linkacc.IsEnabled = true;
                 }
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string CmdString = "SELECT [id],[accNum] FROM [demo].[dbo].[Account] WHERE accType = " +acType;
+                    string CmdString = "SELECT [id],[accNum] FROM [demo].[dbo].[Account] WHERE accType = " + linkType;
                     SqlCommand cmd = new SqlCommand(CmdString, conn);
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable("khfjkh");
@@ -291,7 +299,6 @@ namespace pages
                 memId = item.id.ToString();
                 mask = item.mask.ToString();
 
-                mnominal= item.nominal.ToString();
                 ander = item.ander.ToString();
                 dealer = item.dealer.ToString();
                 broker = item.broker.ToString();

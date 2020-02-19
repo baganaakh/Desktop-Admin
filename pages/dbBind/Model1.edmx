@@ -12,8 +12,8 @@
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="memberid" Type="bigint" Nullable="false" />
           <Property Name="accNum" Type="nvarchar" MaxLength="16" />
-          <Property Name="accType" Type="nvarchar" MaxLength="20" />
-          <Property Name="LinkAcc" Type="bigint" />
+          <Property Name="accType" Type="smallint" />
+          <Property Name="LinkAcc" Type="nvarchar" MaxLength="16" />
           <Property Name="collateral" Type="decimal" Precision="18" Scale="4" />
           <Property Name="modified" Type="datetime" Nullable="false" />
           <Property Name="mask" Type="nvarchar" MaxLength="20" />
@@ -903,9 +903,9 @@
           <FunctionImport Name="sp_upgraddiagrams1" />
           <EntitySet Name="dbo_logs" EntityType="demoModel.dbo_logs" />
           <EntitySet Name="Deals" EntityType="demoModel.Deal" />
-          <EntitySet Name="Accounts" EntityType="demoModel.Account" />
           <EntitySet Name="Participants" EntityType="demoModel.Participant" />
           <EntitySet Name="users" EntityType="demoModel.user" />
+          <EntitySet Name="Accounts" EntityType="demoModel.Account" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1570,22 +1570,6 @@
           <Property Name="refPrice" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="dealType" Type="Int16" />
         </EntityType>
-        <EntityType Name="Account">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="memberid" Type="Int64" Nullable="false" />
-          <Property Name="accNum" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="accType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="LinkAcc" Type="Int64" />
-          <Property Name="collateral" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="mask" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="startdate" Type="DateTime" Precision="0" />
-          <Property Name="enddate" Type="DateTime" Precision="0" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-        </EntityType>
         <EntityType Name="Participant">
           <Key>
             <PropertyRef Name="id" />
@@ -1622,6 +1606,22 @@
           <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="memId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="memberid" Type="Int64" Nullable="false" />
+          <Property Name="accNum" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="accType" Type="Int16" />
+          <Property Name="LinkAcc" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="collateral" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="mask" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="startdate" Type="DateTime" Precision="0" />
+          <Property Name="enddate" Type="DateTime" Precision="0" />
+          <Property Name="state" Type="Int16" Nullable="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2322,23 +2322,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="demoModel.Account">
-              <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="enddate" ColumnName="enddate" />
-                <ScalarProperty Name="startdate" ColumnName="startdate" />
-                <ScalarProperty Name="mask" ColumnName="mask" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="collateral" ColumnName="collateral" />
-                <ScalarProperty Name="LinkAcc" ColumnName="LinkAcc" />
-                <ScalarProperty Name="accType" ColumnName="accType" />
-                <ScalarProperty Name="accNum" ColumnName="accNum" />
-                <ScalarProperty Name="memberid" ColumnName="memberid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Participants">
             <EntityTypeMapping TypeName="demoModel.Participant">
               <MappingFragment StoreEntitySet="Participants">
@@ -2373,6 +2356,23 @@
                 <ScalarProperty Name="modified" ColumnName="modified" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="uname" ColumnName="uname" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="demoModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="enddate" ColumnName="enddate" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
+                <ScalarProperty Name="mask" ColumnName="mask" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="collateral" ColumnName="collateral" />
+                <ScalarProperty Name="LinkAcc" ColumnName="LinkAcc" />
+                <ScalarProperty Name="accType" ColumnName="accType" />
+                <ScalarProperty Name="accNum" ColumnName="accNum" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

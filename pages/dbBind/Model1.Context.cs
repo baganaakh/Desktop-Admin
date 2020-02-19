@@ -78,9 +78,9 @@ namespace pages.dbBind
         public virtual DbSet<TickSizeTable> TickSizeTables { get; set; }
         public virtual DbSet<dbo_logs> dbo_logs { get; set; }
         public virtual DbSet<Deal> Deals { get; set; }
-        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Participant> Participants { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
