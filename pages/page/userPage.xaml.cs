@@ -60,6 +60,15 @@ namespace pages.page
                 MessageBox.Show("Please select Member:");
                 return;
             }
+            using (demoEntities10 context = new demoEntities10())
+            {
+                var exist = context.users.Count(a => a.uname == usname.Text);
+                if (exist != 0)
+                {
+                    MessageBox.Show("Username exists " + usname.Text+ " !!!");
+                    return;
+                }
+            }
             using (var context = new demoEntities10())
             {
                 var std = new user()
