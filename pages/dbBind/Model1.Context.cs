@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace pages.dbBind
+namespace Admin.dbBind
 {
     using System;
     using System.Data.Entity;

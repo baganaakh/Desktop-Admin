@@ -1,4 +1,4 @@
-﻿using pages.dbBind;
+﻿using Admin.dbBind;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -105,11 +105,11 @@ namespace pages
 
                 " ((SELECT [dealType] as dealType from [demo].[dbo].[Boards] where id=" + boardid + ")," + side1 + ",N'" +
                 memId + "',N'" + accId + "',N'" +assetId + "',N'" + s1qty + "',N'" + Price + "',N'" + statid + "', getdate()," +
-                "IDENT_CURRENT('deals')+1," + total1 + ","+boardid+")," +
+                "IDENT_CURRENT('deals')," + total1 + ","+boardid+")," +
 
                 "((SELECT [dealType] as dealType from [demo].[dbo].[Boards] where id=" + boardid + ")," + side2 + ",N'" +
                 MyGlobals.U_ID + "',N'" + accId2 + "',N'" + assetId + "',N'" + s2qty + "',N'" + Price 
-                + "',N'" + statid + "', getdate(),IDENT_CURRENT('deals')+1," + total2 + "," + boardid + "); " +
+                + "',N'" + statid + "', getdate(),IDENT_CURRENT('deals')," + total2 + "," + boardid + "); " +
                 "DELETE demo.[dbo].[Order] WHERE id= " + id + " ";
 
             cmd.Connection = sqlConnection1;
