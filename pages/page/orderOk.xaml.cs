@@ -15,9 +15,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using static pages.loginScreen;
+using static Admin.loginScreen;
 
-namespace pages
+namespace Admin
 {
     /// <summary>
     /// Interaction logic for orderOk.xaml

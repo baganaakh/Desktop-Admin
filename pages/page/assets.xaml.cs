@@ -15,9 +15,9 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
 using System.Text.RegularExpressions;
-using pages.dbBind;
+using Admin.dbBind;
 
-namespace pages
+namespace Admin
 {
     /// <summary>
     /// Interaction logic for assets.xaml

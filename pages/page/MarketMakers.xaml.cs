@@ -15,8 +15,8 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Data;
-using pages.dbBind;
-namespace pages
+using Admin.dbBind;
+namespace Admin
 {
     /// <summary>
     /// Interaction logic for MarketMakers.xaml

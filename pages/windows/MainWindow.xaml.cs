@@ -15,9 +15,9 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Threading;
-using pages.page;
+using Admin.page;
 
-namespace pages
+namespace Admin
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

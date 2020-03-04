@@ -15,10 +15,10 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Data;
-using pages.dbBind;
+using Admin.dbBind;
 using System.Data.Entity.Validation;
 
-namespace pages
+namespace Admin
 {
     /// <summary>
     /// Interaction logic for participants.xaml

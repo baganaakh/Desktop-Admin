@@ -1,4 +1,4 @@
-﻿using pages.dbBind;
+﻿using Admin.dbBind;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,7 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace pages
+namespace Admin
 {
     /// <summary>
     /// Interaction logic for price.xaml

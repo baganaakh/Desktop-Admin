@@ -1,4 +1,4 @@
-﻿using pages.dbBind;
+﻿using Admin.dbBind;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace pages
+namespace Admin
 {
     /// <summary>
     /// Interaction logic for demo1.xaml

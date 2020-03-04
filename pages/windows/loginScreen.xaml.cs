@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
-namespace pages
+namespace Admin
 {
     /// <summary>
     /// Interaction logic for loginScreen.xaml

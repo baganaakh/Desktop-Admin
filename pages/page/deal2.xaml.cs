@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace pages
+namespace Admin
 {
     /// <summary>
     /// Interaction logic for deal2.xaml

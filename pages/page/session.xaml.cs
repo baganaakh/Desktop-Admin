@@ -14,9 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
-using pages.dbBind;
+using Admin.dbBind;
 
-namespace pages
+namespace Admin
 {
     /// <summary>
     /// Interaction logic for Page2.xaml
