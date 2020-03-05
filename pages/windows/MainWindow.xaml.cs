@@ -152,5 +152,10 @@ namespace Admin
             Main.Content = new userPage();
             this.Title = "User";
         }
+        private void BtnClickP26(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new CollApprove();
+            this.Title = "Collateral Approve";
+        }
     }
 }

@@ -12,12 +12,10 @@ namespace Admin.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class RefPrice
+    public partial class Reason
     {
-        public long id { get; set; }
-        public decimal refprice1 { get; set; }
-        public System.DateTime modified { get; set; }
+        public int id { get; set; }
         public string name { get; set; }
-        public Nullable<int> assetId { get; set; }
+        public string description { get; set; }
     }
 }

@@ -12,12 +12,14 @@ namespace Admin.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class RefPrice
+    public partial class Interest
     {
-        public long id { get; set; }
-        public decimal refprice1 { get; set; }
-        public System.DateTime modified { get; set; }
-        public string name { get; set; }
-        public Nullable<int> assetId { get; set; }
+        public int id { get; set; }
+        public Nullable<decimal> interest1 { get; set; }
+        public Nullable<int> assetid { get; set; }
+        public Nullable<decimal> repoInterset { get; set; }
+        public Nullable<decimal> loanInterset { get; set; }
+        public Nullable<decimal> maxValue { get; set; }
+        public Nullable<decimal> minValue { get; set; }
     }
 }

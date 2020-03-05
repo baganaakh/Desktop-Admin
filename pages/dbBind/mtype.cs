@@ -16,5 +16,6 @@ namespace Admin.dbBind
     {
         public short id { get; set; }
         public string mtype1 { get; set; }
+        public Nullable<decimal> minValue { get; set; }
     }
 }

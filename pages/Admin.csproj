@@ -107,6 +107,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="dbBind\ColReq.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Interest.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Reason.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="page\account.xaml.cs">
       <DependentUpon>account.xaml</DependentUpon>
     </Compile>
@@ -299,6 +308,9 @@
     <Compile Include="dbBind\UserGroup.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="page\CollApprove.xaml.cs">
+      <DependentUpon>CollApprove.xaml</DependentUpon>
+    </Compile>
     <Compile Include="page\deal2.xaml.cs">
       <DependentUpon>deal2.xaml</DependentUpon>
     </Compile>
@@ -363,6 +375,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="page\ClearingAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="page\CollApprove.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

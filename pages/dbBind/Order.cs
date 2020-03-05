@@ -15,15 +15,21 @@ namespace Admin.dbBind
     public partial class Order
     {
         public long id { get; set; }
-        public long bid { get; set; }
-        public short side { get; set; }
-        public long memberid { get; set; }
-        public long accountid { get; set; }
-        public long assetid { get; set; }
-        public int qty { get; set; }
-        public decimal price { get; set; }
-        public short state { get; set; }
+        public Nullable<long> bid { get; set; }
+        public Nullable<short> side { get; set; }
+        public Nullable<long> memberid { get; set; }
+        public Nullable<long> accountid { get; set; }
+        public Nullable<long> assetid { get; set; }
+        public Nullable<int> qty { get; set; }
+        public Nullable<decimal> price { get; set; }
+        public Nullable<short> state { get; set; }
         public System.DateTime modified { get; set; }
         public Nullable<short> dealType { get; set; }
+        public string connect { get; set; }
+        public Nullable<int> day { get; set; }
+        public Nullable<decimal> totSum { get; set; }
+        public Nullable<decimal> toPay { get; set; }
+        public Nullable<decimal> interests { get; set; }
+        public Nullable<decimal> fee { get; set; }
     }
 }

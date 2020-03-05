@@ -45,7 +45,6 @@
         <EntityTypeShape EntityType="demoModel.State" Width="1.5" PointX="18.75" PointY="7.75" />
         <EntityTypeShape EntityType="demoModel.stype" Width="1.5" PointX="18.75" PointY="10.75" />
         <EntityTypeShape EntityType="demoModel.sysdiagram" Width="1.5" PointX="18.75" PointY="13.75" />
-        <EntityTypeShape EntityType="demoModel.Tran" Width="1.5" PointX="16.75" PointY="19.75" />
         <EntityTypeShape EntityType="demoModel.transType" Width="1.5" PointX="18.75" PointY="19.75" />
         <EntityTypeShape EntityType="demoModel.UserAccount" Width="1.5" PointX="20.75" PointY="0.75" />
         <EntityTypeShape EntityType="demoModel.UserGroup" Width="1.5" PointX="0.75" PointY="20.75" />
@@ -60,6 +59,10 @@
         <EntityTypeShape EntityType="demoModel.Participant" Width="1.5" PointX="21.375" PointY="19.75" />
         <EntityTypeShape EntityType="demoModel.user" Width="1.5" PointX="0.75" PointY="14.75" />
         <EntityTypeShape EntityType="demoModel.Account" Width="1.5" PointX="7.375" PointY="15.75" />
+        <EntityTypeShape EntityType="demoModel.ColReq" Width="1.5" PointX="21.375" PointY="9.75" />
+        <EntityTypeShape EntityType="demoModel.Interest" Width="1.5" PointX="11.375" PointY="22.75" />
+        <EntityTypeShape EntityType="demoModel.Reason" Width="1.5" PointX="13.375" PointY="22.75" />
+        <EntityTypeShape EntityType="demoModel.Tran" Width="1.5" PointX="15.375" PointY="20.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

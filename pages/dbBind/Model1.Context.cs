@@ -67,7 +67,6 @@ namespace Admin.dbBind
         public virtual DbSet<State> States { get; set; }
         public virtual DbSet<stype> stypes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<Tran> Trans { get; set; }
         public virtual DbSet<transType> transTypes { get; set; }
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
         public virtual DbSet<UserGroup> UserGroups { get; set; }
@@ -81,6 +80,10 @@ namespace Admin.dbBind
         public virtual DbSet<Participant> Participants { get; set; }
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<ColReq> ColReqs { get; set; }
+        public virtual DbSet<Interest> Interests { get; set; }
+        public virtual DbSet<Reason> Reasons { get; set; }
+        public virtual DbSet<Tran> Trans { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

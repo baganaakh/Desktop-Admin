@@ -12,12 +12,16 @@ namespace Admin.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class RefPrice
+    public partial class ColReq
     {
         public long id { get; set; }
-        public decimal refprice1 { get; set; }
-        public System.DateTime modified { get; set; }
-        public string name { get; set; }
+        public Nullable<long> accId { get; set; }
         public Nullable<int> assetId { get; set; }
+        public Nullable<decimal> value { get; set; }
+        public Nullable<short> type { get; set; }
+        public Nullable<byte> state { get; set; }
+        public Nullable<System.DateTime> modified { get; set; }
+        public Nullable<short> reason { get; set; }
+        public Nullable<int> memid { get; set; }
     }
 }

@@ -25,5 +25,7 @@ namespace Admin.dbBind
         public Nullable<System.DateTime> startdate { get; set; }
         public Nullable<System.DateTime> enddate { get; set; }
         public short state { get; set; }
+        public Nullable<decimal> blnc { get; set; }
+        public Nullable<decimal> sblnc { get; set; }
     }
 }
