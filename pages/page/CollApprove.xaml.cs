@@ -26,6 +26,7 @@ namespace Admin.page
         {
             InitializeComponent();
             FillDataGrid();
+            bindCombo();
         }
         #region fill
         private void FillDataGrid()
@@ -39,33 +40,49 @@ namespace Admin.page
         {
             ColReq values = DateTable2.SelectedItem as ColReq;
             if (null == values) return;
-            //int id =Convert.ToInt32( values.Row[0]);
             using(demoEntities10 conx=new demoEntities10())
             {  
-                long accid = Convert.ToInt64(values.accId);
-                int assid = Convert.ToInt32(values.assetId);
-                decimal amu = Convert.ToDecimal(values.value);
-                int memi = Convert.ToInt32(values.memid);
                 Tran trans1 = new Tran
                 {
-                    accountId=accid,
-                    currency=assid,
-                    amount=amu,
-                    memberid=memi,
-                    modified=DateTime.Now
+                    accountId= Convert.ToInt64(values.accId),
+                    currency= Convert.ToInt32(values.assetId),
+                    amount= Convert.ToDecimal(values.value),
+                    memberid= Convert.ToInt32(values.memid),
+                    modified=DateTime.Now,
+                    tdate=values.modified,
+                    type=values.type,
                 };
                 ColReq std = conx.ColReqs.FirstOrDefault(r => r.id == values.id);
-                std.state = 1;
+                conx.ColReqs.Remove(std);
                 conx.Trans.Add(trans1);
                 conx.SaveChanges();
             }
             FillDataGrid();
         }
         #endregion
-        #region deny
+        #region deny state=2 is denied
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            ColReq values = DateTable2.SelectedItem as ColReq;
+            if (null == values) return;
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                ColReq std = conx.ColReqs.FirstOrDefault(r => r.id == values.id);
+                std.state = 2;
+                std.reason = Convert.ToInt16(Reasons.SelectedValue);
+                conx.SaveChanges();
+            }
+        FillDataGrid();
+        }
+        #endregion
+        #region comvos
+        public List<Reason> reas { get; set; }
+        private void bindCombo()
+        {
+            demoEntities10 de = new demoEntities10();
+            var reasonss = de.Reasons.ToList();
+            reas = reasonss;
+            Reasons.ItemsSource = reas;
         }
         #endregion
     }
