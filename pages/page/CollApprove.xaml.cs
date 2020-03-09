@@ -53,7 +53,6 @@ namespace Admin.page
                     type=values.mode,
                 };
                 ColReq std = conx.ColReqs.FirstOrDefault(r => r.id == values.id);
-                std.state = 1;
                 conx.ColReqs.Remove(std);
                 conx.Trans.Add(trans1);
                 conx.SaveChanges();
@@ -61,7 +60,7 @@ namespace Admin.page
             FillDataGrid();
         }
         #endregion
-        #region deny state=2 is denied
+        #region deny state=0 is denied
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             ColReq values = DateTable2.SelectedItem as ColReq;
@@ -69,7 +68,7 @@ namespace Admin.page
             using (demoEntities10 conx = new demoEntities10())
             {
                 ColReq std = conx.ColReqs.FirstOrDefault(r => r.id == values.id);
-                std.state = 2;
+                std.state = 0;
                 std.reason = Convert.ToInt16(Reasons.SelectedValue);
                 conx.SaveChanges();
             }
