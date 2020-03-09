@@ -12,7 +12,7 @@ namespace Admin.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class AccountDetail
+    public partial class AccountDet
     {
         public int id { get; set; }
         public Nullable<decimal> freezeValue { get; set; }
