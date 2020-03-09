@@ -142,7 +142,7 @@
           <Property Name="accId" Type="bigint" />
           <Property Name="assetId" Type="int" />
           <Property Name="value" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="type" Type="smallint" />
+          <Property Name="mode" Type="smallint" />
           <Property Name="state" Type="tinyint" />
           <Property Name="modified" Type="datetime" />
           <Property Name="reason" Type="smallint" />
@@ -517,7 +517,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
           <Property Name="description" Type="nvarchar" MaxLength="1024" />
         </EntityType>
@@ -956,10 +956,10 @@
           <EntitySet Name="Participants" EntityType="demoModel.Participant" />
           <EntitySet Name="users" EntityType="demoModel.user" />
           <EntitySet Name="Accounts" EntityType="demoModel.Account" />
-          <EntitySet Name="ColReqs" EntityType="demoModel.ColReq" />
           <EntitySet Name="Interests" EntityType="demoModel.Interest" />
           <EntitySet Name="Reasons" EntityType="demoModel.Reason" />
           <EntitySet Name="Trans" EntityType="demoModel.Tran" />
+          <EntitySet Name="ColReqs" EntityType="demoModel.ColReq" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1673,20 +1673,6 @@
           <Property Name="blnc" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="sblnc" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
-        <EntityType Name="ColReq">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="accId" Type="Int64" />
-          <Property Name="assetId" Type="Int32" />
-          <Property Name="value" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="type" Type="Int16" />
-          <Property Name="state" Type="Byte" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="reason" Type="Int16" />
-          <Property Name="memid" Type="Int32" />
-        </EntityType>
         <EntityType Name="Interest">
           <Key>
             <PropertyRef Name="id" />
@@ -1724,6 +1710,20 @@
           <Property Name="modified" Type="DateTime" Precision="3" />
           <Property Name="userId" Type="Int64" />
           <Property Name="memberid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ColReq">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accId" Type="Int64" />
+          <Property Name="assetId" Type="Int32" />
+          <Property Name="value" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="mode" Type="Int16" />
+          <Property Name="state" Type="Byte" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="reason" Type="Int16" />
+          <Property Name="memid" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2474,21 +2474,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ColReqs">
-            <EntityTypeMapping TypeName="demoModel.ColReq">
-              <MappingFragment StoreEntitySet="ColReq">
-                <ScalarProperty Name="memid" ColumnName="memid" />
-                <ScalarProperty Name="reason" ColumnName="reason" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="value" ColumnName="value" />
-                <ScalarProperty Name="assetId" ColumnName="assetId" />
-                <ScalarProperty Name="accId" ColumnName="accId" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Interests">
             <EntityTypeMapping TypeName="demoModel.Interest">
               <MappingFragment StoreEntitySet="Interests">
@@ -2526,6 +2511,21 @@
                 <ScalarProperty Name="type1" ColumnName="type1" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ColReqs">
+            <EntityTypeMapping TypeName="demoModel.ColReq">
+              <MappingFragment StoreEntitySet="ColReq">
+                <ScalarProperty Name="memid" ColumnName="memid" />
+                <ScalarProperty Name="reason" ColumnName="reason" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="mode" ColumnName="mode" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="assetId" ColumnName="assetId" />
+                <ScalarProperty Name="accId" ColumnName="accId" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

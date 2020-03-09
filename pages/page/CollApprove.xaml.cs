@@ -32,7 +32,7 @@ namespace Admin.page
         private void FillDataGrid()
         {
             demoEntities10 DE = new demoEntities10();
-                DateTable2.ItemsSource = DE.ColReqs.ToList();
+            DateTable2.ItemsSource = DE.ColReqs.ToList();
         }
         #endregion
         #region Approve
@@ -50,9 +50,10 @@ namespace Admin.page
                     memberid= Convert.ToInt32(values.memid),
                     modified=DateTime.Now,
                     tdate=values.modified,
-                    type=values.type,
+                    type=values.mode,
                 };
                 ColReq std = conx.ColReqs.FirstOrDefault(r => r.id == values.id);
+                std.state = 1;
                 conx.ColReqs.Remove(std);
                 conx.Trans.Add(trans1);
                 conx.SaveChanges();
@@ -75,7 +76,7 @@ namespace Admin.page
         FillDataGrid();
         }
         #endregion
-        #region comvos
+        #region combos
         public List<Reason> reas { get; set; }
         private void bindCombo()
         {

@@ -47,7 +47,6 @@ namespace Admin
             sides= values.Row[2].ToString();
             string QTY= values.Row[6].ToString();
             string Price= values.Row[7].ToString();
-
             memid.SelectedValue = memId;
             accountid.SelectedValue = accId;
             stat.SelectedValue = statid;
@@ -206,7 +205,6 @@ namespace Admin
             sid = sside;
             Side.ItemsSource = sid;
         }
-
         private void side_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var items = Side.SelectedItem as side;
