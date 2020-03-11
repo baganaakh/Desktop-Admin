@@ -82,9 +82,9 @@ namespace Admin.dbBind
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Interest> Interests { get; set; }
         public virtual DbSet<Reason> Reasons { get; set; }
-        public virtual DbSet<Tran> Trans { get; set; }
         public virtual DbSet<ColReq> ColReqs { get; set; }
-        public virtual DbSet<AccountDet> AccountDets { get; set; }
+        public virtual DbSet<AccountDetail> AccountDetails { get; set; }
+        public virtual DbSet<Tran> Trans { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

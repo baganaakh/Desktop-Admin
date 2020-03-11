@@ -44,9 +44,9 @@ namespace Admin.page
             {  
                 Tran trans1 = new Tran
                 {
-                    accountId= Convert.ToInt64(values.accId),
-                    currency= Convert.ToInt32(values.assetId),
-                    amount= Convert.ToDecimal(values.value),
+                    accountId= values.accId.ToString(),
+                    assetId= Convert.ToInt32(values.assetId),
+                    totalNumber= Convert.ToDecimal(values.value),
                     memberid= Convert.ToInt32(values.memid),
                     modified=DateTime.Now,
                     tdate=values.modified,

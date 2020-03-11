@@ -15,11 +15,11 @@ namespace Admin.dbBind
     public partial class Tran
     {
         public long id { get; set; }
-        public Nullable<long> accountId { get; set; }
+        public string accountId { get; set; }
         public Nullable<short> type { get; set; }
         public Nullable<short> type1 { get; set; }
-        public Nullable<decimal> amount { get; set; }
-        public Nullable<int> currency { get; set; }
+        public Nullable<decimal> totalNumber { get; set; }
+        public Nullable<int> assetId { get; set; }
         public Nullable<int> rate { get; set; }
         public string note { get; set; }
         public Nullable<System.DateTime> tdate { get; set; }

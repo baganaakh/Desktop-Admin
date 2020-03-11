@@ -107,7 +107,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="dbBind\AccountDet.cs">
+    <Compile Include="dbBind\AccountDetail.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\ColReq.cs">
@@ -117,6 +117,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\Reason.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Tran.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="page\account.xaml.cs">
@@ -291,9 +294,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\TickSizeTable.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\Tran.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\transType.cs">

@@ -12,13 +12,13 @@ namespace Admin.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class AccountDet
+    public partial class AccountDetail
     {
         public int id { get; set; }
         public Nullable<decimal> freezeValue { get; set; }
         public Nullable<decimal> totalNumber { get; set; }
         public Nullable<int> assetId { get; set; }
-        public string accNum { get; set; }
+        public string accountId { get; set; }
         public string linkAcc { get; set; }
     }
 }
