@@ -176,7 +176,6 @@ namespace Admin
         public List<Board> Dtype { get; set; }
         public List<Account> ACCT { get; set; }
         public List<Asset> ASST { get; set; }
-        public List<side> sid { get; set; }
 
         private void bindCombo()
         {
@@ -201,21 +200,19 @@ namespace Admin
             ASST = asst;
             assetid.ItemsSource = ASST;
             
-            var sside= dc.sides.ToList();
-            sid = sside;
-            Side.ItemsSource = sid;
+            
         }
         private void side_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var items = Side.SelectedItem as side;
-            try
-            {
-                sides= items.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
+            //var items = Side.SelectedItem as side;
+            //try
+            //{
+            //    sides= items.id.ToString();
+            //}
+            //catch
+            //{
+            //    return;
+            //}
         }
 
         private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)

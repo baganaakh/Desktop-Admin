@@ -13,7 +13,12 @@
         <TextBox x:Name="clot" HorizontalAlignment="Left" Height="23" Margin="412,27,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="cgroupid" HorizontalAlignment="Left" Height="23" Margin="698,27,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
         <TextBox  x:Name="refpricePara" HorizontalAlignment="Left" Height="23" Margin="973,27,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
-        <ComboBox IsEditable="True" x:Name="ctype" ItemsSource="{Binding}" SelectionChanged="ctype_SelectionChanged" DisplayMemberPath="ctype1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="138,65,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox IsEditable="True" x:Name="ctype" ItemsSource="{Binding}" SelectionChanged="ctype_SelectionChanged" DisplayMemberPath="ctype1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="138,65,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem>Спот</ComboBoxItem>
+            <ComboBoxItem>Форвард</ComboBoxItem>
+            <ComboBoxItem>Фьючерс</ComboBoxItem>
+            <ComboBoxItem>Опцион</ComboBoxItem>
+        </ComboBox>
         <ComboBox x:Name="cstate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="698,65,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <TextBox x:Name="ccode" HorizontalAlignment="Left" Height="23" Margin="138,109,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <DatePicker x:Name="csdate" HorizontalAlignment="Left" Margin="412,106,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-2.663,4.375"/>

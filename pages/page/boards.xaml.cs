@@ -28,10 +28,9 @@ namespace Admin
         {
             InitializeComponent();
             FillDataGrid();
-            bindCombo();
         }
         string connectionString = Properties.Settings.Default.ConnectionString;
-        string id, cid, dealTypes;
+        string id, cid;
         #region number
         private static readonly Regex _regex = new Regex("[^0-9.-]+");
         private static bool IsTextAllowed(string text)
@@ -55,7 +54,7 @@ namespace Admin
             string tdays = value.Row[3].ToString();
             string stat = value.Row[4].ToString();
             string description = value.Row[6].ToString();
-            dealTypes = value.Row[7].ToString();
+            string dealTypes = value.Row[7].ToString();
             string time= value.Row[8].ToString();
             string eday= value.Row[9].ToString();
 
@@ -79,27 +78,43 @@ namespace Admin
             {
                 MessageBox.Show("bname null!!!!");
             }
-            string boardName = bname.Text;
-            string type = btype.Text;
-            string tdays = tdayss.Text;
-            string descr = desc.Text;
-            string ehour = dhour.Text;
-            string eminute = dminute.Text;
-            string esecond = dsecond.Text;
-            string exdate = enddate.Text;
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
+            using(demoEntities10 contx=new demoEntities10())
+            {
+                int ehour =Convert.ToInt32(dhour.Text);
+                int eminute =Convert.ToInt32(dminute.Text);
+                int esecond =Convert.ToInt32(dsecond.Text);
+                TimeSpan times = new TimeSpan(ehour, eminute, esecond);
+                Board boa = new Board
+                {
+                    name = bname.Text,
+                    expTime =times,
+                    tdays=tdayss.Text,
+                    description=desc.Text,
+                    dealType=Convert.ToInt16(dealtype.SelectedIndex),
+                    expDate=Convert.ToInt16(enddate.Text),
+                    state=Convert.ToInt16(state.SelectedIndex-1),
+                    modified=DateTime.Now,
+                };
+                contx.Boards.Add(boa);
+                contx.SaveChanges();
+            }
+            // string boardName = bname.Text;
+            // string type = btype.Text;
+            // string tdays = tdayss.Text;
+            // string exdate = enddate.Text;
+            // System.Data.SqlClient.SqlConnection sqlConnection1 =
+            //new System.Data.SqlClient.SqlConnection(connectionString);
 
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.boards (name, type, tdays, description, state,dealType,expTime,expDate) values" +
-                " (N'" + boardName + "',N'" + type + "',N'" + tdays + "', N'" + descr + "', N'" + cid + "',"+ dealTypes + "," +
-                "'"+ehour+":"+eminute+":"+esecond+"',"+exdate+")";
+            // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            // cmd.CommandType = System.Data.CommandType.Text;
+            // cmd.CommandText = "insert into dbo.boards (name, type, tdays, description, state,dealType,expTime,expDate) values" +
+            //     " (N'" + boardName + "',N'" + type + "',N'" + tdays + "', N'" + descr + "', N'" + cid + "',"+ dealTypes + "," +
+            //     "'"+ehour+":"+eminute+":"+esecond+"',"+exdate+")";
 
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            // cmd.Connection = sqlConnection1;
+            // sqlConnection1.Open();
+            // cmd.ExecuteNonQuery();
+            // sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion
@@ -139,7 +154,7 @@ namespace Admin
                 "tdays = N'" + tdays + "', " +
                 "description = N'" + descr + "', " +
                 "state = N'" + cid + "', " +
-                "dealType = " + dealTypes + ", " +
+                //"dealType = " + dealTypes + ", " +
                 "expDate = " + exdate + ", " +
                 "expTime = '"+ehour+":"+eminute+":"+esecond+"', " +
                 "modified = getdate() " +
@@ -191,54 +206,5 @@ namespace Admin
             enddate.Text = null;
         }
         #endregion
-        #region combos
-        public List<State> boa { get; set; }
-        public List<Dealtype> Dtype { get; set; }
-
-        private void bindCombo()
-        {
-            demoEntities10 dE = new demoEntities10();
-            
-            var item = dE.States.ToList();
-            boa = item;
-            state.ItemsSource = boa;
-
-            var dts = dE.Dealtypes.ToList();
-            Dtype = dts;
-            dealtype.ItemsSource = Dtype;
-        }
-
-        private void tdayss_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void dealtype_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var dti = dealtype.SelectedItem as Dealtype;
-            try
-            {
-                dealTypes = dti.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-
-        private void stat_change(object sender, SelectionChangedEventArgs e)
-        {
-            var item = state.SelectedItem as State;
-            try
-            {
-                cid = item.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-        #endregion
-
     }
 }

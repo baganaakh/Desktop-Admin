@@ -22,7 +22,13 @@
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="aprice" HorizontalAlignment="Left" Height="23" Margin="155,111,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" MaxLength="5" x:Name="artio" HorizontalAlignment="Left" Height="23" Margin="473,21,0,0" TextWrapping="Wrap" Text="00.00"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="anote" HorizontalAlignment="Left" Height="23" Margin="155,164,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="astate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="473,112,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox x:Name="astate" HorizontalAlignment="Left" Margin="473,112,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
+            <ComboBoxItem>Устгасан</ComboBoxItem>
+            <Separator Height="1"/>
+            <ComboBoxItem>Хэвийн</ComboBoxItem>
+            <Separator Height="1"/>
+            <ComboBoxItem>Идэвхгүй</ComboBoxItem>
+        </ComboBox>
         <DatePicker x:Name="aexpire" HorizontalAlignment="Left" Margin="473,71,0,0" VerticalAlignment="Top" Width="120"/>
         <Button Content="Edit" HorizontalAlignment="Left" Margin="703,76,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="Insert" HorizontalAlignment="Left" Margin="703,27,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
@@ -44,5 +50,7 @@
                 <DataGridTextColumn Binding="{Binding secId}" Header="Sec ID"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Label Content="volume" HorizontalAlignment="Left" Margin="345,161,0,0" VerticalAlignment="Top"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="avolume" HorizontalAlignment="Left" Height="23" Margin="473,164,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Page>

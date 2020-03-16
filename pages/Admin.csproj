@@ -128,8 +128,8 @@
     <Compile Include="page\adminPage.xaml.cs">
       <DependentUpon>adminPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="page\ClearingAccount.xaml.cs">
-      <DependentUpon>ClearingAccount.xaml</DependentUpon>
+    <Compile Include="page\ClearingAccoun.xaml.cs">
+      <DependentUpon>ClearingAccoun.xaml</DependentUpon>
     </Compile>
     <Compile Include="dbBind\Account.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -206,9 +206,6 @@
     <Compile Include="dbBind\InvoiceDetail.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\isactive.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="dbBind\IsDealer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -264,9 +261,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\Setting.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\side.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\Software.cs">
@@ -377,7 +371,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="page\ClearingAccount.xaml">
+    <Page Include="page\ClearingAccoun.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

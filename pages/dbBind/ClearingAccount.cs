@@ -15,14 +15,14 @@ namespace Admin.dbBind
     public partial class ClearingAccount
     {
         public int id { get; set; }
-        public int memberid { get; set; }
-        public int account { get; set; }
-        public short type { get; set; }
-        public int currency { get; set; }
-        public decimal blnc { get; set; }
-        public decimal sblnc { get; set; }
-        public long linkaccount { get; set; }
-        public short state { get; set; }
-        public System.DateTime modified { get; set; }
+        public Nullable<int> memberid { get; set; }
+        public string account { get; set; }
+        public Nullable<short> type { get; set; }
+        public Nullable<int> currency { get; set; }
+        public Nullable<decimal> blnc { get; set; }
+        public Nullable<decimal> sblnc { get; set; }
+        public Nullable<long> linkaccount { get; set; }
+        public Nullable<short> state { get; set; }
+        public Nullable<System.DateTime> modified { get; set; }
     }
 }

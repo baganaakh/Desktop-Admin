@@ -16,6 +16,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Text.RegularExpressions;
 using Admin.dbBind;
+using System.Globalization;
 
 namespace Admin
 {
@@ -28,10 +29,10 @@ namespace Admin
         {
             InitializeComponent();
             FillDataGrid();
-            bindCombo();
         }
         string connectionString = Properties.Settings.Default.ConnectionString;
-        static string id,statid;
+        string id;
+        demoEntities10 DE = new demoEntities10();
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -64,43 +65,58 @@ namespace Admin
                 MessageBox.Show("Please Set Date !!!!!");
                 return;
             }
-            string code = acode.Text;
-            string name = aname.Text;
-            string value = aprice.Text;
-            string note = anote.Text;
-            string expireDate = aexpire.SelectedDate.Value.ToShortDateString();
-            string rati =artio.Text;
-            //decimal ratio = Decimal.Parse(rati)/100;
-            string state = astate.Text;
-
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.assets(code, name, value, note, expireDate, state, ratio) values" +
-                " (N'" + code + "',N'" + name + "',N'" + value + "',N'" + note + "', '" + expireDate+ "', '" + statid+ "', '" + rati+ "')";
-
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            using(demoEntities10 contx=new demoEntities10())
+            {
+                Asset ast = new Asset
+                {
+                    code = acode.Text,
+                    name = aname.Text,
+                    price=Convert.ToDecimal(aprice.Text),
+                    note=anote.Text,
+                    ratio=Convert.ToDecimal( artio.Text)/100,
+                    expireDate=Convert.ToDateTime( aexpire.SelectedDate),
+                    state=Convert.ToInt16(astate.SelectedIndex -1),
+                    volume = Convert.ToInt32(avolume.Text),
+                };
+                contx.Assets.Add(ast);
+                contx.SaveChanges();
+            }
+            // string code = acode.Text;
+            // string name = aname.Text;
+            // string value = aprice.Text;
+            // string note = anote.Text;
+            // string expireDate = aexpire.SelectedDate.Value.ToShortDateString();
+            // string rati =artio.Text;
+            // //decimal ratio = Decimal.Parse(rati)/100;
+            // string state = astate.Text;
+            // System.Data.SqlClient.SqlConnection sqlConnection1 =
+            //new System.Data.SqlClient.SqlConnection(connectionString);
+            // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            // cmd.CommandType = System.Data.CommandType.Text;
+            // cmd.CommandText = "insert into dbo.assets(code, name, value, note, expireDate, state, ratio) values" +
+            //     " (N'" + code + "',N'" + name + "',N'" + value + "',N'" + note + "', '" + expireDate+ "', '', '" + rati+ "')";
+            // cmd.Connection = sqlConnection1;
+            // sqlConnection1.Open();
+            // cmd.ExecuteNonQuery();
+            // sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion
         #region fill
         private void FillDataGrid()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string CmdString = "SELECT ALL [id], [code], [name], [value], [note], [expireDate], [state], [modified], [ratio], [secId] "+
-                    "FROM dbo.assets";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Securities");
-                sda.Fill(dt);
-                DateTable2.ItemsSource = dt.DefaultView;
-            }
+            demoEntities10 de = new demoEntities10();
+            DateTable2.ItemsSource = de.Assets.ToList();
+            //using (SqlConnection conn = new SqlConnection(connectionString))
+            //{
+            //    string CmdString = "SELECT ALL [id], [code], [name], [value], [note], [expireDate], [state], [modified], [ratio], [secId] "+
+            //        "FROM dbo.assets";
+            //    SqlCommand cmd = new SqlCommand(CmdString, conn);
+            //    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            //    DataTable dt = new DataTable("Securities");
+            //    sda.Fill(dt);
+            //    DateTable2.ItemsSource = dt.DefaultView;
+            //}
         }
         #endregion
         #region ref new
@@ -174,7 +190,7 @@ namespace Admin
                 "value= '" + value+ "', " +
                 "note= N'" + note + "', " +
                 "expireDate= '" + expireDate+ "', " +
-                "state= '" + statid + "', " +
+                //"state= '" + statid + "', " +
                 "modified = getdate(), " +
                 "ratio= '" + ratio+ "' " +
                 "WHERE id = '" + id + "'";
@@ -186,27 +202,6 @@ namespace Admin
             FillDataGrid();
         }
         #endregion
-        #region combos
-        public List<State> statt { get; set; }
-        private void bindCombo()
-        {
-            demoEntities10 st = new demoEntities10();
-            var items = st.States.ToList();
-            statt = items;
-            astate.ItemsSource = statt;
-        }
-        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var items = astate.SelectedItem as State;
-            try
-            {
-            statid = items.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-        #endregion
+        
     }
 }

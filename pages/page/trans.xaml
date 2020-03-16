@@ -44,7 +44,8 @@
                 <DataGridTextColumn Binding="{Binding accountId}" Header="AID"/>
                 <DataGridTextColumn Binding="{Binding type}" Header="Type"/>
                 <DataGridTextColumn Binding="{Binding type1}" Header="Type1"/>
-                <DataGridTextColumn Binding="{Binding amount}" Header="Amount"/>
+                <DataGridTextColumn Binding="{Binding totalNumber}" Header="Amount"/>
+                <DataGridTextColumn Binding="{Binding assetId}" Header="Currency"/>
                 <DataGridTextColumn Binding="{Binding rate}" Header="Rate"/>
                 <DataGridTextColumn Binding="{Binding note}" Header="Note"/>
                 <DataGridTextColumn Binding="{Binding tdate}" Header="Tdate"/>

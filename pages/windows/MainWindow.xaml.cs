@@ -79,7 +79,7 @@ namespace Admin
         }
         private void BtnClickP10(object sender, RoutedEventArgs e)
         {
-            Main.Content = new ClearingAccount();
+            Main.Content = new ClearingAccoun();
             this.Title = "Clearing Account";
         }
         private void BtnClickP11(object sender, RoutedEventArgs e)

@@ -87,7 +87,7 @@ namespace Admin
                         memberid=Convert.ToInt64(memId),
                         accNum=accnu,
                         accType=Convert.ToInt16(acctype.SelectedValue),
-                        state=Convert.ToInt16(stat),
+                        state=Convert.ToInt16(pstate.SelectedIndex-1),
                         modified=DateTime.Now
                     };
                     contx.Accounts.Add(std);
@@ -229,7 +229,6 @@ namespace Admin
         #region combos control
         public List<Member> Emp { get; set; }
         public List<accType> acct { get; set; }
-        public List<State> boa{ get; set; }
         private void bindCombo()
         {
             demoEntities10 dc = new demoEntities10();
@@ -237,10 +236,6 @@ namespace Admin
             Emp = mitem;
             memid.ItemsSource = Emp;
 
-            var item = dc.States.ToList();
-            boa = item;
-            pstate.ItemsSource = boa;
-            
             var accitem = dc.accTypes.ToList();
             acct = accitem;
             acctype.ItemsSource = acct;
@@ -291,18 +286,7 @@ namespace Admin
                 MessageBox.Show(ex.ToString());
             }
         }
-        private void pstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = pstate.SelectedItem as State;
-            try
-            {
-                stat = item.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
+       
         private void memid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             demoEntities10 dc = new demoEntities10();

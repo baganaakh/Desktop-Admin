@@ -17,12 +17,13 @@ namespace Admin.dbBind
         public int id { get; set; }
         public string code { get; set; }
         public string name { get; set; }
-        public decimal value { get; set; }
+        public int volume { get; set; }
         public string note { get; set; }
         public System.DateTime expireDate { get; set; }
         public short state { get; set; }
         public System.DateTime modified { get; set; }
         public decimal ratio { get; set; }
         public Nullable<long> secId { get; set; }
+        public Nullable<decimal> price { get; set; }
     }
 }

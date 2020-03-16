@@ -16,8 +16,14 @@
         </Grid.ColumnDefinitions>
         <TextBox x:Name="bname" HorizontalAlignment="Left" Height="23" Margin="69,15,0,0" TextWrapping="Wrap" Text="222"  VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="tdayss" HorizontalAlignment="Left" Height="23" Margin="286,15,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="state" ItemsSource="{Binding}" SelectionChanged="stat_change" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="487,15,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1" Grid.ColumnSpan="2"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="btype" HorizontalAlignment="Left" Height="23" Margin="69,50,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="state" HorizontalAlignment="Left" Margin="487,15,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1" Grid.ColumnSpan="2">
+            <ComboBoxItem>Устгасан</ComboBoxItem>
+            <Separator Height="1"/>
+            <ComboBoxItem>Хэвийн</ComboBoxItem>
+            <Separator Height="1"/>
+            <ComboBoxItem>Идэвхгүй</ComboBoxItem>
+        </ComboBox>
+        <TextBox IsEnabled="False" PreviewTextInput="PreviewTextInput" x:Name="btype" HorizontalAlignment="Left" Height="23" Margin="107,50,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="82"/>
         <TextBox x:Name="desc" HorizontalAlignment="Left" Height="23" Margin="286,51,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="dhour" HorizontalAlignment="Left" Margin="69,92,0,0" VerticalAlignment="Top" Width="58">
             <ComboBoxItem Content="00"/>
@@ -167,11 +173,20 @@
             <ComboBoxItem Content="58"/>
             <ComboBoxItem Content="59"/>
         </ComboBox>
-        <ComboBox IsEditable="True" x:Name="dealtype" ItemsSource="{Binding}" SelectionChanged="dealtype_SelectionChanged" DisplayMemberPath="type" SelectedValuePath="id" HorizontalAlignment="Left" Margin="282,96,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox IsEditable="True" x:Name="dealtype" HorizontalAlignment="Left" Margin="282,96,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
+            <ComboBoxItem>Арилжаа</ComboBoxItem>
+            <ComboBoxItem>OTC</ComboBoxItem>
+            <ComboBoxItem>Тохиролцоо</ComboBoxItem>
+            <ComboBoxItem>Repo</ComboBoxItem>
+            <ComboBoxItem>Loan1</ComboBoxItem>
+            <ComboBoxItem>Loan2</ComboBoxItem>
+            <ComboBoxItem>Col 1</ComboBoxItem>
+            <ComboBoxItem>Col 2</ComboBoxItem>
+        </ComboBox>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="enddate" HorizontalAlignment="Left" Height="23" Margin="496,96,0,0" TextWrapping="Wrap" Text="1"  VerticalAlignment="Top" Width="33"/>
         <TextBlock x:Name="checkDAta" HorizontalAlignment="Left" Margin="253,19,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="54" Width="149" Grid.Column="1"/>
         <Label Content="Нэр" HorizontalAlignment="Left" Margin="20,15,0,0" VerticalAlignment="Top"/>
-        <Label Content="Type" HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top"/>
+        <Label Content="Өдрийн төрөл" HorizontalAlignment="Left" Margin="0,51,0,0" VerticalAlignment="Top"/>
         <Label Content="tdays" HorizontalAlignment="Left" Margin="211,15,0,0" VerticalAlignment="Top"/>
         <Label Content="тайлбар" HorizontalAlignment="Left" Margin="211,47,0,0" VerticalAlignment="Top"/>
         <Label Content="Төлөв" HorizontalAlignment="Left" Margin="430,15,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.698,0.538"/>

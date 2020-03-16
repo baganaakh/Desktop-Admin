@@ -20,18 +20,18 @@ using Admin.dbBind;
 namespace Admin
 {
     /// <summary>
-    /// Interaction logic for ClearingAccount.xaml
+    /// Interaction logic for ClearingAccoun.xaml
     /// </summary>
-    public partial class ClearingAccount : Page
+    public partial class ClearingAccoun : Page
     {
-        public ClearingAccount()
+        public ClearingAccoun()
         {
             InitializeComponent();
             FillDataGrid();
             bindcombo();
         }
         string connectionString = Properties.Settings.Default.ConnectionString;
-        static string id,cid,statid;
+        static string id,cid;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -61,27 +61,44 @@ namespace Admin
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            string memID = cid;
-            string accID = accid.Text;
-            string type = typee.Text;
-            string currenc = currency.Text;
-            string blnc = balanc.Text;
-            string sblnc = sbalanc.Text;
-            string linkAcc = linkacc.Text;
-            string state = stat.Text;
+            using(demoEntities10 contx=new demoEntities10())
+            {
+                ClearingAccount ca = new ClearingAccount
+                {
+                    memberid = Convert.ToInt32(memid.SelectedValue),
+                    type = Convert.ToInt16(typee.SelectedIndex),
+                    account = accid.Text,
+                    currency = Convert.ToInt32(currency.Text),
+                    blnc = Convert.ToDecimal(balanc.Text),
+                    sblnc = Convert.ToDecimal(sbalanc.Text),
+                    linkaccount = Convert.ToInt64(linkacc.SelectedValue),
+                    state = Convert.ToInt16(stat.SelectedIndex - 1),
+                    modified = DateTime.Now,
+                };
+                contx.ClearingAccounts.Add(ca);
+                contx.SaveChanges();
+            }
+            //    string memID = cid;
+            //    string accID = accid.Text;
+            //    string type = typee.Text;
+            //    string currenc = currency.Text;
+            //    string blnc = balanc.Text;
+            //    string sblnc = sbalanc.Text;
+            //    string linkAcc = linkacc.Text;
+            //    string state = stat.Text;
 
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
+            //    System.Data.SqlClient.SqlConnection sqlConnection1 =
+            //   new System.Data.SqlClient.SqlConnection(connectionString);
 
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.ClearingAccounts (memberid, account, type, currency, blnc, sblnc, linkaccount, state,modified) values" +
-                " ('" + memID+ "',N'" + accID+ "',N'" + type+ "',N'" + currenc+ "', '" + blnc+ "', '" + sblnc+ "', '" + linkAcc+ "', '" + statid+ "',getdate())";
+            //    System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            //    cmd.CommandType = System.Data.CommandType.Text;
+            //    cmd.CommandText = "insert into dbo.ClearingAccounts (memberid, account, type, currency, blnc, sblnc, linkaccount, state,modified) values" +
+            //        " ('" + memID+ "',N'" + accID+ "',N'" + type+ "',N'" + currenc+ "', '" + blnc+ "', '" + sblnc+ "', '" + linkAcc+ "', '" + statid+ "',getdate())";
 
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            //    cmd.Connection = sqlConnection1;
+            //    sqlConnection1.Open();
+            //    cmd.ExecuteNonQuery();
+            //    sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion
@@ -173,7 +190,7 @@ namespace Admin
                 "blnc= '" + blnc + "', " +
                 "sblnc= '" + sblnc + "', " +
                 "linkaccount= '" + linkAcc + "', " +
-                "state= '" + statid + "', " +
+                //"state= '" + statid + "', " +
                 "modified = getdate() " +
                 "WHERE id = '" + id + "'";
 
@@ -194,11 +211,7 @@ namespace Admin
             var item = dc.Members.ToList();
             Emp = item;
             memid.ItemsSource = Emp;
-
-            demoEntities10 st = new demoEntities10();
-            var items = st.States.ToList();
-            statt = items;
-            stat.ItemsSource = statt;
+            linkacc.ItemsSource = dc.Accounts.ToList();
         }
         private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -212,18 +225,7 @@ namespace Admin
                 return;
             }
         }
-        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var items = stat.SelectedItem as State;
-            try
-            {
-                statid = items.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
+        
         #endregion
     }
 }

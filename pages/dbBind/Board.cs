@@ -24,8 +24,5 @@ namespace Admin.dbBind
         public Nullable<short> dealType { get; set; }
         public Nullable<System.TimeSpan> expTime { get; set; }
         public Nullable<short> expDate { get; set; }
-    
-        public virtual Board Boards1 { get; set; }
-        public virtual Board Board1 { get; set; }
     }
 }

@@ -78,31 +78,41 @@ namespace Admin
                 MessageBox.Show("Please Set Date !!!!!");
                 return;
             }
-            string secId = cid;
-            string code = ccode.Text;
-            string name = cname.Text;
-            string lot = clot.Text;
-            string tick = ctick.Text;
-            string csdates = csdate.SelectedDate.Value.ToShortDateString();
-            string cedates = cedate.SelectedDate.Value.ToShortDateString();
-            string groupID = cgroupid.Text;
-            string mmorderLimit = mmorderLim.Text;
-            string orderlimit = orderLim.Text;
-            string refpricePar = refpricePara.Text;
+            using(demoEntities10 contx=new demoEntities10())
+            {
+                Contract con = new Contract
+                {
+                    securityId=Convert.ToInt64( securityid_Copy.SelectedValue),
+                    type=
+                };
+                contx.Contracts.Add(con);
+                contx.SaveChanges();
+            }
+           // string secId = cid;
+           // string code = ccode.Text;
+           // string name = cname.Text;
+           // string lot = clot.Text;
+           // string tick = ctick.Text;
+           // string csdates = csdate.SelectedDate.Value.ToShortDateString();
+           // string cedates = cedate.SelectedDate.Value.ToShortDateString();
+           // string groupID = cgroupid.Text;
+           // string mmorderLimit = mmorderLim.Text;
+           // string orderlimit = orderLim.Text;
+           // string refpricePar = refpricePara.Text;
 
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
+           // System.Data.SqlClient.SqlConnection sqlConnection1 =
+           //new System.Data.SqlClient.SqlConnection(connectionString);
 
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.contracts (securityId, type, code, name, lot, tick, sdate, edate, groupId, state, modified, mmorderLimit, orderLimit, refpriceParam,bid) values" +
-                " ('" + secId+ "',N'" + ctypee + "',N'" + code + "',N'" + name + "', '" + lot+ "', '" + tick+ "', '" + csdates+ "', '" + cedates+ "', '" + groupID +
-                "',N'" + statid+ "', getdate(),N'" + mmorderLimit+ "',N'" + orderlimit+ "',N'" + refpricePar+ "',"+boaID+")";
+           // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+           // cmd.CommandType = System.Data.CommandType.Text;
+           // cmd.CommandText = "insert into dbo.contracts (securityId, type, code, name, lot, tick, sdate, edate, groupId, state, modified, mmorderLimit, orderLimit, refpriceParam,bid) values" +
+           //     " ('" + secId+ "',N'" + ctypee + "',N'" + code + "',N'" + name + "', '" + lot+ "', '" + tick+ "', '" + csdates+ "', '" + cedates+ "', '" + groupID +
+           //     "',N'" + statid+ "', getdate(),N'" + mmorderLimit+ "',N'" + orderlimit+ "',N'" + refpricePar+ "',"+boaID+")";
 
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+           // cmd.Connection = sqlConnection1;
+           // sqlConnection1.Open();
+           // cmd.ExecuteNonQuery();
+           // sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion
@@ -224,7 +234,6 @@ namespace Admin
         #endregion
         #region combos
         public List<Security> boa { get; set; }
-        public List<State> statt { get; set; }
         public List<ctype> ctypp{ get; set; }
         public List<Board> boardd { get; set; }
 
@@ -235,10 +244,6 @@ namespace Admin
             boa = item;
             securityid_Copy.ItemsSource = boa;
 
-            var items = dE.States.ToList();
-            statt = items;
-            cstate.ItemsSource = statt;
-            
             var citems = dE.ctypes.ToList();
             ctypp = citems;
             ctype.ItemsSource = ctypp;
@@ -284,18 +289,6 @@ namespace Admin
             try
             {
                 cid = item.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var items = cstate.SelectedItem as State;
-            try
-            {
-            statid = items.id.ToString();
             }
             catch
             {
