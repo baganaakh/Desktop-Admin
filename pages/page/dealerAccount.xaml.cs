@@ -51,20 +51,29 @@ namespace Admin
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            string accID = accid.Text;
-
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.DealerAccounts (memberid, accountid, state, modified) values" +
-                " ('" + cid + "',N'" + accID+ "',N'" + statid +"', getdate())";
-
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            using(demoEntities10 contx=new demoEntities10())
+            {
+                DealerAccount dea = new DealerAccount
+                {
+                    memberid=Convert.ToInt32( memid.SelectedValue),
+                    accountid=Convert.ToInt64(accid.SelectedValue),
+                    state=Convert.ToInt16( stat.SelectedIndex -1),
+                    modified=DateTime.Now,
+                };
+                contx.DealerAccounts.Add(dea);
+                contx.SaveChanges();
+            }
+           // string accID = accid.Text;
+           // System.Data.SqlClient.SqlConnection sqlConnection1 =
+           //new System.Data.SqlClient.SqlConnection(connectionString);
+           // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+           // cmd.CommandType = System.Data.CommandType.Text;
+           // cmd.CommandText = "insert into dbo.DealerAccounts (memberid, accountid, state, modified) values" +
+           //     " ('" + cid + "',N'" + accID+ "',N'" + statid +"', getdate())";
+           // cmd.Connection = sqlConnection1;
+           // sqlConnection1.Open();
+           // cmd.ExecuteNonQuery();
+           // sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion
@@ -155,37 +164,18 @@ namespace Admin
         }
         #endregion
         #region combos
-        public List<State> statt { get; set; }
         public List<Member> Emp { get; set; }
-
         private void bindCombo()
         {
             demoEntities10 dc = new demoEntities10();
             var item = dc.Members.ToList();
             Emp = item;
             memid.ItemsSource = Emp;
-
-            demoEntities10 st = new demoEntities10();
-            var items = st.States.ToList();
-            statt = items;
-            stat.ItemsSource = statt;
-        }
-        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var items = stat.SelectedItem as State;
-            try
-            {
-                statid = items.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
+            accid.ItemsSource = dc.Accounts.ToList();
         }
         private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = memid.SelectedItem as Member;
-
             try
             {
                 cid = item.id.ToString();
@@ -194,7 +184,6 @@ namespace Admin
             {
                 return;
             }
-
         }
         #endregion
     }

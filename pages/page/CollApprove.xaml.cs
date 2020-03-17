@@ -42,7 +42,7 @@ namespace Admin.page
             if (null == values) return;
             using(demoEntities10 conx=new demoEntities10())
             {  
-                Tran trans1 = new Tran
+                Transaction trans1 = new Transaction
                 {
                     accountId= values.accId.ToString(),
                     assetId= Convert.ToInt32(values.assetId),
@@ -54,7 +54,7 @@ namespace Admin.page
                 };
                 ColReq std = conx.ColReqs.FirstOrDefault(r => r.id == values.id);
                 conx.ColReqs.Remove(std);
-                conx.Trans.Add(trans1);
+                conx.Transactions.Add(trans1);
                 conx.SaveChanges();
             }
             FillDataGrid();

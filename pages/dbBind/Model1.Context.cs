@@ -31,7 +31,6 @@ namespace Admin.dbBind
         public virtual DbSet<API> APIs { get; set; }
         public virtual DbSet<BoardInstrument> BoardInstruments { get; set; }
         public virtual DbSet<Calendar> Calendars { get; set; }
-        public virtual DbSet<Contract> Contracts { get; set; }
         public virtual DbSet<ctype> ctypes { get; set; }
         public virtual DbSet<dayType> dayTypes { get; set; }
         public virtual DbSet<Deal2> Deal2 { get; set; }
@@ -41,10 +40,8 @@ namespace Admin.dbBind
         public virtual DbSet<Fee> Fees { get; set; }
         public virtual DbSet<GroupRight> GroupRights { get; set; }
         public virtual DbSet<GroupUser> GroupUsers { get; set; }
-        public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<IsDealer> IsDealers { get; set; }
-        public virtual DbSet<Margin> Margins { get; set; }
         public virtual DbSet<MarketMaker> MarketMakers { get; set; }
         public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<mtype> mtypes { get; set; }
@@ -79,10 +76,13 @@ namespace Admin.dbBind
         public virtual DbSet<Reason> Reasons { get; set; }
         public virtual DbSet<ColReq> ColReqs { get; set; }
         public virtual DbSet<AccountDetail> AccountDetails { get; set; }
-        public virtual DbSet<Tran> Trans { get; set; }
         public virtual DbSet<Asset> Assets { get; set; }
         public virtual DbSet<Board> Boards { get; set; }
         public virtual DbSet<ClearingAccount> ClearingAccounts { get; set; }
+        public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<Contract> Contracts { get; set; }
+        public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; }
+        public virtual DbSet<Margin> Margins { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

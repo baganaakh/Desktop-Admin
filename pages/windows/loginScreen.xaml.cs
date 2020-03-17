@@ -13,6 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
+using Admin.dbBind;
+using System.Configuration;
+using System.Data.Entity.Core.EntityClient;
+using System.Data.Common;
+
 namespace Admin
 {
     /// <summary>
@@ -34,46 +39,68 @@ namespace Admin
         {
             string connectionString = Properties.Settings.Default.ConnectionString;
             string roless;
-            SqlConnection conn = new SqlConnection(connectionString);
-            try
-            {
-                    conn.Open();
-                    string CmdString = "SELECT role ,id FROM [dbo].[users] WHERE uname= '" + userName.Text + "' AND password= '" + passBox.Password + "'";
-                    SqlCommand cmd = new SqlCommand(CmdString, conn);
-                    DataTable dt = new DataTable("Securities");
+            //SqlConnection conn = new SqlConnection(connectionString);
+            //try
+            //{
+            //        conn.Open();
+            //        string CmdString = "SELECT role ,id FROM [dbo].[users] WHERE uname= '" + userName.Text + "' AND password= '" + passBox.Password + "'";
+            //        SqlCommand cmd = new SqlCommand(CmdString, conn);
+            //        DataTable dt = new DataTable("Securities");
 
-                SqlDataReader rdr = cmd.ExecuteReader();
-                dt.Load(rdr);
-
-                //SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                //sda.Fill(dt);
-                    string neo = dt.Rows[0][0].ToString();
-                    string adminstr = "admin";
-                    string substr = "subs";
-                    if (Equals(neo, adminstr))
-                    {
-                        MainWindow dashboard = new MainWindow();
-                        MyGlobals.U_ID = dt.Rows[0][1].ToString();
-
-                        dashboard.Show();
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Username and password is incorrect");
-                    }
+            //    SqlDataReader rdr = cmd.ExecuteReader();
+            //    dt.Load(rdr);
+            //    //SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            //    //sda.Fill(dt);
+            //        string neo = dt.Rows[0][0].ToString();
+            //        string adminstr = "admin";
+            //        string substr = "subs";
+            //        if (Equals(neo, adminstr))
+            //        {
+            //            MainWindow dashboard = new MainWindow();
+            //            MyGlobals.U_ID = dt.Rows[0][1].ToString();
+            //            dashboard.Show();
+            //            this.Close();
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("Username and password is incorrect");
+            //        }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.ToString());
+            //}
+            //finally
+            //{
+            //    conn.Close();
+            //}
+                ////var originalConnectionSting = ConfigurationManager.ConnectionStrings[
+                ////    "Data Source=192.168.1.108\\MSX-1003, 1433; Initial Catalog=demo;" +
+                ////    " MultipleActiveResultSets=True; App=EntityFramework&amp;quot;" +
+                ////    " persist security info=True;Integrated Security=false;"].ConnectionString;
+                ////var entityBuilder = new EntityConnectionStringBuilder(originalConnectionSting);
+                ////var factory = DbProviderFactories.GetFactory(entityBuilder.Provider);
+                ////var providerBuilder = factory.CreateConnectionStringBuilder();
                 
+                ////providerBuilder.ConnectionString = entityBuilder.ProviderConnectionString;
+                ////providerBuilder.Add("sa","Qwerty123456");
+                ////entityBuilder.ProviderConnectionString = providerBuilder.ToString();
+                ////using(demoEntities10 contx=new demoEntities10(entityBuilder.ToString()))
+                ////{
 
-            }
-            catch (Exception ex)
+                ////}
+            using (demoEntities10 context = new demoEntities10())
             {
-                MessageBox.Show(ex.ToString());
-            }
-            finally
-            {
-                conn.Close();
-            }
 
+                var query = context.users.Where(s => s.uname == userName.Text).FirstOrDefault<user>();
+                App.Current.Properties["User_id"] = query.id;
+                if (query.password == passBox.Password)
+                {
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    this.Close();
+                }
+            }
 
             void Switches(string valuee)
             {

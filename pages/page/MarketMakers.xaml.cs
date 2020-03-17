@@ -67,28 +67,40 @@ namespace Admin
                 MessageBox.Show("Please Set Date !!!!!");
                 return;
             }
-            string contId = coId;
-            string memId = meId;
-            string sdate = sdat.SelectedDate.Value.ToShortDateString();
-            string edate = edat.SelectedDate.Value.ToShortDateString();
-            string ticks = markticks.Text;
-            string desc= markdesc.Text;
-            string orderL = markorderl.Text;
+            using (demoEntities10 contx = new demoEntities10())
+            {
+                MarketMaker mam = new MarketMaker
+                {
+                    contactid=Convert.ToInt32(markcontact.SelectedValue),
+                    memberid=Convert.ToInt32(markmember.SelectedValue),
+                    accountid=Convert.ToInt64(markaccount.SelectedValue),
 
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
+                };
+                contx.MarketMakers.Add(mam);
+                contx.SaveChanges();
+            }
+                // string contId = coId;
+                // string memId = meId;
+                // string sdate = sdat.SelectedDate.Value.ToShortDateString();
+                // string edate = edat.SelectedDate.Value.ToShortDateString();
+                // string ticks = markticks.Text;
+                // string desc= markdesc.Text;
+                // string orderL = markorderl.Text;
 
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.marketMakers (contactid, memberid, accountid, startdate, enddate, ticks, description, orderlimit, state, modified) values" +
-                " ('" + contId+ "',N'" + memId+ "',N'" + acid+ "',N'" + sdate+ "', '" + edate+ "', '" + ticks+ "', '" + desc+ "', '" + orderL+ "', '" + statid +
-                "', getdate())";
+                // System.Data.SqlClient.SqlConnection sqlConnection1 =
+                //new System.Data.SqlClient.SqlConnection(connectionString);
 
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
-            FillDataGrid();
+                // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+                // cmd.CommandType = System.Data.CommandType.Text;
+                // cmd.CommandText = "insert into dbo.marketMakers (contactid, memberid, accountid, startdate, enddate, ticks, description, orderlimit, state, modified) values" +
+                //     " ('" + contId+ "',N'" + memId+ "',N'" + acid+ "',N'" + sdate+ "', '" + edate+ "', '" + ticks+ "', '" + desc+ "', '" + orderL+ "', '" + statid +
+                //     "', getdate())";
+
+                // cmd.Connection = sqlConnection1;
+                // sqlConnection1.Open();
+                // cmd.ExecuteNonQuery();
+                // sqlConnection1.Close();
+                FillDataGrid();
         }
         #endregion
         #region number
@@ -194,7 +206,6 @@ namespace Admin
         #region combos
         public List<Contract> Cont { get; set; }
         public List<Member> Emp { get; set; }
-        public List<State> statt { get; set; }
         public List<Account> Acco{ get; set; }
 
         private void bindcombo()
@@ -207,16 +218,11 @@ namespace Admin
             var citem = dc.Contracts.ToList();
             Cont = citem;
             markcontact.ItemsSource = Cont;
-
-            var items = dc.States.ToList();
-            statt = items;
-            markstat.ItemsSource = statt;
             
             var acitem= dc.Accounts.ToList();
             Acco = acitem;
             markaccount.ItemsSource = Acco;
         }
-
         private void markaccount_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = markaccount.SelectedItem as Account;
@@ -248,18 +254,6 @@ namespace Admin
             try
             {
             coId = citem.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var items = markstat.SelectedItem as State;
-            try
-            {
-                statid = items.id.ToString();
             }
             catch
             {

@@ -12,7 +12,7 @@ namespace Admin.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class Tran
+    public partial class Transaction
     {
         public long id { get; set; }
         public string accountId { get; set; }

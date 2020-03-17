@@ -31,7 +31,7 @@ namespace Admin
             bindCombo();
         }
         string connectionString = Properties.Settings.Default.ConnectionString;
-        static string id, cid, statid, ctypee,boaID;
+        static string id, cid, statid,boaID;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -55,7 +55,7 @@ namespace Admin
             string bId= values.Row[15].ToString();
 
             securityid_Copy.SelectedValue= SID;
-            ctype.SelectedValue = Type;
+            ctype.SelectedIndex =Convert.ToInt32(Type)-1;
             ccode.Text = Code;
             cname.Text = Name;
             clot.Text = Lot;
@@ -82,8 +82,21 @@ namespace Admin
             {
                 Contract con = new Contract
                 {
-                    securityId=Convert.ToInt64( securityid_Copy.SelectedValue),
-                    type=
+                    securityId = Convert.ToInt64(securityid_Copy.SelectedValue),
+                    type = Convert.ToInt16(ctype.SelectedIndex + 1),
+                    code = ccode.Text,
+                    name = cname.Text,
+                    lot = Convert.ToDecimal(clot.Text),
+                    tickTable = Convert.ToInt32(ctick.SelectedValue),
+                    sdate = csdate.SelectedDate,
+                    edate = cedate.SelectedDate,
+                    groupId = Convert.ToInt16(cgroupid.Text),
+                    state=Convert.ToInt16(cstate.SelectedIndex -1),
+                    modified=DateTime.Now,
+                    mmorderLimit=Convert.ToInt32( mmorderLim.Text),
+                    orderLimit=Convert.ToInt32( orderLim.Text),
+                    refpriceParam=Convert.ToDecimal(refpricePara.Text),
+                    bid=Convert.ToInt64( boardid.SelectedValue),
                 };
                 contx.Contracts.Add(con);
                 contx.SaveChanges();
@@ -130,17 +143,18 @@ namespace Admin
         #region fill
         private void FillDataGrid()
         {
-            
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string CmdString = "SELECT ALL [id], [securityId], [type], [code], [name], [lot], [tick], [sdate], [edate], [groupId], [state], [modified], " +
-                    "[mmorderLimit], [orderLimit], [refpriceParam], [bid] FROM dbo.contracts";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Securities");
-                sda.Fill(dt);
-                DateTable2.ItemsSource = dt.DefaultView;
-            }
+            demoEntities10 de = new demoEntities10();
+            DateTable2.ItemsSource = de.Contracts.ToList();
+            //using (SqlConnection conn = new SqlConnection(connectionString))
+            //{
+            //    string CmdString = "SELECT ALL [id], [securityId], [type], [code], [name], [lot], [tick], [sdate], [edate], [groupId], [state], [modified], " +
+            //        "[mmorderLimit], [orderLimit], [refpriceParam], [bid] FROM dbo.contracts";
+            //    SqlCommand cmd = new SqlCommand(CmdString, conn);
+            //    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            //    DataTable dt = new DataTable("Securities");
+            //    sda.Fill(dt);
+            //    DateTable2.ItemsSource = dt.DefaultView;
+            //}
         }
         #endregion
         #region ref new
@@ -209,7 +223,7 @@ namespace Admin
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.dbo.contracts SET " +
                 "securityId= '" + secId+ "', " +
-                "type= '" + ctypee + "', " +
+                //"type= '" + ctypee + "', " +
                 "code= N'" + code+ "', " +
                 "name= N'" + name + "', " +
                 "lot= '" + lot+ "', " +
@@ -234,9 +248,8 @@ namespace Admin
         #endregion
         #region combos
         public List<Security> boa { get; set; }
-        public List<ctype> ctypp{ get; set; }
         public List<Board> boardd { get; set; }
-
+        public List<TickSizeTable> ttab { get; set; }
         private void bindCombo()
         {
             demoEntities10 dE = new demoEntities10();
@@ -244,39 +257,20 @@ namespace Admin
             boa = item;
             securityid_Copy.ItemsSource = boa;
 
-            var citems = dE.ctypes.ToList();
-            ctypp = citems;
-            ctype.ItemsSource = ctypp;
-
             var botems = dE.Boards.ToList();
             boardd = botems;
             boardid.ItemsSource = boardd;
+
+            var ttable = dE.TickSizeTables.ToList();
+
+            ctick.ItemsSource = ttable;
         }
-
-        private void ctick_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void boardid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = boardid.SelectedItem as Board;
             try
             {
                 boaID = item.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-
-        private void ctype_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = ctype.SelectedItem as ctype;
-            try
-            {
-                ctypee = item.id.ToString();
             }
             catch
             {

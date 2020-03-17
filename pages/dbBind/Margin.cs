@@ -14,7 +14,7 @@ namespace Admin.dbBind
     
     public partial class Margin
     {
-        public int id { get; set; }
+        public long contractId { get; set; }
         public decimal buy { get; set; }
         public decimal sell { get; set; }
         public short buytype { get; set; }
