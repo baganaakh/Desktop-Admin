@@ -42,7 +42,6 @@ namespace Admin.dbBind
         public virtual DbSet<GroupUser> GroupUsers { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<IsDealer> IsDealers { get; set; }
-        public virtual DbSet<MarketMaker> MarketMakers { get; set; }
         public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<mtype> mtypes { get; set; }
         public virtual DbSet<netting> nettings { get; set; }
@@ -83,6 +82,7 @@ namespace Admin.dbBind
         public virtual DbSet<Contract> Contracts { get; set; }
         public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; }
         public virtual DbSet<Margin> Margins { get; set; }
+        public virtual DbSet<MarketMaker> MarketMakers { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

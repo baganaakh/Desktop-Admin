@@ -74,7 +74,13 @@ namespace Admin
                     contactid=Convert.ToInt32(markcontact.SelectedValue),
                     memberid=Convert.ToInt32(markmember.SelectedValue),
                     accountid=Convert.ToInt64(markaccount.SelectedValue),
-
+                    startdate=Convert.ToDateTime(sdat.SelectedDate),
+                    enddate=Convert.ToDateTime( edat.SelectedDate),
+                    ticks=Convert.ToInt32(markticks.Text),
+                    description=markdesc.Text,
+                    orderlimit=Convert.ToInt32(markorderl.Text),
+                    state=Convert.ToInt16(markstat.SelectedIndex-1),
+                    modified=DateTime.Now,
                 };
                 contx.MarketMakers.Add(mam);
                 contx.SaveChanges();

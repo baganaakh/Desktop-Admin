@@ -1,4 +1,4 @@
-﻿<Page x:Class="Admin.Order"
+﻿<Page x:Class="Admin.OrderP"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,15 +6,23 @@
       xmlns:local="clr-namespace:Admin"
       mc:Ignorable="d" 
       d:DesignHeight="900"  d:DesignWidth="1200"
-      Title="Order">
-
+      Title="OrderP">
     <Grid>
         <ComboBox IsEditable="True" x:Name="memid" ItemsSource="{Binding}" SelectionChanged="partid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,19,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="stat" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="410,18,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox x:Name="stat" HorizontalAlignment="Left" Margin="410,18,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
+            <ComboBoxItem>Устгасан</ComboBoxItem>
+            <Separator/>
+            <ComboBoxItem>Хэвийн</ComboBoxItem>
+            <Separator/>
+            <ComboBoxItem>Идэвхгүй</ComboBoxItem>
+        </ComboBox>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="price" HorizontalAlignment="Left" Height="23" Margin="639,19,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <ComboBox IsEditable="True" x:Name="accountid" ItemsSource="{Binding}" SelectionChanged="accountid_SelectionChanged" DisplayMemberPath="id" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,63,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <ComboBox IsEditable="True" x:Name="assetid" ItemsSource="{Binding}" SelectionChanged="assetid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="410,62,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
-        <ComboBox x:Name="Side" ItemsSource="{Binding}" SelectionChanged="side_SelectionChanged" DisplayMemberPath="side1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="639,63,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox x:Name="Side" Margin="639,62,441,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
+            <ComboBoxItem>Зарах</ComboBoxItem>
+            <ComboBoxItem>Авах</ComboBoxItem>
+        </ComboBox>
         <ComboBox IsEditable="True" x:Name="boardid" ItemsSource="{Binding}" SelectionChanged="boardid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,99,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="quantity" HorizontalAlignment="Left" Height="23" Margin="410,98,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label Content="memberid" HorizontalAlignment="Left" Margin="29,16,0,0" VerticalAlignment="Top"/>

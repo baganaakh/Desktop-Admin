@@ -119,8 +119,8 @@ namespace Admin
         }
         private void BtnClickP19(object sender, RoutedEventArgs e)
         {
-            Main.Content = new Order();
-            this.Title = "Order";
+            Main.Content = new OrderP();
+            this.Title = "OrderP";
         }
         private void BtnClickP20(object sender, RoutedEventArgs e)
         {

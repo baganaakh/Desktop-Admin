@@ -416,8 +416,8 @@
           <Property Name="contactid" Type="int" Nullable="false" />
           <Property Name="memberid" Type="int" Nullable="false" />
           <Property Name="accountid" Type="bigint" Nullable="false" />
-          <Property Name="startdate" Type="date" Nullable="false" />
-          <Property Name="enddate" Type="date" Nullable="false" />
+          <Property Name="startdate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="enddate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="ticks" Type="int" Nullable="false" />
           <Property Name="description" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="orderlimit" Type="int" Nullable="false" />
@@ -882,7 +882,6 @@
           <EntitySet Name="GroupUsers" EntityType="demoModel.GroupUser" />
           <EntitySet Name="Invoices" EntityType="demoModel.Invoice" />
           <EntitySet Name="IsDealers" EntityType="demoModel.IsDealer" />
-          <EntitySet Name="MarketMakers" EntityType="demoModel.MarketMaker" />
           <EntitySet Name="Members" EntityType="demoModel.Member" />
           <EntitySet Name="mtypes" EntityType="demoModel.mtype" />
           <EntitySet Name="nettings" EntityType="demoModel.netting" />
@@ -953,6 +952,7 @@
           <EntitySet Name="Contracts" EntityType="demoModel.Contract" />
           <EntitySet Name="InvoiceDetails" EntityType="demoModel.InvoiceDetail" />
           <EntitySet Name="Margins" EntityType="demoModel.Margin" />
+          <EntitySet Name="MarketMakers" EntityType="demoModel.MarketMaker" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1159,22 +1159,6 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="isDealer1" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="MarketMaker">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="contactid" Type="Int32" Nullable="false" />
-          <Property Name="memberid" Type="Int32" Nullable="false" />
-          <Property Name="accountid" Type="Int64" Nullable="false" />
-          <Property Name="startdate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="enddate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ticks" Type="Int32" Nullable="false" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="orderlimit" Type="Int32" Nullable="false" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Member">
           <Key>
@@ -1703,6 +1687,22 @@
           <Property Name="msell" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
           <Property Name="coid" Type="Int64" Nullable="false" />
         </EntityType>
+        <EntityType Name="MarketMaker">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contactid" Type="Int32" Nullable="false" />
+          <Property Name="memberid" Type="Int32" Nullable="false" />
+          <Property Name="accountid" Type="Int64" Nullable="false" />
+          <Property Name="startdate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="enddate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ticks" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="orderlimit" Type="Int32" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1913,23 +1913,6 @@
             <EntityTypeMapping TypeName="demoModel.IsDealer">
               <MappingFragment StoreEntitySet="IsDealer">
                 <ScalarProperty Name="isDealer1" ColumnName="isDealer" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MarketMakers">
-            <EntityTypeMapping TypeName="demoModel.MarketMaker">
-              <MappingFragment StoreEntitySet="MarketMakers">
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="orderlimit" ColumnName="orderlimit" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="ticks" ColumnName="ticks" />
-                <ScalarProperty Name="enddate" ColumnName="enddate" />
-                <ScalarProperty Name="startdate" ColumnName="startdate" />
-                <ScalarProperty Name="accountid" ColumnName="accountid" />
-                <ScalarProperty Name="memberid" ColumnName="memberid" />
-                <ScalarProperty Name="contactid" ColumnName="contactid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2503,6 +2486,23 @@
                 <ScalarProperty Name="sell" ColumnName="sell" />
                 <ScalarProperty Name="buy" ColumnName="buy" />
                 <ScalarProperty Name="contractId" ColumnName="contractId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MarketMakers">
+            <EntityTypeMapping TypeName="demoModel.MarketMaker">
+              <MappingFragment StoreEntitySet="MarketMakers">
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="orderlimit" ColumnName="orderlimit" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="ticks" ColumnName="ticks" />
+                <ScalarProperty Name="enddate" ColumnName="enddate" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
+                <ScalarProperty Name="accountid" ColumnName="accountid" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="contactid" ColumnName="contactid" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

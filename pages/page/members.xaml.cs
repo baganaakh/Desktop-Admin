@@ -31,7 +31,7 @@ namespace Admin
             bindCombo();
         }
         string connectionString = Properties.Settings.Default.ConnectionString;
-        string id,statid,metype, partid,oldMask, pname;
+        string id, partid,oldMask, statid, metype, pname;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -39,9 +39,9 @@ namespace Admin
             var value = DateTable2.SelectedItem as DataRowView;
             if (null == value) return;
             id = value.Row[0].ToString();
-            metype= value.Row[1].ToString();
+            //metype= value.Row[1].ToString();
             string codepar = value.Row[2].ToString();
-            statid= value.Row[3].ToString();
+            //statid= value.Row[3].ToString();
             oldMask= value.Row[5].ToString();
             string sdate= value.Row[6].ToString();
             string edate= value.Row[7].ToString();
@@ -53,8 +53,8 @@ namespace Admin
             pname= value.Row[13].ToString();
 
             pcode.Text = codepar;
-            mtype.SelectedValue = metype;
-            pstate.SelectedValue = statid;
+            //mtype.SelectedValue = metype;
+            //pstate.SelectedValue = statid;
             participants.SelectedValue = partid;
             starttime.SelectedDate = DateTime.Parse(sdate);
             endtime.SelectedDate = DateTime.Parse(edate);
@@ -68,6 +68,8 @@ namespace Admin
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
+            statid=(pstate.SelectedIndex -1).ToString();
+            metype = (mtype.SelectedIndex - 1).ToString();
             string code = pcode.Text;
             string mask="";
             string h = "";
@@ -316,8 +318,8 @@ namespace Admin
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = " UPDATE demo.dbo.members SET " +
-                "type = '" + metype+ "', " +
-                "state= '" + statid + "', " +
+                //"type = '" + metype+ "', " +
+                //"state= '" + statid + "', " +
                 "broker= '" + Broker+ "', " +
                 "dealer= '" + Dealer+ "', " +
                 "ander= '" + Ander+ "', " +
@@ -331,7 +333,7 @@ namespace Admin
                 " modified = GETDATE()," +
                 " startdate = '" + startT + "'," +
                 " enddate = '" + endT + "'," +
-                " state = '" + statid + "'" +
+                //" state = '" + statid + "'" +
                 " WHERE memberid = " + id + " "+h;
 
             cmd.Connection = sqlConnection1;
@@ -342,20 +344,11 @@ namespace Admin
         }
         #endregion
         #region combos
-        public List<State> statt { get; set; }
-        public List<mtype> mt { get; set; }
         public List<Participant> part { get; set; }
         private void bindCombo()
         {
             demoEntities10 st = new demoEntities10();
-            var items = st.States.ToList();
-            statt = items;
-            pstate.ItemsSource = statt;
-
-            var meitems = st.mtypes.ToList();
-            mt = meitems;
-            mtype.ItemsSource = mt;
-
+            
             List<Participant> paitems = st.Participants.ToList();
             part = paitems;
             participants.ItemsSource = part;
@@ -368,44 +361,6 @@ namespace Admin
             {
                 partid = items.id.ToString();
                 pname = items.name.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-
-        private void mtype_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var items = mtype.SelectedItem as mtype;
-            try
-            {
-                metype = items.id.ToString();
-
-                if(metype == "1")
-                    {
-                    nominal.IsChecked = true;
-                    }
-                else
-                {
-                    nominal.IsChecked = false;
-                }
-
-
-            }
-            catch
-            {
-                return;
-            }
-            
-        }
-
-        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var items = pstate.SelectedItem as State;
-            try
-            {
-                statid = items.id.ToString();
             }
             catch
             {

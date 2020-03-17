@@ -336,8 +336,8 @@
     <Compile Include="page\members.xaml.cs">
       <DependentUpon>members.xaml</DependentUpon>
     </Compile>
-    <Compile Include="page\Order.xaml.cs">
-      <DependentUpon>Order.xaml</DependentUpon>
+    <Compile Include="page\OrderP.xaml.cs">
+      <DependentUpon>OrderP.xaml</DependentUpon>
     </Compile>
     <Compile Include="page\orderOk.xaml.cs">
       <DependentUpon>orderOk.xaml</DependentUpon>
@@ -442,7 +442,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="page\Order.xaml">
+    <Page Include="page\OrderP.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

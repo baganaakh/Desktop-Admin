@@ -22,9 +22,9 @@ namespace Admin
     /// <summary>
     /// Interaction logic for Order.xaml
     /// </summary>
-    public partial class Order : Page
+    public partial class OrderP : Page
     {
-        public Order()
+        public OrderP()
         {
             InitializeComponent();
             FillDataGrid();
@@ -60,21 +60,32 @@ namespace Admin
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            string QTY = quantity.Text;
-            string Price = price.Text;
+            sides = Side.SelectedIndex.ToString();
+            if (sides == "0")
+                sides = "-1";
 
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
+            using(demoEntities10 contx=new demoEntities10())
+            {
+                Order ord = new Order
+                {
+                    side=Convert.ToInt16(sides),
+                };
+                contx.Orders.Add(ord);
+                contx.SaveChanges();
+            }
+           // string QTY = quantity.Text;
+           // string Price = price.Text;
+           // System.Data.SqlClient.SqlConnection sqlConnection1 =
+           //new System.Data.SqlClient.SqlConnection(connectionString);
 
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into [demo].[dbo].[Order] (bid, side, memberid, accountid, assetid, qty, price, state, modified,dealtype) values" +
-                " ('" +  bid + "',N'" + sides+ "',N'" + memId+ "',N'" + accId + "',N'" + assetId+ "',N'" + QTY+ "',N'" + Price+ "',N'" + statid+ "', getdate(), "+dealtype+")";
-
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+           // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+           // cmd.CommandType = System.Data.CommandType.Text;
+           // cmd.CommandText = "insert into [demo].[dbo].[Order] (bid, side, memberid, accountid, assetid, qty, price, state, modified,dealtype) values" +
+           //     " ('" +  bid + "',N'" + sides+ "',N'" + memId+ "',N'" + accId + "',N'" + assetId+ "',N'" + QTY+ "',N'" + Price+ "',N'" + statid+ "', getdate(), "+dealtype+")";
+           // cmd.Connection = sqlConnection1;
+           // sqlConnection1.Open();
+           // cmd.ExecuteNonQuery();
+           // sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion
@@ -184,10 +195,6 @@ namespace Admin
             Emp = item;
             memid.ItemsSource = Emp;
 
-            var items = dc.States.ToList();
-            statt = items;
-            stat.ItemsSource = statt;
-            
             var dts = dc.Boards.ToList();
             Dtype = dts;
             boardid.ItemsSource = Dtype;
@@ -199,22 +206,7 @@ namespace Admin
             var asst = dc.Assets.ToList();
             ASST = asst;
             assetid.ItemsSource = ASST;
-            
-            
         }
-        private void side_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //var items = Side.SelectedItem as side;
-            //try
-            //{
-            //    sides= items.id.ToString();
-            //}
-            //catch
-            //{
-            //    return;
-            //}
-        }
-
         private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var items = stat.SelectedItem as State;

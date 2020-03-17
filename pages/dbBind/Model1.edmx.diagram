@@ -21,7 +21,6 @@
         <EntityTypeShape EntityType="demoModel.Invoice" Width="1.5" PointX="4.75" PointY="12.75" />
         <EntityTypeShape EntityType="demoModel.isactive" Width="1.5" PointX="6.75" PointY="12.75" />
         <EntityTypeShape EntityType="demoModel.IsDealer" Width="1.5" PointX="12.75" PointY="7.75" />
-        <EntityTypeShape EntityType="demoModel.MarketMaker" Width="1.5" PointX="14.75" PointY="0.75" />
         <EntityTypeShape EntityType="demoModel.Member" Width="1.5" PointX="14.75" PointY="4.75" />
         <EntityTypeShape EntityType="demoModel.mtype" Width="1.5" PointX="14.75" PointY="9.75" />
         <EntityTypeShape EntityType="demoModel.netting" Width="1.5" PointX="14.75" PointY="12.75" />
@@ -64,6 +63,7 @@
         <EntityTypeShape EntityType="demoModel.Contract" Width="1.5" PointX="21.375" PointY="13.75" />
         <EntityTypeShape EntityType="demoModel.InvoiceDetail" Width="1.5" PointX="5.375" PointY="8.75" />
         <EntityTypeShape EntityType="demoModel.Margin" Width="1.5" PointX="17.375" PointY="22.75" />
+        <EntityTypeShape EntityType="demoModel.MarketMaker" Width="1.5" PointX="0.75" PointY="23.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
