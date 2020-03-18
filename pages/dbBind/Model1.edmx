@@ -486,13 +486,13 @@
           <Property Name="interests" Type="decimal" Precision="18" Scale="4" />
           <Property Name="fee" Type="decimal" Precision="18" Scale="4" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Participants">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="code" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="code" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
           <Property Name="country" Type="nvarchar" MaxLength="50" />
           <Property Name="address" Type="nvarchar" MaxLength="255" />
@@ -573,24 +573,24 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="boardid" Type="bigint" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="stime" Type="time" Precision="7" Nullable="false" />
-          <Property Name="duration" Type="time" Precision="7" Nullable="false" />
-          <Property Name="algorithm" Type="smallint" Nullable="false" />
-          <Property Name="match" Type="smallint" Nullable="false" />
-          <Property Name="allowedtypes" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="description" Type="nvarchar" MaxLength="1024" Nullable="false" />
-          <Property Name="state" Type="smallint" Nullable="false" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
-          <Property Name="isactive" Type="nvarchar" MaxLength="50" />
+          <Property Name="boardid" Type="bigint" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="stime" Type="time" Precision="7" />
+          <Property Name="duration" Type="int" />
+          <Property Name="algorithm" Type="smallint" />
+          <Property Name="match" Type="int" />
+          <Property Name="allowedtypes" Type="smallint" />
+          <Property Name="description" Type="nvarchar" MaxLength="1024" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="isactive" Type="bit" />
           <Property Name="starttime" Type="date" />
           <Property Name="endtime" Type="date" />
           <Property Name="tduration" Type="nchar" MaxLength="10" />
           <Property Name="matched" Type="bigint" />
-          <Property Name="editorder" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="delorder" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="markettype" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="editorder" Type="nchar" MaxLength="50" />
+          <Property Name="delorder" Type="nchar" MaxLength="50" />
+          <Property Name="markettype" Type="nchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Settings">
           <Key>
@@ -663,12 +663,6 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="tableid" Type="bigint" Nullable="false" />
-          <Property Name="tick" Type="decimal" Precision="18" Scale="4" Nullable="false" />
-          <Property Name="price" Type="decimal" Precision="18" Scale="6" Nullable="false" />
-          <Property Name="state" Type="smallint" Nullable="false" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
-          <Property Name="timestamp" Type="bigint" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Transaction">
@@ -676,10 +670,10 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="accountId" Type="nvarchar" MaxLength="20" />
+          <Property Name="accountId" Type="bigint" />
           <Property Name="type" Type="smallint" />
           <Property Name="type1" Type="smallint" />
-          <Property Name="totalNumber" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="amount" Type="int" />
           <Property Name="assetId" Type="int" />
           <Property Name="rate" Type="int" />
           <Property Name="note" Type="nvarchar(max)" />
@@ -807,7 +801,6 @@
           <EntitySet Name="mtype" EntityType="Self.mtype" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="netting" EntityType="Self.netting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Participants" EntityType="Self.Participants" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ptype" EntityType="Self.Ptype" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reason" EntityType="Self.Reason" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RefPrice" EntityType="Self.RefPrice" Schema="dbo" store:Type="Tables" />
@@ -828,6 +821,29 @@
           <EntitySet Name="UserAccounts" EntityType="Self.UserAccounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserGroups" EntityType="Self.UserGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Participants" EntityType="Self.Participants" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Participants].[id] AS [id], 
+    [Participants].[name] AS [name], 
+    [Participants].[country] AS [country], 
+    [Participants].[address] AS [address], 
+    [Participants].[phone] AS [phone], 
+    [Participants].[email] AS [email], 
+    [Participants].[contact] AS [contact], 
+    [Participants].[state] AS [state], 
+    [Participants].[pcity] AS [pcity], 
+    [Participants].[pdistr] AS [pdistr], 
+    [Participants].[phoroo] AS [phoroo], 
+    [Participants].[pstreet] AS [pstreet], 
+    [Participants].[pwebpage] AS [pwebpage], 
+    [Participants].[numofemp] AS [numofemp], 
+    [Participants].[modified] AS [modified], 
+    [Participants].[csid] AS [csid], 
+    [Participants].[webid] AS [webid], 
+    [Participants].[specialType] AS [specialType], 
+    [Participants].[companyType] AS [companyType]
+    FROM [dbo].[Participants] AS [Participants]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -886,7 +902,6 @@
           <EntitySet Name="Ptypes" EntityType="demoModel.Ptype" />
           <EntitySet Name="RefPrices" EntityType="demoModel.RefPrice" />
           <EntitySet Name="Rights" EntityType="demoModel.Right" />
-          <EntitySet Name="Sessions" EntityType="demoModel.Session" />
           <EntitySet Name="Settings" EntityType="demoModel.Setting" />
           <EntitySet Name="Softwares" EntityType="demoModel.Software" />
           <EntitySet Name="SpecialTypes" EntityType="demoModel.SpecialType" />
@@ -901,7 +916,6 @@
           <EntitySet Name="algoes" EntityType="demoModel.algo" />
           <EntitySet Name="allowedtypes" EntityType="demoModel.allowedtype" />
           <EntitySet Name="Ttables" EntityType="demoModel.Ttable" />
-          <EntitySet Name="TickSizeTables" EntityType="demoModel.TickSizeTable" />
           <FunctionImport Name="sp_alterdiagram1">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -944,12 +958,14 @@
           <EntitySet Name="Assets" EntityType="demoModel.Asset" />
           <EntitySet Name="Boards" EntityType="demoModel.Board" />
           <EntitySet Name="ClearingAccounts" EntityType="demoModel.ClearingAccount" />
-          <EntitySet Name="Transactions" EntityType="demoModel.Transaction" />
           <EntitySet Name="Contracts" EntityType="demoModel.Contract" />
           <EntitySet Name="InvoiceDetails" EntityType="demoModel.InvoiceDetail" />
           <EntitySet Name="Margins" EntityType="demoModel.Margin" />
           <EntitySet Name="MarketMakers" EntityType="demoModel.MarketMaker" />
           <EntitySet Name="Securities" EntityType="demoModel.Security" />
+          <EntitySet Name="Sessions" EntityType="demoModel.Session" />
+          <EntitySet Name="TickSizeTables" EntityType="demoModel.TickSizeTable" />
+          <EntitySet Name="Transactions" EntityType="demoModel.Transaction" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1249,30 +1265,6 @@
           <Property Name="RightLevel" Type="Int16" Nullable="false" />
           <Property Name="ParentID" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Session">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="boardid" Type="Int64" Nullable="false" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="stime" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="duration" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="algorithm" Type="Int16" Nullable="false" />
-          <Property Name="match" Type="Int16" Nullable="false" />
-          <Property Name="allowedtypes" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="isactive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="starttime" Type="DateTime" Precision="0" />
-          <Property Name="endtime" Type="DateTime" Precision="0" />
-          <Property Name="tduration" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="matched" Type="Int64" />
-          <Property Name="editorder" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="delorder" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="markettype" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
-        </EntityType>
         <EntityType Name="Setting">
           <Key>
             <PropertyRef Name="ID" />
@@ -1398,19 +1390,6 @@
           <Property Name="userid" Type="Int64" />
           <Property Name="assetid" Type="Int64" />
           <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="TickSizeTable">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tableid" Type="Int64" Nullable="false" />
-          <Property Name="tick" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
-          <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="timestamp" Type="Int64" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="dbo_logs">
@@ -1594,24 +1573,6 @@
           <Property Name="state" Type="Int16" />
           <Property Name="modified" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="Transaction">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="accountId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="type" Type="Int16" />
-          <Property Name="type1" Type="Int16" />
-          <Property Name="totalNumber" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="assetId" Type="Int32" />
-          <Property Name="rate" Type="Int32" />
-          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="tdate" Type="DateTime" Precision="0" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="userId" Type="Int64" />
-          <Property Name="memberid" Type="Int32" />
-        </EntityType>
         <EntityType Name="Contract">
           <Key>
             <PropertyRef Name="id" />
@@ -1684,7 +1645,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="partid" Type="Int32" />
           <Property Name="type" Type="Int16" />
-          <Property Name="code" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="totalQty" Type="Decimal" Precision="18" Scale="6" />
           <Property Name="firstPrice" Type="Decimal" Precision="18" Scale="6" />
@@ -1694,6 +1654,55 @@
           <Property Name="state" Type="Int16" />
           <Property Name="modified" Type="DateTime" Precision="3" />
           <Property Name="assetId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="boardid" Type="Int64" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="stime" Type="Time" Precision="7" />
+          <Property Name="duration" Type="Int32" />
+          <Property Name="algorithm" Type="Int16" />
+          <Property Name="match" Type="Int32" />
+          <Property Name="allowedtypes" Type="Int16" />
+          <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="isactive" Type="Boolean" />
+          <Property Name="starttime" Type="DateTime" Precision="0" />
+          <Property Name="endtime" Type="DateTime" Precision="0" />
+          <Property Name="tduration" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="matched" Type="Int64" />
+          <Property Name="editorder" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="delorder" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="markettype" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TickSizeTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accountId" Type="Int64" />
+          <Property Name="type" Type="Int16" />
+          <Property Name="type1" Type="Int16" />
+          <Property Name="amount" Type="Int32" />
+          <Property Name="assetId" Type="Int32" />
+          <Property Name="rate" Type="Int32" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tdate" Type="DateTime" Precision="0" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="userId" Type="Int64" />
+          <Property Name="memberid" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2007,31 +2016,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Sessions">
-            <EntityTypeMapping TypeName="demoModel.Session">
-              <MappingFragment StoreEntitySet="Session">
-                <ScalarProperty Name="markettype" ColumnName="markettype" />
-                <ScalarProperty Name="delorder" ColumnName="delorder" />
-                <ScalarProperty Name="editorder" ColumnName="editorder" />
-                <ScalarProperty Name="matched" ColumnName="matched" />
-                <ScalarProperty Name="tduration" ColumnName="tduration" />
-                <ScalarProperty Name="endtime" ColumnName="endtime" />
-                <ScalarProperty Name="starttime" ColumnName="starttime" />
-                <ScalarProperty Name="isactive" ColumnName="isactive" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="allowedtypes" ColumnName="allowedtypes" />
-                <ScalarProperty Name="match" ColumnName="match" />
-                <ScalarProperty Name="algorithm" ColumnName="algorithm" />
-                <ScalarProperty Name="duration" ColumnName="duration" />
-                <ScalarProperty Name="stime" ColumnName="stime" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="boardid" ColumnName="boardid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Settings">
             <EntityTypeMapping TypeName="demoModel.Setting">
               <MappingFragment StoreEntitySet="Settings">
@@ -2169,20 +2153,6 @@
                 <ScalarProperty Name="userid" ColumnName="userid" />
                 <ScalarProperty Name="tickSize" ColumnName="tickSize" />
                 <ScalarProperty Name="arrangePrice" ColumnName="arrangePrice" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TickSizeTables">
-            <EntityTypeMapping TypeName="demoModel.TickSizeTable">
-              <MappingFragment StoreEntitySet="TickSizeTable">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="tick" ColumnName="tick" />
-                <ScalarProperty Name="tableid" ColumnName="tableid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2387,25 +2357,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Transactions">
-            <EntityTypeMapping TypeName="demoModel.Transaction">
-              <MappingFragment StoreEntitySet="Transaction">
-                <ScalarProperty Name="memberid" ColumnName="memberid" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="tdate" ColumnName="tdate" />
-                <ScalarProperty Name="note" ColumnName="note" />
-                <ScalarProperty Name="rate" ColumnName="rate" />
-                <ScalarProperty Name="assetId" ColumnName="assetId" />
-                <ScalarProperty Name="totalNumber" ColumnName="totalNumber" />
-                <ScalarProperty Name="type1" ColumnName="type1" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="accountId" ColumnName="accountId" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Contracts">
             <EntityTypeMapping TypeName="demoModel.Contract">
               <MappingFragment StoreEntitySet="Contracts">
@@ -2487,9 +2438,60 @@
                 <ScalarProperty Name="firstPrice" ColumnName="firstPrice" />
                 <ScalarProperty Name="totalQty" ColumnName="totalQty" />
                 <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="partid" ColumnName="partid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sessions">
+            <EntityTypeMapping TypeName="demoModel.Session">
+              <MappingFragment StoreEntitySet="Session">
+                <ScalarProperty Name="markettype" ColumnName="markettype" />
+                <ScalarProperty Name="delorder" ColumnName="delorder" />
+                <ScalarProperty Name="editorder" ColumnName="editorder" />
+                <ScalarProperty Name="matched" ColumnName="matched" />
+                <ScalarProperty Name="tduration" ColumnName="tduration" />
+                <ScalarProperty Name="endtime" ColumnName="endtime" />
+                <ScalarProperty Name="starttime" ColumnName="starttime" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="allowedtypes" ColumnName="allowedtypes" />
+                <ScalarProperty Name="match" ColumnName="match" />
+                <ScalarProperty Name="algorithm" ColumnName="algorithm" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="stime" ColumnName="stime" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="boardid" ColumnName="boardid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TickSizeTables">
+            <EntityTypeMapping TypeName="demoModel.TickSizeTable">
+              <MappingFragment StoreEntitySet="TickSizeTable">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="demoModel.Transaction">
+              <MappingFragment StoreEntitySet="Transaction">
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="tdate" ColumnName="tdate" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="assetId" ColumnName="assetId" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="type1" ColumnName="type1" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

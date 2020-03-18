@@ -17,7 +17,6 @@ namespace Admin.dbBind
         public int id { get; set; }
         public Nullable<int> partid { get; set; }
         public Nullable<short> type { get; set; }
-        public string code { get; set; }
         public string name { get; set; }
         public Nullable<decimal> totalQty { get; set; }
         public Nullable<decimal> firstPrice { get; set; }

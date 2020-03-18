@@ -99,36 +99,60 @@ namespace Admin
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            string boardid = cid;
-            string name = sname.Text;
-            string sstimeminute = stimeminute.Text;
-            string sstimehour = stimehour.Text;
-            string dhours = dhour.Text;
-            string dminutes = dminute.Text;
-            string alogor = algo.Text;
-            string match11 = match1.Text;
-            string allowedT = allowT.Text;
-            string descrip = sdesc.Text;
-            string EDorder = eOrder.IsChecked.ToString();
-            string DEorder = dOrder.IsChecked.ToString();
-            string markType = markT.Text;
-            string state = statid;
-            string dSecond = dsecond.Text;
-            string sSecond = stimeSecond.Text;
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
+            TimeSpan startTime = new TimeSpan(
+                Convert.ToInt32(stimehour.Text), Convert.ToInt32(stimeminute.Text), Convert.ToInt32(stimeSecond.Text));
+            //TimeSpan endTime= new TimeSpan(
+            //    Convert.ToInt32(dhour.Text), Convert.ToInt32(dminute.Text), Convert.ToInt32(dsecond.Text));
+            using(demoEntities10 conx =new demoEntities10())
+            {
+                Session ses = new Session
+                {
+                    boardid = Convert.ToInt64(sboardid.SelectedValue),
+                    name = sname.Text,
+                    stime = startTime,
+                    duration = Convert.ToInt32(duration.Text),
+                    algorithm = Convert.ToInt16(algo.SelectedIndex),
+                    match = Convert.ToInt32(match1.Text),
+                    allowedtypes = Convert.ToInt16(allowT.SelectedIndex),
+                    description = sdesc.Text,
+                    state=Convert.ToInt16(sstate.SelectedIndex-1),
+                    modified=DateTime.Now,
+                    isactive=isAct.IsChecked,
 
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.session (boardid, name, stime, duration, algorithm, match, allowedtypes, description, state, modified, editorder, delorder, markettype) values" +
-                " ('" + boardid + "',N'" + name + "',N'" + sstimehour + ":"+sstimeminute+":"+sSecond+"' ,N'" + dhours + ":" + dminutes + ":"+dSecond+"', '" + alogor + "', '" + match11 + "', '" + allowedT + "', '" + descrip + "', '" + state +
-                "', getdate(),'" + EDorder + "', '" + DEorder + "', '" + markType + "')";
-            cmd.Parameters.AddWithValue("@modified", DateTime.Now);
+                };
+                conx.Sessions.Add(ses);
+                conx.SaveChanges();
+            }
+           // string boardid = cid;
+           // string name = sname.Text;
+           // string sstimeminute = stimeminute.Text;
+           // string sstimehour = stimehour.Text;
+           // string dhours = dhour.Text;
+           // string dminutes = dminute.Text;
+           // string alogor = algo.Text;
+           // string match11 = match1.Text;
+           // string allowedT = allowT.Text;
+           // string descrip = sdesc.Text;
+           // string EDorder = eOrder.IsChecked.ToString();
+           // string DEorder = dOrder.IsChecked.ToString();
+           // string markType = markT.Text;
+           // string state = statid;
+           // string dSecond = dsecond.Text;
+           // string sSecond = stimeSecond.Text;
+           // System.Data.SqlClient.SqlConnection sqlConnection1 =
+           //new System.Data.SqlClient.SqlConnection(connectionString);
 
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+           // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+           // cmd.CommandType = System.Data.CommandType.Text;
+           // cmd.CommandText = "insert into dbo.session (boardid, name, stime, duration, algorithm, match, allowedtypes, description, state, modified, editorder, delorder, markettype) values" +
+           //     " ('" + boardid + "',N'" + name + "',N'" + sstimehour + ":"+sstimeminute+":"+sSecond+"' ,N'" + dhours + ":" + dminutes + ":"+dSecond+"', '" + alogor + "', '" + match11 + "', '" + allowedT + "', '" + descrip + "', '" + state +
+           //     "', getdate(),'" + EDorder + "', '" + DEorder + "', '" + markType + "')";
+           // cmd.Parameters.AddWithValue("@modified", DateTime.Now);
+
+           // cmd.Connection = sqlConnection1;
+           // sqlConnection1.Open();
+           // cmd.ExecuteNonQuery();
+           // sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion
@@ -236,45 +260,10 @@ namespace Admin
         }
         #endregion
         #region combos
-        public List<Board> boa { get; set; }
-        public List<State> statt { get; set; }
-
         private void bindCombo()
         {
             demoEntities10 dE = new demoEntities10();
-            var item = dE.Boards.ToList();
-            boa = item;
-            sboardid.ItemsSource = boa;
-
-            demoEntities10 st = new demoEntities10();
-            var items = st.States.ToList();
-            statt = items;
-            sstate.ItemsSource = statt;
-        }
-        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var items =sstate.SelectedItem as State;
-            try
-            {
-                statid = items.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-
-        private void boardid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = sboardid.SelectedItem as Board;
-            try
-            {
-                cid = item.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
+            sboardid.ItemsSource = dE.Boards.ToList();
         }
         #endregion
     }

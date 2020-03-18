@@ -44,9 +44,9 @@ namespace Admin.page
             {  
                 Transaction trans1 = new Transaction
                 {
-                    accountId= values.accId.ToString(),
+                    accountId= values.accId,
                     assetId= Convert.ToInt32(values.assetId),
-                    totalNumber= Convert.ToDecimal(values.value),
+                    amount= Convert.ToInt32(values.value),
                     memberid= Convert.ToInt32(values.memid),
                     modified=DateTime.Now,
                     tdate=values.modified,

@@ -67,35 +67,58 @@ namespace Admin
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            if (trtdate.SelectedDate == null)
+            int type = trtype.SelectedIndex;
+            if (type == 0)
+                type = -1;
+            using(demoEntities10 conx=new demoEntities10())
             {
-                MessageBox.Show("Please Set Date !!!!!");
-                return;
+                Transaction tra = new Transaction
+                {
+                    accountId= Convert.ToInt64(accId.SelectedValue),
+                    type=Convert.ToInt16(type),
+                    type1=Convert.ToInt16(trtype1.SelectedIndex),
+                    amount=Convert.ToInt32(tramount.Text),
+                    userId=Convert.ToInt32(App.Current.Properties["User_id"]),
+                    assetId=Convert.ToInt32(asstId.SelectedValue),
+                    rate=Convert.ToInt32(trrate.Text),
+                    note=trnote.Text,
+                    tdate=trtdate.SelectedDate,
+                    state=Convert.ToInt16(trstate.SelectedIndex-1),
+                    modified=DateTime.Now,
+                    memberid=Convert.ToInt32(sboardid.SelectedValue),
+            };
+                conx.Transactions.Add(tra);
+                conx.SaveChanges();
             }
-            string MemID = cid;
-            string accountId = accId.Text;
-            string type = trtype.Text;
-            string type1 = trtype1.Text;
-            string ammount = tramount.Text;
-            string currecy = trcurrent.Text;
-            string rate= trrate.Text;
-            string note= trnote.Text;
-            string tdate = trtdate.SelectedDate.Value.ToShortDateString();
-            string state = trstate.Text;
-            string userId = truser.Text;
+           // if (trtdate.SelectedDate == null)
+           // {
+           //     MessageBox.Show("Please Set Date !!!!!");
+           //     return;
+           // }
+           // string MemID = cid;
+           // string accountId = accId.Text;
+           // string type = trtype.Text;
+           // string type1 = trtype1.Text;
+           // string ammount = tramount.Text;
+           // string currecy = trcurrent.Text;
+           // string rate= trrate.Text;
+           // string note= trnote.Text;
+           // string tdate = trtdate.SelectedDate.Value.ToShortDateString();
+           // string state = trstate.Text;
+           // string userId = truser.Text;
 
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
+           // System.Data.SqlClient.SqlConnection sqlConnection1 =
+           //new System.Data.SqlClient.SqlConnection(connectionString);
 
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.trans(accountId, type, type1, amount, currency, rate, note, tdate, state, modified, userId,memberid) values" +
-                " ('" + accountId+ "',N'" + type + "',N'" + type1+ "',N'" + ammount+ "', '" + currecy+ "', '" + rate+ "', '" + note+ "',N'" +tdate +"', '" + statid+ "', getdate(), '" + userId+"', '" + MemID+"')";
+           // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+           // cmd.CommandType = System.Data.CommandType.Text;
+           // cmd.CommandText = "insert into dbo.trans(accountId, type, type1, amount, currency, rate, note, tdate, state, modified, userId,memberid) values" +
+           //     " ('" + accountId+ "',N'" + type + "',N'" + type1+ "',N'" + ammount+ "', '" + currecy+ "', '" + rate+ "', '" + note+ "',N'" +tdate +"', '" + statid+ "', getdate(), '" + userId+"', '" + MemID+"')";
 
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+           // cmd.Connection = sqlConnection1;
+           // sqlConnection1.Open();
+           // cmd.ExecuteNonQuery();
+           // sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion
@@ -113,17 +136,19 @@ namespace Admin
         #region fill
         private void FillDataGrid()
         {
-            string connectionString = Properties.Settings.Default.ConnectionString;
+            demoEntities10 de = new demoEntities10();
+            DateTable2.ItemsSource = de.Transactions.ToList();
+            //string connectionString = Properties.Settings.Default.ConnectionString;
             
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string CmdString = "SELECT * FROM dbo.trans";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Securities");
-                sda.Fill(dt);
-                DateTable2.ItemsSource = dt.DefaultView;
-            }
+            //using (SqlConnection conn = new SqlConnection(connectionString))
+            //{
+            //    string CmdString = "SELECT * FROM dbo.trans";
+            //    SqlCommand cmd = new SqlCommand(CmdString, conn);
+            //    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            //    DataTable dt = new DataTable("Securities");
+            //    sda.Fill(dt);
+            //    DateTable2.ItemsSource = dt.DefaultView;
+            //}
         }
         private void refreshh(object sender, RoutedEventArgs e)
         {
@@ -210,7 +235,6 @@ namespace Admin
         #endregion
         #region combos
         public List<Member> Emp { get; set; }
-        public List<State> statt { get; set; }
 
         private void bindcombo()
         {
@@ -218,36 +242,8 @@ namespace Admin
             var item = dc.Members.ToList();
             Emp = item;
             sboardid.ItemsSource = Emp;
-
-            demoEntities10 st = new demoEntities10();
-            var items = st.States.ToList();
-            statt = items;
-            trstate.ItemsSource = statt;
-        }
-        private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = sboardid.SelectedItem as Member;
-
-            try
-            {
-                cid = item.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var items = trstate.SelectedItem as State;
-            try
-            {
-                statid = items.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
+            accId.ItemsSource = dc.Accounts.ToList();
+            asstId.ItemsSource = dc.Assets.ToList();
         }
         #endregion
     }

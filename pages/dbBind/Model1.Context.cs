@@ -49,7 +49,6 @@ namespace Admin.dbBind
         public virtual DbSet<Ptype> Ptypes { get; set; }
         public virtual DbSet<RefPrice> RefPrices { get; set; }
         public virtual DbSet<Right> Rights { get; set; }
-        public virtual DbSet<Session> Sessions { get; set; }
         public virtual DbSet<Setting> Settings { get; set; }
         public virtual DbSet<Software> Softwares { get; set; }
         public virtual DbSet<SpecialType> SpecialTypes { get; set; }
@@ -64,7 +63,6 @@ namespace Admin.dbBind
         public virtual DbSet<algo> algoes { get; set; }
         public virtual DbSet<allowedtype> allowedtypes { get; set; }
         public virtual DbSet<Ttable> Ttables { get; set; }
-        public virtual DbSet<TickSizeTable> TickSizeTables { get; set; }
         public virtual DbSet<dbo_logs> dbo_logs { get; set; }
         public virtual DbSet<Deal> Deals { get; set; }
         public virtual DbSet<Participant> Participants { get; set; }
@@ -77,12 +75,14 @@ namespace Admin.dbBind
         public virtual DbSet<Asset> Assets { get; set; }
         public virtual DbSet<Board> Boards { get; set; }
         public virtual DbSet<ClearingAccount> ClearingAccounts { get; set; }
-        public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<Contract> Contracts { get; set; }
         public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; }
         public virtual DbSet<Margin> Margins { get; set; }
         public virtual DbSet<MarketMaker> MarketMakers { get; set; }
         public virtual DbSet<Security> Securities { get; set; }
+        public virtual DbSet<Session> Sessions { get; set; }
+        public virtual DbSet<TickSizeTable> TickSizeTables { get; set; }
+        public virtual DbSet<Transaction> Transactions { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

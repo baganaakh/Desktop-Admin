@@ -22,55 +22,56 @@ namespace Admin
     /// <summary>
     /// Interaction logic for TickSizeTable.xaml
     /// </summary>
-    public partial class TickSizeTable : Page
+    public partial class TickSizeTabl : Page
     {
-        public TickSizeTable()
+        public TickSizeTabl()
         {
             InitializeComponent();
             FillDataGrid();
-            bindCombo();
         }
         string connectionString = Properties.Settings.Default.ConnectionString;
-        static string id,statid,tid,name;
+        static string id,statid;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var values = DateTable2.SelectedItem as DataRowView;
             if (null == values) return;
             id = values.Row[0].ToString();
-            string tableId = values.Row[1].ToString();
             string Tick= values.Row[2].ToString();
-            string price = values.Row[3].ToString();
-            string State = values.Row[4].ToString();
 
-            tableid.SelectedValue=tableId;
-            tickk.Text=Tick;
-            pricee.Text=price;
-            stat.SelectedValue= State ;
             upd.IsEnabled = true;
         }
         #endregion
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            if (statid == null || tid == null)
-                return;
-            upd.IsEnabled = true;
-            string tick= tickk.Text;
-            string price = pricee.Text;
+            using(demoEntities10 contx=new demoEntities10())
+            {
+                TickSizeTable tit = new TickSizeTable
+                {
+                    name=namee.Text,
+                };
+                contx.TickSizeTables.Add(tit);
+                contx.SaveChanges();
+            }
+           // if (statid == null || tid == null)
+           //     return;
+           // upd.IsEnabled = true;
+           // string tick= tickk.Text;
+           // string price = pricee.Text;
           
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
+           // System.Data.SqlClient.SqlConnection sqlConnection1 =
+           //new System.Data.SqlClient.SqlConnection(connectionString);
 
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.TickSizeTable (tableid, tick, price, state, name) values" +
-                " ('" + tid+ "',N'" + tick+ "',N'" + price+ "',N'" + statid+ "', N'"+ name+"')";
+           // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+           // cmd.CommandType = System.Data.CommandType.Text;
+           // cmd.CommandText = "insert into dbo.TickSizeTable (tableid, tick, price, state, name) values" +
+           //     " ('" + tid+ "',N'" + tick+ "',N'" + price+ "',N'" + statid+ "', N'"+ name+"')";
 
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+           // cmd.Connection = sqlConnection1;
+           // sqlConnection1.Open();
+           // cmd.ExecuteNonQuery();
+           // sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion
@@ -88,7 +89,6 @@ namespace Admin
         #region fill
         private void FillDataGrid()
         {
-            
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                  string CmdString = "SELECT * FROM dbo.TickSizeTable";
@@ -107,10 +107,6 @@ namespace Admin
         #region new
         private void newData(object sender, RoutedEventArgs e)
         {
-            tableid.Text = null;
-            tickk.Text = null;
-            pricee.Text = null;
-            stat.Text = null;
             id = null;
             statid = null;
         }
@@ -137,20 +133,13 @@ namespace Admin
         #region update
         private void update(object sender, RoutedEventArgs e)
         {
-            string tick = tickk.Text;
-            string price = pricee.Text;
-
             System.Data.SqlClient.SqlConnection sqlConnection1 =
            new System.Data.SqlClient.SqlConnection(connectionString);
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.dbo.TickSizeTable SET " +
-                "tableid= '" + tid + "', " +
-                "tick= '" + tick+ "', " +
-                "price= '" + price + "', " +
                 "state= '" + statid + "', " +
-                "name= N'" + name + "' " +
                 "WHERE id = '" + id + "'";
 
             cmd.Connection = sqlConnection1;
@@ -158,49 +147,6 @@ namespace Admin
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
             FillDataGrid();
-        }
-        #endregion
-        #region combos
-        public List<State> statt { get; set; }
-        public List<Ttable> tabble { get; set; }
-
-        private void bindCombo()
-        {
-            demoEntities10 st = new demoEntities10();
-            var items = st.States.ToList();
-            statt = items;
-            stat.ItemsSource = statt;
-            
-            var titems = st.Ttables.ToList();
-            tabble = titems;
-            tableid.ItemsSource = tabble;
-        }
-
-        private void tableid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var items = tableid.SelectedItem as Ttable;
-            try
-            {
-                name = items.name.ToString();
-                tid = items.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-
-        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var items = stat.SelectedItem as State;
-            try
-            {
-                statid = items.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
         }
         #endregion
     }

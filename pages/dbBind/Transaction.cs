@@ -15,10 +15,10 @@ namespace Admin.dbBind
     public partial class Transaction
     {
         public long id { get; set; }
-        public string accountId { get; set; }
+        public Nullable<long> accountId { get; set; }
         public Nullable<short> type { get; set; }
         public Nullable<short> type1 { get; set; }
-        public Nullable<decimal> totalNumber { get; set; }
+        public Nullable<int> amount { get; set; }
         public Nullable<int> assetId { get; set; }
         public Nullable<int> rate { get; set; }
         public string note { get; set; }

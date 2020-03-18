@@ -15,17 +15,17 @@ namespace Admin.dbBind
     public partial class Session
     {
         public long id { get; set; }
-        public long boardid { get; set; }
+        public Nullable<long> boardid { get; set; }
         public string name { get; set; }
-        public System.TimeSpan stime { get; set; }
-        public System.TimeSpan duration { get; set; }
-        public short algorithm { get; set; }
-        public short match { get; set; }
-        public string allowedtypes { get; set; }
+        public Nullable<System.TimeSpan> stime { get; set; }
+        public Nullable<int> duration { get; set; }
+        public Nullable<short> algorithm { get; set; }
+        public Nullable<int> match { get; set; }
+        public Nullable<short> allowedtypes { get; set; }
         public string description { get; set; }
-        public short state { get; set; }
-        public System.DateTime modified { get; set; }
-        public string isactive { get; set; }
+        public Nullable<short> state { get; set; }
+        public Nullable<System.DateTime> modified { get; set; }
+        public Nullable<bool> isactive { get; set; }
         public Nullable<System.DateTime> starttime { get; set; }
         public Nullable<System.DateTime> endtime { get; set; }
         public string tduration { get; set; }

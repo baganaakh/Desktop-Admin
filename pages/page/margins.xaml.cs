@@ -95,17 +95,18 @@ namespace Admin
         #region fill
         private void FillDataGrid()
         {
-            
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string CmdString = "SELECT ALL [id], [buy], [sell], [buytype], [selltype], [mbuy], [msell], [modified], [coid] "+
-                            "FROM [dbo].[Margins]";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Securities");
-                sda.Fill(dt);
-                DateTable2.ItemsSource = dt.DefaultView;
-            }
+            demoEntities10 de = new demoEntities10();
+            DateTable2.ItemsSource = de.Margins.ToList();
+            //using (SqlConnection conn = new SqlConnection(connectionString))
+            //{
+            //    string CmdString = "SELECT ALL [id], [buy], [sell], [buytype], [selltype], [mbuy], [msell], [modified], [coid] "+
+            //                "FROM [dbo].[Margins]";
+            //    SqlCommand cmd = new SqlCommand(CmdString, conn);
+            //    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            //    DataTable dt = new DataTable("Securities");
+            //    sda.Fill(dt);
+            //    DateTable2.ItemsSource = dt.DefaultView;
+            //}
         }
         #endregion
         #region ref new

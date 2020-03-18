@@ -91,7 +91,6 @@ namespace Admin
                 ////}
             using (demoEntities10 context = new demoEntities10())
             {
-
                 var query = context.users.Where(s => s.uname == userName.Text).FirstOrDefault<user>();
                 App.Current.Properties["User_id"] = query.id;
                 if (query.password == passBox.Password)

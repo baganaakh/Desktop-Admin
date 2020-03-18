@@ -70,8 +70,17 @@ namespace Admin
             {
                 var secu = new Security
                 {
-                    partid=Convert.ToInt32(partId.SelectedValue),
-                    type=Convert.ToInt16(stype.SelectedIndex),
+                    partid = Convert.ToInt32(partId.SelectedValue),
+                    type = Convert.ToInt16(stype.SelectedIndex),
+                    assetId = Convert.ToInt32(assetId.SelectedValue),
+                    name = sname.Text,
+                    totalQty = Convert.ToInt32(totalquant.Text),
+                    firstPrice = Convert.ToDecimal(fprice.Text),
+                    intRate = Convert.ToDecimal(srate.Text),
+                    sdate = sdate.SelectedDate,
+                    edate = edate.SelectedDate,
+                    modified=DateTime.Now,
+                    state=Convert.ToInt16(state.SelectedIndex -1),
                 };
                 conx.Securities.Add(secu);
                 conx.SaveChanges();
@@ -222,25 +231,11 @@ namespace Admin
         }
         #endregion
         #region combos
-        public List<Participant> Emp { get; set; }
         private void bindcombo()
         {
-            demoEntities10 dc = new demoEntities10();
-            var item = dc.Participants.ToList();
-            Emp = item;
-            partId.ItemsSource = Emp;
-        }
-        private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = partId.SelectedItem as Participant;
-            try
-            {
-                cid = item.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
+            demoEntities10 dc = new demoEntities10();            
+            partId.ItemsSource = dc.Participants.ToList(); ;
+            assetId.ItemsSource = dc.Assets.ToList();
         }
         #endregion
     }

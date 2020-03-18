@@ -84,7 +84,7 @@ namespace Admin
         }
         private void BtnClickP11(object sender, RoutedEventArgs e)
         {
-            Main.Content = new TickSizeTable();
+            Main.Content = new TickSizeTabl();
             this.Title = "Tick Size Table";
         }
         private void BtnClickP12(object sender, RoutedEventArgs e)

@@ -354,8 +354,8 @@
     <Compile Include="page\Table.xaml.cs">
       <DependentUpon>Table.xaml</DependentUpon>
     </Compile>
-    <Compile Include="page\TickSizeTable.xaml.cs">
-      <DependentUpon>TickSizeTable.xaml</DependentUpon>
+    <Compile Include="page\TickSizeTabl.xaml.cs">
+      <DependentUpon>TickSizeTabl.xaml</DependentUpon>
     </Compile>
     <Compile Include="page\trans.xaml.cs">
       <DependentUpon>trans.xaml</DependentUpon>
@@ -478,7 +478,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="page\TickSizeTable.xaml">
+    <Page Include="page\TickSizeTabl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -7,18 +7,27 @@
       mc:Ignorable="d" 
       d:DesignHeight="900"  d:DesignWidth="1200"
       Title="trans">
-
     <Grid>
-        <ComboBox IsEditable="True" x:Name="sboardid" ItemsSource="{Binding}" SelectionChanged="partid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,16,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox IsEditable="True" x:Name="sboardid" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,16,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput"  x:Name="tramount" HorizontalAlignment="Left" Height="23" Margin="407,16,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <DatePicker x:Name="trtdate" HorizontalAlignment="Left" Margin="657,16,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput"  x:Name="accId" HorizontalAlignment="Left" Height="23" Margin="158,62,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="accId" DisplayMemberPath="accNum" SelectedValuePath="id" HorizontalAlignment="Left" Height="23" Margin="158,62,0,0" Text="1234" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="trcurrent" HorizontalAlignment="Left" Height="23" Margin="407,62,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="trstate"  ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="657,62,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
-        <TextBox x:Name="trtype" HorizontalAlignment="Left" Height="23" Margin="158,99,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="trstate"  HorizontalAlignment="Left" Margin="657,62,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
+            <ComboBoxItem>Устгасан</ComboBoxItem>
+            <ComboBoxItem>Хэвийн</ComboBoxItem>
+            <ComboBoxItem>Идэвхгүй</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="trtype" HorizontalAlignment="Left" Height="23" Margin="158,99,0,0" Text="1234" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem>Зарлага</ComboBoxItem>
+            <ComboBoxItem>Орлого</ComboBoxItem>
+        </ComboBox>
         <TextBox x:Name="trnote" HorizontalAlignment="Left" Height="23" Margin="407,99,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="truser" HorizontalAlignment="Left" Height="23" Margin="657,99,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="trtype1" HorizontalAlignment="Left" Height="23" Margin="158,144,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="trtype1" HorizontalAlignment="Left" Height="23" Margin="158,144,0,0" Text="1234"  VerticalAlignment="Top" Width="120">
+            <ComboBoxItem>Үлдэгдэл</ComboBoxItem>
+            <ComboBoxItem>Хүлээгдэж буй дүн</ComboBoxItem>
+        </ComboBox>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="trrate"  HorizontalAlignment="Left" Height="23" Margin="657,143,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120" />
         <Label Content="type" HorizontalAlignment="Left" Margin="37,95,0,0" VerticalAlignment="Top"/>
         <Label Content="type1" HorizontalAlignment="Left" Margin="37,141,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.497,0.786"/>
@@ -44,7 +53,7 @@
                 <DataGridTextColumn Binding="{Binding accountId}" Header="AID"/>
                 <DataGridTextColumn Binding="{Binding type}" Header="Type"/>
                 <DataGridTextColumn Binding="{Binding type1}" Header="Type1"/>
-                <DataGridTextColumn Binding="{Binding totalNumber}" Header="Amount"/>
+                <DataGridTextColumn Binding="{Binding amount}" Header="Amount"/>
                 <DataGridTextColumn Binding="{Binding assetId}" Header="Currency"/>
                 <DataGridTextColumn Binding="{Binding rate}" Header="Rate"/>
                 <DataGridTextColumn Binding="{Binding note}" Header="Note"/>
@@ -55,5 +64,7 @@
                 <DataGridTextColumn Binding="{Binding memberid}" Header="MID"/>
             </DataGrid.Columns>
         </DataGrid>
+        <ComboBox x:Name="asstId" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Height="23" Margin="407,147,0,0" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="assetId" HorizontalAlignment="Left" Margin="313,143,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.497,0.786"/>
     </Grid>
 </Page>

@@ -46,17 +46,14 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding partid}" Header="PartID"/>
+                <DataGridTextColumn Binding="{Binding assetId}" Header="AsstId"/>
                 <DataGridTextColumn Binding="{Binding type}" Header="Type"/>
-                <DataGridTextColumn Binding="{Binding code}" Header="Code"/>
                 <DataGridTextColumn Binding="{Binding name}" Header="Name"/>
-                <DataGridTextColumn Binding="{Binding refno}" Header="RefNo"/>
-                <DataGridTextColumn Binding="{Binding regno}" Header="RegNo"/>
                 <DataGridTextColumn Binding="{Binding totalQty}" Header="TotalQty"/>
                 <DataGridTextColumn Binding="{Binding firstPrice}" Header="FPrice"/>
                 <DataGridTextColumn Binding="{Binding intRate}" Header="IntRate"/>
                 <DataGridTextColumn Binding="{Binding sdate}" Header="Sdate"/>
                 <DataGridTextColumn Binding="{Binding edate}" Header="Edate"/>
-                <DataGridTextColumn Binding="{Binding groupId}" Header="GID"/>
                 <DataGridTextColumn Binding="{Binding state}" Header="State"/>
                 <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
             </DataGrid.Columns>
