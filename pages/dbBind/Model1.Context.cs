@@ -49,7 +49,6 @@ namespace Admin.dbBind
         public virtual DbSet<Ptype> Ptypes { get; set; }
         public virtual DbSet<RefPrice> RefPrices { get; set; }
         public virtual DbSet<Right> Rights { get; set; }
-        public virtual DbSet<Security> Securities { get; set; }
         public virtual DbSet<Session> Sessions { get; set; }
         public virtual DbSet<Setting> Settings { get; set; }
         public virtual DbSet<Software> Softwares { get; set; }
@@ -83,6 +82,7 @@ namespace Admin.dbBind
         public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; }
         public virtual DbSet<Margin> Margins { get; set; }
         public virtual DbSet<MarketMaker> MarketMakers { get; set; }
+        public virtual DbSet<Security> Securities { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

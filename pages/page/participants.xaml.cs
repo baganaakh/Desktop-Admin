@@ -30,7 +30,6 @@ namespace Admin
         {
             InitializeComponent();
             FillDataGrid();
-            bindCombo();
         }
         string connectionString = Properties.Settings.Default.ConnectionString;
         static string id,cid, spid, ptid;
@@ -61,7 +60,6 @@ namespace Admin
             string speType= value.Row[18].ToString();
             string coType= value.Row[19].ToString();
 
-            pcode.Text = codepar;
             pname.Text = namepar;
             pcountry.Text = countrypar;
             pphone.Text = phonepar;
@@ -83,39 +81,32 @@ namespace Admin
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            if(ptid == null || spid == null)
-            {
-                MessageBox.Show("please set the participant types");
-                return;
-            }
             try
             {
                 using (var context = new demoEntities10())
                 {
                     var std = new Participant()
                     {
-                        code = pcode.Text,
                         name = pname.Text,
                         country=pcountry.Text,
                         phone = pphone.Text,
                         email = pmail.Text,
                         contact = pcontact.Text,
-                        state = Convert.ToInt16(cid),
+                        state = Convert.ToInt16(pstate.SelectedIndex -1),
                         pcity = pcity.Text,
                         pdistr = pdistr1.Text,
                         phoroo = phoroo.Text,
                         pstreet = pstreet.Text,
                         pwebpage = pwebpage.Text,
                         numofemp = numofemp.Text,
-                        spType = Convert.ToInt16(spid),
-                        coType = Convert.ToInt16(ptid),
-                        modified = DateTime.Now
+                        specialType= Convert.ToInt16(spetype.SelectedIndex +1),
+                        companyType= Convert.ToInt16(ptype.SelectedIndex +1),
+                        modified = DateTime.Now,
                     };
                     context.Participants.Add(std);
                     try
                     {
                         context.SaveChanges();
-
                     }
                     catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
                     {
@@ -138,7 +129,7 @@ namespace Admin
             }
             catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
             {
-                MessageBox.Show("Code " + pcode.Text.ToString() + " Бүртгэгдсэн байна та өөр Code сонго нуу ");
+                MessageBox.Show("Бүртгэгдсэн байна та өөр ");
                 return;
             }
             catch (Exception ex) 
@@ -174,10 +165,9 @@ namespace Admin
             }
         }
         #endregion
-        #region new ref
+        #region new and refresh
         private void newData(object sender, RoutedEventArgs e)
         {
-            pcode.Text = null;
             pname.Text = null;
             pcountry.Text= null;
             pcontact.Text= null;
@@ -223,7 +213,6 @@ namespace Admin
         #region update
         private void update(object sender, RoutedEventArgs e)
         {
-            string code = pcode.Text;
             string name = pname.Text;
             string country = pcountry.Text;
             string phone = pphone.Text;
@@ -244,7 +233,6 @@ namespace Admin
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = "UPDATE demo.dbo.participants SET " +
-                "code = N'" + code+ "', " +
                 "name= N'" + name + "', " +
                 "country = N'" + country+ "', " +
                 "phone= '" + phone+ "', " +
@@ -298,66 +286,6 @@ namespace Admin
         //    bool result = ValidatorExtensions.IsValidEmailAddress(pmail.Text);
         //}
 
-        #endregion
-        #region combos
-        public List<State> boa { get; set; }
-        public List<SpecialType> sptype { get; set; }
-        public List<Ptype> ptyp{ get; set; }
-        private void bindCombo()
-        {
-            demoEntities10 dE = new demoEntities10();
-            var item = dE.States.ToList();
-            boa = item;
-            pstate.ItemsSource = boa;
-            
-            demoEntities10 sp = new demoEntities10();
-            var spitem = sp.SpecialTypes.ToList();
-            sptype = spitem;
-            spetype.ItemsSource = sptype;
-
-            demoEntities10 ptp = new demoEntities10();
-            var ptitem = ptp.Ptypes.ToList();
-            ptyp= ptitem;
-            ptype.ItemsSource = ptyp;
-        }
-        private void ptype_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var spitem = ptype.SelectedItem as Ptype;
-            try
-            {
-                ptid = spitem.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-
-        private void spetype_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var spitem = spetype.SelectedItem as SpecialType;
-            try
-            {
-                spid = spitem.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-
-        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = pstate.SelectedItem as State;
-            try
-            {
-                cid = item.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
         #endregion
     }
 }

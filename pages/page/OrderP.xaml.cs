@@ -69,6 +69,13 @@ namespace Admin
                 Order ord = new Order
                 {
                     side=Convert.ToInt16(sides),
+                    memberid=Convert.ToInt64(memid.SelectedValue),
+                    accountid=Convert.ToInt64(accountid.SelectedValue),
+                    boardId=Convert.ToInt64(boardid.SelectedValue),
+                    state=Convert.ToInt16(stat.SelectedIndex-1),
+                    assetid=Convert.ToInt32(assetid.SelectedValue),
+                    qty=Convert.ToInt32(quantity.Text),
+                    price=Convert.ToDecimal(price.Text),
                 };
                 contx.Orders.Add(ord);
                 contx.SaveChanges();
@@ -206,67 +213,6 @@ namespace Admin
             var asst = dc.Assets.ToList();
             ASST = asst;
             assetid.ItemsSource = ASST;
-        }
-        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var items = stat.SelectedItem as State;
-            try
-            {
-                statid = items.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-        private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = memid.SelectedItem as Member;
-            try
-            {
-                memId = item.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-        private void boardid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var dti = boardid.SelectedItem as Board;
-            try
-            {
-                bid = dti.id.ToString();
-                dealtype = dti.dealType.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-        private void accountid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var accitems = accountid.SelectedItem as Account;
-            try
-            {
-                accId = accitems.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-        private void assetid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var assItems = assetid.SelectedItem as Asset;
-            try
-            {
-                assetId = assItems.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
         }
         #endregion
     }

@@ -28,7 +28,6 @@
         <EntityTypeShape EntityType="demoModel.Ptype" Width="1.5" PointX="16.75" PointY="0.75" />
         <EntityTypeShape EntityType="demoModel.RefPrice" Width="1.5" PointX="16.75" PointY="3.75" />
         <EntityTypeShape EntityType="demoModel.Right" Width="1.5" PointX="16.75" PointY="6.75" />
-        <EntityTypeShape EntityType="demoModel.Security" Width="1.5" PointX="16.75" PointY="10.75" />
         <EntityTypeShape EntityType="demoModel.Session" Width="1.5" PointX="12.75" PointY="16.75" />
         <EntityTypeShape EntityType="demoModel.Setting" Width="1.5" PointX="14.75" PointY="16.75" />
         <EntityTypeShape EntityType="demoModel.side" Width="1.5" PointX="16.75" PointY="15.75" />
@@ -48,7 +47,7 @@
         <EntityTypeShape EntityType="demoModel.TickSizeTable" Width="1.5" PointX="9.375" PointY="19.75" />
         <EntityTypeShape EntityType="demoModel.dbo_logs" Width="1.5" PointX="0.75" PointY="7.75" />
         <EntityTypeShape EntityType="demoModel.Deal" Width="1.5" PointX="6.875" PointY="3" />
-        <EntityTypeShape EntityType="demoModel.Participant" Width="1.5" PointX="21.375" PointY="19.75" />
+        <EntityTypeShape EntityType="demoModel.Participant" Width="1.5" PointX="21.375" PointY="19.875" />
         <EntityTypeShape EntityType="demoModel.user" Width="1.5" PointX="0.75" PointY="14.75" />
         <EntityTypeShape EntityType="demoModel.Account" Width="1.5" PointX="7.375" PointY="15.75" />
         <EntityTypeShape EntityType="demoModel.Interest" Width="1.5" PointX="11.375" PointY="22.75" />
@@ -64,6 +63,7 @@
         <EntityTypeShape EntityType="demoModel.InvoiceDetail" Width="1.5" PointX="5.375" PointY="8.75" />
         <EntityTypeShape EntityType="demoModel.Margin" Width="1.5" PointX="17.375" PointY="22.75" />
         <EntityTypeShape EntityType="demoModel.MarketMaker" Width="1.5" PointX="0.75" PointY="23.75" />
+        <EntityTypeShape EntityType="demoModel.Security" Width="1.5" PointX="23.375" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -21,9 +21,9 @@
         </ComboBox>
         <ComboBox x:Name="cstate" HorizontalAlignment="Left" Margin="698,65,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Устгасан</ComboBoxItem>
-            <Separator/>
+            
             <ComboBoxItem>Хэвийн</ComboBoxItem>
-            <Separator/>
+            
             <ComboBoxItem>Идэвхгүй</ComboBoxItem>
         </ComboBox>
         <TextBox x:Name="ccode" HorizontalAlignment="Left" Height="23" Margin="138,109,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>

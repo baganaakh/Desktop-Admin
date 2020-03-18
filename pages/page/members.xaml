@@ -12,16 +12,16 @@
         <ComboBox IsEditable="True" x:Name="participants" ItemsSource="{Binding}" SelectionChanged="participants_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="132,21,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <ComboBox x:Name="pstate" HorizontalAlignment="Left" Margin="362,21,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Устгасан</ComboBoxItem>
-            <Separator/>
+            
             <ComboBoxItem>Хэвийн</ComboBoxItem>
-            <Separator/>
+            
             <ComboBoxItem>Идэвхгүй</ComboBoxItem>
         </ComboBox>
         <ComboBox x:Name="mtype" HorizontalAlignment="Left" Margin="622,21,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Арилжаа</ComboBoxItem>
-            <Separator/>
+            
             <ComboBoxItem>Клиринг</ComboBoxItem>
-            <Separator/>
+            
             <ComboBoxItem>Бусад</ComboBoxItem>
         </ComboBox>
         <TextBox x:Name="pcode" HorizontalAlignment="Left" Height="23" Margin="132,68,0,0" MaxLength="2" TextWrapping="Wrap" Text="12"  VerticalAlignment="Top" Width="120"/>

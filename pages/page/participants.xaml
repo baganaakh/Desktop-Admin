@@ -9,16 +9,28 @@
       Title="participants">
 
     <Grid >
-        <TextBox x:Name="pcode" HorizontalAlignment="Left" Height="23" Margin="109,19,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="pcity" HorizontalAlignment="Left" Height="23" Margin="362,23,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <ComboBox IsEditable="True" x:Name="spetype" ItemsSource="{Binding}" SelectionChanged="spetype_SelectionChanged" DisplayMemberPath="specialType1" SelectedValuePath="id" HorizontalAlignment="Left" Margin="593,22,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox IsEditable="True" x:Name="spetype" HorizontalAlignment="Left" Margin="593,22,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
+            <ComboBoxItem>Банк</ComboBoxItem>
+            <ComboBoxItem>ББСБ</ComboBoxItem>
+            <ComboBoxItem>ҮЦК</ComboBoxItem>
+            <ComboBoxItem>ХОС</ComboBoxItem>
+            <ComboBoxItem>ХОМК</ComboBoxItem>
+            <ComboBoxItem>Уул уурхай</ComboBoxItem>
+            <ComboBoxItem>Дэд Бүтэц</ComboBoxItem>
+            <ComboBoxItem>Барилга</ComboBoxItem>
+        </ComboBox>
         <TextBox x:Name="pname" HorizontalAlignment="Left" Height="23" Margin="109,60,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="pdistr1" HorizontalAlignment="Left" Height="23" Margin="362,55,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="pphone" HorizontalAlignment="Left" Height="23" Margin="593,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="PreviewTextInput"/>
         <TextBox x:Name="pcountry" HorizontalAlignment="Left" Height="23" Margin="109,95,0,0" TextWrapping="Wrap" Text="үсэг"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="phoroo" HorizontalAlignment="Left" Height="23" Margin="362,93,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="pwebpage" HorizontalAlignment="Left" Height="23" Margin="594,93,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <ComboBox IsEditable="True" x:Name="ptype" ItemsSource="{Binding}" DisplayMemberPath="ptype1" SelectedValuePath="id" SelectionChanged="ptype_SelectionChanged"  HorizontalAlignment="Left" Margin="109,135,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox IsEditable="True" x:Name="ptype" HorizontalAlignment="Left" Margin="109,135,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
+            <ComboBoxItem>ХХК</ComboBoxItem>
+            <ComboBoxItem>Х.ХК</ComboBoxItem>
+            <ComboBoxItem>ХК</ComboBoxItem>
+        </ComboBox>
         <TextBox x:Name="pstreet" HorizontalAlignment="Left" Height="23" Margin="362,125,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <ComboBox IsEditable="True" x:Name="numofemp"  HorizontalAlignment="Left" Margin="594,124,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>1-10</ComboBoxItem>
@@ -27,13 +39,17 @@
             <ComboBoxItem>101-250</ComboBoxItem>
             <ComboBoxItem>251-500</ComboBoxItem>
         </ComboBox>
-        <ComboBox x:Name="pstate" ItemsSource="{Binding}" SelectionChanged="sstate_SelectionChanged" DisplayMemberPath="states" SelectedValuePath="id" HorizontalAlignment="Left" Margin="362,170,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+
+        <ComboBox x:Name="pstate" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="362,170,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
+            <ComboBoxItem>Устгасан</ComboBoxItem>
+            <ComboBoxItem>Хэвийн</ComboBoxItem>
+            <ComboBoxItem>Идэвхгүй</ComboBoxItem>
+        </ComboBox>
         <TextBox x:Name="pmail" HorizontalAlignment="Left" Height="23" Margin="594,163,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="pwebid" HorizontalAlignment="Left" Height="23" Margin="845,100,0,0" TextWrapping="Wrap" Text="1"  VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <TextBox x:Name="pcsid" HorizontalAlignment="Left" Height="23" Margin="845,128,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <TextBox x:Name="pcontact" HorizontalAlignment="Left" Height="23" Margin="845,156,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <Label Content="contact" HorizontalAlignment="Left" Margin="744,151,0,0" VerticalAlignment="Top"/>
-        <Label Content="Code" HorizontalAlignment="Left" Margin="27,15,0,0" VerticalAlignment="Top"/>
         <Label Content="Улс" HorizontalAlignment="Left" Margin="29,96,0,0" VerticalAlignment="Top"/>
         <Label Content="утас" HorizontalAlignment="Left" Margin="504,51,0,0" VerticalAlignment="Top"/>
         <Label Content="Цахим хуудас" HorizontalAlignment="Left" Margin="504,92,0,0" VerticalAlignment="Top"/>
@@ -74,8 +90,8 @@
                 <DataGridTextColumn Binding="{Binding modified}" Header="modified"/>
                 <DataGridTextColumn Binding="{Binding csid}" Header="csid"/>
                 <DataGridTextColumn Binding="{Binding webid}" Header="webid"/>
-                <DataGridTextColumn Binding="{Binding spType}" Header="spType"/>
-                <DataGridTextColumn Binding="{Binding coType}" Header="coType"/>
+                <DataGridTextColumn Binding="{Binding specialType}" Header="spType"/>
+                <DataGridTextColumn Binding="{Binding companyType}" Header="coType"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

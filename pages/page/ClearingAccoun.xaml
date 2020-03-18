@@ -16,20 +16,20 @@
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="sbalanc" HorizontalAlignment="Left" Height="23" Margin="155,59,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
         <ComboBox Name="typee" HorizontalAlignment="Left" Height="23" Margin="463,59,0,0" Text="1234" VerticalAlignment="Top" Width="120">
             <ComboBoxItem>Арилжааны Данс</ComboBoxItem>
-            <Separator/>
+            
             <ComboBoxItem>Клирингийн Данс</ComboBoxItem>
-            <Separator/>
+            
             <ComboBoxItem>Төлбөр тооцооны данс</ComboBoxItem>
-            <Separator/>
+            
             <ComboBoxItem>Барьцааны Данс</ComboBoxItem>
         </ComboBox>
         <ComboBox SelectedValuePath="id" DisplayMemberPath="accNum" x:Name="linkacc" HorizontalAlignment="Left" Height="23" Margin="747,60,0,0" Text="1234" VerticalAlignment="Top" Width="120"></ComboBox>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="currency" HorizontalAlignment="Left" Height="23" Margin="155,100,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="stat" HorizontalAlignment="Left" Margin="463,100,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Устгасан</ComboBoxItem>
-            <Separator/>
+            
             <ComboBoxItem>Хэвийн</ComboBoxItem>
-            <Separator/>
+            
             <ComboBoxItem>Идэвхгүй</ComboBoxItem>
         </ComboBox>
         <Label Content="memberID" HorizontalAlignment="Left" Margin="34,18,0,0" VerticalAlignment="Top"/>

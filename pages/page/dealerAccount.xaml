@@ -12,9 +12,9 @@
         <ComboBox IsEditable="True" x:Name="memid" ItemsSource="{Binding}" SelectionChanged="partid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,32,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="stat" HorizontalAlignment="Left" Margin="461,32,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Устгасан</ComboBoxItem>
-            <Separator/>
+            
             <ComboBoxItem>Хэвийн</ComboBoxItem>
-            <Separator/>
+            
             <ComboBoxItem>Идэвхгүй</ComboBoxItem>
         </ComboBox>
         <ComboBox DisplayMemberPath="accNum" SelectedValuePath="id" x:Name="accid" HorizontalAlignment="Left" Height="23" Margin="155,74,0,0" Text="1234"  VerticalAlignment="Top" Width="120"></ComboBox>

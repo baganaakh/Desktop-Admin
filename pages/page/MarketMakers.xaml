@@ -19,9 +19,9 @@
         <TextBox x:Name="markticks" HorizontalAlignment="Left" Height="23" Margin="422,114,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="markstat" HorizontalAlignment="Left" Margin="702,110,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Устгасан</ComboBoxItem>
-            <Separator/>
+            
             <ComboBoxItem>Хэвийн</ComboBoxItem>
-            <Separator/>
+            
             <ComboBoxItem>Идэвхгүй</ComboBoxItem>
         </ComboBox>
         <Label Content="contactID" HorizontalAlignment="Left" Margin="31,27,0,0" VerticalAlignment="Top"/>

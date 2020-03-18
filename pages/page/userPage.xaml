@@ -29,7 +29,6 @@
         <Label Content="Role" HorizontalAlignment="Left" Margin="758,21,0,0" VerticalAlignment="Top"/>
         <ComboBox Name="urole" HorizontalAlignment="Left" Margin="858,21,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.338,0.614">
             <ComboBoxItem Content="admin"/>
-            <Separator/>
             <ComboBoxItem Content="normal"/>
         </ComboBox>
         <Button Content="Delete" HorizontalAlignment="Left" Margin="177,66,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1" RenderTransformOrigin="1.181,-0.633"/>

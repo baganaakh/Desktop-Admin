@@ -43,22 +43,17 @@ namespace Admin
             string typese = value.Row[2].ToString();
             string codese = value.Row[3].ToString();
             string namese = value.Row[4].ToString();
-            string refnose = value.Row[5].ToString();
-            string regnose = value.Row[6].ToString();
             string totqtse = value.Row[7].ToString();
             string fpricese = value.Row[8].ToString();
             string intrase = value.Row[9].ToString();
             string sdatese = value.Row[10].ToString();
             string edatese = value.Row[11].ToString();
-            string gidse = value.Row[12].ToString();
             string statese = value.Row[13].ToString();
 
             partId.SelectedValue= pidse;
             stype.SelectedValue = typese;
             scode.Text = codese;
             sname.Text = namese;
-            refNo.Text = refnose;
-            regNo.Text = regnose;
             totalquant.Text = totqtse;
             fprice.Text = fpricese;
             Decimal intRase = Decimal.Parse(intrase) * 100;
@@ -66,48 +61,56 @@ namespace Admin
             state.SelectedValue= statese;
             sdate.Text = sdatese;
             edate.Text = edatese;
-            groupid.Text = gidse;
         }
         #endregion
         #region insert func
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            if (sdate.SelectedDate == null || edate.SelectedDate == null)
+            using(demoEntities10 conx=new demoEntities10())
             {
-                MessageBox.Show("Please Set Date !!!!!");
-                return;
+                var secu = new Security
+                {
+                    partid=Convert.ToInt32(partId.SelectedValue),
+                    type=Convert.ToInt16(stype.SelectedIndex),
+                };
+                conx.Securities.Add(secu);
+                conx.SaveChanges();
             }
-            string partid = cid;
-            string code = scode.Text;
-            string name = sname.Text;
-            string refno = refNo.Text;
-            string regno = regNo.Text;
-            string total = totalquant.Text;
-            string fPirce = fprice.Text;
-            string intRat = srate.Text;
-            //Decimal intRate= Decimal.Parse(intRat) / 100;
-            string stat = state.Text;
-            string starTime = sdate.SelectedDate.Value.ToShortDateString();
-            string endTime = edate.SelectedDate.Value.ToShortDateString();
-            string groupId = groupid.Text;
+           // if (sdate.SelectedDate == null || edate.SelectedDate == null)
+           // {
+           //     MessageBox.Show("Please Set Date !!!!!");
+           //     return;
+           // }
+           // string partid = cid;
+           // string code = scode.Text;
+           // string name = sname.Text;
+           
+           // string total = totalquant.Text;
+           // string fPirce = fprice.Text;
+           // string intRat = srate.Text;
+           // //Decimal intRate= Decimal.Parse(intRat) / 100;
+           // string stat = state.Text;
+           // string starTime = sdate.SelectedDate.Value.ToShortDateString();
+           // string endTime = edate.SelectedDate.Value.ToShortDateString();
+        
 
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
+           // System.Data.SqlClient.SqlConnection sqlConnection1 =
+           //new System.Data.SqlClient.SqlConnection(connectionString);
 
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into dbo.securities (partid, type, code, name, refno, regno, totalQty, " +
-                "firstPrice, intRate, sdate, edate, groupid, state, modified) values" +
-                " ('" + partid + "'," + setype + ",N'" + code + "',N'" + name + "', '" + refno + "', '" + regno +
-                "', '" + total + "', '" + fPirce + "', '" + intRat +"',N'" + starTime + "',N'" + endTime + "',N'" +
-                groupId + "',N'" + statid + "', getdate())  " +
-                "insert into dbo.assets(code, name, value, expireDate, state, modified, secId) values" +
-                " ('" + code + "',N'" + name + "',N'" + fPirce + "', '" + endTime + "', '" + statid + "', getdate(), IDENT_CURRENT('securities'))";
+           // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+           // cmd.CommandType = System.Data.CommandType.Text;
+           // cmd.CommandText = "insert into dbo.securities (partid, type, code, name, refno, regno, totalQty, " +
+           //     "firstPrice, intRate, sdate, edate, groupid, state, modified) values" +
+           //     " ('" + partid + "'," + setype + ",N'" + code + "',N'" + name + "', '" + refno + "', '" + regno +
+           //     "', '" + total + "', '" + fPirce + "', '" + intRat +"',N'" + starTime + "',N'" + endTime + "',N'" +
+           //     groupId + "',N'" + statid + "', getdate())  " +
+           //     "insert into dbo.assets(code, name, value, expireDate, state, modified, secId) values" +
+           //     " ('" + code + "',N'" + name + "',N'" + fPirce + "', '" + endTime + "', '" + statid + "', getdate(), IDENT_CURRENT('securities'))";
 
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+           // cmd.Connection = sqlConnection1;
+           // sqlConnection1.Open();
+           // cmd.ExecuteNonQuery();
+           // sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion
@@ -125,17 +128,8 @@ namespace Admin
         #region fill
         private void FillDataGrid()
         {
-            
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-               string CmdString = "SELECT ALL [id], [partid], [type], [code], [name], [refno], [regno], [totalQty], " +
-                "[firstPrice], [intRate], [sdate], [edate], [groupId], [state], [modified] FROM dbo.securities";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Securities");
-                sda.Fill(dt);
-                DateTable2.ItemsSource = dt.DefaultView;
-            }
+            demoEntities10 de = new demoEntities10();
+            DateTable2.ItemsSource = de.Securities.ToList();            
         }
         #endregion
         #region ref new
@@ -149,15 +143,12 @@ namespace Admin
             stype.Text = null;
             scode.Text = null;
             sname.Text = null;
-            refNo.Text = null;
-            regNo.Text = null;
             totalquant.Text = null;
             fprice.Text = null;
             srate.Text = null;
             state.Text = null;
             sdate.Text = null;
             edate.Text = null;
-            groupid.Text = null;
             id = null;
         }
         #endregion
@@ -186,8 +177,7 @@ namespace Admin
             string partid = cid;
             string code = scode.Text;
             string name = sname.Text;
-            string refno = refNo.Text;
-            string regno = regNo.Text;
+     
             string total = totalquant.Text;
             string fPirce = fprice.Text;
             string intRat = srate.Text;
@@ -195,7 +185,6 @@ namespace Admin
             string stat = state.Text;
             string starTime = sdate.SelectedDate.Value.ToShortDateString();
             string endTime = edate.SelectedDate.Value.ToShortDateString();
-            string groupId = groupid.Text;
 
             System.Data.SqlClient.SqlConnection sqlConnection1 =
             new System.Data.SqlClient.SqlConnection(connectionString);
@@ -207,14 +196,11 @@ namespace Admin
                 "type= '" + setype + "', " +
                 "code= '" + code + "', " +
                 "name= N'" + name + "', " +
-                "refno= '" + refno + "', " +
-                "regno= '" + regno + "', " +
                 "totalQty= '" + total + "', " +
                 "firstPrice= '" + fPirce + "', " +
                 "intRate= '" + intRat + "', " +
                 "sdate= '" + starTime + "', " +
                 "edate= '" + endTime + "', " +
-                "groupId= '" + groupId + "', " +
                 "state= '" + statid + "', " +
                 "modified = getdate() " +
                 "WHERE id = " + id+
@@ -237,56 +223,19 @@ namespace Admin
         #endregion
         #region combos
         public List<Participant> Emp { get; set; }
-        public List<State> statt { get; set; }
-        public List<stype> stypes { get; set; }
-
         private void bindcombo()
         {
             demoEntities10 dc = new demoEntities10();
             var item = dc.Participants.ToList();
             Emp = item;
             partId.ItemsSource = Emp;
-
-            var items = dc.States.ToList();
-            statt = items;
-            state.ItemsSource = statt;
-
-            var titems = dc.stypes.ToList();
-            stypes = titems;
-            stype.ItemsSource = stypes;
         }
-
-        private void stype_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = stype.SelectedItem as stype;
-            try
-            {
-                setype = item.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-
         private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = partId.SelectedItem as Participant;
             try
             {
                 cid = item.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-        private void sstate_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var items = state.SelectedItem as State;
-            try
-            {
-            statid = items.id.ToString();
             }
             catch
             {

@@ -15,19 +15,17 @@ namespace Admin.dbBind
     public partial class Security
     {
         public int id { get; set; }
-        public int partid { get; set; }
-        public short type { get; set; }
+        public Nullable<int> partid { get; set; }
+        public Nullable<short> type { get; set; }
         public string code { get; set; }
         public string name { get; set; }
-        public string refno { get; set; }
-        public string regno { get; set; }
-        public decimal totalQty { get; set; }
-        public decimal firstPrice { get; set; }
-        public decimal intRate { get; set; }
-        public System.DateTime sdate { get; set; }
-        public System.DateTime edate { get; set; }
-        public int groupId { get; set; }
-        public short state { get; set; }
-        public System.DateTime modified { get; set; }
+        public Nullable<decimal> totalQty { get; set; }
+        public Nullable<decimal> firstPrice { get; set; }
+        public Nullable<decimal> intRate { get; set; }
+        public Nullable<System.DateTime> sdate { get; set; }
+        public Nullable<System.DateTime> edate { get; set; }
+        public Nullable<short> state { get; set; }
+        public Nullable<System.DateTime> modified { get; set; }
+        public Nullable<int> assetId { get; set; }
     }
 }

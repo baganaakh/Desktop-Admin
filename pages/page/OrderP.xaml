@@ -8,22 +8,22 @@
       d:DesignHeight="900"  d:DesignWidth="1200"
       Title="OrderP">
     <Grid>
-        <ComboBox IsEditable="True" x:Name="memid" ItemsSource="{Binding}" SelectionChanged="partid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,19,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox IsEditable="True" x:Name="memid" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,19,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="stat" HorizontalAlignment="Left" Margin="410,18,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Устгасан</ComboBoxItem>
-            <Separator/>
+            
             <ComboBoxItem>Хэвийн</ComboBoxItem>
-            <Separator/>
+            
             <ComboBoxItem>Идэвхгүй</ComboBoxItem>
         </ComboBox>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="price" HorizontalAlignment="Left" Height="23" Margin="639,19,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <ComboBox IsEditable="True" x:Name="accountid" ItemsSource="{Binding}" SelectionChanged="accountid_SelectionChanged" DisplayMemberPath="id" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,63,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
-        <ComboBox IsEditable="True" x:Name="assetid" ItemsSource="{Binding}" SelectionChanged="assetid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="410,62,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox IsEditable="True" x:Name="accountid" ItemsSource="{Binding}" DisplayMemberPath="accNum" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,63,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox IsEditable="True" x:Name="assetid" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="410,62,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <ComboBox x:Name="Side" Margin="639,62,441,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Зарах</ComboBoxItem>
             <ComboBoxItem>Авах</ComboBoxItem>
         </ComboBox>
-        <ComboBox IsEditable="True" x:Name="boardid" ItemsSource="{Binding}" SelectionChanged="boardid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,99,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox IsEditable="True" x:Name="boardid" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,99,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="quantity" HorizontalAlignment="Left" Height="23" Margin="410,98,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label Content="memberid" HorizontalAlignment="Left" Margin="29,16,0,0" VerticalAlignment="Top"/>
         <Label Content="side" HorizontalAlignment="Left" Margin="569,60,0,0" VerticalAlignment="Top"/>
@@ -39,11 +39,10 @@
         <Button Content="Edit" HorizontalAlignment="Left" Margin="1076,57,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="Update"  IsEnabled="False" Name="upd"  HorizontalAlignment="Left" Margin="972,99,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="1076,99,0,0"/>
-
         <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" VerticalAlignment="Center" Width="1138" Height="609" Margin="0,223,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
-                <DataGridTextColumn Binding="{Binding bid}" Header="BID"/>
+                <DataGridTextColumn Binding="{Binding boardId}" Header="BID"/>
                 <DataGridTextColumn Binding="{Binding side}" Header="SIDE"/>
                 <DataGridTextColumn Binding="{Binding memberid}" Header="memberid"/>
                 <DataGridTextColumn Binding="{Binding accountid}" Header="ACCID"/>

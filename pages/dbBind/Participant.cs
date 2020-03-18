@@ -15,24 +15,23 @@ namespace Admin.dbBind
     public partial class Participant
     {
         public int id { get; set; }
-        public string code { get; set; }
         public string name { get; set; }
         public string country { get; set; }
         public string address { get; set; }
         public string phone { get; set; }
         public string email { get; set; }
         public string contact { get; set; }
-        public short state { get; set; }
+        public Nullable<short> state { get; set; }
         public string pcity { get; set; }
         public string pdistr { get; set; }
         public string phoroo { get; set; }
         public string pstreet { get; set; }
         public string pwebpage { get; set; }
         public string numofemp { get; set; }
-        public System.DateTime modified { get; set; }
-        public int csid { get; set; }
-        public int webid { get; set; }
-        public Nullable<short> spType { get; set; }
-        public Nullable<short> coType { get; set; }
+        public Nullable<System.DateTime> modified { get; set; }
+        public Nullable<int> csid { get; set; }
+        public Nullable<int> webid { get; set; }
+        public Nullable<short> specialType { get; set; }
+        public Nullable<short> companyType { get; set; }
     }
 }
