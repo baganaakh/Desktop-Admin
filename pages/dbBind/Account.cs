@@ -15,17 +15,14 @@ namespace Admin.dbBind
     public partial class Account
     {
         public long id { get; set; }
-        public long memberid { get; set; }
-        public string accNum { get; set; }
-        public Nullable<short> accType { get; set; }
-        public string LinkAcc { get; set; }
-        public Nullable<decimal> collateral { get; set; }
-        public System.DateTime modified { get; set; }
+        public Nullable<long> memberid { get; set; }
+        public string accNumber { get; set; }
+        public Nullable<short> accountType { get; set; }
+        public Nullable<long> LinkAccount { get; set; }
+        public Nullable<System.DateTime> modified { get; set; }
         public string mask { get; set; }
         public Nullable<System.DateTime> startdate { get; set; }
         public Nullable<System.DateTime> enddate { get; set; }
-        public short state { get; set; }
-        public Nullable<decimal> blnc { get; set; }
-        public Nullable<decimal> sblnc { get; set; }
+        public Nullable<short> state { get; set; }
     }
 }

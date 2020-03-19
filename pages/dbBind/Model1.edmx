@@ -10,18 +10,15 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="memberid" Type="bigint" Nullable="false" />
-          <Property Name="accNum" Type="nvarchar" MaxLength="16" />
-          <Property Name="accType" Type="smallint" />
-          <Property Name="LinkAcc" Type="nvarchar" MaxLength="16" />
-          <Property Name="collateral" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="memberid" Type="bigint" />
+          <Property Name="accNumber" Type="nvarchar" MaxLength="16" />
+          <Property Name="accountType" Type="smallint" />
+          <Property Name="LinkAccount" Type="bigint" />
+          <Property Name="modified" Type="datetime" />
           <Property Name="mask" Type="nvarchar" MaxLength="20" />
           <Property Name="startdate" Type="date" />
           <Property Name="enddate" Type="date" />
-          <Property Name="state" Type="smallint" Nullable="false" />
-          <Property Name="blnc" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="sblnc" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="state" Type="smallint" />
         </EntityType>
         <EntityType Name="AccountDetails">
           <Key>
@@ -29,10 +26,9 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="freezeValue" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="totalNumber" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="amount" Type="decimal" Precision="18" Scale="4" />
           <Property Name="assetId" Type="int" />
-          <Property Name="accountId" Type="nvarchar" MaxLength="20" />
-          <Property Name="linkAcc" Type="nvarchar" MaxLength="20" />
+          <Property Name="accountId" Type="bigint" />
         </EntityType>
         <EntityType Name="accType">
           <Key>
@@ -950,11 +946,9 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
           <EntitySet Name="Deals" EntityType="demoModel.Deal" />
           <EntitySet Name="Participants" EntityType="demoModel.Participant" />
           <EntitySet Name="users" EntityType="demoModel.user" />
-          <EntitySet Name="Accounts" EntityType="demoModel.Account" />
           <EntitySet Name="Interests" EntityType="demoModel.Interest" />
           <EntitySet Name="Reasons" EntityType="demoModel.Reason" />
           <EntitySet Name="ColReqs" EntityType="demoModel.ColReq" />
-          <EntitySet Name="AccountDetails" EntityType="demoModel.AccountDetail" />
           <EntitySet Name="Assets" EntityType="demoModel.Asset" />
           <EntitySet Name="Boards" EntityType="demoModel.Board" />
           <EntitySet Name="ClearingAccounts" EntityType="demoModel.ClearingAccount" />
@@ -966,6 +960,8 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
           <EntitySet Name="Sessions" EntityType="demoModel.Session" />
           <EntitySet Name="TickSizeTables" EntityType="demoModel.TickSizeTable" />
           <EntitySet Name="Transactions" EntityType="demoModel.Transaction" />
+          <EntitySet Name="AccountDetails" EntityType="demoModel.AccountDetail" />
+          <EntitySet Name="Accounts" EntityType="demoModel.Account" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1464,24 +1460,6 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
           <Property Name="role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="memId" Type="Int32" />
         </EntityType>
-        <EntityType Name="Account">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="memberid" Type="Int64" Nullable="false" />
-          <Property Name="accNum" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="accType" Type="Int16" />
-          <Property Name="LinkAcc" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="collateral" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="mask" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="startdate" Type="DateTime" Precision="0" />
-          <Property Name="enddate" Type="DateTime" Precision="0" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="blnc" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="sblnc" Type="Decimal" Precision="18" Scale="4" />
-        </EntityType>
         <EntityType Name="Interest">
           <Key>
             <PropertyRef Name="id" />
@@ -1515,17 +1493,6 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
           <Property Name="modified" Type="DateTime" Precision="3" />
           <Property Name="reason" Type="Int16" />
           <Property Name="memid" Type="Int32" />
-        </EntityType>
-        <EntityType Name="AccountDetail">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="freezeValue" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="totalNumber" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="assetId" Type="Int32" />
-          <Property Name="accountId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="linkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Asset">
           <Key>
@@ -1703,6 +1670,31 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
           <Property Name="modified" Type="DateTime" Precision="3" />
           <Property Name="userId" Type="Int64" />
           <Property Name="memberid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="AccountDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="freezeValue" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="amount" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="assetId" Type="Int32" />
+          <Property Name="accountId" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="memberid" Type="Int64" />
+          <Property Name="accNumber" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="accountType" Type="Int16" />
+          <Property Name="LinkAccount" Type="Int64" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="mask" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="startdate" Type="DateTime" Precision="0" />
+          <Property Name="enddate" Type="DateTime" Precision="0" />
+          <Property Name="state" Type="Int16" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2240,25 +2232,6 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="demoModel.Account">
-              <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="sblnc" ColumnName="sblnc" />
-                <ScalarProperty Name="blnc" ColumnName="blnc" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="enddate" ColumnName="enddate" />
-                <ScalarProperty Name="startdate" ColumnName="startdate" />
-                <ScalarProperty Name="mask" ColumnName="mask" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="collateral" ColumnName="collateral" />
-                <ScalarProperty Name="LinkAcc" ColumnName="LinkAcc" />
-                <ScalarProperty Name="accType" ColumnName="accType" />
-                <ScalarProperty Name="accNum" ColumnName="accNum" />
-                <ScalarProperty Name="memberid" ColumnName="memberid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Interests">
             <EntityTypeMapping TypeName="demoModel.Interest">
               <MappingFragment StoreEntitySet="Interests">
@@ -2292,18 +2265,6 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
                 <ScalarProperty Name="value" ColumnName="value" />
                 <ScalarProperty Name="assetId" ColumnName="assetId" />
                 <ScalarProperty Name="accId" ColumnName="accId" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AccountDetails">
-            <EntityTypeMapping TypeName="demoModel.AccountDetail">
-              <MappingFragment StoreEntitySet="AccountDetails">
-                <ScalarProperty Name="linkAcc" ColumnName="linkAcc" />
-                <ScalarProperty Name="accountId" ColumnName="accountId" />
-                <ScalarProperty Name="assetId" ColumnName="assetId" />
-                <ScalarProperty Name="totalNumber" ColumnName="totalNumber" />
-                <ScalarProperty Name="freezeValue" ColumnName="freezeValue" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2492,6 +2453,33 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
                 <ScalarProperty Name="type1" ColumnName="type1" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountDetails">
+            <EntityTypeMapping TypeName="demoModel.AccountDetail">
+              <MappingFragment StoreEntitySet="AccountDetails">
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="assetId" ColumnName="assetId" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="freezeValue" ColumnName="freezeValue" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="demoModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="enddate" ColumnName="enddate" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
+                <ScalarProperty Name="mask" ColumnName="mask" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="LinkAccount" ColumnName="LinkAccount" />
+                <ScalarProperty Name="accountType" ColumnName="accountType" />
+                <ScalarProperty Name="accNumber" ColumnName="accNumber" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
