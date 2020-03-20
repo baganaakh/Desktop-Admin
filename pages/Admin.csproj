@@ -327,8 +327,8 @@
     <Compile Include="windows\loginScreen.xaml.cs">
       <DependentUpon>loginScreen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="page\margins.xaml.cs">
-      <DependentUpon>margins.xaml</DependentUpon>
+    <Compile Include="page\marginp.xaml.cs">
+      <DependentUpon>marginp.xaml</DependentUpon>
     </Compile>
     <Compile Include="page\MarketMakers.xaml.cs">
       <DependentUpon>MarketMakers.xaml</DependentUpon>
@@ -426,7 +426,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="page\margins.xaml">
+    <Page Include="page\marginp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -30,22 +30,16 @@ namespace Admin
             FillDataGrid();
             bindCombo();
         }
-        string connectionString = Properties.Settings.Default.ConnectionString;
-        static string id,statid,cid;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             upd.IsEnabled = true;
-            var values = DateTable2.SelectedItem as DataRowView;
+            var values = DateTable2.SelectedItem as DealerAccount;
             if (null == values) return;
-            id = values.Row[0].ToString();
-            string memId= values.Row[1].ToString();
-            string accId= values.Row[2].ToString();
-            string State = values.Row[4].ToString();
 
-            memid.SelectedValue=memId;
-            accid.Text=accId;
-            stat.SelectedValue=State;
+            memid.SelectedValue=values.memberid;
+            accid.SelectedValue=values.accountid;
+            stat.SelectedIndex=values.state+1;
         }
         #endregion
         #region insert
@@ -55,55 +49,27 @@ namespace Admin
             {
                 DealerAccount dea = new DealerAccount
                 {
-                    memberid=Convert.ToInt32( memid.SelectedValue),
+                    memberid=Convert.ToInt32(memid.SelectedValue),
                     accountid=Convert.ToInt64(accid.SelectedValue),
-                    state=Convert.ToInt16( stat.SelectedIndex -1),
+                    state=Convert.ToInt16(stat.SelectedIndex -1),
                     modified=DateTime.Now,
                 };
                 contx.DealerAccounts.Add(dea);
                 contx.SaveChanges();
             }
-           // string accID = accid.Text;
-           // System.Data.SqlClient.SqlConnection sqlConnection1 =
-           //new System.Data.SqlClient.SqlConnection(connectionString);
-           // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-           // cmd.CommandType = System.Data.CommandType.Text;
-           // cmd.CommandText = "insert into dbo.DealerAccounts (memberid, accountid, state, modified) values" +
-           //     " ('" + cid + "',N'" + accID+ "',N'" + statid +"', getdate())";
-           // cmd.Connection = sqlConnection1;
-           // sqlConnection1.Open();
-           // cmd.ExecuteNonQuery();
-           // sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion
-        #region number
-        private static readonly Regex _regex = new Regex("[^0-9.-]+");
-        private static bool IsTextAllowed(string text)
-        {
-            return !_regex.IsMatch(text);
-        }
+        #region refresh, filldatagrid,number new
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !IsTextAllowed(e.Text);
+            App.TextBox_PreviewTextInput(sender, e);
         }
-        #endregion
-        #region fill
         private void FillDataGrid()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string CmdString = "SELECT ALL [id], [memberid], [accountid],[state], [modified] " +
-                            "FROM dbo.DealerAccounts";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Securities");
-                sda.Fill(dt);
-                DateTable2.ItemsSource = dt.DefaultView;
-            }
+            demoEntities10 de = new demoEntities10();
+            DateTable2.ItemsSource = de.DealerAccounts.ToList();
         }
-        #endregion
-        #region ref new
         private void refreshh(object sender, RoutedEventArgs e)
         {
             FillDataGrid();
@@ -113,77 +79,43 @@ namespace Admin
             memid.Text = null;
             accid.Text = null;
             stat.Text = null;
-            id = null;
-            statid = null;
-            cid = null;
         }
         #endregion
         #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
-            var value = DateTable2.SelectedItem as DataRowView;
-            if (null == value) return;
-            id = value.Row[0].ToString();
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE demo.dbo.DealerAccounts WHERE id='" + id + "'";
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            var values = DateTable2.SelectedItem as DealerAccount;
+            if (null == values) return;
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                var del = conx.DealerAccounts.Where(x => x.id == values.id).First();
+                conx.DealerAccounts.Remove(del);
+                conx.SaveChanges();
+            }
             FillDataGrid();
         }
         #endregion
-        #region
+        #region UPDATE
         private void update(object sender, RoutedEventArgs e)
         {
-            string memberID = memid.Text;
-            string accID = accid.Text;
-            string state = stat.Text;
-
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "UPDATE demo.dbo.DealerAccounts SET " +
-                "memberid= '" + cid + "', " +
-                "accountid= '" + accID+ "', " +
-                "state= '" + statid + "', " +
-                "modified = getdate() " +
-                "WHERE id = '" + id + "'";
-
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            var ac = DateTable2.SelectedItem as Board;
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                DealerAccount dea = conx.DealerAccounts.FirstOrDefault(r=>r.id==ac.id);
+                dea.memberid = Convert.ToInt64(memid.SelectedValue);
+                dea.accountid =Convert.ToInt64(accid.SelectedValue);
+                dea.state = Convert.ToInt16(stat.SelectedIndex - 1);
+                conx.SaveChanges();
+            }
             FillDataGrid();
         }
         #endregion
         #region combos
-        public List<Member> Emp { get; set; }
         private void bindCombo()
         {
             demoEntities10 dc = new demoEntities10();
-            var item = dc.Members.ToList();
-            Emp = item;
-            memid.ItemsSource = Emp;
+            memid.ItemsSource = dc.Members.ToList();
             accid.ItemsSource = dc.Accounts.ToList();
-        }
-        private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = memid.SelectedItem as Member;
-            try
-            {
-                cid = item.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
         }
         #endregion
     }

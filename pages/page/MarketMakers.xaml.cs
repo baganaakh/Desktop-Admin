@@ -84,28 +84,7 @@ namespace Admin
                 };
                 contx.MarketMakers.Add(mam);
                 contx.SaveChanges();
-            }
-                // string contId = coId;
-                // string memId = meId;
-                // string sdate = sdat.SelectedDate.Value.ToShortDateString();
-                // string edate = edat.SelectedDate.Value.ToShortDateString();
-                // string ticks = markticks.Text;
-                // string desc= markdesc.Text;
-                // string orderL = markorderl.Text;
-
-                // System.Data.SqlClient.SqlConnection sqlConnection1 =
-                //new System.Data.SqlClient.SqlConnection(connectionString);
-
-                // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-                // cmd.CommandType = System.Data.CommandType.Text;
-                // cmd.CommandText = "insert into dbo.marketMakers (contactid, memberid, accountid, startdate, enddate, ticks, description, orderlimit, state, modified) values" +
-                //     " ('" + contId+ "',N'" + memId+ "',N'" + acid+ "',N'" + sdate+ "', '" + edate+ "', '" + ticks+ "', '" + desc+ "', '" + orderL+ "', '" + statid +
-                //     "', getdate())";
-
-                // cmd.Connection = sqlConnection1;
-                // sqlConnection1.Open();
-                // cmd.ExecuteNonQuery();
-                // sqlConnection1.Close();
+            }               
                 FillDataGrid();
         }
         #endregion
@@ -176,95 +155,58 @@ namespace Admin
         #region update
         private void update(object sender, RoutedEventArgs e)
         {
-            string contId = coId;
-            string memId = meId;
-            string sdate = sdat.SelectedDate.Value.ToShortDateString();
-            string edate = edat.SelectedDate.Value.ToShortDateString();
-            string ticks = markticks.Text;
-            string desc = markdesc.Text;
-            string orderL = markorderl.Text;
+            var ac = DateTable2.SelectedItem as Board;
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                MarketMaker mm = conx.MarketMakers.FirstOrDefault(r=>r.id==ac.id);
+                mm.contactid =Convert.ToInt32( markcontact.SelectedValue);
+                mm.memberid = Convert.ToInt32(markmember.SelectedValue);
+                mm.modified = DateTime.Now;
+                mm.accountid = Convert.ToInt64(markaccount.SelectedValue);
+                mm.startdate = sdat.SelectedDate;
 
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
+                conx.SaveChanges();
+            }
+            // string contId = coId;
+            // string memId = meId;
+            // string sdate = sdat.SelectedDate.Value.ToShortDateString();
+            // string edate = edat.SelectedDate.Value.ToShortDateString();
+            // string ticks = markticks.Text;
+            // string desc = markdesc.Text;
+            // string orderL = markorderl.Text;
 
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "UPDATE demo.dbo.marketMakers SET " +
-                "contactid= '" + contId+ "', " +
-                "memberid= '" + memId+ "', " +
-                "accountid= '" + acid+ "', " +
-                "startdate= '" + sdate + "', " +
-                "enddate= '" + edate+ "', " +
-                "ticks= '" + ticks+ "', " +
-                "description= '" + desc+ "', " +
-                "orderlimit= '" + orderL+ "', " +
-                "state= '" + statid+ "', " +
-                "modified = getdate() " +
-                "WHERE id = '" + id + "'";
+            // System.Data.SqlClient.SqlConnection sqlConnection1 =
+            //new System.Data.SqlClient.SqlConnection(connectionString);
 
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            // cmd.CommandType = System.Data.CommandType.Text;
+            // cmd.CommandText = "UPDATE demo.dbo.marketMakers SET " +
+            //     "contactid= '" + contId+ "', " +
+            //     "memberid= '" + memId+ "', " +
+            //     "accountid= '" + acid+ "', " +
+            //     "startdate= '" + sdate + "', " +
+            //     "enddate= '" + edate+ "', " +
+            //     "ticks= '" + ticks+ "', " +
+            //     "description= '" + desc+ "', " +
+            //     "orderlimit= '" + orderL+ "', " +
+            //     "state= '" + statid+ "', " +
+            //     "modified = getdate() " +
+            //     "WHERE id = '" + id + "'";
+
+            // cmd.Connection = sqlConnection1;
+            // sqlConnection1.Open();
+            // cmd.ExecuteNonQuery();
+            // sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion
         #region combos
-        public List<Contract> Cont { get; set; }
-        public List<Member> Emp { get; set; }
-        public List<Account> Acco{ get; set; }
-
         private void bindcombo()
         {
             demoEntities10 dc = new demoEntities10();
-            var item = dc.Members.ToList();
-            Emp = item;
-            markmember.ItemsSource= Emp;
-
-            var citem = dc.Contracts.ToList();
-            Cont = citem;
-            markcontact.ItemsSource = Cont;
-            
-            var acitem= dc.Accounts.ToList();
-            Acco = acitem;
-            markaccount.ItemsSource = Acco;
-        }
-        private void markaccount_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = markaccount.SelectedItem as Account;
-            try
-            {
-                acid = item.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-
-        private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = markmember.SelectedItem as Member;
-            try
-            {
-            meId = item.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-        private void contid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var citem = markcontact.SelectedItem as Contract;
-            try
-            {
-            coId = citem.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
+            markmember.ItemsSource= dc.Members.ToList();
+            markcontact.ItemsSource = dc.Contracts.ToList();
+            markaccount.ItemsSource = dc.Accounts.ToList();
         }
         #endregion
     }

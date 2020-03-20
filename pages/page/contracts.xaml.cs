@@ -30,44 +30,27 @@ namespace Admin
             FillDataGrid();
             bindCombo();
         }
-        string connectionString = Properties.Settings.Default.ConnectionString;
-        static string id, cid, statid,boaID;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             upd.IsEnabled = true;
-            var values = DateTable2.SelectedItem as DataRowView;
+            var values = DateTable2.SelectedItem as Contract;
             if (null == values) return;
-            id = values.Row[0].ToString();
-            string SID= values.Row[1].ToString();
-            string Type= values.Row[2].ToString();
-            string Code= values.Row[3].ToString();
-            string Name= values.Row[4].ToString();
-            string Lot= values.Row[5].ToString();
-            string Tick= values.Row[6].ToString();
-            string Sdate= values.Row[7].ToString();
-            string Edate= values.Row[8].ToString();
-            string GID= values.Row[9].ToString();
-            string State= values.Row[10].ToString();
-            string MMol= values.Row[12].ToString();
-            string Olimit= values.Row[13].ToString();
-            string refprPAram= values.Row[14].ToString();
-            string bId= values.Row[15].ToString();
-
-            securityid_Copy.SelectedValue= SID;
-            ctype.SelectedIndex =Convert.ToInt32(Type)-1;
-            ccode.Text = Code;
-            cname.Text = Name;
-            clot.Text = Lot;
-            ctick.Text = Tick;
-            csdate.SelectedDate = DateTime.Parse(Sdate);
-            cedate.SelectedDate = DateTime.Parse(Edate);
-            cgroupid.Text = GID;
-            cstate.SelectedValue = State;
-            mmorderLim.Text = MMol;
-            orderLim.Text = Olimit;
-            refpricePara.Text = refprPAram;
-            boardid.SelectedValue = bId;
+           
+            securityid_Copy.SelectedValue= values.securityId;
+            ctype.SelectedIndex =Convert.ToInt32(values.type)-1;
+            ccode.Text = values.code;
+            cname.Text = values.name;
+            clot.Text = values.lot.ToString();
+            ctick.Text = values.tickTable.ToString();
+            csdate.SelectedDate = values.sdate;
+            cedate.SelectedDate = values.edate;
+            cgroupid.Text = values.groupId.ToString();
+            cstate.SelectedIndex =Convert.ToInt16(values.state);
+            mmorderLim.Text = values.mmorderLimit.ToString();
+            orderLim.Text = values.orderLimit.ToString();
+            refpricePara.Text = values.refpriceParam.ToString();
+            boardid.SelectedValue = values.bid;
         }
         #endregion
         #region insert
@@ -100,61 +83,19 @@ namespace Admin
                 };
                 contx.Contracts.Add(con);
                 contx.SaveChanges();
-            }
-           // string secId = cid;
-           // string code = ccode.Text;
-           // string name = cname.Text;
-           // string lot = clot.Text;
-           // string tick = ctick.Text;
-           // string csdates = csdate.SelectedDate.Value.ToShortDateString();
-           // string cedates = cedate.SelectedDate.Value.ToShortDateString();
-           // string groupID = cgroupid.Text;
-           // string mmorderLimit = mmorderLim.Text;
-           // string orderlimit = orderLim.Text;
-           // string refpricePar = refpricePara.Text;
-
-           // System.Data.SqlClient.SqlConnection sqlConnection1 =
-           //new System.Data.SqlClient.SqlConnection(connectionString);
-
-           // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-           // cmd.CommandType = System.Data.CommandType.Text;
-           // cmd.CommandText = "insert into dbo.contracts (securityId, type, code, name, lot, tick, sdate, edate, groupId, state, modified, mmorderLimit, orderLimit, refpriceParam,bid) values" +
-           //     " ('" + secId+ "',N'" + ctypee + "',N'" + code + "',N'" + name + "', '" + lot+ "', '" + tick+ "', '" + csdates+ "', '" + cedates+ "', '" + groupID +
-           //     "',N'" + statid+ "', getdate(),N'" + mmorderLimit+ "',N'" + orderlimit+ "',N'" + refpricePar+ "',"+boaID+")";
-
-           // cmd.Connection = sqlConnection1;
-           // sqlConnection1.Open();
-           // cmd.ExecuteNonQuery();
-           // sqlConnection1.Close();
+            }           
             FillDataGrid();
         }
         #endregion
-        #region number
-        private static readonly Regex _regex = new Regex("[^0-9.-]+");
-        private static bool IsTextAllowed(string text)
-        {
-            return !_regex.IsMatch(text);
-        }
+        #region fill
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !IsTextAllowed(e.Text);
+            App.TextBox_PreviewTextInput(sender, e);
         }
-        #endregion
-        #region fill
         private void FillDataGrid()
         {
             demoEntities10 de = new demoEntities10();
             DateTable2.ItemsSource = de.Contracts.ToList();
-            //using (SqlConnection conn = new SqlConnection(connectionString))
-            //{
-            //    string CmdString = "SELECT ALL [id], [securityId], [type], [code], [name], [lot], [tick], [sdate], [edate], [groupId], [state], [modified], " +
-            //        "[mmorderLimit], [orderLimit], [refpriceParam], [bid] FROM dbo.contracts";
-            //    SqlCommand cmd = new SqlCommand(CmdString, conn);
-            //    SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            //    DataTable dt = new DataTable("Securities");
-            //    sda.Fill(dt);
-            //    DateTable2.ItemsSource = dt.DefaultView;
-            //}
         }
         #endregion
         #region ref new
@@ -177,117 +118,57 @@ namespace Admin
             mmorderLim.Text = null;
             orderLim.Text = null;
             refpricePara.Text = null;
-            id = null;
-            statid = null;
             boardid.SelectedItem = null;
         }
         #endregion
         #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
-            var value = DateTable2.SelectedItem as DataRowView;
+            var value = DateTable2.SelectedItem as Contract;
             if (null == value) return;
-            id = value.Row[0].ToString();
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE demo.dbo.contracts WHERE id='" + id + "'";
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                var del = conx.Contracts.Where(x => x.id == value.id).First();
+                conx.Contracts.Remove(del);
+                conx.SaveChanges();
+            }            
             FillDataGrid();
         }
         #endregion
         #region update
         private void update(object sender, RoutedEventArgs e)
         {
-            string secId = cid;
-            string code = ccode.Text;
-            string name = cname.Text;
-            string lot = clot.Text;
-            string tick = ctick.Text;
-            string csdates = csdate.SelectedDate.Value.ToShortDateString();
-            string cedates = cedate.SelectedDate.Value.ToShortDateString();
-            string groupID = cgroupid.Text;
-            string mmorderLimit = mmorderLim.Text;
-            string orderlimit = orderLim.Text;
-            string refpricePar = refpricePara.Text;
-
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "UPDATE demo.dbo.contracts SET " +
-                "securityId= '" + secId+ "', " +
-                //"type= '" + ctypee + "', " +
-                "code= N'" + code+ "', " +
-                "name= N'" + name + "', " +
-                "lot= '" + lot+ "', " +
-                "tick= '" + tick + "', " +
-                "sdate= '" + csdates+ "', " +
-                "edate= '" + cedates+ "', " +
-                "groupId= '" + groupID+ "', " +
-                "state= '" + statid+ "', " +
-                "modified = getdate(), " +
-                "mmorderLimit= '" + mmorderLimit+ "', " +
-                "orderLimit= '" + orderlimit+ "', " +
-                "bid= '" + boaID+ "', " +
-                "refpriceParam= '" + refpricePar+ "'" +
-                "WHERE id = '" + id + "'";
-
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            var ac = DateTable2.SelectedItem as Contract;
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                Contract ca = conx.Contracts.FirstOrDefault(r => r.id == ac.id);
+                ca.securityId = Convert.ToInt64(securityid_Copy.SelectedValue);
+                ca.type = Convert.ToInt16(ctype.SelectedIndex);
+                ca.code = ccode.Text;
+                ca.lot = Convert.ToDecimal(clot.Text);
+                ca.name = cname.Text;
+                ca.tickTable =Convert.ToInt32(ctick.SelectedValue);
+                ca.sdate = csdate.SelectedDate;
+                ca.edate = cedate.SelectedDate;
+                ca.groupId =Convert.ToInt16(cgroupid.Text);
+                ca.state=Convert.ToInt16(cstate.SelectedIndex-1);
+                ca.modified = DateTime.Now;
+                ca.mmorderLimit = Convert.ToInt32(mmorderLim.Text);
+                ca.orderLimit = Convert.ToInt32(orderLim.Text);
+                ca.refpriceParam = Convert.ToDecimal(refpricePara.Text);
+                ca.bid = Convert.ToInt64(boardid.SelectedValue);
+                conx.SaveChanges();
+            }
             FillDataGrid();
         }
         #endregion
         #region combos
-        public List<Security> boa { get; set; }
-        public List<Board> boardd { get; set; }
-        public List<TickSizeTable> ttab { get; set; }
         private void bindCombo()
         {
-            demoEntities10 dE = new demoEntities10();
-            var item = dE.Securities.ToList();
-            boa = item;
-            securityid_Copy.ItemsSource = boa;
-
-            var botems = dE.Boards.ToList();
-            boardd = botems;
-            boardid.ItemsSource = boardd;
-
-            var ttable = dE.TickSizeTables.ToList();
-
-            ctick.ItemsSource = ttable;
-        }
-        private void boardid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = boardid.SelectedItem as Board;
-            try
-            {
-                boaID = item.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-        private void secid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = securityid_Copy.SelectedItem as Security;
-            try
-            {
-                cid = item.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
+            demoEntities10 dE = new demoEntities10();            
+            securityid_Copy.ItemsSource = dE.Securities.ToList();
+            boardid.ItemsSource = dE.Boards.ToList();
+            ctick.ItemsSource = dE.TickSizeTables.ToList();
         }
         #endregion
     }

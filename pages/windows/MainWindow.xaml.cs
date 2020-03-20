@@ -69,8 +69,8 @@ namespace Admin
         }
         private void BtnClickP8(object sender, RoutedEventArgs e)
         {
-            Main.Content = new margins();
-            this.Title = "Margin";
+            Main.Content = new marginp();
+            this.Title = "Marginp";
         }
         private void BtnClickP9(object sender, RoutedEventArgs e)
         {

@@ -9,15 +9,13 @@
       Title="dealerAccount">
 
     <Grid>
-        <ComboBox IsEditable="True" x:Name="memid" ItemsSource="{Binding}" SelectionChanged="partid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,32,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox IsEditable="True" x:Name="memid" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,32,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="stat" HorizontalAlignment="Left" Margin="461,32,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Устгасан</ComboBoxItem>
-            
             <ComboBoxItem>Хэвийн</ComboBoxItem>
-            
             <ComboBoxItem>Идэвхгүй</ComboBoxItem>
         </ComboBox>
-        <ComboBox DisplayMemberPath="accNum" SelectedValuePath="id" x:Name="accid" HorizontalAlignment="Left" Height="23" Margin="155,74,0,0" Text="1234"  VerticalAlignment="Top" Width="120"></ComboBox>
+        <ComboBox DisplayMemberPath="accNumber" SelectedValuePath="id" x:Name="accid" HorizontalAlignment="Left" Height="23" Margin="155,74,0,0" Text="1234"  VerticalAlignment="Top" Width="120"></ComboBox>
         <Label Content="memberid" HorizontalAlignment="Left" Margin="34,29,0,0" VerticalAlignment="Top"/>
         <Label Content="state" HorizontalAlignment="Left" Margin="345,28,0,0" VerticalAlignment="Top"/>
         <Label Content="accountid" HorizontalAlignment="Left" Margin="34,71,0,0" VerticalAlignment="Top"/>
@@ -31,10 +29,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding memberid}" Header="Member id"/>
-                <DataGridTextColumn Binding="{Binding trading}" Header="Trading"/>
-                <DataGridTextColumn Binding="{Binding clearing}" Header="clearing"/>
-                <DataGridTextColumn Binding="{Binding settlement}" Header="Settlement"/>
-                <DataGridTextColumn Binding="{Binding collateral}" Header="Collateral"/>
+                <DataGridTextColumn Binding="{Binding accountid}" Header="accountid"/>
+                <DataGridTextColumn Binding="{Binding state}" Header="state"/>
                 <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
             </DataGrid.Columns>
         </DataGrid>
