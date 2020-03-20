@@ -9,7 +9,7 @@
       Title="assets" >
 
     <Grid >
-        <Label Content="Symbol" HorizontalAlignment="Left" Margin="34,21,0,0" VerticalAlignment="Top"/>
+        <Label Content="Symbol Code" HorizontalAlignment="Left" Margin="34,21,0,0" VerticalAlignment="Top"/>
         <Label Content="үнэ" HorizontalAlignment="Left" Margin="27,108,0,0" VerticalAlignment="Top"/>
         <Label Content="тайлбар" HorizontalAlignment="Left" Margin="27,160,0,0" VerticalAlignment="Top"/>
         <Label Content="дуусах хугацаа" HorizontalAlignment="Left" Margin="345,71,0,0" VerticalAlignment="Top"/>
@@ -24,9 +24,7 @@
         <TextBox x:Name="anote" HorizontalAlignment="Left" Height="23" Margin="155,164,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="astate" HorizontalAlignment="Left" Margin="473,112,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Устгасан</ComboBoxItem>
-            <Separator Height="1"/>
             <ComboBoxItem>Хэвийн</ComboBoxItem>
-            <Separator Height="1"/>
             <ComboBoxItem>Идэвхгүй</ComboBoxItem>
         </ComboBox>
         <DatePicker x:Name="aexpire" HorizontalAlignment="Left" Margin="473,71,0,0" VerticalAlignment="Top" Width="120"/>

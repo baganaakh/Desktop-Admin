@@ -30,32 +30,21 @@ namespace Admin
             FillDataGrid();
             bindcombo();
         }
-        string connectionString = Properties.Settings.Default.ConnectionString;
-        static string id,cid;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             upd.IsEnabled = true;
-            var values = DateTable2.SelectedItem as DataRowView;
+            var values = DateTable2.SelectedItem as ClearingAccount;
             if (null == values) return;
-            id = values.Row[0].ToString();
-            string MID= values.Row[1].ToString();
-            string Acc = values.Row[2].ToString();
-            string Type= values.Row[3].ToString();
-            string Currency = values.Row[4].ToString();
-            string Blnc = values.Row[5].ToString();
-            string Sblnc = values.Row[6].ToString();
-            string Linkacc= values.Row[7].ToString();
-            string State= values.Row[8].ToString();
 
-            memid.SelectedValue=MID;
-            accid.Text=Acc;
-            typee.Text=Type;
-            currency.Text=Currency;
-            balanc.Text=Blnc;
-            sbalanc.Text=Sblnc;
-            linkacc.Text=Linkacc;
-            stat.SelectedValue=State;
+            memid.SelectedValue=values.memberid;
+            accid.Text=values.account;
+            typee.SelectedIndex=Convert.ToInt32(values.type);
+            currency.Text=values.currency.ToString();
+            balanc.Text=values.blnc.ToString();
+            sbalanc.Text=values.sblnc.ToString();
+            linkacc.SelectedValue=values.linkaccount;
+            stat.SelectedIndex=Convert.ToInt32(values.state);
         }
         #endregion
         #region insert
@@ -78,57 +67,19 @@ namespace Admin
                 contx.ClearingAccounts.Add(ca);
                 contx.SaveChanges();
             }
-            //    string memID = cid;
-            //    string accID = accid.Text;
-            //    string type = typee.Text;
-            //    string currenc = currency.Text;
-            //    string blnc = balanc.Text;
-            //    string sblnc = sbalanc.Text;
-            //    string linkAcc = linkacc.Text;
-            //    string state = stat.Text;
-
-            //    System.Data.SqlClient.SqlConnection sqlConnection1 =
-            //   new System.Data.SqlClient.SqlConnection(connectionString);
-
-            //    System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            //    cmd.CommandType = System.Data.CommandType.Text;
-            //    cmd.CommandText = "insert into dbo.ClearingAccounts (memberid, account, type, currency, blnc, sblnc, linkaccount, state,modified) values" +
-            //        " ('" + memID+ "',N'" + accID+ "',N'" + type+ "',N'" + currenc+ "', '" + blnc+ "', '" + sblnc+ "', '" + linkAcc+ "', '" + statid+ "',getdate())";
-
-            //    cmd.Connection = sqlConnection1;
-            //    sqlConnection1.Open();
-            //    cmd.ExecuteNonQuery();
-            //    sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion
-        #region number
-        private static readonly Regex _regex = new Regex("[^0-9.-]+");
-        private static bool IsTextAllowed(string text)
-        {
-            return !_regex.IsMatch(text);
-        }
+        #region FillGrid, Number, refresh and new
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !IsTextAllowed(e.Text);
+            App.TextBox_PreviewTextInput(sender, e);
         }
-        #endregion
-        #region fill
         private void FillDataGrid()
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string CmdString = "SELECT ALL [id], [memberid], [account], [type], [currency], [blnc], [sblnc], [linkaccount], [state], [modified] " +
-                            "FROM dbo.ClearingAccounts";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Securities");
-                sda.Fill(dt);
-                DateTable2.ItemsSource = dt.DefaultView;
-            }
+        {   
+            demoEntities10 de = new demoEntities10();
+            DateTable2.ItemsSource = de.ClearingAccounts.ToList();
         }
-        #endregion
-        #region ref and new
         private void refreshh(object sender, RoutedEventArgs e)
         {
             FillDataGrid();
@@ -143,89 +94,50 @@ namespace Admin
             sbalanc.Text = null;
             linkacc.Text = null;
             stat.Text = null;
-            id = null;
         }
         #endregion
         #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
-            var value = DateTable2.SelectedItem as DataRowView;
+            var value = DateTable2.SelectedItem as ClearingAccount;
             if (null == value) return;
-            id = value.Row[0].ToString();
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE demo.dbo.ClearingAccounts WHERE id='" + id + "'";
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                var del = conx.ClearingAccounts.Where(x => x.id == value.id).First();
+                conx.ClearingAccounts.Remove(del);
+                conx.SaveChanges();
+            }
             FillDataGrid();
         }
         #endregion
         #region update
         private void update(object sender, RoutedEventArgs e)
         {
-            string memID = cid;
-            string accID = accid.Text;
-            string type = typee.Text;
-            string currenc = currency.Text;
-            string blnc = balanc.Text;
-            string sblnc = sbalanc.Text;
-            string linkAcc = linkacc.Text;
-            string state = stat.Text;
-
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "UPDATE demo.dbo.ClearingAccounts SET " +
-                "memberid= '" + memID + "', " +
-                "account= '" + accID + "', " +
-                "type= '" + type + "', " +
-                "currency= '" + currenc + "', " +
-                "blnc= '" + blnc + "', " +
-                "sblnc= '" + sblnc + "', " +
-                "linkaccount= '" + linkAcc + "', " +
-                //"state= '" + statid + "', " +
-                "modified = getdate() " +
-                "WHERE id = '" + id + "'";
-
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            var ac = DateTable2.SelectedItem as ClearingAccount;
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                ClearingAccount ca = conx.ClearingAccounts.FirstOrDefault(r => r.id == ac.id);
+                ca.memberid = Convert.ToInt32(memid.SelectedValue);
+                ca.account = accid.Text;
+                ca.type =Convert.ToInt16(typee.SelectedIndex);
+                ca.currency = Convert.ToInt32(currency.Text);
+                ca.blnc = Convert.ToDecimal(balanc.Text);
+                ca.sblnc = Convert.ToDecimal(sbalanc.Text);
+                ca.linkaccount = Convert.ToInt64(linkacc.SelectedValue);
+                ca.state=Convert.ToInt16(stat.SelectedIndex-1);
+                ca.modified = DateTime.Now;
+                conx.SaveChanges();
+            }
             FillDataGrid();
         }
         #endregion
         #region combos
-        public List<Member> Emp { get; set; }
-        public List<State> statt { get; set; }
-
         private void bindcombo()
         {
-            demoEntities10 dc = new demoEntities10();
-            var item = dc.Members.ToList();
-            Emp = item;
-            memid.ItemsSource = Emp;
+            demoEntities10 dc = new demoEntities10();            
+            memid.ItemsSource = dc.Members.ToList();
             linkacc.ItemsSource = dc.Accounts.ToList();
         }
-        private void partid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = memid.SelectedItem as Member;
-            try
-            {
-                cid = item.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
-        
         #endregion
     }
 }

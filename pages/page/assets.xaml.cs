@@ -37,24 +37,16 @@ namespace Admin
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             upd.IsEnabled = true;
-            var values = DateTable2.SelectedItem as DataRowView;
+            var values = DateTable2.SelectedItem as Asset;
             if (null == values) return;
-            id = values.Row[0].ToString();
-            string codev = values.Row[1].ToString();
-            string namev = values.Row[2].ToString();
-            string pricev = values.Row[3].ToString();
-            string descv = values.Row[4].ToString();
-            string expirev = values.Row[5].ToString();
-            string statev = values.Row[6].ToString();
-            string ratiov = values.Row[8].ToString();
-
-            acode.Text = codev;
-            aname.Text = namev;
-            aprice.Text = pricev;
-            anote.Text = descv;
-            artio.Text =ratiov.ToString();
-            aexpire.SelectedDate = DateTime.Parse(expirev);
-            astate.SelectedValue = statev;
+            avolume.Text = values.volume.ToString();
+            acode.Text = values.code;
+            aname.Text = values.name;
+            aprice.Text = values.price.ToString();
+            anote.Text = values.note;
+            artio.Text =values.ratio.ToString();
+            aexpire.SelectedDate = values.expireDate;
+            astate.SelectedIndex= values.state+1;
         }
         #endregion
         #region insert
@@ -81,45 +73,15 @@ namespace Admin
                 contx.Assets.Add(ast);
                 contx.SaveChanges();
             }
-            // string code = acode.Text;
-            // string name = aname.Text;
-            // string value = aprice.Text;
-            // string note = anote.Text;
-            // string expireDate = aexpire.SelectedDate.Value.ToShortDateString();
-            // string rati =artio.Text;
-            // //decimal ratio = Decimal.Parse(rati)/100;
-            // string state = astate.Text;
-            // System.Data.SqlClient.SqlConnection sqlConnection1 =
-            //new System.Data.SqlClient.SqlConnection(connectionString);
-            // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            // cmd.CommandType = System.Data.CommandType.Text;
-            // cmd.CommandText = "insert into dbo.assets(code, name, value, note, expireDate, state, ratio) values" +
-            //     " (N'" + code + "',N'" + name + "',N'" + value + "',N'" + note + "', '" + expireDate+ "', '', '" + rati+ "')";
-            // cmd.Connection = sqlConnection1;
-            // sqlConnection1.Open();
-            // cmd.ExecuteNonQuery();
-            // sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion
-        #region fill
+        #region refresh, new, Number and FillGrid
         private void FillDataGrid()
         {
             demoEntities10 de = new demoEntities10();
             DateTable2.ItemsSource = de.Assets.ToList();
-            //using (SqlConnection conn = new SqlConnection(connectionString))
-            //{
-            //    string CmdString = "SELECT ALL [id], [code], [name], [value], [note], [expireDate], [state], [modified], [ratio], [secId] "+
-            //        "FROM dbo.assets";
-            //    SqlCommand cmd = new SqlCommand(CmdString, conn);
-            //    SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            //    DataTable dt = new DataTable("Securities");
-            //    sda.Fill(dt);
-            //    DateTable2.ItemsSource = dt.DefaultView;
-            //}
         }
-        #endregion
-        #region ref new
         private void refreshh(object sender, RoutedEventArgs e)
         {
             FillDataGrid();
@@ -135,73 +97,44 @@ namespace Admin
             astate.Text = null;
             id = null;
         }
+        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            App.TextBox_PreviewTextInput(sender, e);
+        }
         #endregion
         #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
-            var value = DateTable2.SelectedItem as DataRowView;
-            if (null == value) return;
-            id = value.Row[0].ToString();
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE demo.dbo.assets WHERE id='" + id + "'";
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            var value = DateTable2.SelectedItem as Asset;
+            if (value == null) return;
+            using(demoEntities10 conx=new demoEntities10())
+            {
+                var del = conx.Assets.Where(x => x.id == value.id).First();
+                conx.Assets.Remove(del);
+                conx.SaveChanges();
+            }
             FillDataGrid();
-        }
-        #endregion
-        #region number
-        private static readonly Regex _regex = new Regex("[^0-9.-]+");
-        private static bool IsTextAllowed(string text)
-        {
-            return !_regex.IsMatch(text);
-        }
-        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = !IsTextAllowed(e.Text);
         }
         #endregion
         #region update
         private void update(object sender, RoutedEventArgs e)
         {
-            string code = acode.Text;
-            string name = aname.Text;
-            string value = aprice.Text;
-            string note = anote.Text;
-            string expireDate = aexpire.SelectedDate.Value.ToShortDateString();
-            string rati = artio.Text;
-            decimal ratio = Decimal.Parse(rati) / 100;
-            string state = astate.Text;
-
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "UPDATE demo.dbo.assets SET " +
-                "code= N'" + code+ "', " +
-                "name= N'" + name + "', " +
-                "value= '" + value+ "', " +
-                "note= N'" + note + "', " +
-                "expireDate= '" + expireDate+ "', " +
-                //"state= '" + statid + "', " +
-                "modified = getdate(), " +
-                "ratio= '" + ratio+ "' " +
-                "WHERE id = '" + id + "'";
-
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            var ac = DateTable2.SelectedItem as Asset;            
+            using(demoEntities10 conx =new demoEntities10())
+            {
+                Asset asst = conx.Assets.FirstOrDefault(r => r.id == ac.id);
+                asst.code = acode.Text;
+                asst.name = aname.Text;
+                asst.price = Convert.ToInt32(aprice.Text);
+                asst.note = anote.Text;
+                asst.state = Convert.ToInt16(astate.SelectedIndex - 1);
+                asst.ratio = Convert.ToDecimal(artio.Text);
+                asst.expireDate = Convert.ToDateTime( aexpire.SelectedDate);
+                asst.volume = Convert.ToInt32(avolume.Text);
+                conx.SaveChanges();
+            }          
             FillDataGrid();
         }
-        #endregion
-        
+        #endregion        
     }
 }

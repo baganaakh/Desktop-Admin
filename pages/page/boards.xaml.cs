@@ -29,46 +29,24 @@ namespace Admin
             InitializeComponent();
             FillDataGrid();
         }
-        string connectionString = Properties.Settings.Default.ConnectionString;
-        string id, cid;
-        #region number
-        private static readonly Regex _regex = new Regex("[^0-9.-]+");
-        private static bool IsTextAllowed(string text)
-        {
-            return !_regex.IsMatch(text);
-        }
-        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = !IsTextAllowed(e.Text);
-        }
-        #endregion
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             upd.IsEnabled = true;
-            var value = DateTable2.SelectedItem as DataRowView;
+            var value = DateTable2.SelectedItem as Board;
             if (null == value) return;
-            id = value.Row[0].ToString();
-            string name = value.Row[1].ToString();
-            string type = value.Row[2].ToString();
-            string tdays = value.Row[3].ToString();
-            string stat = value.Row[4].ToString();
-            string description = value.Row[6].ToString();
-            string dealTypes = value.Row[7].ToString();
-            string time= value.Row[8].ToString();
-            string eday= value.Row[9].ToString();
-
-            bname.Text = name;
-            btype.Text = type;
-            tdayss.Text = tdays;
-            desc.Text = description;
-            state.SelectedValue = stat;
-            dealtype.SelectedValue = dealTypes;
-            string[] times = time.Split(':');
+            
+            bname.Text = value.name;
+            btype.Text = value.type.ToString();
+            tdayss.Text = value.tdays;
+            desc.Text = value.description;
+            state.SelectedIndex = value.state+1;
+            dealtype.SelectedValue = value.dealType;
+            string[] times = value.expTime.ToString().Split(':');
             dhour.Text= times[0];
             dminute.Text= times[1];
             dsecond.Text= times[2];
-            enddate.Text = eday;
+            enddate.Text = value.expDate.ToString();
         }
         #endregion
         #region insert
@@ -80,10 +58,10 @@ namespace Admin
             }
             using(demoEntities10 contx=new demoEntities10())
             {
-                int ehour =Convert.ToInt32(dhour.Text);
-                int eminute =Convert.ToInt32(dminute.Text);
-                int esecond =Convert.ToInt32(dsecond.Text);
-                TimeSpan times = new TimeSpan(ehour, eminute, esecond);
+                TimeSpan times = new TimeSpan(
+                    Convert.ToInt32(dhour.Text), 
+                    Convert.ToInt32(dminute.Text), 
+                    Convert.ToInt32(dsecond.Text));
                 Board boa = new Board
                 {
                     name = bname.Text,
@@ -94,99 +72,63 @@ namespace Admin
                     expDate=Convert.ToInt16(enddate.Text),
                     state=Convert.ToInt16(state.SelectedIndex-1),
                     modified=DateTime.Now,
+                    type= Convert.ToInt16(btype.SelectedIndex),
                 };
                 contx.Boards.Add(boa);
                 contx.SaveChanges();
-            }
-            // string boardName = bname.Text;
-            // string type = btype.Text;
-            // string tdays = tdayss.Text;
-            // string exdate = enddate.Text;
-            // System.Data.SqlClient.SqlConnection sqlConnection1 =
-            //new System.Data.SqlClient.SqlConnection(connectionString);
-
-            // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            // cmd.CommandType = System.Data.CommandType.Text;
-            // cmd.CommandText = "insert into dbo.boards (name, type, tdays, description, state,dealType,expTime,expDate) values" +
-            //     " (N'" + boardName + "',N'" + type + "',N'" + tdays + "', N'" + descr + "', N'" + cid + "',"+ dealTypes + "," +
-            //     "'"+ehour+":"+eminute+":"+esecond+"',"+exdate+")";
-
-            // cmd.Connection = sqlConnection1;
-            // sqlConnection1.Open();
-            // cmd.ExecuteNonQuery();
-            // sqlConnection1.Close();
+            }            
             FillDataGrid();
-        }
-        #endregion
-        #region fill
-        private void FillDataGrid()
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string CmdString = "SELECT * FROM dbo.boards ";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Employee");
-                sda.Fill(dt);
-                DateTable2.ItemsSource = dt.DefaultView;
-            }
         }
         #endregion
         #region update
         private void update(object sender, RoutedEventArgs e)
         {
-            string boardName = bname.Text;
-            string type = btype.Text;
-            string tdays = tdayss.Text;
-            string descr = desc.Text;
-            string ehour = dhour.Text;
-            string eminute = dminute.Text;
-            string esecond = dsecond.Text;
-            string exdate = enddate.Text;
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "UPDATE demo.dbo.boards SET " +
-                "name = N'" + boardName + "', " +
-                "type = N'" + type + "', " +
-                "tdays = N'" + tdays + "', " +
-                "description = N'" + descr + "', " +
-                "state = N'" + cid + "', " +
-                //"dealType = " + dealTypes + ", " +
-                "expDate = " + exdate + ", " +
-                "expTime = '"+ehour+":"+eminute+":"+esecond+"', " +
-                "modified = getdate() " +
-                "WHERE id = " + id;
-
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            var ac = DateTable2.SelectedItem as Board;
+            TimeSpan times = new TimeSpan(
+                    Convert.ToInt32(dhour.Text),
+                    Convert.ToInt32(dminute.Text),
+                    Convert.ToInt32(dsecond.Text));
+            using (demoEntities10 conx=new demoEntities10())
+            {
+                Board board = conx.Boards.FirstOrDefault(r => r.id == ac.id);
+                board.name = bname.Text;
+                board.dealType = Convert.ToInt16(dealtype.SelectedIndex);
+                board.type = Convert.ToInt16(btype.SelectedIndex);
+                board.tdays = tdayss.Text;
+                board.description = desc.Text;
+                board.expDate = Convert.ToInt16(enddate.Text);
+                board.expTime = times;
+                board.state = Convert.ToInt16(state.SelectedIndex - 1);
+                board.modified = DateTime.Now;
+                conx.SaveChanges();
+            }
             FillDataGrid();
         }
         #endregion
         #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
-            var value = DateTable2.SelectedItem as DataRowView;
+            var value = DateTable2.SelectedItem as Board;
             if (null == value) return;
-            id = value.Row[0].ToString();
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE demo.dbo.boards WHERE id=N'" + id + "'";
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                var del = conx.Boards.Where(x => x.id == value.id).First();
+                conx.Boards.Remove(del);
+                conx.SaveChanges();
+            }
             FillDataGrid();
         }
         #endregion
-        #region reg and new
+        #region fillGrid, NUmber, refresh and new
+        private void FillDataGrid()
+        {
+            demoEntities10 de = new demoEntities10();
+            DateTable2.ItemsSource = de.Boards.ToList();
+        }
+        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            App.TextBox_PreviewTextInput(sender, e);
+        }
         private void refreshh(object sender, RoutedEventArgs e)
         {
             FillDataGrid();

@@ -17,13 +17,14 @@
         <TextBox x:Name="bname" HorizontalAlignment="Left" Height="23" Margin="69,15,0,0" TextWrapping="Wrap" Text="222"  VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="tdayss" HorizontalAlignment="Left" Height="23" Margin="286,15,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="state" HorizontalAlignment="Left" Margin="487,15,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1" Grid.ColumnSpan="2">
-            <ComboBoxItem>Устгасан</ComboBoxItem>
-            <Separator Height="1"/>
-            <ComboBoxItem>Хэвийн</ComboBoxItem>
-            <Separator Height="1"/>
+            <ComboBoxItem>Устгасан</ComboBoxItem>            
+            <ComboBoxItem>Хэвийн</ComboBoxItem>            
             <ComboBoxItem>Идэвхгүй</ComboBoxItem>
         </ComboBox>
-        <TextBox IsEnabled="False" PreviewTextInput="PreviewTextInput" x:Name="btype" HorizontalAlignment="Left" Height="23" Margin="107,50,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="82"/>
+        <ComboBox x:Name="btype" HorizontalAlignment="Left" Height="23" Margin="107,50,0,0" VerticalAlignment="Top" Width="82">
+            <ComboBoxItem>Week days</ComboBoxItem>
+            <ComboBoxItem>Month</ComboBoxItem>
+        </ComboBox>
         <TextBox x:Name="desc" HorizontalAlignment="Left" Height="23" Margin="286,51,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="dhour" HorizontalAlignment="Left" Margin="69,92,0,0" VerticalAlignment="Top" Width="58">
             <ComboBoxItem Content="00"/>

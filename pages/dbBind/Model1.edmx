@@ -88,7 +88,6 @@
           <Property Name="state" Type="smallint" Nullable="false" />
           <Property Name="modified" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="ratio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="secId" Type="bigint" />
           <Property Name="price" Type="decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="BoardInstruments">
@@ -949,7 +948,6 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
           <EntitySet Name="Interests" EntityType="demoModel.Interest" />
           <EntitySet Name="Reasons" EntityType="demoModel.Reason" />
           <EntitySet Name="ColReqs" EntityType="demoModel.ColReq" />
-          <EntitySet Name="Assets" EntityType="demoModel.Asset" />
           <EntitySet Name="Boards" EntityType="demoModel.Board" />
           <EntitySet Name="ClearingAccounts" EntityType="demoModel.ClearingAccount" />
           <EntitySet Name="Contracts" EntityType="demoModel.Contract" />
@@ -962,6 +960,7 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
           <EntitySet Name="Transactions" EntityType="demoModel.Transaction" />
           <EntitySet Name="AccountDetails" EntityType="demoModel.AccountDetail" />
           <EntitySet Name="Accounts" EntityType="demoModel.Account" />
+          <EntitySet Name="Assets" EntityType="demoModel.Asset" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1494,22 +1493,6 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
           <Property Name="reason" Type="Int16" />
           <Property Name="memid" Type="Int32" />
         </EntityType>
-        <EntityType Name="Asset">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="code" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="volume" Type="Int32" Nullable="false" />
-          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="expireDate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="ratio" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="secId" Type="Int64" />
-          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
-        </EntityType>
         <EntityType Name="Board">
           <Key>
             <PropertyRef Name="id" />
@@ -1695,6 +1678,21 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
           <Property Name="startdate" Type="DateTime" Precision="0" />
           <Property Name="enddate" Type="DateTime" Precision="0" />
           <Property Name="state" Type="Int16" />
+        </EntityType>
+        <EntityType Name="Asset">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="volume" Type="Int32" Nullable="false" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="expireDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ratio" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2269,23 +2267,6 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Assets">
-            <EntityTypeMapping TypeName="demoModel.Asset">
-              <MappingFragment StoreEntitySet="Assets">
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="secId" ColumnName="secId" />
-                <ScalarProperty Name="ratio" ColumnName="ratio" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="expireDate" ColumnName="expireDate" />
-                <ScalarProperty Name="note" ColumnName="note" />
-                <ScalarProperty Name="volume" ColumnName="volume" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="code" ColumnName="code" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Boards">
             <EntityTypeMapping TypeName="demoModel.Board">
               <MappingFragment StoreEntitySet="Boards">
@@ -2480,6 +2461,22 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
                 <ScalarProperty Name="accountType" ColumnName="accountType" />
                 <ScalarProperty Name="accNumber" ColumnName="accNumber" />
                 <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Assets">
+            <EntityTypeMapping TypeName="demoModel.Asset">
+              <MappingFragment StoreEntitySet="Assets">
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="ratio" ColumnName="ratio" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="expireDate" ColumnName="expireDate" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="volume" ColumnName="volume" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

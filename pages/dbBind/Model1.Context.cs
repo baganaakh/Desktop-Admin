@@ -70,7 +70,6 @@ namespace Admin.dbBind
         public virtual DbSet<Interest> Interests { get; set; }
         public virtual DbSet<Reason> Reasons { get; set; }
         public virtual DbSet<ColReq> ColReqs { get; set; }
-        public virtual DbSet<Asset> Assets { get; set; }
         public virtual DbSet<Board> Boards { get; set; }
         public virtual DbSet<ClearingAccount> ClearingAccounts { get; set; }
         public virtual DbSet<Contract> Contracts { get; set; }
@@ -83,6 +82,7 @@ namespace Admin.dbBind
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<AccountDetail> AccountDetails { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Asset> Assets { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

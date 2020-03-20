@@ -30,8 +30,6 @@ namespace Admin
             FillDataGrid();
             bindCombo();
         }
-        string connectionString = Properties.Settings.Default.ConnectionString;
-        static string id, ander,dealer,broker,mask, linkA="NULL",mtypee;
         short linkType;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -129,7 +127,6 @@ namespace Admin
         private void newData(object sender, RoutedEventArgs e)
         {
             memid.Text = null;
-            id = null;
             pstate.SelectedItem = null;
             linkacc.SelectedItem = null;
             acctype.SelectedItem = null;
@@ -241,12 +238,11 @@ namespace Admin
             var item = memid.SelectedItem as Member;
             try
             {
-                mtypee = item.type.ToString();
-                mask = item.mask.ToString();
-
-                ander = item.ander.ToString();
-                dealer = item.dealer.ToString();
-                broker = item.broker.ToString();
+                string mtypee = item.type.ToString();
+                string mask = item.mask.ToString();
+                string ander = item.ander.ToString();
+                string dealer = item.dealer.ToString();
+                string broker = item.broker.ToString();
 
                 companyName.Content = mask;
                 if(mtypee == "0")

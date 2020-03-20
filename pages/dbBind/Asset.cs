@@ -23,7 +23,6 @@ namespace Admin.dbBind
         public short state { get; set; }
         public System.DateTime modified { get; set; }
         public decimal ratio { get; set; }
-        public Nullable<long> secId { get; set; }
         public Nullable<decimal> price { get; set; }
     }
 }
