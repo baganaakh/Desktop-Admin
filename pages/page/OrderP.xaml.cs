@@ -30,31 +30,27 @@ namespace Admin
             FillDataGrid();
             bindCombo();
         }
-        string connectionString = Properties.Settings.Default.ConnectionString;
-        static string id, statid, memId, accId, bid,assetId, sides, dealtype;
+        string sides;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             upd.IsEnabled = true;
-            var values = DateTable2.SelectedItem as DataRowView;
+            var values = DateTable2.SelectedItem as Order;
             if (null == values) return;
-            id = values.Row[0].ToString();
-            bid = values.Row[1].ToString();
-            memId = values.Row[3].ToString();
-            assetId = values.Row[5].ToString();
-            accId = values.Row[4].ToString();
-            statid= values.Row[8].ToString();
-            sides= values.Row[2].ToString();
-            string QTY= values.Row[6].ToString();
-            string Price= values.Row[7].ToString();
-            memid.SelectedValue = memId;
-            accountid.SelectedValue = accId;
-            stat.SelectedValue = statid;
-            boardid.SelectedValue = bid;
-            assetid.SelectedValue = accId;
-            quantity.Text = QTY;
-            price.Text = Price;
-            Side.SelectedValue= sides;
+            
+            memid.SelectedValue = values.memberid;
+            accountid.SelectedValue = values.accountid;
+            stat.SelectedIndex=Convert.ToInt32(values.state+1);
+            boardid.SelectedValue =values.boardId;
+            assetid.SelectedValue = values.assetid;
+            quantity.Text = values.qty.ToString();
+            price.Text = values.price.ToString();
+            if(values.side == -1) 
+            {
+                Side.SelectedIndex = 0;
+                return;
+            }
+            Side.SelectedIndex =Convert.ToInt16(values.side);
         }
         #endregion
         #region insert
@@ -63,7 +59,6 @@ namespace Admin
             sides = Side.SelectedIndex.ToString();
             if (sides == "0")
                 sides = "-1";
-
             using(demoEntities10 contx=new demoEntities10())
             {
                 Order ord = new Order
@@ -80,48 +75,19 @@ namespace Admin
                 contx.Orders.Add(ord);
                 contx.SaveChanges();
             }
-           // string QTY = quantity.Text;
-           // string Price = price.Text;
-           // System.Data.SqlClient.SqlConnection sqlConnection1 =
-           //new System.Data.SqlClient.SqlConnection(connectionString);
-
-           // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-           // cmd.CommandType = System.Data.CommandType.Text;
-           // cmd.CommandText = "insert into [demo].[dbo].[Order] (bid, side, memberid, accountid, assetid, qty, price, state, modified,dealtype) values" +
-           //     " ('" +  bid + "',N'" + sides+ "',N'" + memId+ "',N'" + accId + "',N'" + assetId+ "',N'" + QTY+ "',N'" + Price+ "',N'" + statid+ "', getdate(), "+dealtype+")";
-           // cmd.Connection = sqlConnection1;
-           // sqlConnection1.Open();
-           // cmd.ExecuteNonQuery();
-           // sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion
-        #region number
-        private static readonly Regex _regex = new Regex("[^0-9.-]+");
-        private static bool IsTextAllowed(string text)
-        {
-            return !_regex.IsMatch(text);
-        }
+        #region ref new number fill
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !IsTextAllowed(e.Text);
+            App.TextBox_PreviewTextInput(sender, e);
         }
-        #endregion
-        #region fill
         private void FillDataGrid()
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string CmdString = "SELECT * FROM [demo].[dbo].[Order]";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Securities");
-                sda.Fill(dt);
-                DateTable2.ItemsSource = dt.DefaultView;
-            }
+        {            
+            demoEntities10 de = new demoEntities10();
+            DateTable2.ItemsSource = de.Orders.ToList();
         }
-        #endregion
-        #region ref new
         private void refreshh(object sender, RoutedEventArgs e)
         {
             FillDataGrid();
@@ -141,78 +107,48 @@ namespace Admin
         #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
-            var value = DateTable2.SelectedItem as DataRowView;
-            if (null == value) return;
-            id = value.Row[0].ToString();
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE demo.[dbo].[Order] WHERE id='" + id + "'";
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            var value = DateTable2.SelectedItem as Order;
+            if (value == null) return;
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                var del = conx.Orders.Where(x => x.id == value.id).First();
+                conx.Orders.Remove(del);
+                conx.SaveChanges();
+            }
             FillDataGrid();
         }
         #endregion
         #region update
         private void update(object sender, RoutedEventArgs e)
         {
-            string QTY = quantity.Text;
-            string Price = price.Text;
-
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "UPDATE demo.[dbo].[Order] SET " +
-                "bid= '" + bid+ "', " +
-                "side= '" + sides+ "', " +
-                "memberid= '" + memId + "', " +
-                "accountid= '" + accId+ "', " +
-                "assetid= '" + assetId + "', " +
-                "qty= '" + QTY+ "', " +
-                "price= '" + Price+ "', " +
-                "state= '" + statid + "', " +
-                "dealType= '" + dealtype+ "', " +
-                "modified = getdate() " +
-                "WHERE id = '" + id + "'";
-
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            sides = Side.SelectedIndex.ToString();
+            if (sides == "0")
+                sides = "-1";
+            var ac = DateTable2.SelectedItem as Order;
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                Order or = conx.Orders.FirstOrDefault(r => r.id == ac.id);
+                or.memberid =Convert.ToInt64(memid.SelectedValue);
+                or.side =Convert.ToInt16(sides);
+                or.accountid =Convert.ToInt64(accountid.SelectedValue);
+                or.assetid =Convert.ToInt64(assetid.SelectedValue);
+                or.qty = Convert.ToInt32(quantity.Text);
+                or.price = Convert.ToDecimal(price.Text);
+                or.state = Convert.ToInt16(stat.SelectedIndex - 1);
+                or.modified = DateTime.Now;
+                conx.SaveChanges();
+            }
             FillDataGrid();
         }
         #endregion
         #region combos
-        public List<State> statt { get; set; }
-        public List<Member> Emp { get; set; }
-        public List<Board> Dtype { get; set; }
-        public List<Account> ACCT { get; set; }
-        public List<Asset> ASST { get; set; }
-
         private void bindCombo()
         {
             demoEntities10 dc = new demoEntities10();
-            var item = dc.Members.ToList();
-            Emp = item;
-            memid.ItemsSource = Emp;
-
-            var dts = dc.Boards.ToList();
-            Dtype = dts;
-            boardid.ItemsSource = Dtype;
-
-            var act = dc.Accounts.ToList();
-            ACCT = act;
-            accountid.ItemsSource = ACCT;
-
-            var asst = dc.Assets.ToList();
-            ASST = asst;
-            assetid.ItemsSource = ASST;
+            memid.ItemsSource = dc.Members.ToList();
+            boardid.ItemsSource = dc.Boards.ToList();
+            accountid.ItemsSource = dc.Accounts.ToList();
+            assetid.ItemsSource = dc.Assets.ToList();
         }
         #endregion
     }

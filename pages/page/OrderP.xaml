@@ -11,13 +11,11 @@
         <ComboBox IsEditable="True" x:Name="memid" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,19,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="stat" HorizontalAlignment="Left" Margin="410,18,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Устгасан</ComboBoxItem>
-            
             <ComboBoxItem>Хэвийн</ComboBoxItem>
-            
             <ComboBoxItem>Идэвхгүй</ComboBoxItem>
         </ComboBox>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="price" HorizontalAlignment="Left" Height="23" Margin="639,19,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <ComboBox IsEditable="True" x:Name="accountid" ItemsSource="{Binding}" DisplayMemberPath="accNum" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,63,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox IsEditable="True" x:Name="accountid" ItemsSource="{Binding}" DisplayMemberPath="accNumber" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,63,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <ComboBox IsEditable="True" x:Name="assetid" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="410,62,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <ComboBox x:Name="Side" Margin="639,62,441,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Зарах</ComboBoxItem>

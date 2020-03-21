@@ -29,34 +29,22 @@ namespace Admin
             FillDataGrid();
             bindcombo();
         }
-        string connectionString = Properties.Settings.Default.ConnectionString;
-        static string id,coId,meId,statid,acid;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             upd.IsEnabled = true;
-            var values = DateTable2.SelectedItem as DataRowView;
+            var values = DateTable2.SelectedItem as MarketMaker;
             if (null == values) return;
-            id = values.Row[0].ToString();
-            string CID = values.Row[1].ToString();
-            string MID = values.Row[2].ToString();
-            string AID= values.Row[3].ToString();
-            string SDate= values.Row[4].ToString();
-            string EDate= values.Row[5].ToString();
-            string Ticks = values.Row[6].ToString();
-            string Desc = values.Row[7].ToString();
-            string orderLimitt= values.Row[8].ToString();
-            string State= values.Row[9].ToString();
-
-            markcontact.SelectedValue=CID;
-            markmember.SelectedValue=MID;
-            markaccount.SelectedValue=AID;
-            sdat.SelectedDate=DateTime.Parse(SDate);
-            edat.SelectedDate=DateTime.Parse(EDate);
-            markticks.Text = Ticks;
-            markdesc.Text=Desc;
-            markorderl.Text=orderLimitt;
-            markstat.SelectedValue=State;
+         
+            markcontact.SelectedValue=values.contactid;
+            markmember.SelectedValue=values.memberid;
+            markaccount.SelectedValue=values.accountid;
+            sdat.SelectedDate = values.startdate;
+            edat.SelectedDate=values.enddate;
+            markticks.Text = values.ticks.ToString();
+            markdesc.Text=values.description;
+            markorderl.Text=values.orderlimit.ToString();
+            markstat.SelectedIndex=values.state+1;
         }
         #endregion
         #region insert
@@ -88,30 +76,15 @@ namespace Admin
                 FillDataGrid();
         }
         #endregion
-        #region number
-        private static readonly Regex _regex = new Regex("[^0-9.-]+");
-        private static bool IsTextAllowed(string text)
-        {
-            return !_regex.IsMatch(text);
-        }
+        #region fill Number
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !IsTextAllowed(e.Text);
+            App.TextBox_PreviewTextInput(sender, e);
         }
-        #endregion
-        #region fill
         private void FillDataGrid()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string CmdString = "SELECT ALL [id], [contactid], [memberid], [accountid], [startdate], [enddate], [ticks], [description], [orderlimit], [state], [modified] " +
-                            "FROM dbo.marketMakers";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Securities");
-                sda.Fill(dt);
-                DateTable2.ItemsSource = dt.DefaultView;
-            }
+            demoEntities10 de = new demoEntities10();
+            DateTable2.ItemsSource = de.MarketMakers.ToList();
         }
         #endregion
         #region ref new
@@ -130,73 +103,41 @@ namespace Admin
             markdesc.Text = null;
             markorderl.Text = null;
             markstat.Text = null;
-            id = null;
         }
         #endregion
         #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
-            var value = DateTable2.SelectedItem as DataRowView;
-            if (null == value) return;
-            id = value.Row[0].ToString();
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE demo.dbo.marketMakers WHERE id='" + id + "'";
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            var value = DateTable2.SelectedItem as MarketMaker;
+            if (value == null) return;
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                var del = conx.MarketMakers.Where(x => x.id == value.id).First();
+                conx.MarketMakers.Remove(del);
+                conx.SaveChanges();
+            }
             FillDataGrid();
         }
         #endregion
         #region update
         private void update(object sender, RoutedEventArgs e)
         {
-            var ac = DateTable2.SelectedItem as Board;
+            var ac = DateTable2.SelectedItem as MarketMaker;
             using (demoEntities10 conx = new demoEntities10())
             {
                 MarketMaker mm = conx.MarketMakers.FirstOrDefault(r=>r.id==ac.id);
-                mm.contactid =Convert.ToInt32( markcontact.SelectedValue);
+                mm.contactid =Convert.ToInt32(markcontact.SelectedValue);
                 mm.memberid = Convert.ToInt32(markmember.SelectedValue);
                 mm.modified = DateTime.Now;
                 mm.accountid = Convert.ToInt64(markaccount.SelectedValue);
-                mm.startdate = sdat.SelectedDate;
-
+                mm.startdate =Convert.ToDateTime( sdat.SelectedDate);
+                mm.enddate = Convert.ToDateTime(edat.SelectedDate);
+                mm.ticks = Convert.ToInt32(markticks.Text);
+                mm.description = markdesc.Text;
+                mm.orderlimit = Convert.ToInt32(markorderl.Text);
+                mm.state=Convert.ToInt16(markstat.SelectedIndex-1);
                 conx.SaveChanges();
             }
-            // string contId = coId;
-            // string memId = meId;
-            // string sdate = sdat.SelectedDate.Value.ToShortDateString();
-            // string edate = edat.SelectedDate.Value.ToShortDateString();
-            // string ticks = markticks.Text;
-            // string desc = markdesc.Text;
-            // string orderL = markorderl.Text;
-
-            // System.Data.SqlClient.SqlConnection sqlConnection1 =
-            //new System.Data.SqlClient.SqlConnection(connectionString);
-
-            // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            // cmd.CommandType = System.Data.CommandType.Text;
-            // cmd.CommandText = "UPDATE demo.dbo.marketMakers SET " +
-            //     "contactid= '" + contId+ "', " +
-            //     "memberid= '" + memId+ "', " +
-            //     "accountid= '" + acid+ "', " +
-            //     "startdate= '" + sdate + "', " +
-            //     "enddate= '" + edate+ "', " +
-            //     "ticks= '" + ticks+ "', " +
-            //     "description= '" + desc+ "', " +
-            //     "orderlimit= '" + orderL+ "', " +
-            //     "state= '" + statid+ "', " +
-            //     "modified = getdate() " +
-            //     "WHERE id = '" + id + "'";
-
-            // cmd.Connection = sqlConnection1;
-            // sqlConnection1.Open();
-            // cmd.ExecuteNonQuery();
-            // sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion

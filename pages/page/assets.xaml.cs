@@ -30,9 +30,6 @@ namespace Admin
             InitializeComponent();
             FillDataGrid();
         }
-        string connectionString = Properties.Settings.Default.ConnectionString;
-        string id;
-        demoEntities10 DE = new demoEntities10();
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -95,7 +92,6 @@ namespace Admin
             artio.Text = "00.00";
             aexpire.SelectedDate = null;
             astate.Text = null;
-            id = null;
         }
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -129,7 +125,7 @@ namespace Admin
                 asst.note = anote.Text;
                 asst.state = Convert.ToInt16(astate.SelectedIndex - 1);
                 asst.ratio = Convert.ToDecimal(artio.Text);
-                asst.expireDate = Convert.ToDateTime( aexpire.SelectedDate);
+                asst.expireDate = Convert.ToDateTime(aexpire.SelectedDate);
                 asst.volume = Convert.ToInt32(avolume.Text);
                 conx.SaveChanges();
             }          

@@ -99,7 +99,7 @@ namespace Admin
         }
         private void BtnClickP14(object sender, RoutedEventArgs e)
         {
-            Main.Content = new RefPrice();
+            Main.Content = new RefPric();
             this.Title = "Ref Price";
         }
         private void BtnClickP15(object sender, RoutedEventArgs e)

@@ -25,57 +25,33 @@ namespace Admin
     /// </summary>
     public partial class participants : Page
     {
-        
+        int id;
         public participants()
         {
             InitializeComponent();
             FillDataGrid();
-        }
-        string connectionString = Properties.Settings.Default.ConnectionString;
-        static string id,cid, spid, ptid;
-
+        }        
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             upd.IsEnabled = true;
-            var value = DateTable2.SelectedItem as DataRowView;
+            var value = DateTable2.SelectedItem as Participant;
             if (null == value) return;
-            id = value.Row[0].ToString();
-            string codepar = value.Row[1].ToString();
-            string namepar = value.Row[2].ToString();
-            string countrypar = value.Row[3].ToString();
-            string addresspar= value.Row[4].ToString();
-            string phonepar= value.Row[5].ToString();
-            string emailpar= value.Row[6].ToString();
-            string contactpar= value.Row[7].ToString();
-            string statepar = value.Row[8].ToString();
-            string Pcity= value.Row[9].ToString();
-            string Pdistr = value.Row[10].ToString();
-            string Phoroo= value.Row[11].ToString();
-            string Pstreet= value.Row[12].ToString();
-            string Pwebpage= value.Row[13].ToString();
-            string numEmploy= value.Row[14].ToString();
-            string CSid= value.Row[16].ToString();
-            string WEBid= value.Row[17].ToString();
-            string speType= value.Row[18].ToString();
-            string coType= value.Row[19].ToString();
-
-            pname.Text = namepar;
-            pcountry.Text = countrypar;
-            pphone.Text = phonepar;
-            pmail.Text = emailpar;
-            pcontact.Text = contactpar;
-            pstate.SelectedValue = statepar; cid = statepar;
-            pcity.Text = Pcity;
-            pdistr1.Text = Pdistr;
-            phoroo.Text = Phoroo;
-            pstreet.Text = Pstreet;
-            pwebpage.Text = Pwebpage;
-            numofemp.Text = numEmploy;
-            pcsid.Text = CSid;
-            pwebid.Text = WEBid;
-            ptype.SelectedValue = coType; ptid = coType; //cotype
-            spetype.SelectedValue = speType; spid = speType; //special type
+            id = value.id;
+            pname.Text = value.name;
+            pcountry.Text = value.country;
+            pphone.Text = value.phone;
+            pmail.Text = value.email;
+            //pcontact.Text = value.contact;
+            pstate.SelectedIndex =Convert.ToInt32(value.state+1);
+            pcity.Text = value.pcity;
+            pdistr1.Text = value.pdistr;
+            phoroo.Text = value.phoroo;
+            pstreet.Text = value.pstreet;
+            pwebpage.Text = value.pwebpage;
+            numofemp.Text = value.numofemp;
+            ptype.SelectedIndex=Convert.ToInt32(value.companyType);
+            spetype.SelectedIndex=Convert.ToInt32(value.specialType);
         }
         #endregion
         #region insert
@@ -140,32 +116,16 @@ namespace Admin
             FillDataGrid();
         }
         #endregion
-        #region number
-        private static readonly Regex _regex = new Regex("[^0-9.-]+");
-        private static bool IsTextAllowed(string text)
-        {
-            return !_regex.IsMatch(text);
-        }
+        #region Number FillGrid new and refresh
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !IsTextAllowed(e.Text);
+            App.TextBox_PreviewTextInput(sender, e);
         }
-        #endregion
-        #region fill
         private void FillDataGrid()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string CmdString = "SELECT * FROM dbo.participants ";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Participant");
-                sda.Fill(dt);
-                DateTable2.ItemsSource = dt.DefaultView;
-            }
+            demoEntities10 de = new demoEntities10();
+            DateTable2.ItemsSource = de.Participants.ToList();
         }
-        #endregion
-        #region new and refresh
         private void newData(object sender, RoutedEventArgs e)
         {
             pname.Text = null;
@@ -176,7 +136,7 @@ namespace Admin
             pmail.Text = null;
             pwebid.Text= null;
             pcsid.Text= null;
-            id = null;
+            id = 0;
             pcity.Text=null;
             pdistr1.Text=null;
             phoroo.Text=null;
@@ -194,68 +154,39 @@ namespace Admin
         #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
-            var value = DateTable2.SelectedItem as DataRowView;
-            if (null == value) return;
-            id = value.Row[0].ToString();
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-            new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE demo.dbo.participants WHERE id='" + id + "'";
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            var value = DateTable2.SelectedItem as Participant;
+            if (value == null) return;
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                var del = conx.Participants.Where(x => x.id == value.id).First();
+                conx.Participants.Remove(del);
+                conx.SaveChanges();
+            }
             FillDataGrid();
         }
         #endregion
         #region update
         private void update(object sender, RoutedEventArgs e)
         {
-            string name = pname.Text;
-            string country = pcountry.Text;
-            string phone = pphone.Text;
-            string email = pmail.Text;
-            string contact = pcontact.Text;
-            string csid = pcsid.Text;
-            string webid = pwebid.Text;
-            string Pcity = pcity.Text;
-            string Pdistr = pdistr1.Text;
-            string Phoroo = phoroo.Text;
-            string Pstreet = pstreet.Text;
-            string Pwebpage = pwebpage.Text;
-            string Numofemp = numofemp.Text;
-
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "UPDATE demo.dbo.participants SET " +
-                "name= N'" + name + "', " +
-                "country = N'" + country+ "', " +
-                "phone= '" + phone+ "', " +
-                "email= N'" + email+ "', " +
-                "contact= '" + contact+ "', " +
-                "state= '" + cid + "', " +
-                "modified = getdate(), " +
-                "webid= '" + webid+ "', " +
-                "pcity= N'" + Pcity+ "', " +
-                "pdistr= N'" + Pdistr+ "', " +
-                "phoroo= N'" + Phoroo+ "', " +
-                "pstreet= N'" + Pstreet+ "', " +
-                "pwebpage= '" + Pwebpage+ "', " +
-                "numofemp= '" + Numofemp+ "', " +
-                "coType= '" + ptid+ "', " +
-                "spType= '" + spid+ "', " +
-                "csid= '" + csid+ "' " +
-                "WHERE id = '" + id + "'";
-
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                Participant pa = conx.Participants.FirstOrDefault(r => r.id == id);
+                pa.name = pname.Text;
+                pa.country =pcountry.Text;
+                pa.phone =pphone.Text;
+                pa.email =pmail.Text;
+                pa.state =Convert.ToInt16(pstate.SelectedIndex-1);
+                pa.pcity =pcity.Text;
+                pa.pdistr =pdistr1.Text;
+                pa.phoroo =phoroo.Text;
+                pa.pstreet =pstreet.Text;
+                pa.pwebpage =pwebpage.Text;
+                pa.numofemp =numofemp.SelectedIndex.ToString();
+                pa.modified =DateTime.Now;
+                pa.specialType =Convert.ToInt16(spetype.SelectedIndex);
+                pa.companyType =Convert.ToInt16(ptype.SelectedIndex);
+                conx.SaveChanges();
+            }
             FillDataGrid();
         }
         #endregion

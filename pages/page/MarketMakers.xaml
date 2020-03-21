@@ -15,7 +15,7 @@
         <ComboBox IsEditable="True" x:Name="markmember" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="152,72,0,0" VerticalAlignment="Top" Width="120"/>
         <DatePicker x:Name="edat" HorizontalAlignment="Left" Margin="422,72,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="markorderl" HorizontalAlignment="Left" Height="23" Margin="702,72,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="markaccount" IsEditable="True" ItemsSource="{Binding}" DisplayMemberPath="accNum" SelectedValuePath="id" HorizontalAlignment="Left" Margin="152,115,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="markaccount" IsEditable="True" ItemsSource="{Binding}" DisplayMemberPath="accNumber" SelectedValuePath="id" HorizontalAlignment="Left" Margin="152,115,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="markticks" HorizontalAlignment="Left" Height="23" Margin="422,114,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="markstat" HorizontalAlignment="Left" Margin="702,110,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Устгасан</ComboBoxItem>

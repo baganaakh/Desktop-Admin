@@ -36,32 +36,19 @@ namespace Admin
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             upd.IsEnabled = true;
-            var value = DateTable2.SelectedItem as DataRowView;
+            var value = DateTable2.SelectedItem as Member;
             if (null == value) return;
-            id = value.Row[0].ToString();
-            //metype= value.Row[1].ToString();
-            string codepar = value.Row[2].ToString();
-            //statid= value.Row[3].ToString();
-            oldMask= value.Row[5].ToString();
-            string sdate= value.Row[6].ToString();
-            string edate= value.Row[7].ToString();
-            string Broker= value.Row[8].ToString();
-            string Dealer= value.Row[9].ToString();
-            string Ander= value.Row[10].ToString();
-            string Nominal= value.Row[11].ToString();
-            partid= value.Row[12].ToString();
-            pname= value.Row[13].ToString();
-
-            pcode.Text = codepar;
-            //mtype.SelectedValue = metype;
-            //pstate.SelectedValue = statid;
-            participants.SelectedValue = partid;
-            starttime.SelectedDate = DateTime.Parse(sdate);
-            endtime.SelectedDate = DateTime.Parse(edate);
-            broker.IsChecked = bool.Parse(Broker);
-            dealer.IsChecked = bool.Parse(Dealer);
-            ander.IsChecked = bool.Parse(Ander);
-            nominal.IsChecked = bool.Parse(Nominal);
+            
+            pcode.Text = value.code;
+            mtype.SelectedIndex=Convert.ToInt32(value.type);
+            pstate.SelectedIndex =Convert.ToInt32(value.state+1);
+            participants.SelectedValue = value.partid;
+            starttime.SelectedDate = value.startdate;
+            endtime.SelectedDate = value.enddate;
+            broker.IsChecked = bool.Parse(value.broker);
+            dealer.IsChecked = bool.Parse(value.dealer);
+            ander.IsChecked = bool.Parse(value.ander);
+            nominal.IsChecked = bool.Parse(value.nominal);
             pcode.IsEnabled = false;
         }
         #endregion
@@ -183,33 +170,16 @@ namespace Admin
             FillDataGrid();
         }
         #endregion
-        #region number
-        private static readonly Regex _regex = new Regex("[^0-9.-]+");
-        private static bool IsTextAllowed(string text)
-        {
-            return !_regex.IsMatch(text);
-        }
+        #region new ref fill number
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !IsTextAllowed(e.Text);
+            App.TextBox_PreviewTextInput(sender, e);
         }
-        #endregion
-        #region  fill
         private void FillDataGrid()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string CmdString = "SELECT ALL [id], [type], [code], [state], [modified], [mask]," +
-                    "[startdate], [enddate], [broker], [dealer], [ander], [nominal], [partid],[name] FROM dbo.members ";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Participant");
-                sda.Fill(dt);
-                DateTable2.ItemsSource = dt.DefaultView;
-            }
+            demoEntities10 de = new demoEntities10();
+            DateTable2.ItemsSource = de.Members.ToList();
         }
-        #endregion
-        #region new ref
         private void newData(object sender, RoutedEventArgs e)
         {
             pcode.Text = null;
@@ -233,19 +203,14 @@ namespace Admin
         #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
-            var value = DateTable2.SelectedItem as DataRowView;
-            if (null == value) return;
-            id = value.Row[0].ToString();
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE demo.dbo.members WHERE id='" + id + "'";
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            var value = DateTable2.SelectedItem as Member;
+            if (value == null) return;
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                var del = conx.Members.Where(x => x.id == value.id).First();
+                conx.Members.Remove(del);
+                conx.SaveChanges();
+            }
             FillDataGrid();
         }
         #endregion
@@ -344,14 +309,10 @@ namespace Admin
         }
         #endregion
         #region combos
-        public List<Participant> part { get; set; }
         private void bindCombo()
         {
             demoEntities10 st = new demoEntities10();
-            
-            List<Participant> paitems = st.Participants.ToList();
-            part = paitems;
-            participants.ItemsSource = part;
+            participants.ItemsSource = st.Participants.ToList();
         }
 
         private void participants_SelectionChanged(object sender, SelectionChangedEventArgs e)

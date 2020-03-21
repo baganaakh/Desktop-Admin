@@ -34,7 +34,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>\\192.168.1.109\Test\</InstallUrl>
-    <ApplicationRevision>49</ApplicationRevision>
+    <ApplicationRevision>50</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -345,8 +345,8 @@
     <Compile Include="page\fee.xaml.cs">
       <DependentUpon>fee.xaml</DependentUpon>
     </Compile>
-    <Compile Include="page\RefPrice.xaml.cs">
-      <DependentUpon>RefPrice.xaml</DependentUpon>
+    <Compile Include="page\RefPric.xaml.cs">
+      <DependentUpon>RefPric.xaml</DependentUpon>
     </Compile>
     <Compile Include="page\Spread.xaml.cs">
       <DependentUpon>Spread.xaml</DependentUpon>
@@ -458,7 +458,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="page\RefPrice.xaml">
+    <Page Include="page\RefPric.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

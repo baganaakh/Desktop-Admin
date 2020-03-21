@@ -39,7 +39,6 @@
             <ComboBoxItem>101-250</ComboBoxItem>
             <ComboBoxItem>251-500</ComboBoxItem>
         </ComboBox>
-
         <ComboBox x:Name="pstate" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="362,170,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Устгасан</ComboBoxItem>
             <ComboBoxItem>Хэвийн</ComboBoxItem>

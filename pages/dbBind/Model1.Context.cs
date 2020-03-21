@@ -42,7 +42,6 @@ namespace Admin.dbBind
         public virtual DbSet<GroupUser> GroupUsers { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<IsDealer> IsDealers { get; set; }
-        public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<mtype> mtypes { get; set; }
         public virtual DbSet<netting> nettings { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
@@ -65,7 +64,6 @@ namespace Admin.dbBind
         public virtual DbSet<Ttable> Ttables { get; set; }
         public virtual DbSet<dbo_logs> dbo_logs { get; set; }
         public virtual DbSet<Deal> Deals { get; set; }
-        public virtual DbSet<Participant> Participants { get; set; }
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<Interest> Interests { get; set; }
         public virtual DbSet<Reason> Reasons { get; set; }
@@ -75,14 +73,16 @@ namespace Admin.dbBind
         public virtual DbSet<Contract> Contracts { get; set; }
         public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; }
         public virtual DbSet<Margin> Margins { get; set; }
-        public virtual DbSet<MarketMaker> MarketMakers { get; set; }
-        public virtual DbSet<Security> Securities { get; set; }
         public virtual DbSet<Session> Sessions { get; set; }
         public virtual DbSet<TickSizeTable> TickSizeTables { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<AccountDetail> AccountDetails { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Asset> Assets { get; set; }
+        public virtual DbSet<MarketMaker> MarketMakers { get; set; }
+        public virtual DbSet<Member> Members { get; set; }
+        public virtual DbSet<Participant> Participants { get; set; }
+        public virtual DbSet<Security> Securities { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

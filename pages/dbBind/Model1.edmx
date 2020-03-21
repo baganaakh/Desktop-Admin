@@ -421,23 +421,23 @@
         </EntityType>
         <EntityType Name="Members">
           <Key>
+            <PropertyRef Name="id" />
             <PropertyRef Name="code" />
             <PropertyRef Name="mask" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="type" Type="smallint" Nullable="false" />
+          <Property Name="type" Type="smallint" />
           <Property Name="code" Type="nvarchar" MaxLength="2" Nullable="false" />
-          <Property Name="state" Type="smallint" Nullable="false" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
-          <Property Name="partid" Type="bigint" Nullable="false" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="partid" Type="bigint" />
           <Property Name="mask" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="startdate" Type="date" Nullable="false" />
-          <Property Name="enddate" Type="date" Nullable="false" />
-          <Property Name="broker" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="dealer" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="ander" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="nominal" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="startdate" Type="date" />
+          <Property Name="enddate" Type="date" />
+          <Property Name="broker" Type="nvarchar" MaxLength="20" />
+          <Property Name="dealer" Type="nvarchar" MaxLength="20" />
+          <Property Name="ander" Type="nvarchar" MaxLength="20" />
+          <Property Name="nominal" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="mtype">
           <Key>
@@ -481,8 +481,6 @@
           <Property Name="interests" Type="decimal" Precision="18" Scale="4" />
           <Property Name="fee" Type="decimal" Precision="18" Scale="4" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Participants">
           <Key>
             <PropertyRef Name="id" />
@@ -526,7 +524,7 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
           <Key>
             <PropertyRef Name="contractId" />
           </Key>
-          <Property Name="contractId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contractId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="refprice" Type="decimal" Precision="18" Scale="6" />
           <Property Name="modified" Type="datetime" />
           <Property Name="name" Type="nvarchar" MaxLength="20" />
@@ -554,7 +552,7 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
           <Property Name="type" Type="smallint" />
           <Property Name="code" Type="nvarchar" MaxLength="16" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
-          <Property Name="totalQty" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="totalQty" Type="int" />
           <Property Name="firstPrice" Type="decimal" Precision="18" Scale="6" />
           <Property Name="intRate" Type="decimal" Precision="10" Scale="2" />
           <Property Name="sdate" Type="date" />
@@ -796,6 +794,7 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
           <EntitySet Name="mtype" EntityType="Self.mtype" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="netting" EntityType="Self.netting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Participants" EntityType="Self.Participants" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ptype" EntityType="Self.Ptype" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reason" EntityType="Self.Reason" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RefPrice" EntityType="Self.RefPrice" Schema="dbo" store:Type="Tables" />
@@ -816,29 +815,6 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
           <EntitySet Name="UserAccounts" EntityType="Self.UserAccounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserGroups" EntityType="Self.UserGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Participants" EntityType="Self.Participants" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Participants].[id] AS [id], 
-    [Participants].[name] AS [name], 
-    [Participants].[country] AS [country], 
-    [Participants].[address] AS [address], 
-    [Participants].[phone] AS [phone], 
-    [Participants].[email] AS [email], 
-    [Participants].[contact] AS [contact], 
-    [Participants].[state] AS [state], 
-    [Participants].[pcity] AS [pcity], 
-    [Participants].[pdistr] AS [pdistr], 
-    [Participants].[phoroo] AS [phoroo], 
-    [Participants].[pstreet] AS [pstreet], 
-    [Participants].[pwebpage] AS [pwebpage], 
-    [Participants].[numofemp] AS [numofemp], 
-    [Participants].[modified] AS [modified], 
-    [Participants].[csid] AS [csid], 
-    [Participants].[webid] AS [webid], 
-    [Participants].[specialType] AS [specialType], 
-    [Participants].[companyType] AS [companyType]
-    FROM [dbo].[Participants] AS [Participants]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -890,7 +866,6 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
           <EntitySet Name="GroupUsers" EntityType="demoModel.GroupUser" />
           <EntitySet Name="Invoices" EntityType="demoModel.Invoice" />
           <EntitySet Name="IsDealers" EntityType="demoModel.IsDealer" />
-          <EntitySet Name="Members" EntityType="demoModel.Member" />
           <EntitySet Name="mtypes" EntityType="demoModel.mtype" />
           <EntitySet Name="nettings" EntityType="demoModel.netting" />
           <EntitySet Name="Orders" EntityType="demoModel.Order" />
@@ -943,7 +918,6 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
           <FunctionImport Name="sp_upgraddiagrams1" />
           <EntitySet Name="dbo_logs" EntityType="demoModel.dbo_logs" />
           <EntitySet Name="Deals" EntityType="demoModel.Deal" />
-          <EntitySet Name="Participants" EntityType="demoModel.Participant" />
           <EntitySet Name="users" EntityType="demoModel.user" />
           <EntitySet Name="Interests" EntityType="demoModel.Interest" />
           <EntitySet Name="Reasons" EntityType="demoModel.Reason" />
@@ -953,14 +927,16 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
           <EntitySet Name="Contracts" EntityType="demoModel.Contract" />
           <EntitySet Name="InvoiceDetails" EntityType="demoModel.InvoiceDetail" />
           <EntitySet Name="Margins" EntityType="demoModel.Margin" />
-          <EntitySet Name="MarketMakers" EntityType="demoModel.MarketMaker" />
-          <EntitySet Name="Securities" EntityType="demoModel.Security" />
           <EntitySet Name="Sessions" EntityType="demoModel.Session" />
           <EntitySet Name="TickSizeTables" EntityType="demoModel.TickSizeTable" />
           <EntitySet Name="Transactions" EntityType="demoModel.Transaction" />
           <EntitySet Name="AccountDetails" EntityType="demoModel.AccountDetail" />
           <EntitySet Name="Accounts" EntityType="demoModel.Account" />
           <EntitySet Name="Assets" EntityType="demoModel.Asset" />
+          <EntitySet Name="MarketMakers" EntityType="demoModel.MarketMaker" />
+          <EntitySet Name="Members" EntityType="demoModel.Member" />
+          <EntitySet Name="Participants" EntityType="demoModel.Participant" />
+          <EntitySet Name="Securities" EntityType="demoModel.Security" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1167,26 +1143,6 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="isDealer1" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Member">
-          <Key>
-            <PropertyRef Name="code" />
-            <PropertyRef Name="mask" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="type" Type="Int16" Nullable="false" />
-          <Property Name="code" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="partid" Type="Int64" Nullable="false" />
-          <Property Name="mask" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="startdate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="enddate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="broker" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="dealer" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="ander" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="nominal" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="mtype">
           <Key>
@@ -1424,30 +1380,6 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
           <Property Name="toPay" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="connect" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Participant">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="pcity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="pdistr" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="phoroo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="pstreet" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="pwebpage" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="numofemp" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="csid" Type="Int32" />
-          <Property Name="webid" Type="Int32" />
-          <Property Name="specialType" Type="Int16" />
-          <Property Name="companyType" Type="Int16" />
-        </EntityType>
         <EntityType Name="user">
           <Key>
             <PropertyRef Name="id" />
@@ -1572,39 +1504,6 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
           <Property Name="msell" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
           <Property Name="coid" Type="Int64" Nullable="false" />
         </EntityType>
-        <EntityType Name="MarketMaker">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="contactid" Type="Int32" Nullable="false" />
-          <Property Name="memberid" Type="Int32" Nullable="false" />
-          <Property Name="accountid" Type="Int64" Nullable="false" />
-          <Property Name="startdate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="enddate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="ticks" Type="Int32" Nullable="false" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="orderlimit" Type="Int32" Nullable="false" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="Security">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="partid" Type="Int32" />
-          <Property Name="type" Type="Int16" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="totalQty" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="firstPrice" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="intRate" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="sdate" Type="DateTime" Precision="0" />
-          <Property Name="edate" Type="DateTime" Precision="0" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="assetId" Type="Int32" />
-        </EntityType>
         <EntityType Name="Session">
           <Key>
             <PropertyRef Name="id" />
@@ -1693,6 +1592,84 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
           <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="ratio" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="MarketMaker">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contactid" Type="Int32" Nullable="false" />
+          <Property Name="memberid" Type="Int32" Nullable="false" />
+          <Property Name="accountid" Type="Int64" Nullable="false" />
+          <Property Name="startdate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="enddate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ticks" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="orderlimit" Type="Int32" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="code" />
+            <PropertyRef Name="mask" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="Int16" />
+          <Property Name="code" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="partid" Type="Int64" />
+          <Property Name="mask" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="startdate" Type="DateTime" Precision="0" />
+          <Property Name="enddate" Type="DateTime" Precision="0" />
+          <Property Name="broker" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="dealer" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ander" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="nominal" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Participant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="pcity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="pdistr" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="phoroo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="pstreet" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="pwebpage" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="numofemp" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="csid" Type="Int32" />
+          <Property Name="webid" Type="Int32" />
+          <Property Name="specialType" Type="Int16" />
+          <Property Name="companyType" Type="Int16" />
+        </EntityType>
+        <EntityType Name="Security">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="partid" Type="Int32" />
+          <Property Name="type" Type="Int16" />
+          <Property Name="code" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="totalQty" Type="Int32" />
+          <Property Name="firstPrice" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="intRate" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="sdate" Type="DateTime" Precision="0" />
+          <Property Name="edate" Type="DateTime" Precision="0" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="assetId" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1904,26 +1881,6 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
             <EntityTypeMapping TypeName="demoModel.IsDealer">
               <MappingFragment StoreEntitySet="IsDealer">
                 <ScalarProperty Name="isDealer1" ColumnName="isDealer" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Members">
-            <EntityTypeMapping TypeName="demoModel.Member">
-              <MappingFragment StoreEntitySet="Members">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="nominal" ColumnName="nominal" />
-                <ScalarProperty Name="ander" ColumnName="ander" />
-                <ScalarProperty Name="dealer" ColumnName="dealer" />
-                <ScalarProperty Name="broker" ColumnName="broker" />
-                <ScalarProperty Name="enddate" ColumnName="enddate" />
-                <ScalarProperty Name="startdate" ColumnName="startdate" />
-                <ScalarProperty Name="mask" ColumnName="mask" />
-                <ScalarProperty Name="partid" ColumnName="partid" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="code" ColumnName="code" />
-                <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2193,31 +2150,6 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Participants">
-            <EntityTypeMapping TypeName="demoModel.Participant">
-              <MappingFragment StoreEntitySet="Participants">
-                <ScalarProperty Name="companyType" ColumnName="companyType" />
-                <ScalarProperty Name="specialType" ColumnName="specialType" />
-                <ScalarProperty Name="webid" ColumnName="webid" />
-                <ScalarProperty Name="csid" ColumnName="csid" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="numofemp" ColumnName="numofemp" />
-                <ScalarProperty Name="pwebpage" ColumnName="pwebpage" />
-                <ScalarProperty Name="pstreet" ColumnName="pstreet" />
-                <ScalarProperty Name="phoroo" ColumnName="phoroo" />
-                <ScalarProperty Name="pdistr" ColumnName="pdistr" />
-                <ScalarProperty Name="pcity" ColumnName="pcity" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="contact" ColumnName="contact" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="country" ColumnName="country" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="demoModel.user">
               <MappingFragment StoreEntitySet="users">
@@ -2351,41 +2283,6 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MarketMakers">
-            <EntityTypeMapping TypeName="demoModel.MarketMaker">
-              <MappingFragment StoreEntitySet="MarketMakers">
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="orderlimit" ColumnName="orderlimit" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="ticks" ColumnName="ticks" />
-                <ScalarProperty Name="enddate" ColumnName="enddate" />
-                <ScalarProperty Name="startdate" ColumnName="startdate" />
-                <ScalarProperty Name="accountid" ColumnName="accountid" />
-                <ScalarProperty Name="memberid" ColumnName="memberid" />
-                <ScalarProperty Name="contactid" ColumnName="contactid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Securities">
-            <EntityTypeMapping TypeName="demoModel.Security">
-              <MappingFragment StoreEntitySet="Securities">
-                <ScalarProperty Name="assetId" ColumnName="assetId" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="edate" ColumnName="edate" />
-                <ScalarProperty Name="sdate" ColumnName="sdate" />
-                <ScalarProperty Name="intRate" ColumnName="intRate" />
-                <ScalarProperty Name="firstPrice" ColumnName="firstPrice" />
-                <ScalarProperty Name="totalQty" ColumnName="totalQty" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="partid" ColumnName="partid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Sessions">
             <EntityTypeMapping TypeName="demoModel.Session">
               <MappingFragment StoreEntitySet="Session">
@@ -2477,6 +2374,86 @@ warning 6002: The table/view 'demo.dbo.Participants' does not have a primary key
                 <ScalarProperty Name="volume" ColumnName="volume" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MarketMakers">
+            <EntityTypeMapping TypeName="demoModel.MarketMaker">
+              <MappingFragment StoreEntitySet="MarketMakers">
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="orderlimit" ColumnName="orderlimit" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="ticks" ColumnName="ticks" />
+                <ScalarProperty Name="enddate" ColumnName="enddate" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
+                <ScalarProperty Name="accountid" ColumnName="accountid" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="contactid" ColumnName="contactid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="demoModel.Member">
+              <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="nominal" ColumnName="nominal" />
+                <ScalarProperty Name="ander" ColumnName="ander" />
+                <ScalarProperty Name="dealer" ColumnName="dealer" />
+                <ScalarProperty Name="broker" ColumnName="broker" />
+                <ScalarProperty Name="enddate" ColumnName="enddate" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
+                <ScalarProperty Name="mask" ColumnName="mask" />
+                <ScalarProperty Name="partid" ColumnName="partid" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Participants">
+            <EntityTypeMapping TypeName="demoModel.Participant">
+              <MappingFragment StoreEntitySet="Participants">
+                <ScalarProperty Name="companyType" ColumnName="companyType" />
+                <ScalarProperty Name="specialType" ColumnName="specialType" />
+                <ScalarProperty Name="webid" ColumnName="webid" />
+                <ScalarProperty Name="csid" ColumnName="csid" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="numofemp" ColumnName="numofemp" />
+                <ScalarProperty Name="pwebpage" ColumnName="pwebpage" />
+                <ScalarProperty Name="pstreet" ColumnName="pstreet" />
+                <ScalarProperty Name="phoroo" ColumnName="phoroo" />
+                <ScalarProperty Name="pdistr" ColumnName="pdistr" />
+                <ScalarProperty Name="pcity" ColumnName="pcity" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="contact" ColumnName="contact" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Securities">
+            <EntityTypeMapping TypeName="demoModel.Security">
+              <MappingFragment StoreEntitySet="Securities">
+                <ScalarProperty Name="assetId" ColumnName="assetId" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="edate" ColumnName="edate" />
+                <ScalarProperty Name="sdate" ColumnName="sdate" />
+                <ScalarProperty Name="intRate" ColumnName="intRate" />
+                <ScalarProperty Name="firstPrice" ColumnName="firstPrice" />
+                <ScalarProperty Name="totalQty" ColumnName="totalQty" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="partid" ColumnName="partid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

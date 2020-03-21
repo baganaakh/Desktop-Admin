@@ -31,36 +31,27 @@ namespace Admin
             bindcombo();
         }
         string connectionString = Properties.Settings.Default.ConnectionString;
-        static string id, cid, statid, setype;
+        static string cid, statid, setype;
+        int id;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             upd.IsEnabled = true;
-            var value = DateTable2.SelectedItem as DataRowView;
+            var value = DateTable2.SelectedItem as Security;
             if (null == value) return;
-            id = value.Row[0].ToString();
-            string pidse = value.Row[1].ToString();
-            string typese = value.Row[2].ToString();
-            string codese = value.Row[3].ToString();
-            string namese = value.Row[4].ToString();
-            string totqtse = value.Row[7].ToString();
-            string fpricese = value.Row[8].ToString();
-            string intrase = value.Row[9].ToString();
-            string sdatese = value.Row[10].ToString();
-            string edatese = value.Row[11].ToString();
-            string statese = value.Row[13].ToString();
+            id = value.id;
 
-            partId.SelectedValue= pidse;
-            stype.SelectedValue = typese;
-            scode.Text = codese;
-            sname.Text = namese;
-            totalquant.Text = totqtse;
-            fprice.Text = fpricese;
-            Decimal intRase = Decimal.Parse(intrase) * 100;
+            partId.SelectedValue= value.partid;
+            stype.SelectedIndex= Convert.ToInt16(value.type);
+            scode.Text = value.code;
+            sname.Text = value.name;
+            totalquant.Text = value.totalQty.ToString();
+            fprice.Text = value.firstPrice.ToString();
+            Decimal intRase = Convert.ToDecimal(value.intRate) * 100;
             srate.Text = intRase.ToString();
-            state.SelectedValue= statese;
-            sdate.Text = sdatese;
-            edate.Text = edatese;
+            state.SelectedIndex=Convert.ToInt32(value.state-1);
+            sdate.SelectedDate= value.sdate;
+            edate.SelectedDate= value.edate;
         }
         #endregion
         #region insert func
@@ -81,6 +72,7 @@ namespace Admin
                     edate = edate.SelectedDate,
                     modified=DateTime.Now,
                     state=Convert.ToInt16(state.SelectedIndex -1),
+                    code=scode.Text,
                 };
                 conx.Securities.Add(secu);
                 conx.SaveChanges();
@@ -123,25 +115,16 @@ namespace Admin
             FillDataGrid();
         }
         #endregion
-        #region number only
-        private static readonly Regex _regex = new Regex("[^0-9.-]+");
-        private static bool IsTextAllowed(string text)
-        {
-            return !_regex.IsMatch(text);
-        }
+        #region ref new number fill
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !IsTextAllowed(e.Text);
+            App.TextBox_PreviewTextInput(sender, e);
         }
-        #endregion
-        #region fill
         private void FillDataGrid()
         {
             demoEntities10 de = new demoEntities10();
             DateTable2.ItemsSource = de.Securities.ToList();            
         }
-        #endregion
-        #region ref new
         private void refreshh(object sender, RoutedEventArgs e)
         {
             FillDataGrid();
@@ -158,76 +141,77 @@ namespace Admin
             state.Text = null;
             sdate.Text = null;
             edate.Text = null;
-            id = null;
+            id = 0;
         }
         #endregion
         #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
-            var value = DateTable2.SelectedItem as DataRowView;
-            if (null == value) return;
-            id = value.Row[0].ToString();
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE demo.dbo.securities WHERE id='" + id + "'";
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            var value = DateTable2.SelectedItem as Security;
+            if (value == null) return;
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                var del = conx.Securities.Where(x => x.id == value.id).First();
+                conx.Securities.Remove(del);
+                conx.SaveChanges();
+            }
             FillDataGrid();
         }
         #endregion
         #region update
         private void update(object sender, RoutedEventArgs e)
         {
-            string partid = cid;
-            string code = scode.Text;
-            string name = sname.Text;
-     
-            string total = totalquant.Text;
-            string fPirce = fprice.Text;
-            string intRat = srate.Text;
-            //Decimal intRate = Decimal.Parse(intRat) / 100;
-            string stat = state.Text;
-            string starTime = sdate.SelectedDate.Value.ToShortDateString();
-            string endTime = edate.SelectedDate.Value.ToShortDateString();
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                Security se = conx.Securities.FirstOrDefault(r => r.id == id);
+                se.partid=
+            }
 
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-            new System.Data.SqlClient.SqlConnection(connectionString);
+                //string partid = cid;
+                //string code = scode.Text;
+                //string name = sname.Text;
 
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "UPDATE demo.dbo.securities SET " +
-                "partid= '" + partid + "', " +
-                "type= '" + setype + "', " +
-                "code= '" + code + "', " +
-                "name= N'" + name + "', " +
-                "totalQty= '" + total + "', " +
-                "firstPrice= '" + fPirce + "', " +
-                "intRate= '" + intRat + "', " +
-                "sdate= '" + starTime + "', " +
-                "edate= '" + endTime + "', " +
-                "state= '" + statid + "', " +
-                "modified = getdate() " +
-                "WHERE id = " + id+
+                //string total = totalquant.Text;
+                //string fPirce = fprice.Text;
+                //string intRat = srate.Text;
+                ////Decimal intRate = Decimal.Parse(intRat) / 100;
+                //string stat = state.Text;
+                //string starTime = sdate.SelectedDate.Value.ToShortDateString();
+                //string endTime = edate.SelectedDate.Value.ToShortDateString();
 
-                " UPDATE demo.dbo.assets SET " +
-                "code= '" + code + "', " +
-                "name= '" + name + "', " +
-                "value= '" + fPirce + "', " +
-                "expireDate= '" + endTime + "', " +
-                "state= '" + statid + "', " +
-                "modified = getdate() " +
-                "WHERE secId = '" + id + "'";
+                //System.Data.SqlClient.SqlConnection sqlConnection1 =
+                //new System.Data.SqlClient.SqlConnection(connectionString);
 
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
-            FillDataGrid();
+                //System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+                //cmd.CommandType = System.Data.CommandType.Text;
+                //cmd.CommandText = "UPDATE demo.dbo.securities SET " +
+                //    "partid= '" + partid + "', " +
+                //    "type= '" + setype + "', " +
+                //    "code= '" + code + "', " +
+                //    "name= N'" + name + "', " +
+                //    "totalQty= '" + total + "', " +
+                //    "firstPrice= '" + fPirce + "', " +
+                //    "intRate= '" + intRat + "', " +
+                //    "sdate= '" + starTime + "', " +
+                //    "edate= '" + endTime + "', " +
+                //    "state= '" + statid + "', " +
+                //    "modified = getdate() " +
+                //    "WHERE id = " + id+
+
+                //    " UPDATE demo.dbo.assets SET " +
+                //    "code= '" + code + "', " +
+                //    "name= '" + name + "', " +
+                //    "value= '" + fPirce + "', " +
+                //    "expireDate= '" + endTime + "', " +
+                //    "state= '" + statid + "', " +
+                //    "modified = getdate() " +
+                //    "WHERE secId = '" + id + "'";
+
+                //cmd.Connection = sqlConnection1;
+                //sqlConnection1.Open();
+                //cmd.ExecuteNonQuery();
+                //sqlConnection1.Close();
+                FillDataGrid();
         }
         #endregion
         #region combos
