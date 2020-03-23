@@ -27,5 +27,6 @@ namespace Admin.dbBind
         public Nullable<System.DateTime> modified { get; set; }
         public Nullable<long> userId { get; set; }
         public Nullable<int> memberid { get; set; }
+        public string currency { get; set; }
     }
 }

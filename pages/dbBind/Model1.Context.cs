@@ -51,7 +51,6 @@ namespace Admin.dbBind
         public virtual DbSet<Setting> Settings { get; set; }
         public virtual DbSet<Software> Softwares { get; set; }
         public virtual DbSet<SpecialType> SpecialTypes { get; set; }
-        public virtual DbSet<Spread> Spreads { get; set; }
         public virtual DbSet<State> States { get; set; }
         public virtual DbSet<stype> stypes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
@@ -73,7 +72,6 @@ namespace Admin.dbBind
         public virtual DbSet<Contract> Contracts { get; set; }
         public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; }
         public virtual DbSet<Margin> Margins { get; set; }
-        public virtual DbSet<Session> Sessions { get; set; }
         public virtual DbSet<TickSizeTable> TickSizeTables { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<AccountDetail> AccountDetails { get; set; }
@@ -83,6 +81,8 @@ namespace Admin.dbBind
         public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<Participant> Participants { get; set; }
         public virtual DbSet<Security> Securities { get; set; }
+        public virtual DbSet<Session> Sessions { get; set; }
+        public virtual DbSet<Spread> Spreads { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

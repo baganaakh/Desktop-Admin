@@ -15,11 +15,11 @@ namespace Admin.dbBind
     public partial class Spread
     {
         public int id { get; set; }
-        public int contractid { get; set; }
-        public int sessionid { get; set; }
-        public int rspread { get; set; }
-        public int ispread { get; set; }
-        public string rparam { get; set; }
-        public System.DateTime modified { get; set; }
+        public Nullable<int> contractid { get; set; }
+        public Nullable<int> sessionid { get; set; }
+        public Nullable<int> rspread { get; set; }
+        public Nullable<int> ispread { get; set; }
+        public Nullable<int> rparam { get; set; }
+        public Nullable<System.DateTime> modified { get; set; }
     }
 }

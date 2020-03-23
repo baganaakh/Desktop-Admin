@@ -23,7 +23,7 @@
             <ComboBoxItem>Орлого</ComboBoxItem>
         </ComboBox>
         <TextBox x:Name="trnote" HorizontalAlignment="Left" Height="23" Margin="407,99,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="truser" HorizontalAlignment="Left" Height="23" Margin="657,99,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <TextBox IsEnabled="False" PreviewTextInput="PreviewTextInput" x:Name="truser" HorizontalAlignment="Left" Height="23" Margin="657,99,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="trtype1" HorizontalAlignment="Left" Height="23" Margin="158,144,0,0" Text="1234"  VerticalAlignment="Top" Width="120">
             <ComboBoxItem>Үлдэгдэл</ComboBoxItem>
             <ComboBoxItem>Хүлээгдэж буй дүн</ComboBoxItem>

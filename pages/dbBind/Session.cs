@@ -30,8 +30,8 @@ namespace Admin.dbBind
         public Nullable<System.DateTime> endtime { get; set; }
         public string tduration { get; set; }
         public Nullable<long> matched { get; set; }
-        public string editorder { get; set; }
-        public string delorder { get; set; }
-        public string markettype { get; set; }
+        public Nullable<bool> editorder { get; set; }
+        public Nullable<bool> delorder { get; set; }
+        public Nullable<short> markettype { get; set; }
     }
 }

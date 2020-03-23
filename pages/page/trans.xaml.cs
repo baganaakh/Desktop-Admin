@@ -31,37 +31,28 @@ namespace Admin
             bindcombo();
         }
         string connectionString = Properties.Settings.Default.ConnectionString;
-        static string id,cid,statid;
+        static string cid,statid;
+        long id;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             upd.IsEnabled = true;
-            var values = DateTable2.SelectedItem as DataRowView;
+            var values = DateTable2.SelectedItem as Transaction;
             if (null == values) return;
-            id = values.Row[0].ToString();
-            string accid = values.Row[1].ToString();
-            string Type = values.Row[2].ToString();
-            string Type1= values.Row[3].ToString();
-            string amount= values.Row[4].ToString();
-            string currency= values.Row[5].ToString();
-            string rate = values.Row[6].ToString();
-            string note = values.Row[7].ToString();
-            string tdate = values.Row[8].ToString();
-            string state = values.Row[9].ToString();
-            string userid = values.Row[11].ToString();
-            string memberid= values.Row[12].ToString();
+            id = values.id;
 
-            sboardid.SelectedValue = memberid;
-            accId.Text= accid;
-            trtype.Text = Type;
-            trtype1.Text = Type1;
-            tramount.Text = amount;
-            trcurrent.Text = currency;
-            trrate.Text = rate;
-            trnote.Text = note;
-            trtdate.SelectedDate = DateTime.Parse(tdate);
-            trstate.SelectedValue = state;
-            truser.Text = userid;
+            sboardid.SelectedValue = values.memberid;
+            accId.SelectedValue= values.accountId;
+            trtype.SelectedValue= values.type;
+            trtype1.SelectedValue= values.type1;
+            tramount.Text = values.amount.ToString();
+            trcurrent.Text = values.currency;
+            trrate.Text = values.rate.ToString();
+            trnote.Text = values.note;
+            trtdate.SelectedDate = values.tdate;
+            trstate.SelectedIndex=Convert.ToInt32(values.state+1);
+            truser.Text = values.userId.ToString();
+            asstId.SelectedValue = values.assetId;
         }
         #endregion
         #region insert
@@ -74,18 +65,19 @@ namespace Admin
             {
                 Transaction tra = new Transaction
                 {
-                    accountId= Convert.ToInt64(accId.SelectedValue),
-                    type=Convert.ToInt16(type),
-                    type1=Convert.ToInt16(trtype1.SelectedIndex),
-                    amount=Convert.ToInt32(tramount.Text),
-                    userId=Convert.ToInt32(App.Current.Properties["User_id"]),
-                    assetId=Convert.ToInt32(asstId.SelectedValue),
-                    rate=Convert.ToInt32(trrate.Text),
-                    note=trnote.Text,
-                    tdate=trtdate.SelectedDate,
-                    state=Convert.ToInt16(trstate.SelectedIndex-1),
-                    modified=DateTime.Now,
-                    memberid=Convert.ToInt32(sboardid.SelectedValue),
+                    accountId = Convert.ToInt64(accId.SelectedValue),
+                    type = Convert.ToInt16(type),
+                    type1 = Convert.ToInt16(trtype1.SelectedIndex),
+                    amount = Convert.ToInt32(tramount.Text),
+                    userId = Convert.ToInt32(App.Current.Properties["User_id"]),
+                    assetId = Convert.ToInt32(asstId.SelectedValue),
+                    rate = Convert.ToInt32(trrate.Text),
+                    note = trnote.Text,
+                    tdate = trtdate.SelectedDate,
+                    state = Convert.ToInt16(trstate.SelectedIndex - 1),
+                    modified = DateTime.Now,
+                    memberid = Convert.ToInt32(sboardid.SelectedValue),
+                    currency = trcurrent.Text,
             };
                 conx.Transactions.Add(tra);
                 conx.SaveChanges();
@@ -123,32 +115,17 @@ namespace Admin
         }
         #endregion
         #region numbers
-        private static readonly Regex _regex = new Regex("[^0-9.-]+");
-        private static bool IsTextAllowed(string text)
-        {
-            return !_regex.IsMatch(text);
-        }
+
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !IsTextAllowed(e.Text);
+            App.TextBox_PreviewTextInput(sender, e);
         }
         #endregion
         #region fill
         private void FillDataGrid()
         {
             demoEntities10 de = new demoEntities10();
-            DateTable2.ItemsSource = de.Transactions.ToList();
-            //string connectionString = Properties.Settings.Default.ConnectionString;
-            
-            //using (SqlConnection conn = new SqlConnection(connectionString))
-            //{
-            //    string CmdString = "SELECT * FROM dbo.trans";
-            //    SqlCommand cmd = new SqlCommand(CmdString, conn);
-            //    SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            //    DataTable dt = new DataTable("Securities");
-            //    sda.Fill(dt);
-            //    DateTable2.ItemsSource = dt.DefaultView;
-            //}
+            DateTable2.ItemsSource = de.Transactions.ToList();           
         }
         private void refreshh(object sender, RoutedEventArgs e)
         {
@@ -169,79 +146,93 @@ namespace Admin
             trstate.Text = null;
             truser.Text = null;
             sboardid.SelectedValue = null;
-            id = null;
+            id = 0;
         }
         #endregion
         #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
-            var value = DateTable2.SelectedItem as DataRowView;
-            if (null == value) return;
-            id = value.Row[0].ToString();
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE demo.dbo.trans WHERE id='" + id + "'";
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            var value = DateTable2.SelectedItem as Transaction;
+            if (value == null) return;
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                var del = conx.Transactions.Where(x => x.id == value.id).First();
+                conx.Transactions.Remove(del);
+                conx.SaveChanges();
+            }
             FillDataGrid();
         }
         #endregion
         #region update
         private void update(object sender, RoutedEventArgs e)
         {
-            string accountId = accId.Text;
-            string MemID = cid;
-            string type = trtype.Text;
-            string type1 = trtype1.Text;
-            string ammount = tramount.Text;
-            string currecy = trcurrent.Text;
-            string rate = trrate.Text;
-            string note = trnote.Text;
-            string tdate = trtdate.SelectedDate.Value.ToShortDateString();
-            string state = trstate.Text;
-            string userId = truser.Text;
+            int type = trtype.SelectedIndex;
+            if (type == 0)
+                type = -1;
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                Transaction se = conx.Transactions.FirstOrDefault(r => r.id == id);
+                se.accountId = Convert.ToInt64(accId.SelectedValue);
+                se.type = Convert.ToInt16(type);
+                se.type1 = Convert.ToInt16(trtype1.SelectedIndex);
+                se.amount = Convert.ToInt32(tramount.Text);
+                se.userId = Convert.ToInt32(App.Current.Properties["User_id"]);
+                se.assetId = Convert.ToInt32(asstId.SelectedValue);
+                se.rate = Convert.ToInt32(trrate.Text);
+                se.note = trnote.Text;
+                se.tdate = trtdate.SelectedDate;
+                se.state = Convert.ToInt16(trstate.SelectedIndex - 1);
+                se.modified = DateTime.Now;
+                se.memberid = Convert.ToInt32(sboardid.SelectedValue);
+                se.currency = trcurrent.Text;
+                conx.SaveChanges();
+            }
 
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
 
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "UPDATE demo.dbo.trans SET " +
-                "accountId= '" + accountId+ "', " +
-                "type= '" + type + "', " +
-                "type1= '" + type1 + "', " +
-                "amount= '" + ammount + "', " +
-                "currency= '" + currecy+ "', " +
-                "rate= '" + rate+ "', " +
-                "note= '" + note+ "', " +
-                "tdate= '" + tdate+ "', " +
-                "state= '" + statid+ "', " +
-                "userId= '" + userId+ "', " +
-                "userId= '" + MemID+ "', " +
-                "modified = getdate() " +
-                "WHERE id = '" + id + "'";
+            // string accountId = accId.Text;
+            // string MemID = cid;
+            // string type = trtype.Text;
+            // string type1 = trtype1.Text;
+            // string ammount = tramount.Text;
+            // string currecy = trcurrent.Text;
+            // string rate = trrate.Text;
+            // string note = trnote.Text;
+            // string tdate = trtdate.SelectedDate.Value.ToShortDateString();
+            // string state = trstate.Text;
+            // string userId = truser.Text;
 
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            // System.Data.SqlClient.SqlConnection sqlConnection1 =
+            //new System.Data.SqlClient.SqlConnection(connectionString);
+
+            // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            // cmd.CommandType = System.Data.CommandType.Text;
+            // cmd.CommandText = "UPDATE demo.dbo.trans SET " +
+            //     "accountId= '" + accountId+ "', " +
+            //     "type= '" + type + "', " +
+            //     "type1= '" + type1 + "', " +
+            //     "amount= '" + ammount + "', " +
+            //     "currency= '" + currecy+ "', " +
+            //     "rate= '" + rate+ "', " +
+            //     "note= '" + note+ "', " +
+            //     "tdate= '" + tdate+ "', " +
+            //     "state= '" + statid+ "', " +
+            //     "userId= '" + userId+ "', " +
+            //     "userId= '" + MemID+ "', " +
+            //     "modified = getdate() " +
+            //     "WHERE id = '" + id + "'";
+
+            // cmd.Connection = sqlConnection1;
+            // sqlConnection1.Open();
+            // cmd.ExecuteNonQuery();
+            // sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion
         #region combos
-        public List<Member> Emp { get; set; }
-
         private void bindcombo()
         {
             demoEntities10 dc = new demoEntities10();
-            var item = dc.Members.ToList();
-            Emp = item;
-            sboardid.ItemsSource = Emp;
+            sboardid.ItemsSource = dc.Members.ToList();
             accId.ItemsSource = dc.Accounts.ToList();
             asstId.ItemsSource = dc.Assets.ToList();
         }

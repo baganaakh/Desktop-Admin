@@ -104,7 +104,7 @@ namespace Admin
         }
         private void BtnClickP15(object sender, RoutedEventArgs e)
         {
-            Main.Content = new Spread();
+            Main.Content = new Spreads();
             this.Title = "Spread";
         }
         private void BtnClickP17(object sender, RoutedEventArgs e)

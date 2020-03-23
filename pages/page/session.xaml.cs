@@ -29,72 +29,40 @@ namespace Admin
             FillDataGrid();
             bindCombo();
         }
-        string connectionString = Properties.Settings.Default.ConnectionString;
-        static string id, cid, statid;
+        long id;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             upd.IsEnabled = true;
-            var value = DateTable2.SelectedItem as DataRowView;
+            var value = DateTable2.SelectedItem as Session;
             if (null == value) return;
-            id = value.Row[0].ToString();
-            string bid = value.Row[1].ToString();
-            string name = value.Row[2].ToString();
-            string sTime = value.Row[3].ToString();
-            string duration = value.Row[4].ToString();
-            string algorithm = value.Row[5].ToString();
-            string match = value.Row[6].ToString();
-            string allowtyp = value.Row[7].ToString();
-            string description = value.Row[8].ToString();
-            string state = value.Row[9].ToString();
-            string isACT = value.Row[11].ToString();
-            string startTime = value.Row[12].ToString();
-            string endTime = value.Row[13].ToString();
-            string tduartion = value.Row[14].ToString();
-            string matched = value.Row[15].ToString();
-            string editoreder = value.Row[16].ToString();
-            string deleteorder = value.Row[17].ToString();
-            string markettype = value.Row[18].ToString();
-
-            char seperator = ':';
-            string[] arrays = duration.Split(seperator);
-            string dHours = arrays[0];
-            string dMinute = arrays[1];
-            string dSecond= arrays[2];
-            string[] stimes = sTime.Split(seperator);
-            string shours = stimes[0];
-            string sminutes="";
-            string ssecond="";
-            try
+            id = value.id;
+            TimeSpan arrays = (TimeSpan)value.stime;
+            sboardid.SelectedValue = value.boardid;
+            sname.Text = value.name;
+            stimehour.SelectedIndex = arrays.Hours;
+            stimeminute.SelectedIndex = arrays.Minutes;
+            stimeSecond.SelectedIndex = arrays.Seconds;
+            duration.Text = value.duration.ToString();
+            allowT.SelectedIndex =Convert.ToInt32(value.allowedtypes);
+            sdesc.Text = value.description;
+            sstate.SelectedIndex =Convert.ToInt32(value.state + 1);
+            algo.SelectedIndex =Convert.ToInt32(value.algorithm);
+            match1.Text = value.match.ToString();
+            markT.SelectedIndex =Convert.ToInt32(value.markettype);
+            if (value.delorder != null)
             {
-            sminutes= stimes[1];
-            ssecond= stimes[2];
+                delOrder.IsChecked = bool.Parse(value.delorder.ToString());
             }
-            catch
+            if (value.editorder != null)
             {
-                sminutes = "";
-                ssecond = "";
+                editOrder.IsChecked = bool.Parse(value.editorder.ToString());
             }
-            
-            stimeSecond.Text= ssecond;
-            dminute.Text= dMinute;
-            dhour.Text= dHours;
-            dsecond.Text= dSecond;
-            stimehour.Text= shours;
-            stimeminute.Text= sminutes;
-
-            sboardid.SelectedValue = bid;
-            sname.Text = name;
-
-            algo.Text = algorithm;
-            match1.Text = match;
-            allowT.Text = allowtyp;
-            sdesc.Text = description;
-            sstate.SelectedValue = state;
-            eOrder.IsChecked =bool.Parse(editoreder);
-            dOrder.IsChecked=bool.Parse(deleteorder);
-            markT.Text = markettype;
-        }
+            if (value.isactive != null)
+            {
+                isAct.IsChecked = bool.Parse(value.isactive.ToString());
+            }
+            }
         #endregion
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
@@ -117,6 +85,9 @@ namespace Admin
                     state=Convert.ToInt16(sstate.SelectedIndex-1),
                     modified=DateTime.Now,
                     isactive=isAct.IsChecked,
+                    delorder=delOrder.IsChecked,
+                    editorder=editOrder.IsChecked,
+                    markettype=Convert.ToInt16(markT.SelectedIndex),
 
                 };
                 conx.Sessions.Add(ses);
@@ -125,20 +96,15 @@ namespace Admin
             FillDataGrid();
         }
         #endregion
-        #region fill
+        #region fill number
+        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            App.TextBox_PreviewTextInput(sender, e);
+        }
         private void FillDataGrid()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string CmdString = "SELECT ALL [id], [boardid], [name], [stime], [duration], [algorithm], [match], [allowedtypes], [description], [state] ,[modified], " +
-                    "[isactive], [starttime], [endtime], [tduration], [matched], [editorder], [delorder], [markettype] FROM dbo.session ";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Employee");
-                // DataRowView dr = new DataRowView();
-                sda.Fill(dt);
-                DateTable2.ItemsSource = dt.DefaultView;
-            }
+            demoEntities10 de = new demoEntities10();
+            DateTable2.ItemsSource = de.Sessions.ToList();
         }
         private void refreshh(object sender, RoutedEventArgs e)
         {
@@ -148,19 +114,14 @@ namespace Admin
         #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
-            var value = DateTable2.SelectedItem as DataRowView;
-            if (null == value) return;
-            id = value.Row[0].ToString();
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
-
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE demo.dbo.session WHERE id='" + id + "'";
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+            var value = DateTable2.SelectedItem as Session;
+            if (value == null) return;
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                var del = conx.Sessions.Where(x => x.id == value.id).First();
+                conx.Sessions.Remove(del);
+                conx.SaveChanges();
+            }
             FillDataGrid();
         }
         #endregion
@@ -177,55 +138,74 @@ namespace Admin
             allowT.Text = null;
             sdesc.Text = null;
             sstate.Text = null;
-            eOrder.IsChecked = null;
-            dOrder.IsChecked= null;
+            editOrder.IsChecked = null;
+            delOrder.IsChecked= null;
             markT.Text = null;
-            id = null;
         }
         #endregion
         #region update
         private void update(object sender, RoutedEventArgs e)
-        {
-            string boardid = cid;
-            string name = sname.Text;
-            string sstimeminute = stimeminute.Text;
-            string sstimehour = stimehour.Text;
-            string dhours = dhour.Text;
-            string dminutes = dminute.Text;
-            string alogor = algo.Text;
-            string match11 = match1.Text;
-            string allowedT = allowT.Text;
-            string descrip = sdesc.Text;
-            string state = statid;
-            string EDorder = eOrder.IsChecked.ToString();
-            string DEorder = dOrder.IsChecked.ToString();
-            string markType = markT.Text;
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
+        {TimeSpan startTime = new TimeSpan(
+                Convert.ToInt32(stimehour.Text), Convert.ToInt32(stimeminute.Text), Convert.ToInt32(stimeSecond.Text));
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                Session se = conx.Sessions.FirstOrDefault(r => r.id == id);
+                se.boardid = Convert.ToInt64(sboardid.SelectedValue);
+                    se.name = sname.Text;
+                    se.stime = startTime;
+                    se.duration = Convert.ToInt32(duration.Text);
+                    se.algorithm = Convert.ToInt16(algo.SelectedIndex);
+                    se.match = Convert.ToInt32(match1.Text);
+                    se.allowedtypes = Convert.ToInt16(allowT.SelectedIndex);
+                    se.description = sdesc.Text;
+                    se.state = Convert.ToInt16(sstate.SelectedIndex - 1);
+                    se.modified = DateTime.Now;
+                    se.isactive = isAct.IsChecked;
+                    se.delorder = delOrder.IsChecked;
+                    se.editorder = editOrder.IsChecked;
+                    se.markettype = Convert.ToInt16(markT.SelectedIndex);
+                conx.SaveChanges();
+            }
+                // string boardid = cid;
+                // string name = sname.Text;
+                // string sstimeminute = stimeminute.Text;
+                // string sstimehour = stimehour.Text;
+                // string dhours = dhour.Text;
+                // string dminutes = dminute.Text;
+                // string alogor = algo.Text;
+                // string match11 = match1.Text;
+                // string allowedT = allowT.Text;
+                // string descrip = sdesc.Text;
+                // string state = statid;
+                // string EDorder = eOrder.IsChecked.ToString();
+                // string DEorder = dOrder.IsChecked.ToString();
+                // string markType = markT.Text;
+                // System.Data.SqlClient.SqlConnection sqlConnection1 =
+                //new System.Data.SqlClient.SqlConnection(connectionString);
 
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "UPDATE demo.dbo.session SET " +
-                "boardid = '" + boardid + "', " +
-                "name= N'" + name + "', " +
-                "stime = '" + sstimehour + ":" + sstimeminute + "', " +
-                "duration = '" + dhours + ":" + dminutes + "', " +
-                "algorithm= '" + alogor + "', " +
-                "match= '" + match11 + "', " +
-                "allowedtypes= '" + allowedT + "', " +
-                "description= '" + descrip + "', " +
-                "state= '" + state + "', " +
-                "modified = getdate(), " +
-                "editorder= '" + EDorder + "', " +
-                "delorder= '" + DEorder + "', " +
-                "markettype= '" + markType + "' " +
-                "WHERE id = '" + id + "'";
+                // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+                // cmd.CommandType = System.Data.CommandType.Text;
+                // cmd.CommandText = "UPDATE demo.dbo.session SET " +
+                //     "boardid = '" + boardid + "', " +
+                //     "name= N'" + name + "', " +
+                //     "stime = '" + sstimehour + ":" + sstimeminute + "', " +
+                //     "duration = '" + dhours + ":" + dminutes + "', " +
+                //     "algorithm= '" + alogor + "', " +
+                //     "match= '" + match11 + "', " +
+                //     "allowedtypes= '" + allowedT + "', " +
+                //     "description= '" + descrip + "', " +
+                //     "state= '" + state + "', " +
+                //     "modified = getdate(), " +
+                //     "editorder= '" + EDorder + "', " +
+                //     "delorder= '" + DEorder + "', " +
+                //     "markettype= '" + markType + "' " +
+                //     "WHERE id = '" + id + "'";
 
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
-            FillDataGrid();
+                // cmd.Connection = sqlConnection1;
+                // sqlConnection1.Open();
+                // cmd.ExecuteNonQuery();
+                // sqlConnection1.Close();
+                FillDataGrid();
         }
         #endregion
         #region combos

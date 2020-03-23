@@ -1,4 +1,4 @@
-﻿<Page x:Class="Admin.Spread"
+﻿<Page x:Class="Admin.Spreads"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,12 +6,12 @@
       xmlns:local="clr-namespace:Admin"
       mc:Ignorable="d" 
       d:DesignHeight="900"  d:DesignWidth="1200"
-      Title="Spread">
+      Title="Spreads">
 
     <Grid>
         <ComboBox IsEditable="True" x:Name="contractid" ItemsSource="{Binding}" SelectionChanged="contractid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="151,18,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="ispread" HorizontalAlignment="Left" Height="23" Margin="434,18,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <ComboBox IsEditable="True" x:Name="sessionid" ItemsSource="{Binding}" SelectionChanged="sessionid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="151,67,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox IsEditable="True" x:Name="sessionid" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="151,67,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBox  x:Name="rparam" HorizontalAlignment="Left" Height="23" Margin="434,67,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="rspread" HorizontalAlignment="Left" Height="23" Margin="715,22,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
         <Label Content="ispread" HorizontalAlignment="Left" Margin="313,15,0,0" VerticalAlignment="Top"/>
