@@ -438,6 +438,7 @@
           <Property Name="dealer" Type="nvarchar" MaxLength="20" />
           <Property Name="ander" Type="nvarchar" MaxLength="20" />
           <Property Name="nominal" Type="nvarchar" MaxLength="20" />
+          <Property Name="linkMember" Type="int" />
         </EntityType>
         <EntityType Name="mtype">
           <Key>
@@ -1594,6 +1595,7 @@
           <Property Name="dealer" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="ander" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="nominal" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="linkMember" Type="Int32" />
         </EntityType>
         <EntityType Name="Participant">
           <Key>
@@ -2363,6 +2365,7 @@
           <EntitySetMapping Name="Members">
             <EntityTypeMapping TypeName="demoModel.Member">
               <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="linkMember" ColumnName="linkMember" />
                 <ScalarProperty Name="nominal" ColumnName="nominal" />
                 <ScalarProperty Name="ander" ColumnName="ander" />
                 <ScalarProperty Name="dealer" ColumnName="dealer" />

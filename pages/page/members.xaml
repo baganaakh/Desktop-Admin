@@ -57,5 +57,7 @@
                 <DataGridTextColumn Binding="{Binding nominal}" Header="Nominal"/>
             </DataGrid.Columns>
         </DataGrid>
+        <ComboBox x:Name="linkMember" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="624,107,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <Label Content="холбох Member" HorizontalAlignment="Left" Margin="504,104,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.81,2.115"/>
     </Grid>
 </Page>

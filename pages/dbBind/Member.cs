@@ -27,5 +27,6 @@ namespace Admin.dbBind
         public string dealer { get; set; }
         public string ander { get; set; }
         public string nominal { get; set; }
+        public Nullable<int> linkMember { get; set; }
     }
 }

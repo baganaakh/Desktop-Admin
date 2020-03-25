@@ -313,6 +313,7 @@ namespace Admin
         {
             demoEntities10 st = new demoEntities10();
             participants.ItemsSource = st.Participants.ToList();
+            linkMember.ItemsSource = st.Members.Where(s => s.type == 1).ToList();
         }
 
         private void participants_SelectionChanged(object sender, SelectionChangedEventArgs e)
