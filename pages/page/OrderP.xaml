@@ -52,5 +52,16 @@
                 <DataGridTextColumn Binding="{Binding dealType}" Header="Dtype"/>
             </DataGrid.Columns>
         </DataGrid>
+        <ComboBox x:Name="dealtype" Margin="639,96,441,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
+            <ComboBoxItem Content="Арилжаа"/>
+            <ComboBoxItem Content="OTC"/>
+            <ComboBoxItem Content="Тохиролцоо"/>
+            <ComboBoxItem Content="Repo"/>
+            <ComboBoxItem Content="Loan 1"/>
+            <ComboBoxItem Content="Loan 2"/>
+            <ComboBoxItem Content="Col 1"/>
+            <ComboBoxItem Content="Col 2"/>
+        </ComboBox>
+        <Label Content="dealType" HorizontalAlignment="Left" Margin="569,94,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>

@@ -32,16 +32,16 @@ namespace Admin
         #region fill
         private void FillDataGrid()
         {
-            string connectionString = Properties.Settings.Default.ConnectionString;
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string CmdString = "SELECT * FROM [dbo].[Deal2]";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Securities");
-                sda.Fill(dt);
-                DateTable2.ItemsSource = dt.DefaultView;
-            }
+            //string connectionString = Properties.Settings.Default.ConnectionString;
+            //using (SqlConnection conn = new SqlConnection(connectionString))
+            //{
+            //    string CmdString = "SELECT * FROM [dbo].[Deal2]";
+            //    SqlCommand cmd = new SqlCommand(CmdString, conn);
+            //    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            //    DataTable dt = new DataTable("Securities");
+            //    sda.Fill(dt);
+            //    DateTable2.ItemsSource = dt.DefaultView;
+            //}
         }
         #endregion
         #region deal2 to invoice 

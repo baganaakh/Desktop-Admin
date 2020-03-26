@@ -28,7 +28,6 @@ namespace Admin
         {
             InitializeComponent();
             FillDataGrid();
-            bindCombo();
         }
         string connectionString = Properties.Settings.Default.ConnectionString;
         string id, cid, dealTypes;
@@ -43,28 +42,6 @@ namespace Admin
                 DataTable dt = new DataTable("Employee");
                 sda.Fill(dt);
                 DateTable2.ItemsSource = dt.DefaultView;
-            }
-        }
-        #endregion
-        #region combo
-        public List<Dealtype> Dtype { get; set; }
-        private void bindCombo()
-        {
-            demoEntities10 dE = new demoEntities10();
-            var dts = dE.Dealtypes.ToList();
-            Dtype = dts;
-            dealtype.ItemsSource = Dtype;
-        }
-        private void dealtype_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var dti = dealtype.SelectedItem as Dealtype;
-            try
-            {
-                dealTypes = dti.id.ToString();
-            }
-            catch
-            {
-                return;
             }
         }
         #endregion

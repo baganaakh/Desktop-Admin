@@ -71,6 +71,7 @@ namespace Admin
                     assetid=Convert.ToInt32(assetid.SelectedValue),
                     qty=Convert.ToInt32(quantity.Text),
                     price=Convert.ToDecimal(price.Text),
+                    dealType=(short)dealtype.SelectedIndex,
                 };
                 contx.Orders.Add(ord);
                 contx.SaveChanges();
@@ -136,6 +137,7 @@ namespace Admin
                 or.price = Convert.ToDecimal(price.Text);
                 or.state = Convert.ToInt16(stat.SelectedIndex - 1);
                 or.modified = DateTime.Now;
+                or.dealType = (short)dealtype.SelectedIndex;
                 conx.SaveChanges();
             }
             FillDataGrid();

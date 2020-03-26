@@ -32,44 +32,44 @@ namespace Admin.page
         private void FillDataGrid()
         {
             demoEntities10 DE = new demoEntities10();
-            DateTable2.ItemsSource = DE.ColReqs.ToList();
+            DateTable2.ItemsSource = DE.Transactions.ToList();
         }
         #endregion
         #region Approve
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ColReq values = DateTable2.SelectedItem as ColReq;
-            if (null == values) return;
-            using(demoEntities10 conx=new demoEntities10())
-            {  
-                Transaction trans1 = new Transaction
-                {
-                    accountId= values.accId,
-                    assetId= Convert.ToInt32(values.assetId),
-                    amount= Convert.ToInt32(values.value),
-                    memberid= Convert.ToInt32(values.memid),
-                    modified=DateTime.Now,
-                    tdate=values.modified,
-                    type=values.mode,
-                };
-                ColReq std = conx.ColReqs.FirstOrDefault(r => r.id == values.id);
-                conx.ColReqs.Remove(std);
-                conx.Transactions.Add(trans1);
-                conx.SaveChanges();
-            }
+            //Transaction values = DateTable2.SelectedItem as Transaction;
+            //if (null == values) return;
+            //using(demoEntities10 conx=new demoEntities10())
+            //{  
+            //    Transaction trans1 = new Transaction
+            //    {
+            //        accountId= values.accId,
+            //        assetId= Convert.ToInt32(values.assetId),
+            //        amount= Convert.ToInt32(values.value),
+            //        memberid= Convert.ToInt32(values.memid),
+            //        modified=DateTime.Now,
+            //        tdate=values.modified,
+            //        type=values.mode,
+            //    };
+            //    Transaction std = conx.Transactions.FirstOrDefault(r => r.id == values.id);
+            //    conx.Transactions.Remove(std);
+            //    conx.Transactions.Add(trans1);
+            //    conx.SaveChanges();
+            //}
             FillDataGrid();
         }
         #endregion
         #region deny state=0 is denied
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            ColReq values = DateTable2.SelectedItem as ColReq;
+            Transaction values = DateTable2.SelectedItem as Transaction;
             if (null == values) return;
             using (demoEntities10 conx = new demoEntities10())
             {
-                ColReq std = conx.ColReqs.FirstOrDefault(r => r.id == values.id);
+                Transaction std = conx.Transactions.FirstOrDefault(r => r.id == values.id);
                 std.state = 0;
-                std.reason = Convert.ToInt16(Reasons.SelectedValue);
+                //std.reason = Convert.ToInt16(Reasons.SelectedValue);
                 conx.SaveChanges();
             }
         FillDataGrid();
