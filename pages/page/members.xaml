@@ -9,7 +9,7 @@
       Title="members">
 
     <Grid>
-        <ComboBox IsEditable="True" x:Name="participants" ItemsSource="{Binding}" SelectionChanged="participants_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="132,21,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox IsEditable="True" x:Name="participants" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="132,21,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <ComboBox x:Name="pstate" HorizontalAlignment="Left" Margin="362,21,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Устгасан</ComboBoxItem>
             <ComboBoxItem>Хэвийн</ComboBoxItem>
@@ -57,7 +57,7 @@
                 <DataGridTextColumn Binding="{Binding nominal}" Header="Nominal"/>
             </DataGrid.Columns>
         </DataGrid>
-        <ComboBox x:Name="linkMember" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="624,107,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <ComboBox x:Name="linkMember" DisplayMemberPath="code" SelectedValuePath="id" HorizontalAlignment="Left" Margin="624,107,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <Label Content="холбох Member" HorizontalAlignment="Left" Margin="504,104,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.81,2.115"/>
     </Grid>
 </Page>

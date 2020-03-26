@@ -78,11 +78,11 @@ namespace Admin.dbBind
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Asset> Assets { get; set; }
         public virtual DbSet<MarketMaker> MarketMakers { get; set; }
-        public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<Participant> Participants { get; set; }
         public virtual DbSet<Security> Securities { get; set; }
         public virtual DbSet<Session> Sessions { get; set; }
         public virtual DbSet<Spread> Spreads { get; set; }
+        public virtual DbSet<Member> Members { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

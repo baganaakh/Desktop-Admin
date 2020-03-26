@@ -422,8 +422,6 @@
         <EntityType Name="Members">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="code" />
-            <PropertyRef Name="mask" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="type" Type="smallint" />
@@ -431,7 +429,7 @@
           <Property Name="state" Type="smallint" />
           <Property Name="modified" Type="datetime" />
           <Property Name="partid" Type="bigint" />
-          <Property Name="mask" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="mask" Type="nvarchar" MaxLength="20" />
           <Property Name="startdate" Type="date" />
           <Property Name="enddate" Type="date" />
           <Property Name="broker" Type="nvarchar" MaxLength="20" />
@@ -934,11 +932,11 @@
           <EntitySet Name="Accounts" EntityType="demoModel.Account" />
           <EntitySet Name="Assets" EntityType="demoModel.Asset" />
           <EntitySet Name="MarketMakers" EntityType="demoModel.MarketMaker" />
-          <EntitySet Name="Members" EntityType="demoModel.Member" />
           <EntitySet Name="Participants" EntityType="demoModel.Participant" />
           <EntitySet Name="Securities" EntityType="demoModel.Security" />
           <EntitySet Name="Sessions" EntityType="demoModel.Session" />
           <EntitySet Name="Spreads" EntityType="demoModel.Spread" />
+          <EntitySet Name="Members" EntityType="demoModel.Member" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1576,27 +1574,6 @@
           <Property Name="state" Type="Int16" Nullable="false" />
           <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="Member">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="code" />
-            <PropertyRef Name="mask" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="type" Type="Int16" />
-          <Property Name="code" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="partid" Type="Int64" />
-          <Property Name="mask" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="startdate" Type="DateTime" Precision="0" />
-          <Property Name="enddate" Type="DateTime" Precision="0" />
-          <Property Name="broker" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="dealer" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="ander" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="nominal" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="linkMember" Type="Int32" />
-        </EntityType>
         <EntityType Name="Participant">
           <Key>
             <PropertyRef Name="id" />
@@ -1674,6 +1651,25 @@
           <Property Name="ispread" Type="Int32" />
           <Property Name="rparam" Type="Int32" />
           <Property Name="modified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="Int16" />
+          <Property Name="code" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="partid" Type="Int64" />
+          <Property Name="mask" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="startdate" Type="DateTime" Precision="0" />
+          <Property Name="enddate" Type="DateTime" Precision="0" />
+          <Property Name="broker" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="dealer" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ander" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="nominal" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="linkMember" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2362,26 +2358,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Members">
-            <EntityTypeMapping TypeName="demoModel.Member">
-              <MappingFragment StoreEntitySet="Members">
-                <ScalarProperty Name="linkMember" ColumnName="linkMember" />
-                <ScalarProperty Name="nominal" ColumnName="nominal" />
-                <ScalarProperty Name="ander" ColumnName="ander" />
-                <ScalarProperty Name="dealer" ColumnName="dealer" />
-                <ScalarProperty Name="broker" ColumnName="broker" />
-                <ScalarProperty Name="enddate" ColumnName="enddate" />
-                <ScalarProperty Name="startdate" ColumnName="startdate" />
-                <ScalarProperty Name="mask" ColumnName="mask" />
-                <ScalarProperty Name="partid" ColumnName="partid" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="code" ColumnName="code" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Participants">
             <EntityTypeMapping TypeName="demoModel.Participant">
               <MappingFragment StoreEntitySet="Participants">
@@ -2460,6 +2436,26 @@
                 <ScalarProperty Name="rspread" ColumnName="rspread" />
                 <ScalarProperty Name="sessionid" ColumnName="sessionid" />
                 <ScalarProperty Name="contractid" ColumnName="contractid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="demoModel.Member">
+              <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="linkMember" ColumnName="linkMember" />
+                <ScalarProperty Name="nominal" ColumnName="nominal" />
+                <ScalarProperty Name="ander" ColumnName="ander" />
+                <ScalarProperty Name="dealer" ColumnName="dealer" />
+                <ScalarProperty Name="broker" ColumnName="broker" />
+                <ScalarProperty Name="enddate" ColumnName="enddate" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
+                <ScalarProperty Name="mask" ColumnName="mask" />
+                <ScalarProperty Name="partid" ColumnName="partid" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

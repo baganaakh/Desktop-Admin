@@ -59,11 +59,11 @@
         <EntityTypeShape EntityType="demoModel.Account" Width="1.5" PointX="5.375" PointY="17.75" />
         <EntityTypeShape EntityType="demoModel.Asset" Width="1.5" PointX="23.375" PointY="10.75" />
         <EntityTypeShape EntityType="demoModel.MarketMaker" Width="1.5" PointX="0.75" PointY="23.75" />
-        <EntityTypeShape EntityType="demoModel.Member" Width="1.5" PointX="23.375" PointY="14.75" />
         <EntityTypeShape EntityType="demoModel.Participant" Width="1.5" PointX="21.375" PointY="19.75" />
         <EntityTypeShape EntityType="demoModel.Security" Width="1.5" PointX="23.375" PointY="5.75" />
         <EntityTypeShape EntityType="demoModel.Session" Width="1.5" PointX="7.375" PointY="22.75" />
         <EntityTypeShape EntityType="demoModel.Spread" Width="1.5" PointX="13.375" PointY="3.75" />
+        <EntityTypeShape EntityType="demoModel.Member" Width="1.5" PointX="23.375" PointY="14.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

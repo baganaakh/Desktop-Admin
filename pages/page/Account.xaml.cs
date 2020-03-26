@@ -76,7 +76,7 @@ namespace Admin
                     {
                         memberid = Convert.ToInt64(memid.SelectedValue),
                         accNumber= accnu,
-                        accountType = Convert.ToInt16(acctype.SelectedValue),
+                        accountType = (short)acctype.SelectedValue,
                         state = Convert.ToInt16(pstate.SelectedIndex - 1),
                         modified = DateTime.Now
                     };
@@ -220,9 +220,16 @@ namespace Admin
                     linkType = 1;
                     linkacc.IsEnabled = true;
                 }
-                demoEntities10 de = new demoEntities10();
-                var linkas = de.Accounts.Where(s => s.accountType == linkType).ToList();
-                linkacc.ItemsSource = linkas;
+                demoEntities10 dc = new demoEntities10();
+                List<Account> linkas = linkacc.ItemsSource as List<Account>;
+                //var linkas = de.Accounts.Where(s => s.accountType == linkType).ToList();
+                //var final = linkas.Where
+                //linkacc.ItemsSource = linkas.;
+                var items = memid.SelectedItem as Member;
+                int linkme = (int)dc.Members.FirstOrDefault(r => r.id == items.id).linkMember;
+                int lnk = dc.Members.FirstOrDefault(r => r.partid == linkme).id;
+                var lists= dc.Accounts.Where(r => r.memberid == lnk).ToList();
+                linkacc.ItemsSource = lists.Where(s => s.accountType == linkType).ToList();
             }
             catch (Exception ex)
             {
@@ -235,7 +242,8 @@ namespace Admin
             var accitem = dc.accTypes.ToList();
             var accitem2 = dc.accTypes.ToList();
             accitem2.RemoveAt(3);
-            var item = memid.SelectedItem as Member;
+            var item = memid.SelectedItem as Member;            
+            linkacc.ItemsSource = null;
             try
             {
                 string mtypee = item.type.ToString();
