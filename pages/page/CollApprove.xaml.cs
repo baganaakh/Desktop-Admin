@@ -38,25 +38,25 @@ namespace Admin.page
         #region Approve
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Transaction values = DateTable2.SelectedItem as Transaction;
-            //if (null == values) return;
-            //using(demoEntities10 conx=new demoEntities10())
-            //{  
-            //    Transaction trans1 = new Transaction
-            //    {
-            //        accountId= values.accId,
-            //        assetId= Convert.ToInt32(values.assetId),
-            //        amount= Convert.ToInt32(values.value),
-            //        memberid= Convert.ToInt32(values.memid),
-            //        modified=DateTime.Now,
-            //        tdate=values.modified,
-            //        type=values.mode,
-            //    };
-            //    Transaction std = conx.Transactions.FirstOrDefault(r => r.id == values.id);
-            //    conx.Transactions.Remove(std);
-            //    conx.Transactions.Add(trans1);
-            //    conx.SaveChanges();
-            //}
+            Order values = DateTable2.SelectedItem as Order;
+            if (null == values) return;
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                Transaction trans1 = new Transaction
+                {
+                    accountId = values.accountid,
+                    assetId = Convert.ToInt32(values.assetid),
+                    amount = Convert.ToInt32(values.qty),
+                    memberid = Convert.ToInt32(values.memberid),
+                    modified = DateTime.Now,
+                    tdate = values.modified,
+                    type = values.side,
+                };
+                Transaction std = conx.Transactions.FirstOrDefault(r => r.id == values.id);
+                conx.Transactions.Remove(std);
+                conx.Transactions.Add(trans1);
+                conx.SaveChanges();
+            }
             FillDataGrid();
         }
         #endregion

@@ -36,6 +36,7 @@ namespace Admin
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             upd.IsEnabled = true;
+            participants.IsEnabled = false;
             var value = DateTable2.SelectedItem as Member;
             if (null == value) return;
             id = value.id;
@@ -84,6 +85,7 @@ namespace Admin
                     ander=ander.IsChecked.ToString(),
                     nominal=nominal.IsChecked.ToString(),
                     linkMember=Convert.ToInt32(linkMember.SelectedValue),
+                    name=participants.Text,
                 };
                 conx.Members.Add(me);
                 conx.SaveChanges();
@@ -230,6 +232,7 @@ namespace Admin
             ander.IsChecked = null;
             nominal.IsChecked = null;
             pcode.IsEnabled = true;
+            participants.IsEnabled = true;
         }
         private void refreshh(object sender, RoutedEventArgs e)
         {
@@ -260,7 +263,7 @@ namespace Admin
                 me.code = pcode.Text;
                 me.state = Convert.ToInt16(pstate.SelectedIndex - 1);
                 me.modified = DateTime.Now;
-                me.partid = Convert.ToInt64(participants.SelectedValue);
+                //me.partid = Convert.ToInt64(participants.SelectedValue);
                 me.startdate = starttime.SelectedDate;
                 me.enddate = endtime.SelectedDate;
                 me.broker = broker.IsChecked.ToString();

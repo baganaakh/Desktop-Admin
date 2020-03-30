@@ -383,6 +383,7 @@
           <Property Name="ander" Type="nvarchar" MaxLength="20" />
           <Property Name="nominal" Type="nvarchar" MaxLength="20" />
           <Property Name="linkMember" Type="int" />
+          <Property Name="name" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="mtype">
           <Key>
@@ -632,11 +633,15 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="uname" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="password" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="modified" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="uname" Type="nvarchar" MaxLength="30" />
+          <Property Name="password" Type="nvarchar" MaxLength="30" />
+          <Property Name="modified" Type="datetime2" Precision="7" />
+          <Property Name="role" Type="nvarchar" MaxLength="50" />
           <Property Name="memId" Type="int" />
+          <Property Name="serverip" Type="nvarchar" MaxLength="30" />
+          <Property Name="serverDatabase" Type="nvarchar" MaxLength="30" />
+          <Property Name="serverUname" Type="nvarchar" MaxLength="30" />
+          <Property Name="serverPassword" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1181,11 +1186,15 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="uname" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="uname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="modified" Type="DateTime" Precision="7" />
+          <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="memId" Type="Int32" />
+          <Property Name="serverip" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="serverDatabase" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="serverUname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="serverPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Interest">
           <Key>
@@ -1464,6 +1473,7 @@
           <Property Name="ander" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="nominal" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="linkMember" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1842,6 +1852,10 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="demoModel.user">
               <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="serverPassword" ColumnName="serverPassword" />
+                <ScalarProperty Name="serverUname" ColumnName="serverUname" />
+                <ScalarProperty Name="serverDatabase" ColumnName="serverDatabase" />
+                <ScalarProperty Name="serverip" ColumnName="serverip" />
                 <ScalarProperty Name="memId" ColumnName="memId" />
                 <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
@@ -2130,6 +2144,7 @@
           <EntitySetMapping Name="Members">
             <EntityTypeMapping TypeName="demoModel.Member">
               <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="linkMember" ColumnName="linkMember" />
                 <ScalarProperty Name="nominal" ColumnName="nominal" />
                 <ScalarProperty Name="ander" ColumnName="ander" />

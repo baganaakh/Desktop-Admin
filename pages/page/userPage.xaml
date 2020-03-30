@@ -9,13 +9,13 @@
       Title="user">
 
     <Grid>
-        <ComboBox IsEditable="True" x:Name="members" ItemsSource="{Binding}" SelectionChanged="members_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="132,21,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
-        <TextBox x:Name="usname" HorizontalAlignment="Left" Height="23" Margin="364,21,0,0" TextWrapping="Wrap" Text="12"  VerticalAlignment="Top" Width="120"/>
+        <ComboBox IsEditable="True" x:Name="members" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="132,21,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <TextBox x:Name="usname" HorizontalAlignment="Left" Height="23" Margin="396,21,0,0" TextWrapping="Wrap" Text="12"  VerticalAlignment="Top" Width="120"/>
         <Label Content="User Name" HorizontalAlignment="Left" Margin="287,21,0,0" VerticalAlignment="Top"/>
         <Label Content="Member" HorizontalAlignment="Left" Margin="52,21,0,0" VerticalAlignment="Top"/>
         <PasswordBox x:Name="upass" HorizontalAlignment="Left" Height="23" Margin="600,21,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="523,21,0,0" VerticalAlignment="Top"/>
-        <Button Content="Insert" HorizontalAlignment="Left" Margin="52,66,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
+        <Button Content="Insert" HorizontalAlignment="Left" Margin="846,80,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="0.533,0.55"/>
         <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" VerticalAlignment="Center" Width="1138" Height="606" Margin="30,134,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
@@ -23,15 +23,29 @@
                 <DataGridTextColumn Binding="{Binding uname}" Header="Username"/>
                 <DataGridTextColumn Binding="{Binding password}" Header="password"/>
                 <DataGridTextColumn Binding="{Binding role}" Header="Role"/>
+                <DataGridTextColumn Binding="{Binding serverip}" Header="server"/>
+                <DataGridTextColumn Binding="{Binding serverDatabase}" Header="Database"/>
+                <DataGridTextColumn Binding="{Binding serverUname}" Header="SUname"/>
+                <DataGridTextColumn Binding="{Binding serverPassword}" Header="Spassword"/>
                 <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Role" HorizontalAlignment="Left" Margin="758,21,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="urole" HorizontalAlignment="Left" Margin="858,21,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.338,0.614">
+        <Label Content="Role" HorizontalAlignment="Left" Margin="746,21,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="urole" HorizontalAlignment="Left" Margin="846,21,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.338,0.614">
             <ComboBoxItem Content="admin"/>
             <ComboBoxItem Content="normal"/>
         </ComboBox>
-        <Button Content="Delete" HorizontalAlignment="Left" Margin="177,66,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1" RenderTransformOrigin="1.181,-0.633"/>
-
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="954,80,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1" RenderTransformOrigin="0.52,0.5"/>
+        <TextBox x:Name="server" HorizontalAlignment="Left" Margin="132,68,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <Label Content="Server" HorizontalAlignment="Left" Margin="52,68,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="database" HorizontalAlignment="Left" Margin="132,113,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <Label Content="Database name" HorizontalAlignment="Left" Margin="15,117,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="serveruname" HorizontalAlignment="Left" Margin="396,68,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <Label Content="server Uname" HorizontalAlignment="Left" Margin="287,68,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="serverpassword" HorizontalAlignment="Left" Margin="396,113,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
+        <Label Content="server Password" HorizontalAlignment="Left" Margin="287,113,0,0" VerticalAlignment="Top"/>
+        <Button IsEnabled="False" Content="Update" Name="upd" HorizontalAlignment="Left" Margin="846,111,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2" RenderTransformOrigin="0.533,0.55"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="954,111,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_3" RenderTransformOrigin="0.467,0.45"/>
+        <Button Content="New" HorizontalAlignment="Left" Margin="746,80,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_4" RenderTransformOrigin="0.467,0.45"/>
     </Grid>
 </Page>

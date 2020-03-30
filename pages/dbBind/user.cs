@@ -17,8 +17,12 @@ namespace Admin.dbBind
         public int id { get; set; }
         public string uname { get; set; }
         public string password { get; set; }
-        public System.DateTime modified { get; set; }
+        public Nullable<System.DateTime> modified { get; set; }
         public string role { get; set; }
         public Nullable<int> memId { get; set; }
+        public string serverip { get; set; }
+        public string serverDatabase { get; set; }
+        public string serverUname { get; set; }
+        public string serverPassword { get; set; }
     }
 }

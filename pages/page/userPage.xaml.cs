@@ -27,29 +27,12 @@ namespace Admin.page
             bindCombo();
             FillGrid();
         }
-        int memid;
+        int id;
         #region combos
         private void bindCombo()
         {
             demoEntities10 st = new demoEntities10();
-            
-            List<Member> paitems = st.Members.ToList();
-            part = paitems;
-            members.ItemsSource = part;
-        }
-        public List<Member> part { get; set; }
-
-        private void members_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var items = members.SelectedItem as Member;
-            try
-            {
-                memid = Convert.ToInt32(items.id);
-            }
-            catch
-            {
-                return;
-            }
+            members.ItemsSource = st.Members.ToList();
         }
         #endregion
         #region insert
@@ -75,9 +58,13 @@ namespace Admin.page
                 {
                     uname = usname.Text,
                     password = upass.Password,
-                    role = urole.Text,
-                    memId = memid,
-                    modified = DateTime.Now
+                    role = urole.SelectedIndex.ToString(),
+                    memId = (int)members.SelectedValue,
+                    modified = DateTime.Now,
+                    serverip=server.Text,
+                    serverDatabase=database.Text,
+                    serverUname=serveruname.Text,
+                    serverPassword=serverpassword.Text,
                 };
                 context.users.Add(std);
                 context.SaveChanges();
@@ -99,8 +86,59 @@ namespace Admin.page
         private void FillGrid()
         {
             demoEntities10 CE = new demoEntities10();
-            var Accountss = CE.users;
-            DateTable2.ItemsSource = Accountss.ToList();
+            DateTable2.ItemsSource = CE.users.ToList();
         }
+        #region update
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            using (demoEntities10 conx = new demoEntities10())
+            {
+                user us = conx.users.FirstOrDefault(r => r.id == id);
+                us.uname = usname.Text;
+                us.password = upass.Password;
+                us.role = urole.SelectedIndex.ToString();
+                //us.memId = (int)members.SelectedValue;
+                us.modified = DateTime.Now;
+                us.serverip = server.Text;
+                us.serverDatabase = database.Text;
+                us.serverUname = serveruname.Text;
+                us.serverPassword = serverpassword.Text;
+                us.modified = DateTime.Now;
+                conx.SaveChanges();
+            }
+            FillGrid();
+        }
+        #endregion
+        #region edit
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            upd.IsEnabled = true;
+            members.IsEnabled = false;
+            var values = DateTable2.SelectedItem as user;
+            id = values.id;
+            members.SelectedValue = values.memId;
+            usname.Text = values.uname;
+            upass.Password = values.password;
+            urole.SelectedIndex = Convert.ToInt32(values.role);
+            server.Text = values.serverip;
+            database.Text = values.serverDatabase;
+            serveruname.Text = values.serverUname;
+            serverpassword.Text = values.serverPassword;
+        }
+        #endregion
+        #region new
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            members.SelectedValue = null;
+            usname.Text = null;
+            upass.Password = null;
+            urole.SelectedItem = null;
+            server.Text = null;
+            database.Text = null;
+            serveruname.Text = null;
+            serverpassword.Text = null;
+            members.IsEnabled = true;
+        }
+        #endregion
     }
 }
