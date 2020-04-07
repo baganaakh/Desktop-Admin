@@ -34,7 +34,6 @@ namespace Admin.dbBind
         public virtual DbSet<dayType> dayTypes { get; set; }
         public virtual DbSet<DealerAccount> DealerAccounts { get; set; }
         public virtual DbSet<expireTable1> expireTable1 { get; set; }
-        public virtual DbSet<Fee> Fees { get; set; }
         public virtual DbSet<GroupRight> GroupRights { get; set; }
         public virtual DbSet<GroupUser> GroupUsers { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
@@ -72,6 +71,7 @@ namespace Admin.dbBind
         public virtual DbSet<Session> Sessions { get; set; }
         public virtual DbSet<Spread> Spreads { get; set; }
         public virtual DbSet<Member> Members { get; set; }
+        public virtual DbSet<Fee> Fees { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

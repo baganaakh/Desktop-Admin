@@ -27,8 +27,6 @@ namespace Admin
         demoEntities10 data = new demoEntities10();
         CollectionViewSource feeViewSource;
 
-        readonly string connectionString = Properties.Settings.Default.ConnectionString;
-
         public Fee()
         {
             InitializeComponent();

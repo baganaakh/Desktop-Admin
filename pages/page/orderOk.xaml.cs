@@ -30,7 +30,7 @@ namespace Admin
             FillDataGrid();
             bindCombo();
         }
-        string connectionString = Properties.Settings.Default.ConnectionString;
+        
         static string accId2,id;
         #region fill
         private void FillDataGrid()
@@ -88,27 +88,27 @@ namespace Admin
                 s2qty = qty;
             }
 
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
+           // System.Data.SqlClient.SqlConnection sqlConnection1 =
+           //new System.Data.SqlClient.SqlConnection(connectionString);
 
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "insert into [dbo].[Deals] (dealType, side, memberid, accountid, assetid" +
-                ", qty, price, state, modified,dealno,totalPrice,boardid) values" +
+           // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+           // cmd.CommandType = System.Data.CommandType.Text;
+           // cmd.CommandText = "insert into [dbo].[Deals] (dealType, side, memberid, accountid, assetid" +
+           //     ", qty, price, state, modified,dealno,totalPrice,boardid) values" +
 
-                " ((SELECT [dealType] as dealType from [demo].[dbo].[Boards] where id=" + boardid + ")," + side1 + ",N'" +
-                memId + "',N'" + accId + "',N'" +assetId + "',N'" + s1qty + "',N'" + Price + "',N'" + statid + "', getdate()," +
-                "IDENT_CURRENT('deals')," + total1 + ","+boardid+")," +
+           //     " ((SELECT [dealType] as dealType from [demo].[dbo].[Boards] where id=" + boardid + ")," + side1 + ",N'" +
+           //     memId + "',N'" + accId + "',N'" +assetId + "',N'" + s1qty + "',N'" + Price + "',N'" + statid + "', getdate()," +
+           //     "IDENT_CURRENT('deals')," + total1 + ","+boardid+")," +
 
-                "((SELECT [dealType] as dealType from [demo].[dbo].[Boards] where id=" + boardid + ")," + side2 + ",N'" +
-                MyGlobals.U_ID + "',N'" + accId2 + "',N'" + assetId + "',N'" + s2qty + "',N'" + Price 
-                + "',N'" + statid + "', getdate(),IDENT_CURRENT('deals')," + total2 + "," + boardid + "); " +
-                "DELETE demo.[dbo].[Order] WHERE id= " + id + " ";
+           //     "((SELECT [dealType] as dealType from [demo].[dbo].[Boards] where id=" + boardid + ")," + side2 + ",N'" +
+           //     MyGlobals.U_ID + "',N'" + accId2 + "',N'" + assetId + "',N'" + s2qty + "',N'" + Price 
+           //     + "',N'" + statid + "', getdate(),IDENT_CURRENT('deals')," + total2 + "," + boardid + "); " +
+           //     "DELETE demo.[dbo].[Order] WHERE id= " + id + " ";
 
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+           // cmd.Connection = sqlConnection1;
+           // sqlConnection1.Open();
+           // cmd.ExecuteNonQuery();
+           // sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion

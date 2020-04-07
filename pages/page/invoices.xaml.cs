@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Admin.dbBind;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -30,17 +31,9 @@ namespace Admin
         #region filldatas
         private void FillDataGrid()
         {
-            string connectionString = Properties.Settings.Default.ConnectionString;
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string CmdString = "SELECT * FROM demo.dbo.Invoices";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Securities");
-                sda.Fill(dt);
-                DateTable2.ItemsSource = dt.DefaultView;
-            }
+            demoEntities10 de = new demoEntities10();
+    DateTable2.ItemsSource = de.Invoices.ToList();
+            
         }
         #endregion
     }

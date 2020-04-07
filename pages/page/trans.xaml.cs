@@ -29,8 +29,7 @@ namespace Admin
             InitializeComponent();
             FillDataGrid();
             bindcombo();
-        }
-        string connectionString = Properties.Settings.Default.ConnectionString;
+        }        
         static string cid,statid;
         long id;
         #region edit

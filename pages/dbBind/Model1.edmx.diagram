@@ -12,7 +12,6 @@
         <EntityTypeShape EntityType="demoModel.dayType" Width="1.5" PointX="2.125" PointY="19.125" />
         <EntityTypeShape EntityType="demoModel.DealerAccount" Width="1.5" PointX="10.25" PointY="14.5" />
         <EntityTypeShape EntityType="demoModel.expireTable1" Width="1.5" PointX="3.75" PointY="19.25" />
-        <EntityTypeShape EntityType="demoModel.Fee" Width="1.5" PointX="0.5" PointY="8.125" />
         <EntityTypeShape EntityType="demoModel.GroupRight" Width="1.5" PointX="10.25" PointY="12" />
         <EntityTypeShape EntityType="demoModel.GroupUser" Width="1.5" PointX="3.75" PointY="17" />
         <EntityTypeShape EntityType="demoModel.Invoice" Width="1.5" PointX="5.375" PointY="8.125" />
@@ -53,6 +52,7 @@
         <EntityTypeShape EntityType="demoModel.Session" Width="1.5" PointX="5.375" PointY="2.75" />
         <EntityTypeShape EntityType="demoModel.Spread" Width="1.5" PointX="8.625" PointY="5" />
         <EntityTypeShape EntityType="demoModel.Member" Width="1.5" PointX="2.125" PointY="0.5" />
+        <EntityTypeShape EntityType="demoModel.Fee" Width="1.5" PointX="0.5" PointY="8.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

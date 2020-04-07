@@ -29,8 +29,7 @@ namespace Admin
             InitializeComponent();
             FillDataGrid();
             bindcombo();
-        }
-        string connectionString = Properties.Settings.Default.ConnectionString;
+        }        
         static string  coId;
         long id;
         #region edit
@@ -115,19 +114,19 @@ namespace Admin
             {
                 coId = citem.id.ToString();
                 
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    string CmdString = "SELECT [id] ,[name] FROM [demo].[dbo].[Session] WHERE [boardid] =" +
-                        " ( SELECT [bid] FROM [demo].[dbo].[Contracts] WHERE id = "+coId+")";
-                    SqlCommand cmd = new SqlCommand(CmdString, conn);
-                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable("khfjkh");
-                    sda.Fill(dt);
+                //using (SqlConnection conn = new SqlConnection(connectionString))
+                //{
+                //    string CmdString = "SELECT [id] ,[name] FROM [demo].[dbo].[Session] WHERE [boardid] =" +
+                //        " ( SELECT [bid] FROM [demo].[dbo].[Contracts] WHERE id = "+coId+")";
+                //    SqlCommand cmd = new SqlCommand(CmdString, conn);
+                //    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                //    DataTable dt = new DataTable("khfjkh");
+                //    sda.Fill(dt);
                     
-                    DataView view = dt.DefaultView;
+                //    DataView view = dt.DefaultView;
 
-                    sessionid.ItemsSource = view;
-                }
+                //    sessionid.ItemsSource = view;
+                //}
             }
             catch (Exception ex)
             {

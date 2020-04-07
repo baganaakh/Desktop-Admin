@@ -37,7 +37,7 @@ namespace Admin
         #region first submit
         private void log_submit(object sender, RoutedEventArgs e)
         {
-            string connectionString = Properties.Settings.Default.ConnectionString;
+            
             string roless;
             //SqlConnection conn = new SqlConnection(connectionString);
             //try

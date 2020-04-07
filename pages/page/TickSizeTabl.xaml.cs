@@ -29,7 +29,7 @@ namespace Admin
             InitializeComponent();
             FillDataGrid();
         }
-        string connectionString = Properties.Settings.Default.ConnectionString;
+        
         static string id,statid;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -89,15 +89,15 @@ namespace Admin
         #region fill
         private void FillDataGrid()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                 string CmdString = "SELECT * FROM dbo.TickSizeTable";
-                SqlCommand cmd = new SqlCommand(CmdString, conn);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Securities");
-                sda.Fill(dt);
-                DateTable2.ItemsSource = dt.DefaultView;
-            }
+            //using (SqlConnection conn = new SqlConnection(connectionString))
+            //{
+            //     string CmdString = "SELECT * FROM dbo.TickSizeTable";
+            //    SqlCommand cmd = new SqlCommand(CmdString, conn);
+            //    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            //    DataTable dt = new DataTable("Securities");
+            //    sda.Fill(dt);
+            //    DateTable2.ItemsSource = dt.DefaultView;
+            //}
         }
         private void refreshh(object sender, RoutedEventArgs e)
         {
@@ -114,38 +114,38 @@ namespace Admin
         #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
-            var value = DateTable2.SelectedItem as DataRowView;
-            if (null == value) return;
-            id = value.Row[0].ToString();
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
+           // var value = DateTable2.SelectedItem as DataRowView;
+           // if (null == value) return;
+           // id = value.Row[0].ToString();
+           // System.Data.SqlClient.SqlConnection sqlConnection1 =
+           //new System.Data.SqlClient.SqlConnection(connectionString);
 
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "DELETE demo.dbo.TickSizeTable WHERE id='" + id + "'";
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+           // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+           // cmd.CommandType = System.Data.CommandType.Text;
+           // cmd.CommandText = "DELETE demo.dbo.TickSizeTable WHERE id='" + id + "'";
+           // cmd.Connection = sqlConnection1;
+           // sqlConnection1.Open();
+           // cmd.ExecuteNonQuery();
+           // sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion
         #region update
         private void update(object sender, RoutedEventArgs e)
         {
-            System.Data.SqlClient.SqlConnection sqlConnection1 =
-           new System.Data.SqlClient.SqlConnection(connectionString);
+           // System.Data.SqlClient.SqlConnection sqlConnection1 =
+           //new System.Data.SqlClient.SqlConnection(connectionString);
 
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "UPDATE demo.dbo.TickSizeTable SET " +
-                "state= '" + statid + "', " +
-                "WHERE id = '" + id + "'";
+           // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+           // cmd.CommandType = System.Data.CommandType.Text;
+           // cmd.CommandText = "UPDATE demo.dbo.TickSizeTable SET " +
+           //     "state= '" + statid + "', " +
+           //     "WHERE id = '" + id + "'";
 
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
+           // cmd.Connection = sqlConnection1;
+           // sqlConnection1.Open();
+           // cmd.ExecuteNonQuery();
+           // sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion

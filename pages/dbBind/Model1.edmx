@@ -221,44 +221,10 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="tradBuyC" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="tradBuyH" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="tradSellC" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="tradSellH" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="clearBuyC" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="clearBuyH" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="clearSellC" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="clearSellH" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="settBuyC" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="settBuyH" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="settSellC" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="settSellH" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="posBuyC" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="posBuyH" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="posSellC" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="posSellH" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="brokBuyC" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="brokBuyH" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="brokSellC" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="brokSellH" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="lossBuyC" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="lossBuyH" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="lossSellC" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="lossSellH" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="repoBuyC" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="repoBuyH" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="repoSellC" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="repoSellH" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="negoBuyC" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="negoBuyH" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="negoSellC" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="negoSellH" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="otcBuyC" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="otcBuyH" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="otcSellC" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="otcSellH" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="other" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" />
+          <Property Name="Value" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="modified" Type="datetime" />
         </EntityType>
         <EntityType Name="GroupRights">
           <Key>
@@ -426,6 +392,9 @@
           <Property Name="toPay" Type="decimal" Precision="18" Scale="4" />
           <Property Name="interests" Type="decimal" Precision="18" Scale="4" />
           <Property Name="fee" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="assetid2" Type="bigint" />
+          <Property Name="qty2" Type="int" />
+          <Property Name="price2" Type="decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="Participants">
           <Key>
@@ -764,7 +733,6 @@
           <EntitySet Name="dayTypes" EntityType="demoModel.dayType" />
           <EntitySet Name="DealerAccounts" EntityType="demoModel.DealerAccount" />
           <EntitySet Name="expireTable1" EntityType="demoModel.expireTable1" />
-          <EntitySet Name="Fees" EntityType="demoModel.Fee" />
           <EntitySet Name="GroupRights" EntityType="demoModel.GroupRight" />
           <EntitySet Name="GroupUsers" EntityType="demoModel.GroupUser" />
           <EntitySet Name="Invoices" EntityType="demoModel.Invoice" />
@@ -832,6 +800,7 @@
           <EntitySet Name="Sessions" EntityType="demoModel.Session" />
           <EntitySet Name="Spreads" EntityType="demoModel.Spread" />
           <EntitySet Name="Members" EntityType="demoModel.Member" />
+          <EntitySet Name="Fees" EntityType="demoModel.Fee" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -913,49 +882,6 @@
           <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="expire" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="dealType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Fee">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tradBuyC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="tradBuyH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="tradSellC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="tradSellH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="clearBuyC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="clearBuyH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="clearSellC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="clearSellH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="settBuyC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="settBuyH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="settSellC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="settSellH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="posBuyC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="posBuyH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="posSellC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="posSellH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="brokBuyC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="brokBuyH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="brokSellC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="brokSellH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="lossBuyC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="lossBuyH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="lossSellC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="lossSellH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="repoBuyC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="repoBuyH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="repoSellC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="repoSellH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="negoBuyC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="negoBuyH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="negoSellC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="negoSellH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="otcBuyC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="otcBuyH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="otcSellC" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="otcSellH" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="other" Type="Decimal" Precision="5" Scale="2" />
         </EntityType>
         <EntityType Name="GroupRight">
           <Key>
@@ -1047,6 +973,9 @@
           <Property Name="interests" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="boardId" Type="Int64" />
+          <Property Name="assetid2" Type="Int64" />
+          <Property Name="qty2" Type="Int32" />
+          <Property Name="price2" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="RefPrice">
           <Key>
@@ -1475,6 +1404,15 @@
           <Property Name="linkMember" Type="Int32" />
           <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Fee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1557,50 +1495,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Fees">
-            <EntityTypeMapping TypeName="demoModel.Fee">
-              <MappingFragment StoreEntitySet="Fee">
-                <ScalarProperty Name="other" ColumnName="other" />
-                <ScalarProperty Name="otcSellH" ColumnName="otcSellH" />
-                <ScalarProperty Name="otcSellC" ColumnName="otcSellC" />
-                <ScalarProperty Name="otcBuyH" ColumnName="otcBuyH" />
-                <ScalarProperty Name="otcBuyC" ColumnName="otcBuyC" />
-                <ScalarProperty Name="negoSellH" ColumnName="negoSellH" />
-                <ScalarProperty Name="negoSellC" ColumnName="negoSellC" />
-                <ScalarProperty Name="negoBuyH" ColumnName="negoBuyH" />
-                <ScalarProperty Name="negoBuyC" ColumnName="negoBuyC" />
-                <ScalarProperty Name="repoSellH" ColumnName="repoSellH" />
-                <ScalarProperty Name="repoSellC" ColumnName="repoSellC" />
-                <ScalarProperty Name="repoBuyH" ColumnName="repoBuyH" />
-                <ScalarProperty Name="repoBuyC" ColumnName="repoBuyC" />
-                <ScalarProperty Name="lossSellH" ColumnName="lossSellH" />
-                <ScalarProperty Name="lossSellC" ColumnName="lossSellC" />
-                <ScalarProperty Name="lossBuyH" ColumnName="lossBuyH" />
-                <ScalarProperty Name="lossBuyC" ColumnName="lossBuyC" />
-                <ScalarProperty Name="brokSellH" ColumnName="brokSellH" />
-                <ScalarProperty Name="brokSellC" ColumnName="brokSellC" />
-                <ScalarProperty Name="brokBuyH" ColumnName="brokBuyH" />
-                <ScalarProperty Name="brokBuyC" ColumnName="brokBuyC" />
-                <ScalarProperty Name="posSellH" ColumnName="posSellH" />
-                <ScalarProperty Name="posSellC" ColumnName="posSellC" />
-                <ScalarProperty Name="posBuyH" ColumnName="posBuyH" />
-                <ScalarProperty Name="posBuyC" ColumnName="posBuyC" />
-                <ScalarProperty Name="settSellH" ColumnName="settSellH" />
-                <ScalarProperty Name="settSellC" ColumnName="settSellC" />
-                <ScalarProperty Name="settBuyH" ColumnName="settBuyH" />
-                <ScalarProperty Name="settBuyC" ColumnName="settBuyC" />
-                <ScalarProperty Name="clearSellH" ColumnName="clearSellH" />
-                <ScalarProperty Name="clearSellC" ColumnName="clearSellC" />
-                <ScalarProperty Name="clearBuyH" ColumnName="clearBuyH" />
-                <ScalarProperty Name="clearBuyC" ColumnName="clearBuyC" />
-                <ScalarProperty Name="tradSellH" ColumnName="tradSellH" />
-                <ScalarProperty Name="tradSellC" ColumnName="tradSellC" />
-                <ScalarProperty Name="tradBuyH" ColumnName="tradBuyH" />
-                <ScalarProperty Name="tradBuyC" ColumnName="tradBuyC" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="GroupRights">
             <EntityTypeMapping TypeName="demoModel.GroupRight">
               <MappingFragment StoreEntitySet="GroupRights">
@@ -1678,6 +1572,9 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="demoModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="price2" ColumnName="price2" />
+                <ScalarProperty Name="qty2" ColumnName="qty2" />
+                <ScalarProperty Name="assetid2" ColumnName="assetid2" />
                 <ScalarProperty Name="boardId" ColumnName="boardId" />
                 <ScalarProperty Name="fee" ColumnName="fee" />
                 <ScalarProperty Name="interests" ColumnName="interests" />
@@ -2158,6 +2055,16 @@
                 <ScalarProperty Name="state" ColumnName="state" />
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fees">
+            <EntityTypeMapping TypeName="demoModel.Fee">
+              <MappingFragment StoreEntitySet="Fee">
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
