@@ -16,11 +16,11 @@ namespace Admin.dbBind
     {
         public int id { get; set; }
         public int sessionid { get; set; }
-        public string isactive { get; set; }
+        public short isactive { get; set; }
         public System.TimeSpan starttime { get; set; }
         public System.TimeSpan endtime { get; set; }
         public System.TimeSpan tduration { get; set; }
         public int matched { get; set; }
-        public string state { get; set; }
+        public short state { get; set; }
     }
 }

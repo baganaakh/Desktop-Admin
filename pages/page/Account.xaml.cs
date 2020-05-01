@@ -188,8 +188,7 @@ namespace Admin
         private void bindCombo()
         {
             demoEntities10 dc = new demoEntities10();
-            memid.ItemsSource = dc.Members.ToList();
-            acctype.ItemsSource = dc.accTypes.ToList();
+            memid.ItemsSource = dc.Members.ToList();            
         }
         private void acctype_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -238,15 +237,15 @@ namespace Admin
         }
         private void memid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            demoEntities10 dc = new demoEntities10();
-            var accitem = dc.accTypes.ToList();
-            var accitem2 = dc.accTypes.ToList();
-            accitem2.RemoveAt(3);
+            List<string> actype1 = new List<string>() { "Төлбөр", "Барьцаа", "Клиринг","Арилжаа" };
+            List<string> actype2 = new List<string>() { "Төлбөр", "Барьцаа", "Клиринг" };            
             var item = memid.SelectedItem as Member;            
             linkacc.ItemsSource = null;
             try
             {
                 string mtypee = item.type.ToString();
+                if (item.mask == string.Empty)
+                    return;
                 string mask = item.mask.ToString();
                 string ander = item.ander.ToString();
                 string dealer = item.dealer.ToString();
@@ -255,20 +254,20 @@ namespace Admin
                 companyName.Content = mask;
                 if(mtypee == "0")
                 {
-                    acctype.ItemsSource = accitem;
+                    acctype.ItemsSource = actype1;
                     acctype.SelectedValue = 3;
                     acctype.IsEnabled = false;
                     linkacc.IsEnabled = true;
                 }
                 else if(mtypee == "1" && (broker == "False" && dealer == "False" && ander == "False"))
                 {
-                    acctype.ItemsSource = accitem2;
+                    acctype.ItemsSource = actype2;
                     linkacc.IsEnabled = true;
                     acctype.IsEnabled = true;
                 }
                 else if(mtypee == "1" && (broker == "True" || dealer == "True" || ander == "True"))
                 {
-                    acctype.ItemsSource = accitem;
+                    acctype.ItemsSource = actype1;
                     acctype.SelectedItem = null;
                     linkacc.IsEnabled = true;
                     acctype.IsEnabled = true;

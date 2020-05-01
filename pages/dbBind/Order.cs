@@ -15,6 +15,7 @@ namespace Admin.dbBind
     public partial class Order
     {
         public long id { get; set; }
+        public Nullable<long> boardId { get; set; }
         public Nullable<short> side { get; set; }
         public Nullable<long> memberid { get; set; }
         public Nullable<long> accountid { get; set; }
@@ -30,7 +31,6 @@ namespace Admin.dbBind
         public Nullable<decimal> toPay { get; set; }
         public Nullable<decimal> interests { get; set; }
         public Nullable<decimal> fee { get; set; }
-        public Nullable<long> boardId { get; set; }
         public Nullable<long> assetid2 { get; set; }
         public Nullable<int> qty2 { get; set; }
         public Nullable<decimal> price2 { get; set; }

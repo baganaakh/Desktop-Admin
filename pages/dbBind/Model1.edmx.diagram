@@ -5,55 +5,55 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4cba61905fa64e09b603654d7a8251cf" Name="Diagram1" ZoomLevel="97">
-        <EntityTypeShape EntityType="demoModel.ActiveSession" Width="1.5" PointX="7" PointY="13.875" />
-        <EntityTypeShape EntityType="demoModel.API" Width="1.5" PointX="0.5" PointY="17" />
-        <EntityTypeShape EntityType="demoModel.BoardInstrument" Width="1.5" PointX="5.375" PointY="14.5" />
-        <EntityTypeShape EntityType="demoModel.Calendar" Width="1.5" PointX="8.625" PointY="19.5" />
-        <EntityTypeShape EntityType="demoModel.dayType" Width="1.5" PointX="2.125" PointY="19.125" />
-        <EntityTypeShape EntityType="demoModel.DealerAccount" Width="1.5" PointX="10.25" PointY="14.5" />
-        <EntityTypeShape EntityType="demoModel.expireTable1" Width="1.5" PointX="3.75" PointY="19.25" />
-        <EntityTypeShape EntityType="demoModel.GroupRight" Width="1.5" PointX="10.25" PointY="12" />
-        <EntityTypeShape EntityType="demoModel.GroupUser" Width="1.5" PointX="3.75" PointY="17" />
-        <EntityTypeShape EntityType="demoModel.Invoice" Width="1.5" PointX="5.375" PointY="8.125" />
         <EntityTypeShape EntityType="demoModel.isactive" Width="1.5" PointX="6.75" PointY="12.75" />
-        <EntityTypeShape EntityType="demoModel.IsDealer" Width="1.5" PointX="10.25" PointY="17" />
-        <EntityTypeShape EntityType="demoModel.mtype" Width="1.5" PointX="7" PointY="17" />
-        <EntityTypeShape EntityType="demoModel.netting" Width="1.5" PointX="5.375" PointY="17" />
-        <EntityTypeShape EntityType="demoModel.Order" Width="1.5" PointX="2.125" PointY="8.125" />
-        <EntityTypeShape EntityType="demoModel.RefPrice" Width="1.5" PointX="0.5" PointY="5.625" />
-        <EntityTypeShape EntityType="demoModel.Right" Width="1.5" PointX="10.25" PointY="18.5" />
-        <EntityTypeShape EntityType="demoModel.Setting" Width="1.5" PointX="2.125" PointY="13.875" />
         <EntityTypeShape EntityType="demoModel.side" Width="1.5" PointX="16.75" PointY="15.75" />
-        <EntityTypeShape EntityType="demoModel.Software" Width="1.5" PointX="2.125" PointY="17" />
-        <EntityTypeShape EntityType="demoModel.sysdiagram" Width="1.5" PointX="7" PointY="11.625" />
-        <EntityTypeShape EntityType="demoModel.UserAccount" Width="1.5" PointX="8.625" PointY="12" />
-        <EntityTypeShape EntityType="demoModel.UserGroup" Width="1.5" PointX="7" PointY="18.75" />
-        <EntityTypeShape EntityType="demoModel.accType" Width="1.5" PointX="5.375" PointY="19.625" />
-        <EntityTypeShape EntityType="demoModel.Ttable" Width="1.5" PointX="10.25" PointY="5" />
-        <EntityTypeShape EntityType="demoModel.dbo_logs" Width="1.5" PointX="8.625" PointY="17" />
-        <EntityTypeShape EntityType="demoModel.Deal" Width="1.5" PointX="3.75" PointY="8.125" />
-        <EntityTypeShape EntityType="demoModel.user" Width="1.5" PointX="0.5" PointY="19.125" />
-        <EntityTypeShape EntityType="demoModel.Interest" Width="1.5" PointX="8.625" PointY="14.125" />
-        <EntityTypeShape EntityType="demoModel.Reason" Width="1.5" PointX="3.75" PointY="14.875" />
         <EntityTypeShape EntityType="demoModel.Tran" Width="1.5" PointX="17.375" PointY="22.75" />
-        <EntityTypeShape EntityType="demoModel.Board" Width="1.5" PointX="3.75" PointY="4.5" />
-        <EntityTypeShape EntityType="demoModel.ClearingAccount" Width="1.5" PointX="10.25" PointY="8.125" />
-        <EntityTypeShape EntityType="demoModel.Contract" Width="1.5" PointX="10.25" PointY="0.5" />
-        <EntityTypeShape EntityType="demoModel.InvoiceDetail" Width="1.5" PointX="7" PointY="8.125" />
-        <EntityTypeShape EntityType="demoModel.Margin" Width="1.5" PointX="2.125" PointY="4.625" />
-        <EntityTypeShape EntityType="demoModel.TickSizeTable" Width="1.5" PointX="5.375" PointY="12.75" />
-        <EntityTypeShape EntityType="demoModel.Transaction" Width="1.5" PointX="8.625" PointY="8.125" />
-        <EntityTypeShape EntityType="demoModel.AccountDetail" Width="1.5" PointX="5.375" PointY="0.5" />
-        <EntityTypeShape EntityType="demoModel.Account" Width="1.5" PointX="3.75" PointY="0.5" />
-        <EntityTypeShape EntityType="demoModel.Asset" Width="1.5" PointX="7" PointY="0.5" />
-        <EntityTypeShape EntityType="demoModel.MarketMaker" Width="1.5" PointX="7" PointY="4.25" />
-        <EntityTypeShape EntityType="demoModel.Participant" Width="1.5" PointX="0.5" PointY="0.5" />
-        <EntityTypeShape EntityType="demoModel.Security" Width="1.5" PointX="8.625" PointY="0.5" />
-        <EntityTypeShape EntityType="demoModel.Session" Width="1.5" PointX="5.375" PointY="2.75" />
-        <EntityTypeShape EntityType="demoModel.Spread" Width="1.5" PointX="8.625" PointY="5" />
-        <EntityTypeShape EntityType="demoModel.Member" Width="1.5" PointX="2.125" PointY="0.5" />
-        <EntityTypeShape EntityType="demoModel.Fee" Width="1.5" PointX="0.5" PointY="8.125" />
-      </Diagram>
+        <EntityTypeShape EntityType="demoModel.Account" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="demoModel.AccountDetail" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="demoModel.accType" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="demoModel.ActiveSession" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="demoModel.API" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="demoModel.Asset" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="demoModel.BoardInstrument" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="demoModel.Board" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="demoModel.Calendar" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="demoModel.ClearingAccount" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="demoModel.Contract" Width="1.5" PointX="8.75" PointY="4.75" />
+        <EntityTypeShape EntityType="demoModel.dayType" Width="1.5" PointX="4.75" PointY="8.75" />
+        <EntityTypeShape EntityType="demoModel.dbo_logs" Width="1.5" PointX="6.75" PointY="9.75" />
+        <EntityTypeShape EntityType="demoModel.DealerAccount" Width="1.5" PointX="8.75" PointY="9.75" />
+        <EntityTypeShape EntityType="demoModel.Deal" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="demoModel.expireTable" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="demoModel.Fee" Width="1.5" PointX="10.75" PointY="6.75" />
+        <EntityTypeShape EntityType="demoModel.GroupRight" Width="1.5" PointX="10.75" PointY="9.75" />
+        <EntityTypeShape EntityType="demoModel.GroupUser" Width="1.5" PointX="2.75" PointY="11.75" />
+        <EntityTypeShape EntityType="demoModel.Interest" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="demoModel.InvoiceDetail" Width="1.5" PointX="12.75" PointY="4.75" />
+        <EntityTypeShape EntityType="demoModel.Invoice" Width="1.5" PointX="12.75" PointY="8.75" />
+        <EntityTypeShape EntityType="demoModel.IsDealer" Width="1.5" PointX="8.75" PointY="12.75" />
+        <EntityTypeShape EntityType="demoModel.Margin" Width="1.5" PointX="4.75" PointY="13.75" />
+        <EntityTypeShape EntityType="demoModel.MarketMaker" Width="1.5" PointX="10.75" PointY="13.75" />
+        <EntityTypeShape EntityType="demoModel.Member" Width="1.5" PointX="12.75" PointY="13.75" />
+        <EntityTypeShape EntityType="demoModel.mtype" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="demoModel.netting" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="demoModel.Order" Width="1.5" PointX="14.75" PointY="3.75" />
+        <EntityTypeShape EntityType="demoModel.Participant" Width="1.5" PointX="14.75" PointY="9.75" />
+        <EntityTypeShape EntityType="demoModel.Reason" Width="1.5" PointX="6.75" PointY="15.75" />
+        <EntityTypeShape EntityType="demoModel.RefPrice" Width="1.5" PointX="14.75" PointY="15.75" />
+        <EntityTypeShape EntityType="demoModel.Right" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="demoModel.Security" Width="1.5" PointX="16.75" PointY="4.75" />
+        <EntityTypeShape EntityType="demoModel.Session" Width="1.5" PointX="16.75" PointY="9.75" />
+        <EntityTypeShape EntityType="demoModel.Setting" Width="1.5" PointX="16.75" PointY="15.75" />
+        <EntityTypeShape EntityType="demoModel.Software" Width="1.5" PointX="2.75" PointY="17.75" />
+        <EntityTypeShape EntityType="demoModel.Spread" Width="1.5" PointX="8.75" PointY="17.75" />
+        <EntityTypeShape EntityType="demoModel.sysdiagram" Width="1.5" PointX="18.75" PointY="0.75" />
+        <EntityTypeShape EntityType="demoModel.TickSizeTable" Width="1.5" PointX="18.75" PointY="3.75" />
+        <EntityTypeShape EntityType="demoModel.Transaction" Width="1.5" PointX="4.75" PointY="18.75" />
+        <EntityTypeShape EntityType="demoModel.Ttable" Width="1.5" PointX="18.75" PointY="6.75" />
+        <EntityTypeShape EntityType="demoModel.UserAccount" Width="1.5" PointX="18.75" PointY="10.75" />
+        <EntityTypeShape EntityType="demoModel.UserGroup" Width="1.5" PointX="10.75" PointY="18.75" />
+        <EntityTypeShape EntityType="demoModel.user" Width="1.5" PointX="12.75" PointY="18.75" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

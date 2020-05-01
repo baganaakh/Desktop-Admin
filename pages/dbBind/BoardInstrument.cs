@@ -17,7 +17,7 @@ namespace Admin.dbBind
         public int id { get; set; }
         public int boardid { get; set; }
         public int instrumentid { get; set; }
-        public string state { get; set; }
+        public short state { get; set; }
         public System.DateTime modified { get; set; }
     }
 }

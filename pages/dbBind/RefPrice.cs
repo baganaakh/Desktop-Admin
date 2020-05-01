@@ -14,9 +14,9 @@ namespace Admin.dbBind
     
     public partial class RefPrice
     {
+        public long contractId { get; set; }
         public Nullable<decimal> refprice1 { get; set; }
         public Nullable<System.DateTime> modified { get; set; }
         public string name { get; set; }
-        public long contractId { get; set; }
     }
 }

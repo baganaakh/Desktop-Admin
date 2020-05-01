@@ -18,9 +18,9 @@ namespace Admin.dbBind
         public Nullable<short> boardid { get; set; }
         public string dealno { get; set; }
         public Nullable<short> side { get; set; }
-        public Nullable<int> memberid { get; set; }
+        public Nullable<long> memberid { get; set; }
         public Nullable<long> accountid { get; set; }
-        public Nullable<int> assetid { get; set; }
+        public Nullable<long> assetid { get; set; }
         public Nullable<decimal> qty { get; set; }
         public Nullable<decimal> price { get; set; }
         public Nullable<decimal> totalPrice { get; set; }

@@ -23,10 +23,10 @@ namespace Admin.dbBind
         public string mask { get; set; }
         public Nullable<System.DateTime> startdate { get; set; }
         public Nullable<System.DateTime> enddate { get; set; }
-        public string broker { get; set; }
-        public string dealer { get; set; }
-        public string ander { get; set; }
-        public string nominal { get; set; }
+        public Nullable<bool> broker { get; set; }
+        public Nullable<bool> dealer { get; set; }
+        public Nullable<bool> ander { get; set; }
+        public Nullable<bool> nominal { get; set; }
         public Nullable<int> linkMember { get; set; }
         public string name { get; set; }
     }

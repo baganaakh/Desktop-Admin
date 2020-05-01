@@ -46,10 +46,10 @@ namespace Admin
             participants.SelectedValue = value.partid;
             starttime.SelectedDate = value.startdate;
             endtime.SelectedDate = value.enddate;
-            broker.IsChecked = bool.Parse(value.broker);
-            dealer.IsChecked = bool.Parse(value.dealer);
-            ander.IsChecked = bool.Parse(value.ander);
-            nominal.IsChecked = bool.Parse(value.nominal);
+            broker.IsChecked = value.broker;
+            dealer.IsChecked = value.dealer;
+            ander.IsChecked = value.ander;
+            nominal.IsChecked = value.nominal;
             pcode.IsEnabled = false;
             linkMember.SelectedValue = value.linkMember;
         }
@@ -80,10 +80,10 @@ namespace Admin
                     partid=Convert.ToInt64(participants.SelectedValue),
                     startdate=starttime.SelectedDate,
                     enddate=endtime.SelectedDate,
-                    broker=broker.IsChecked.ToString(),
-                    dealer=dealer.IsChecked.ToString(),
-                    ander=ander.IsChecked.ToString(),
-                    nominal=nominal.IsChecked.ToString(),
+                    broker=broker.IsChecked,
+                    dealer=dealer.IsChecked,
+                    ander=ander.IsChecked,
+                    nominal=nominal.IsChecked,
                     linkMember=Convert.ToInt32(linkMember.SelectedValue),
                     name=participants.Text,
                 };
@@ -266,10 +266,10 @@ namespace Admin
                 //me.partid = Convert.ToInt64(participants.SelectedValue);
                 me.startdate = starttime.SelectedDate;
                 me.enddate = endtime.SelectedDate;
-                me.broker = broker.IsChecked.ToString();
-                me.dealer = dealer.IsChecked.ToString();
-                me.ander = ander.IsChecked.ToString();
-                me.nominal = nominal.IsChecked.ToString();
+                me.broker = broker.IsChecked;
+                me.dealer = dealer.IsChecked;
+                me.ander = ander.IsChecked;
+                me.nominal = nominal.IsChecked;
                 me.linkMember = Convert.ToInt32(linkMember.SelectedValue);
                 conx.SaveChanges();
             }
