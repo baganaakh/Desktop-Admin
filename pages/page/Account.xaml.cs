@@ -191,6 +191,7 @@ namespace Admin
             memid.ItemsSource = dc.Members.ToList();            
         }
         private void acctype_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        
         {
             linkacc.SelectedItem = null;
             linkacc.ItemsSource = null;
@@ -226,7 +227,15 @@ namespace Admin
                 //linkacc.ItemsSource = linkas.;
                 var items = memid.SelectedItem as Member;
                 int linkme = (int)dc.Members.FirstOrDefault(r => r.id == items.id).linkMember;
-                int lnk = dc.Members.FirstOrDefault(r => r.partid == linkme).id;
+                int lnk=0;
+                try
+                {
+                     lnk = dc.Members.FirstOrDefault(r => r.partid == linkme).id;
+                }
+                catch (NullReferenceException)
+                {
+                    MessageBox.Show("холбогдсон Participantid байхгүй байна");
+                }
                 var lists= dc.Accounts.Where(r => r.memberid == lnk).ToList();
                 linkacc.ItemsSource = lists.Where(s => s.accountType == linkType).ToList();
             }

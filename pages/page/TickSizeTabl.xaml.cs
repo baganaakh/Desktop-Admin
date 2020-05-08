@@ -16,6 +16,7 @@ using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Data;
 using Admin.dbBind;
+using System.Data.Entity;
 
 namespace Admin
 {
@@ -89,6 +90,10 @@ namespace Admin
         #region fill
         private void FillDataGrid()
         {
+            demoEntities10 de = new demoEntities10();
+            DateTable2.ItemsSource = de.TickSizeTables.ToList();
+
+
             //using (SqlConnection conn = new SqlConnection(connectionString))
             //{
             //     string CmdString = "SELECT * FROM dbo.TickSizeTable";
@@ -114,19 +119,24 @@ namespace Admin
         #region delete
         private void delete(object sender, RoutedEventArgs e)
         {
-           // var value = DateTable2.SelectedItem as DataRowView;
-           // if (null == value) return;
-           // id = value.Row[0].ToString();
-           // System.Data.SqlClient.SqlConnection sqlConnection1 =
-           //new System.Data.SqlClient.SqlConnection(connectionString);
+            long iiid = (DateTable2.SelectedItem as TickSizeTable).id;
+            demoEntities10 de = new demoEntities10();
+            TickSizeTable del = de.TickSizeTables.Find(iiid);
+            de.Entry(del).State = EntityState.Deleted;
+            de.SaveChanges();
+            // var value = DateTable2.SelectedItem as DataRowView;
+            // if (null == value) return;
+            // id = value.Row[0].ToString();
+            // System.Data.SqlClient.SqlConnection sqlConnection1 =
+            //new System.Data.SqlClient.SqlConnection(connectionString);
 
-           // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-           // cmd.CommandType = System.Data.CommandType.Text;
-           // cmd.CommandText = "DELETE demo.dbo.TickSizeTable WHERE id='" + id + "'";
-           // cmd.Connection = sqlConnection1;
-           // sqlConnection1.Open();
-           // cmd.ExecuteNonQuery();
-           // sqlConnection1.Close();
+            // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            // cmd.CommandType = System.Data.CommandType.Text;
+            // cmd.CommandText = "DELETE demo.dbo.TickSizeTable WHERE id='" + id + "'";
+            // cmd.Connection = sqlConnection1;
+            // sqlConnection1.Open();
+            // cmd.ExecuteNonQuery();
+            // sqlConnection1.Close();
             FillDataGrid();
         }
         #endregion

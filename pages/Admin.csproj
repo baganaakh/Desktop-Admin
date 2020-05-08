@@ -34,7 +34,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>\\192.168.1.109\Test\</InstallUrl>
-    <ApplicationRevision>52</ApplicationRevision>
+    <ApplicationRevision>53</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -114,10 +114,10 @@
     <Compile Include="dbBind\Contract.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\expireTable.cs">
+    <Compile Include="dbBind\Interest.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\Interest.cs">
+    <Compile Include="dbBind\Margin.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\Reason.cs">
@@ -138,13 +138,7 @@
     <Compile Include="dbBind\Account.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\accType.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="dbBind\ActiveSession.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\API.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\Asset.cs">
@@ -156,16 +150,7 @@
     <Compile Include="dbBind\BoardInstrument.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\Calendar.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="dbBind\ClearingAccount.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\dayType.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\dbo_logs.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\Deal.cs">
@@ -177,22 +162,10 @@
     <Compile Include="dbBind\Fee.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\GroupRight.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\GroupUser.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="dbBind\Invoice.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\InvoiceDetail.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\IsDealer.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\Margin.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\MarketMaker.cs">
@@ -219,9 +192,6 @@
     <Compile Include="dbBind\mtype.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\netting.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="dbBind\Order.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -231,19 +201,10 @@
     <Compile Include="dbBind\RefPrice.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\Right.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="dbBind\Security.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\Session.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\Setting.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\Software.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\Spread.cs">
@@ -253,9 +214,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\sp_helpdiagrams_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\TickSizeTable.cs">
@@ -268,9 +226,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\UserAccount.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\UserGroup.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="page\CollApprove.xaml.cs">

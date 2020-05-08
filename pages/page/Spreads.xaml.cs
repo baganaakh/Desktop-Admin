@@ -30,7 +30,7 @@ namespace Admin
             FillDataGrid();
             bindcombo();
         }        
-        static string  coId;
+        
         long id;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -112,21 +112,30 @@ namespace Admin
             sessionid.ItemsSource = null;
             try
             {
-                coId = citem.id.ToString();
-                
-                //using (SqlConnection conn = new SqlConnection(connectionString))
-                //{
-                //    string CmdString = "SELECT [id] ,[name] FROM [demo].[dbo].[Session] WHERE [boardid] =" +
-                //        " ( SELECT [bid] FROM [demo].[dbo].[Contracts] WHERE id = "+coId+")";
-                //    SqlCommand cmd = new SqlCommand(CmdString, conn);
-                //    SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                //    DataTable dt = new DataTable("khfjkh");
-                //    sda.Fill(dt);
-                    
-                //    DataView view = dt.DefaultView;
+                long coId = citem.id;
+                demoEntities10 de = new demoEntities10();
+                //var bid = de.Contracts.Where(c => c.id == coId).FirstOrDefault<Contract>();
+                //var veiw = de.Sessions.Where(s => s.boardid == (bid.bid)).ToList();
 
-                //    sessionid.ItemsSource = view;
-                //}
+
+
+                var t = from tt in de.Contracts.Where(c => c.id == coId)
+                        join se in de.Sessions on tt.bid equals se.boardid
+                        select new {se.name, se.id};
+
+                  //using (SqlConnection conn = new SqlConnection(connectionString))
+                  //{
+                  //    string CmdString = "SELECT [id] ,[name] FROM [demo].[dbo].[Session] WHERE [boardid] =" +
+                  //        " ( SELECT [bid] FROM [demo].[dbo].[Contracts] WHERE id = "+coId+")";
+                  //    SqlCommand cmd = new SqlCommand(CmdString, conn);
+                  //    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                  //    DataTable dt = new DataTable("khfjkh");
+                  //    sda.Fill(dt);
+
+                  //    DataView view = dt.DefaultView;
+
+                  //}
+                  sessionid.ItemsSource =t.ToList();
             }
             catch (Exception ex)
             {
