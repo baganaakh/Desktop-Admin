@@ -43,7 +43,6 @@ namespace Admin.dbBind
         public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<MarketMaker> MarketMakers { get; set; }
         public virtual DbSet<Member> Members { get; set; }
-        public virtual DbSet<mtype> mtypes { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Participant> Participants { get; set; }
         public virtual DbSet<Reason> Reasons { get; set; }

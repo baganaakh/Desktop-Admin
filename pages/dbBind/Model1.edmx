@@ -262,14 +262,6 @@
           <Property Name="linkMember" Type="int" />
           <Property Name="name" Type="nvarchar" MaxLength="20" />
         </EntityType>
-        <EntityType Name="mtype">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="mtype" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="minValue" Type="decimal" Precision="18" Scale="4" />
-        </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="id" />
@@ -471,7 +463,6 @@
           <EntitySet Name="Margins" EntityType="Self.Margins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MarketMakers" EntityType="Self.MarketMakers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="mtype" EntityType="Self.mtype" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Participants" EntityType="Self.Participants" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reason" EntityType="Self.Reason" Schema="dbo" store:Type="Tables" />
@@ -566,7 +557,6 @@
           <EntitySet Name="Invoices" EntityType="demoModel.Invoice" />
           <EntitySet Name="MarketMakers" EntityType="demoModel.MarketMaker" />
           <EntitySet Name="Members" EntityType="demoModel.Member" />
-          <EntitySet Name="mtypes" EntityType="demoModel.mtype" />
           <EntitySet Name="Orders" EntityType="demoModel.Order" />
           <EntitySet Name="Participants" EntityType="demoModel.Participant" />
           <EntitySet Name="Reasons" EntityType="demoModel.Reason" />
@@ -834,14 +824,6 @@
           <Property Name="nominal" Type="Boolean" />
           <Property Name="linkMember" Type="Int32" />
           <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="mtype">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="mtype1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="minValue" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -1299,15 +1281,6 @@
                 <ScalarProperty Name="state" ColumnName="state" />
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="mtypes">
-            <EntityTypeMapping TypeName="demoModel.mtype">
-              <MappingFragment StoreEntitySet="mtype">
-                <ScalarProperty Name="minValue" ColumnName="minValue" />
-                <ScalarProperty Name="mtype1" ColumnName="mtype" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

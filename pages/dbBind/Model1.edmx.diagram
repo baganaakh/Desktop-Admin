@@ -24,7 +24,6 @@
         <EntityTypeShape EntityType="demoModel.Invoice" Width="1.5" PointX="10.75" PointY="4.75" />
         <EntityTypeShape EntityType="demoModel.MarketMaker" Width="1.5" PointX="6.75" PointY="10.75" />
         <EntityTypeShape EntityType="demoModel.Member" Width="1.5" PointX="8.75" PointY="10.75" />
-        <EntityTypeShape EntityType="demoModel.mtype" Width="1.5" PointX="10.75" PointY="9.75" />
         <EntityTypeShape EntityType="demoModel.Order" Width="1.5" PointX="2.75" PointY="11.75" />
         <EntityTypeShape EntityType="demoModel.Participant" Width="1.5" PointX="12.75" PointY="0.75" />
         <EntityTypeShape EntityType="demoModel.Reason" Width="1.5" PointX="12.75" PointY="6.75" />
