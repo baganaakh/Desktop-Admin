@@ -17,7 +17,7 @@
         </ComboBox>
         <ComboBox IsEditable="True" x:Name="linkacc" IsEnabled="False" DisplayMemberPath="accNumber" SelectedValuePath="id" HorizontalAlignment="Left" Margin="451,90,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox IsEditable="True" x:Name="acctype" IsEnabled="False" SelectionChanged="acctype_SelectionChanged" HorizontalAlignment="Left" Margin="451,55,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" Name="accno" HorizontalAlignment="Left" Height="23" Margin="155,97,0,0" MaxLength="10" TextWrapping="Wrap" Text="12"  VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" Name="accno" HorizontalAlignment="Left" Height="23" Margin="155,97,0,0" MaxLength="10" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="memberid" HorizontalAlignment="Left" Margin="34,52,0,0" VerticalAlignment="Top"/>
         <Label Content="Company name" x:Name="companyName" HorizontalAlignment="Left" Margin="155,14,0,0" VerticalAlignment="Top"/>
         <Label Content="дансны төрөл" HorizontalAlignment="Left" Margin="345,51,0,0" VerticalAlignment="Top"/>

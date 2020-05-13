@@ -255,12 +255,12 @@ namespace Admin
                 string mtypee = item.type.ToString();
                 if (item.mask == string.Empty)
                     return;
-                string mask = item.mask.ToString();
+                //string mask = item.mask.ToString();
                 string ander = item.ander.ToString();
                 string dealer = item.dealer.ToString();
                 string broker = item.broker.ToString();
 
-                companyName.Content = mask;
+                //companyName.Content = mask;
                 if(mtypee == "0")
                 {
                     acctype.ItemsSource = actype1;

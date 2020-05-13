@@ -11,7 +11,7 @@
     <Grid>
         <Label Content="Contract id" HorizontalAlignment="Left" Margin="33,21,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="markcontact" IsEditable="True" DisplayMemberPath="name" SelectedValuePath="contractId" HorizontalAlignment="Left" Margin="154,25,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="refprice" HorizontalAlignment="Left" Height="23" Margin="437,24,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="refprice" HorizontalAlignment="Left" Height="23" Margin="437,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="rId" HorizontalAlignment="Left" Height="23" Margin="84,25,0,0" VerticalAlignment="Top" Width="47"/>
         <Label Content="refprice" HorizontalAlignment="Left" Margin="316,21,0,0" VerticalAlignment="Top"/>
         <Button Content="Insert" HorizontalAlignment="Left" Margin="647,25,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
@@ -25,7 +25,7 @@
                 <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox x:Name="name" HorizontalAlignment="Left" Height="23" Margin="437,55,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="name" HorizontalAlignment="Left" Height="23" Margin="437,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="name" HorizontalAlignment="Left" Margin="316,52,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>

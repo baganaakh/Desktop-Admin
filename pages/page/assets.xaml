@@ -16,12 +16,12 @@
         <Label Content="төлөв" HorizontalAlignment="Left" Margin="345,111,0,0" VerticalAlignment="Top"/>
         <Label Content="ratio" HorizontalAlignment="Left" Margin="345,20,0,0" VerticalAlignment="Top"/>
         <Label Content="нэр" HorizontalAlignment="Left" Margin="34,63,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="iAct" HorizontalAlignment="Left" Height="23" Margin="473,21,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="aname" HorizontalAlignment="Left" Height="23" Margin="155,66,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="acode" HorizontalAlignment="Left" Height="23" Margin="155,25,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="aprice" HorizontalAlignment="Left" Height="23" Margin="155,111,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="iAct" HorizontalAlignment="Left" Height="23" Margin="473,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="aname" HorizontalAlignment="Left" Height="23" Margin="155,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="acode" HorizontalAlignment="Left" Height="23" Margin="155,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="aprice" HorizontalAlignment="Left" Height="23" Margin="155,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" MaxLength="5" x:Name="artio" HorizontalAlignment="Left" Height="23" Margin="473,21,0,0" TextWrapping="Wrap" Text="00.00"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="anote" HorizontalAlignment="Left" Height="23" Margin="155,164,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="anote" HorizontalAlignment="Left" Height="23" Margin="155,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="astate" HorizontalAlignment="Left" Margin="473,112,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Устгасан</ComboBoxItem>
             <ComboBoxItem>Хэвийн</ComboBoxItem>
@@ -49,6 +49,6 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="volume" HorizontalAlignment="Left" Margin="345,161,0,0" VerticalAlignment="Top"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="avolume" HorizontalAlignment="Left" Height="23" Margin="473,164,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="avolume" HorizontalAlignment="Left" Height="23" Margin="473,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Page>

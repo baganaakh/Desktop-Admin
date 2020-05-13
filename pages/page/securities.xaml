@@ -10,7 +10,7 @@
 
     <Grid>
         <ComboBox IsEditable="True" x:Name="partId" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="149,23,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="srate" HorizontalAlignment="Left" Height="23" Margin="725,23,0,0" TextWrapping="Wrap" Text="14" MaxLength="5" VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="srate" HorizontalAlignment="Left" Height="23" Margin="725,23,0,0" TextWrapping="Wrap" MaxLength="5" VerticalAlignment="Top" Width="120"/>
         <ComboBox IsEditable="True" x:Name="stype" HorizontalAlignment="Left" Margin="149,67,0,0" VerticalAlignment="Top" Width="120">
             <ComboBoxItem>Үнэт цаас</ComboBoxItem>
             <ComboBoxItem>Бонд</ComboBoxItem>
@@ -20,11 +20,11 @@
             <ComboBoxItem>Хэвийн</ComboBoxItem>
             <ComboBoxItem>Идэвхгүй</ComboBoxItem>
         </ComboBox>
-        <TextBox x:Name="scode" HorizontalAlignment="Left" Height="23" Margin="149,107,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="totalquant" HorizontalAlignment="Left" Height="23" Margin="421,107,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="scode" HorizontalAlignment="Left" Height="23" Margin="149,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="totalquant" HorizontalAlignment="Left" Height="23" Margin="421,107,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <DatePicker  Name="sdate" HorizontalAlignment="Left" Margin="725,106,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="sname" HorizontalAlignment="Left" Height="23" Margin="149,156,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="fprice" HorizontalAlignment="Left" Height="23" Margin="421,155,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="sname" HorizontalAlignment="Left" Height="23" Margin="149,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="fprice" HorizontalAlignment="Left" Height="23" Margin="421,155,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <DatePicker Name="edate" HorizontalAlignment="Left" Margin="725,154,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="partID" HorizontalAlignment="Left" Margin="28,20,0,0" VerticalAlignment="Top"/>
         <Label Content="type" HorizontalAlignment="Left" Margin="28,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.497,0.786"/>

@@ -9,17 +9,17 @@
 
     <Grid >
         <ComboBox IsEditable="True" Name="sboardid" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,44,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="allowT" HorizontalAlignment="Left" Height="23" Margin="534,45,0,0" Text="1234"  VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.217,0">
+        <ComboBox x:Name="allowT" HorizontalAlignment="Left" Height="23" Margin="534,45,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.217,0">
             <ComboBoxItem>Зах Зээлийн</ComboBoxItem>
             <ComboBoxItem>Нөхцөлт</ComboBoxItem>
             <ComboBoxItem>Кросс</ComboBoxItem>
             <ComboBoxItem>Тохиролцсон</ComboBoxItem>
             <ComboBoxItem>Зах зээл үүсгэгч</ComboBoxItem>
         </ComboBox>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="match1" HorizontalAlignment="Left" Height="23" Margin="844,45,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="sname" HorizontalAlignment="Left" Height="23" Margin="150,72,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="sdesc" HorizontalAlignment="Left" Height="23" Margin="534,82,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="markT" HorizontalAlignment="Left" Height="23" Margin="844,83,0,0" Text="1234"  VerticalAlignment="Top" Width="120">
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="match1" HorizontalAlignment="Left" Height="23" Margin="844,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="sname" HorizontalAlignment="Left" Height="23" Margin="150,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="sdesc" HorizontalAlignment="Left" Height="23" Margin="534,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="markT" HorizontalAlignment="Left" Height="23" Margin="844,83,0,0" VerticalAlignment="Top" Width="120">
             <ComboBoxItem>margin</ComboBoxItem>
             <ComboBoxItem>DvP</ComboBoxItem>
         </ComboBox>
@@ -326,7 +326,7 @@
             <ComboBoxItem Content="58"/>
             <ComboBoxItem Content="59"/>
         </ComboBox>
-        <ComboBox x:Name="algo" HorizontalAlignment="Left" Height="23" Margin="534,163,0,0" Text="1234"  VerticalAlignment="Top" Width="120">
+        <ComboBox x:Name="algo" HorizontalAlignment="Left" Height="23" Margin="534,163,0,0" VerticalAlignment="Top" Width="120">
             <ComboBoxItem>FIFO</ComboBoxItem>
             <ComboBoxItem>Equilibrium</ComboBoxItem>
         </ComboBox>
@@ -370,7 +370,7 @@
                 <DataGridTextColumn Binding="{Binding markettype}" Header="MarketType"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="duration" HorizontalAlignment="Left" Height="23" Margin="150,178,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="duration" HorizontalAlignment="Left" Height="23" Margin="150,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <CheckBox x:Name="isAct" Content="Is Active" HorizontalAlignment="Left" Margin="716,163,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>

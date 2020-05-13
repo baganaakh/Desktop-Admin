@@ -9,7 +9,7 @@
       Title="TickSizeTabl">
 
     <Grid>
-        <TextBox x:Name="namee" HorizontalAlignment="Left" Height="23" Margin="114,61,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="namee" HorizontalAlignment="Left" Height="23" Margin="114,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="name" HorizontalAlignment="Left" Margin="34,61,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.497,0.786"/>
         <Button Content="Insert" HorizontalAlignment="Left" Margin="779,24,0,0" VerticalAlignment="Top" Width="75" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="New" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData" Margin="908,24,0,0"/>

@@ -11,17 +11,17 @@
 
     <Grid>
         <ComboBox x:Name="memid" IsEditable="True" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,21,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="balanc"  HorizontalAlignment="Left" Height="23" Margin="463,20,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120" />
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="accid" HorizontalAlignment="Left" Height="23" Margin="747,21,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="sbalanc" HorizontalAlignment="Left" Height="23" Margin="155,59,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Top" Width="120"/>
-        <ComboBox Name="typee" HorizontalAlignment="Left" Height="23" Margin="463,59,0,0" Text="1234" VerticalAlignment="Top" Width="120">
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="balanc"  HorizontalAlignment="Left" Height="23" Margin="463,20,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" />
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="accid" HorizontalAlignment="Left" Height="23" Margin="747,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="sbalanc" HorizontalAlignment="Left" Height="23" Margin="155,59,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="typee" HorizontalAlignment="Left" Height="23" Margin="463,59,0,0"  VerticalAlignment="Top" Width="120">
             <ComboBoxItem>Арилжааны Данс</ComboBoxItem>
             <ComboBoxItem>Клирингийн Данс</ComboBoxItem>
             <ComboBoxItem>Төлбөр тооцооны данс</ComboBoxItem>
             <ComboBoxItem>Барьцааны Данс</ComboBoxItem>
         </ComboBox>
-        <ComboBox SelectedValuePath="id" DisplayMemberPath="accNumber" x:Name="linkacc" HorizontalAlignment="Left" Height="23" Margin="747,60,0,0" Text="1234" VerticalAlignment="Top" Width="120"></ComboBox>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="currency" HorizontalAlignment="Left" Height="23" Margin="155,100,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <ComboBox SelectedValuePath="id" DisplayMemberPath="accNumber" x:Name="linkacc" HorizontalAlignment="Left" Height="23" Margin="747,60,0,0"  VerticalAlignment="Top" Width="120"></ComboBox>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="currency" HorizontalAlignment="Left" Height="23" Margin="155,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="stat" HorizontalAlignment="Left" Margin="463,100,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Устгасан</ComboBoxItem>
             <ComboBoxItem>Хэвийн</ComboBoxItem>

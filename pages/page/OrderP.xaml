@@ -14,7 +14,7 @@
             <ComboBoxItem>Хэвийн</ComboBoxItem>
             <ComboBoxItem>Идэвхгүй</ComboBoxItem>
         </ComboBox>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="price" HorizontalAlignment="Left" Height="23" Margin="639,19,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="price" HorizontalAlignment="Left" Height="23" Margin="639,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <ComboBox IsEditable="True" x:Name="accountid" ItemsSource="{Binding}" DisplayMemberPath="accNumber" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,63,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <ComboBox IsEditable="True" x:Name="assetid" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="410,62,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <ComboBox x:Name="Side" Margin="639,62,441,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
@@ -22,7 +22,7 @@
             <ComboBoxItem>Авах</ComboBoxItem>
         </ComboBox>
         <ComboBox IsEditable="True" x:Name="boardid" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,99,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="quantity" HorizontalAlignment="Left" Height="23" Margin="410,98,0,0" TextWrapping="Wrap" Text="1234"  VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="quantity" HorizontalAlignment="Left" Height="23" Margin="410,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="memberid" HorizontalAlignment="Left" Margin="29,16,0,0" VerticalAlignment="Top"/>
         <Label Content="side" HorizontalAlignment="Left" Margin="569,60,0,0" VerticalAlignment="Top"/>
         <Label Content="accountid" HorizontalAlignment="Left" Margin="29,58,0,0" VerticalAlignment="Top"/>
