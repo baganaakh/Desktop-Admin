@@ -55,7 +55,22 @@ namespace Admin
         #region insert func
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            using(demoEntities10 conx=new demoEntities10())
+            if(partId.SelectedValue == null && 
+                stype.SelectedValue == null && 
+                assetId.SelectedValue == null && 
+                sname.Text == null && 
+                totalquant.Text == null && 
+                fprice.Text == null && 
+                srate.Text == null && 
+                sdate.SelectedDate == null && 
+                edate.SelectedDate == null && 
+                state.SelectedValue == null && 
+                scode.Text == null)
+            {
+                MessageBox.Show("Талбарууд дутуу байна");
+                return;
+            }
+            using (demoEntities10 conx=new demoEntities10())
             {
                 var secu = new Security
                 {
