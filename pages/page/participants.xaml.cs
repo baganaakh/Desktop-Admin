@@ -91,9 +91,7 @@ namespace Admin
                         {
                             foreach (var validationError in validationErrors.ValidationErrors)
                             {
-                                string message = string.Format("{0}:{1}",
-                                    validationErrors.Entry.Entity.ToString(),
-                                    validationError.ErrorMessage);
+                                string message = string.Format("{0}:{1}",validationErrors.Entry.Entity.ToString(),validationError.ErrorMessage);
                                 // raise a new exception nesting
                                 // the current instance as InnerException
                                 raise = new InvalidOperationException(message, raise);
@@ -114,6 +112,7 @@ namespace Admin
                 return;
             }
             FillDataGrid();
+            newData(null,null);
         }
         #endregion
         #region Number FillGrid new and refresh

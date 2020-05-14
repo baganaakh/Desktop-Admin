@@ -9,7 +9,22 @@
       Title="participants">
 
     <Grid >
+        <TextBox x:Name="pname" HorizontalAlignment="Left" Height="23" Margin="109,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="pcountry" Text="Монгол" HorizontalAlignment="Left" Height="23" Margin="109,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox IsEditable="True" x:Name="ptype" HorizontalAlignment="Left" Margin="109,135,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
+            <ComboBoxItem>ХХК</ComboBoxItem>
+            <ComboBoxItem>Х.ХК</ComboBoxItem>
+            <ComboBoxItem>ХК</ComboBoxItem>
+        </ComboBox>
         <TextBox x:Name="pcity" HorizontalAlignment="Left" Height="23" Margin="362,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="pdistr1" HorizontalAlignment="Left" Height="23" Margin="362,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="phoroo" HorizontalAlignment="Left" Height="23" Margin="362,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="pstreet" HorizontalAlignment="Left" Height="23" Margin="362,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="pstate" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="362,170,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
+            <ComboBoxItem>Устгасан</ComboBoxItem>
+            <ComboBoxItem>Хэвийн</ComboBoxItem>
+            <ComboBoxItem>Идэвхгүй</ComboBoxItem>
+        </ComboBox>
         <ComboBox IsEditable="True" x:Name="spetype" HorizontalAlignment="Left" Margin="593,22,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Банк</ComboBoxItem>
             <ComboBoxItem>ББСБ</ComboBoxItem>
@@ -20,29 +35,14 @@
             <ComboBoxItem>Дэд Бүтэц</ComboBoxItem>
             <ComboBoxItem>Барилга</ComboBoxItem>
         </ComboBox>
-        <TextBox x:Name="pname" HorizontalAlignment="Left" Height="23" Margin="109,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="pdistr1" HorizontalAlignment="Left" Height="23" Margin="362,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="pphone" HorizontalAlignment="Left" Height="23" Margin="593,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="PreviewTextInput"/>
-        <TextBox x:Name="pcountry" HorizontalAlignment="Left" Height="23" Margin="109,95,0,0" TextWrapping="Wrap" Text="үсэг"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="phoroo" HorizontalAlignment="Left" Height="23" Margin="362,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="pwebpage" HorizontalAlignment="Left" Height="23" Margin="594,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox IsEditable="True" x:Name="ptype" HorizontalAlignment="Left" Margin="109,135,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
-            <ComboBoxItem>ХХК</ComboBoxItem>
-            <ComboBoxItem>Х.ХК</ComboBoxItem>
-            <ComboBoxItem>ХК</ComboBoxItem>
-        </ComboBox>
-        <TextBox x:Name="pstreet" HorizontalAlignment="Left" Height="23" Margin="362,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <ComboBox IsEditable="True" x:Name="numofemp"  HorizontalAlignment="Left" Margin="594,124,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>1-10</ComboBoxItem>
             <ComboBoxItem>11-50</ComboBoxItem>
             <ComboBoxItem>51-100</ComboBoxItem>
             <ComboBoxItem>101-250</ComboBoxItem>
             <ComboBoxItem>251-500</ComboBoxItem>
-        </ComboBox>
-        <ComboBox x:Name="pstate" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="362,170,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
-            <ComboBoxItem>Устгасан</ComboBoxItem>
-            <ComboBoxItem>Хэвийн</ComboBoxItem>
-            <ComboBoxItem>Идэвхгүй</ComboBoxItem>
         </ComboBox>
         <TextBox x:Name="pmail" HorizontalAlignment="Left" Height="23" Margin="594,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="pwebid" HorizontalAlignment="Left" Height="23" Margin="845,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
@@ -73,12 +73,10 @@
         <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False"  VerticalAlignment="Center" Width="1180" Height="516" Margin="10,22,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
-                <DataGridTextColumn Binding="{Binding code}" Header="Code"/>
                 <DataGridTextColumn Binding="{Binding name}" Width="100" Header="Name"/>
                 <DataGridTextColumn Binding="{Binding country}" Header="Country"/>
                 <DataGridTextColumn Binding="{Binding phone}" Header="Phone"/>
                 <DataGridTextColumn Binding="{Binding email}" Header="Email"/>
-                <DataGridTextColumn Binding="{Binding contact}" Header="Contact"/>
                 <DataGridTextColumn Binding="{Binding state}" Header="State"/>
                 <DataGridTextColumn Binding="{Binding pcity}" Header="City"/>
                 <DataGridTextColumn Binding="{Binding pdistr}" Header="district"/>
@@ -87,8 +85,6 @@
                 <DataGridTextColumn Binding="{Binding pwebpage}" Header="webpage"/>
                 <DataGridTextColumn Binding="{Binding numofemp}" Header="Employee"/>
                 <DataGridTextColumn Binding="{Binding modified}" Header="modified"/>
-                <DataGridTextColumn Binding="{Binding csid}" Header="csid"/>
-                <DataGridTextColumn Binding="{Binding webid}" Header="webid"/>
                 <DataGridTextColumn Binding="{Binding specialType}" Header="spType"/>
                 <DataGridTextColumn Binding="{Binding companyType}" Header="coType"/>
             </DataGrid.Columns>

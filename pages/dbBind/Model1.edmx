@@ -248,7 +248,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="type" Type="smallint" />
-          <Property Name="code" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="code" Type="nvarchar" MaxLength="6" Nullable="false" />
           <Property Name="state" Type="smallint" />
           <Property Name="modified" Type="datetime" />
           <Property Name="partid" Type="bigint" />
@@ -302,8 +302,8 @@
           <Property Name="pcity" Type="nvarchar" MaxLength="20" />
           <Property Name="pdistr" Type="nvarchar" MaxLength="20" />
           <Property Name="phoroo" Type="nvarchar" MaxLength="20" />
-          <Property Name="pstreet" Type="nvarchar" MaxLength="20" />
-          <Property Name="pwebpage" Type="nvarchar" MaxLength="30" />
+          <Property Name="pstreet" Type="nvarchar" MaxLength="100" />
+          <Property Name="pwebpage" Type="nvarchar" MaxLength="50" />
           <Property Name="numofemp" Type="nvarchar" MaxLength="20" />
           <Property Name="modified" Type="datetime" />
           <Property Name="csid" Type="int" />
@@ -811,7 +811,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="type" Type="Int16" />
-          <Property Name="code" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="code" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
           <Property Name="state" Type="Int16" />
           <Property Name="modified" Type="DateTime" Precision="3" />
           <Property Name="partid" Type="Int64" />
@@ -865,8 +865,8 @@
           <Property Name="pcity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="pdistr" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="phoroo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="pstreet" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="pwebpage" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="pstreet" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="pwebpage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="numofemp" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="modified" Type="DateTime" Precision="3" />
           <Property Name="csid" Type="Int32" />

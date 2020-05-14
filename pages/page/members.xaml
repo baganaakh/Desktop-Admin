@@ -20,7 +20,7 @@
             <ComboBoxItem>Клиринг</ComboBoxItem>
             <ComboBoxItem>Бусад</ComboBoxItem>
         </ComboBox>
-        <TextBox x:Name="pcode" HorizontalAlignment="Left" Height="23" Margin="132,68,0,0" MaxLength="2" TextWrapping="Wrap" Text="12"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="pcode" HorizontalAlignment="Left" Height="23" Margin="132,68,0,0" MaxLength="6" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <DatePicker x:Name="starttime" HorizontalAlignment="Left" Margin="362,67,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.483,-0.792"/>
         <DatePicker x:Name="endtime" HorizontalAlignment="Left" Margin="624,64,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Code" HorizontalAlignment="Left" Margin="55,68,0,0" VerticalAlignment="Top"/>
