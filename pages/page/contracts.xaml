@@ -7,31 +7,30 @@
       mc:Ignorable="d" 
       d:DesignHeight="900"  d:DesignWidth="1200"
       Title="contracts">
-
     <Grid>
         <ComboBox IsEditable="True" x:Name="securityid_Copy" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="138,27,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="clot" HorizontalAlignment="Left" Height="23" Margin="412,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="cgroupid" HorizontalAlignment="Left" Height="23" Margin="698,27,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox  x:Name="refpricePara" HorizontalAlignment="Left" Height="23" Margin="973,27,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <ComboBox Name="ctype" IsEditable="True" HorizontalAlignment="Left" Margin="138,65,0,0" VerticalAlignment="Top" Width="120">
             <ComboBoxItem>Спот</ComboBoxItem>
             <ComboBoxItem>Форвард</ComboBoxItem>
             <ComboBoxItem>Фьючерс</ComboBoxItem>
             <ComboBoxItem>Опцион</ComboBoxItem>
         </ComboBox>
+        <TextBox x:Name="ccode" HorizontalAlignment="Left" Height="23" Margin="138,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="cname" HorizontalAlignment="Left" Height="23" Margin="138,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox IsEditable="True" x:Name="boardid" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="138,190,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="clot" HorizontalAlignment="Left" Height="23" Margin="412,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox IsEditable="True" x:Name="ctick" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="412,64,0,0" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="csdate" HorizontalAlignment="Left" Margin="412,106,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-2.663,4.375"/>
+        <DatePicker x:Name="cedate" HorizontalAlignment="Left" Margin="412,148,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="cgroupid" HorizontalAlignment="Left" Height="23" Margin="698,27,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="cstate" HorizontalAlignment="Left" Margin="698,65,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Устгасан</ComboBoxItem>
-            
             <ComboBoxItem>Хэвийн</ComboBoxItem>
-            
             <ComboBoxItem>Идэвхгүй</ComboBoxItem>
         </ComboBox>
-        <TextBox x:Name="ccode" HorizontalAlignment="Left" Height="23" Margin="138,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <DatePicker x:Name="csdate" HorizontalAlignment="Left" Margin="412,106,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-2.663,4.375"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="mmorderLim" HorizontalAlignment="Left" Height="23" Margin="698,107,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="cname" HorizontalAlignment="Left" Height="23" Margin="138,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <DatePicker x:Name="cedate" HorizontalAlignment="Left" Margin="412,148,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox  x:Name="orderLim" HorizontalAlignment="Left" Height="23" Margin="698,147,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="orderLim" HorizontalAlignment="Left" Height="23" Margin="698,147,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="refpricePara" HorizontalAlignment="Left" Height="23" Margin="973,27,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <Label Content="Board ID" HorizontalAlignment="Left" Margin="29,186,0,0" VerticalAlignment="Top"/>
         <Label Content="securityId" HorizontalAlignment="Left" Margin="29,23,0,0" VerticalAlignment="Top"/>
         <Label Content="type" HorizontalAlignment="Left" Margin="29,60,0,0" VerticalAlignment="Top"/>
@@ -52,7 +51,6 @@
         <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="973,119,0,0"/>
         <Button Content="Refresh" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="refreshh" Margin="847,161,0,0"/>
         <Button Content="Update" IsEnabled="False" Name="upd" HorizontalAlignment="Left" Margin="973,161,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
-        <ComboBox IsEditable="True" x:Name="boardid" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="138,190,0,0" VerticalAlignment="Top" Width="120"/>
         <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" VerticalAlignment="Center" Width="1158" Height="655" Margin="0,240,0,-10">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
@@ -73,7 +71,6 @@
                 <DataGridTextColumn Binding="{Binding bid}" Header="BID"/>
             </DataGrid.Columns>
         </DataGrid>
-        <ComboBox IsEditable="True" x:Name="ctick" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="412,64,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Page>

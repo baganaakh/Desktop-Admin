@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Admin.dbBind;
+using System;
+using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Data.SqlClient;
-using System.Text.RegularExpressions;
-using System.Data;
-using Admin.dbBind;
 
 namespace Admin
 {
@@ -36,36 +25,42 @@ namespace Admin
             upd.IsEnabled = true;
             var values = DateTable2.SelectedItem as Margin;
             if (null == values) return;
-
-            mbuy.Text=values.buy.ToString();
-            msell.Text=values.sell.ToString();
-            mbuyType.SelectedIndex=values.buytype;
+            buy.Text = values.buy.ToString();
+            sell.Text = values.sell.ToString();
+            mbuyType.SelectedIndex = values.buytype;
             mselltype.SelectedIndex = values.selltype;
-            mbuy_Copy.Text=values.mbuy.ToString();
-            mmsell.Text=values.msell.ToString();
+            mmbuy.Text = values.mbuy.ToString();
+            mmsell.Text = values.msell.ToString();
             contractid.SelectedValue = values.coid;
         }
         #endregion
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-
+            if (string.IsNullOrEmpty(sell.Text) || string.IsNullOrEmpty(buy.Text) || string.IsNullOrEmpty(mmsell.Text)
+                || string.IsNullOrEmpty(mmbuy.Text) || contractid.SelectedItem == null || mbuyType.SelectedItem == null
+                || mselltype.SelectedItem == null
+                )
+            {
+                MessageBox.Show("Талбар дутууу !!!!");
+                return;
+            }
             using (demoEntities10 contx = new demoEntities10())
             {
                 Margin ma = new Margin
                 {
-                    buy = Convert.ToDecimal(mbuy.Text),
+                    buy = Convert.ToDecimal(buy.Text),
                     buytype = Convert.ToInt16(mbuyType.SelectedIndex),
-                    sell = Convert.ToDecimal(msell.Text),
+                    sell = Convert.ToDecimal(sell.Text),
                     selltype = Convert.ToInt16(mselltype.SelectedIndex),
                     modified = DateTime.Now,
                     msell = Convert.ToDecimal(mmsell.Text),
-                    mbuy = Convert.ToDecimal(mbuy_Copy.Text),
-                    coid =Convert.ToInt64(contractid.SelectedValue),
+                    mbuy = Convert.ToDecimal(mmbuy.Text),
+                    coid = Convert.ToInt64(contractid.SelectedValue),
                 };
                 contx.Margins.Add(ma);
                 contx.SaveChanges();
-            }            
+            }
             FillDataGrid();
         }
         #endregion
@@ -85,12 +80,12 @@ namespace Admin
         }
         private void newData(object sender, RoutedEventArgs e)
         {
-            mbuy.Text=null;
-            msell.Text=null;
-            mbuyType.Text=null;
-            mselltype.Text=null;
-            mbuy_Copy.Text=null;
-            mmsell.Text=null;
+            buy.Text = null;
+            sell.Text = null;
+            mbuyType.Text = null;
+            mselltype.Text = null;
+            mmbuy.Text = null;
+            mmsell.Text = null;
             contractid.SelectedItem = null;
         }
         #endregion
@@ -101,7 +96,7 @@ namespace Admin
             if (null == values) return;
             using (demoEntities10 conx = new demoEntities10())
             {
-                var del = conx.Margins.Where(x => x.contractId== values.contractId).First();
+                var del = conx.Margins.Where(x => x.contractId == values.contractId).First();
                 conx.Margins.Remove(del);
                 conx.SaveChanges();
             }
@@ -122,13 +117,13 @@ namespace Admin
             using (demoEntities10 conx = new demoEntities10())
             {
                 Margin ma = conx.Margins.FirstOrDefault(r => r.contractId == ac.contractId);
-                ma.buy = Convert.ToDecimal(mbuy.Text);
+                ma.buy = Convert.ToDecimal(buy.Text);
                 ma.buytype = Convert.ToInt16(mbuyType.SelectedIndex);
-                ma.sell = Convert.ToDecimal(msell.Text);
+                ma.sell = Convert.ToDecimal(sell.Text);
                 ma.selltype = Convert.ToInt16(mselltype.SelectedIndex);
                 ma.modified = DateTime.Now;
                 ma.msell = Convert.ToDecimal(mmsell.Text);
-                ma.mbuy = Convert.ToDecimal(mbuy_Copy.Text);
+                ma.mbuy = Convert.ToDecimal(mmbuy.Text);
                 ma.coid = Convert.ToInt64(contractid.SelectedValue);
                 conx.SaveChanges();
             }

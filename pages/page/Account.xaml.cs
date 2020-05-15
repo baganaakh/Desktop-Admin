@@ -2,20 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Admin
 {
@@ -38,9 +28,9 @@ namespace Admin
             var values = DateTable2.SelectedItem as Account;
             if (null == values) return;
 
-            if (values.accountType.Equals("")) { acctype.SelectedItem = null;}
-            else {acctype.SelectedValue = values.accountType; }
-            if (linkacc.Equals("")) { linkacc.SelectedItem= null;}
+            if (values.accountType.Equals("")) { acctype.SelectedItem = null; }
+            else { acctype.SelectedValue = values.accountType; }
+            if (linkacc.Equals("")) { linkacc.SelectedItem = null; }
             else { linkacc.SelectedValue = values.LinkAccount; }
             memid.SelectedValue = values.memberid;
             accno.Text = values.accNumber;
@@ -52,8 +42,14 @@ namespace Admin
         #region insert func
         private void insertFunc(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(accno.Text) || memid.SelectedItem == null ||
+                sdate.SelectedDate == null || edate.SelectedDate == null || pstate.SelectedItem == null)
+            {
+                MessageBox.Show("Талбарууд дутуу байна");
+                return;
+            }
             string accNo = accno.Text;
-            string accnu = string.Format(accNo.ToString().PadLeft(8,'0'));
+            string accnu = string.Format(accNo.ToString().PadLeft(8, '0'));
             if (acctype.SelectedIndex != 0 && linkacc.SelectedItem == null)
             {
                 MessageBox.Show("Нэмэх боломжгүй");
@@ -64,7 +60,7 @@ namespace Admin
                 var exist = context.Accounts.Count(a => a.accNumber == accnu);
                 if (exist != 0)
                 {
-                    MessageBox.Show("Account number exists " +accnu+ " !!!");
+                    MessageBox.Show("Account number exists " + accnu + " !!!");
                     return;
                 }
             }
@@ -75,7 +71,7 @@ namespace Admin
                     var std = new Account()
                     {
                         memberid = Convert.ToInt64(memid.SelectedValue),
-                        accNumber= accnu,
+                        accNumber = accnu,
                         accountType = (short)acctype.SelectedValue,
                         state = Convert.ToInt16(pstate.SelectedIndex - 1),
                         modified = DateTime.Now
@@ -93,16 +89,16 @@ namespace Admin
                 FillDataGrid();
                 return;
             }
-            using(demoEntities10 conx=new demoEntities10())
+            using (demoEntities10 conx = new demoEntities10())
             {
                 var accoun = new Account
                 {
-                    memberid=Convert.ToInt64(memid.SelectedValue),
-                    accNumber=accno.Text,
-                    accountType=Convert.ToInt16(acctype.SelectedIndex),
-                    LinkAccount=Convert.ToInt64(linkacc.SelectedValue),
-                    startdate=sdate.SelectedDate,
-                    enddate=edate.SelectedDate,
+                    memberid = Convert.ToInt64(memid.SelectedValue),
+                    accNumber = accno.Text,
+                    accountType = Convert.ToInt16(acctype.SelectedIndex),
+                    LinkAccount = Convert.ToInt64(linkacc.SelectedValue),
+                    startdate = sdate.SelectedDate,
+                    enddate = edate.SelectedDate,
                 };
                 conx.Accounts.Add(accoun);
                 conx.SaveChanges();
@@ -138,7 +134,7 @@ namespace Admin
         {
             var value = DateTable2.SelectedItem as Account;
             if (null == value) return;
-            using(demoEntities10 conx=new demoEntities10())
+            using (demoEntities10 conx = new demoEntities10())
             {
                 var del = conx.Accounts.Where(x => x.id == value.id).First();
                 conx.Accounts.Remove(del);
@@ -166,7 +162,7 @@ namespace Admin
                     return;
                 }
             }
-            using (demoEntities10 conx=new demoEntities10())
+            using (demoEntities10 conx = new demoEntities10())
             {
                 Account acc = conx.Accounts.FirstOrDefault(r => r.id == ac.id);
                 acc.memberid = Convert.ToInt64(memid.SelectedValue);
@@ -188,10 +184,10 @@ namespace Admin
         private void bindCombo()
         {
             demoEntities10 dc = new demoEntities10();
-            memid.ItemsSource = dc.Members.ToList();            
+            memid.ItemsSource = dc.Members.ToList();
         }
         private void acctype_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        
+
         {
             linkacc.SelectedItem = null;
             linkacc.ItemsSource = null;
@@ -200,22 +196,22 @@ namespace Admin
             {
                 if (item == null)
                     return;
-                if(item == 0)  //Төлбөр
+                if (item == 0)  //Төлбөр
                 {
                     linkacc.IsEnabled = false;
                     return;
                 }
-                else if(item == 1)  //Барьцаа
+                else if (item == 1)  //Барьцаа
                 {
                     linkType = 0;
                     linkacc.IsEnabled = true;
                 }
-                else if(item == 2)  //Клиринг
+                else if (item == 2)  //Клиринг
                 {
                     linkType = 0;
                     linkacc.IsEnabled = true;
                 }
-                else if(item == 3)  //Арилжаа
+                else if (item == 3)  //Арилжаа
                 {
                     linkType = 1;
                     linkacc.IsEnabled = true;
@@ -227,16 +223,16 @@ namespace Admin
                 //linkacc.ItemsSource = linkas.;
                 var items = memid.SelectedItem as Member;
                 int linkme = (int)dc.Members.FirstOrDefault(r => r.id == items.id).linkMember;
-                int lnk=0;
+                int lnk = 0;
                 try
                 {
-                     lnk = dc.Members.FirstOrDefault(r => r.partid == linkme).id;
+                    lnk = dc.Members.FirstOrDefault(r => r.partid == linkme).id;
                 }
                 catch (NullReferenceException)
                 {
                     MessageBox.Show("холбогдсон Participantid байхгүй байна");
                 }
-                var lists= dc.Accounts.Where(r => r.memberid == lnk).ToList();
+                var lists = dc.Accounts.Where(r => r.memberid == lnk).ToList();
                 linkacc.ItemsSource = lists.Where(s => s.accountType == linkType).ToList();
             }
             catch (Exception ex)
@@ -246,9 +242,9 @@ namespace Admin
         }
         private void memid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            List<string> actype1 = new List<string>() { "Төлбөр", "Барьцаа", "Клиринг","Арилжаа" };
-            List<string> actype2 = new List<string>() { "Төлбөр", "Барьцаа", "Клиринг" };            
-            var item = memid.SelectedItem as Member;            
+            List<string> actype1 = new List<string>() { "Төлбөр", "Барьцаа", "Клиринг", "Арилжаа" };
+            List<string> actype2 = new List<string>() { "Төлбөр", "Барьцаа", "Клиринг" };
+            var item = memid.SelectedItem as Member;
             linkacc.ItemsSource = null;
             try
             {
@@ -261,20 +257,20 @@ namespace Admin
                 string broker = item.broker.ToString();
 
                 //companyName.Content = mask;
-                if(mtypee == "0")
+                if (mtypee == "0")
                 {
                     acctype.ItemsSource = actype1;
                     acctype.SelectedValue = 3;
                     acctype.IsEnabled = false;
                     linkacc.IsEnabled = true;
                 }
-                else if(mtypee == "1" && (broker == "False" && dealer == "False" && ander == "False"))
+                else if (mtypee == "1" && (broker == "False" && dealer == "False" && ander == "False"))
                 {
                     acctype.ItemsSource = actype2;
                     linkacc.IsEnabled = true;
                     acctype.IsEnabled = true;
                 }
-                else if(mtypee == "1" && (broker == "True" || dealer == "True" || ander == "True"))
+                else if (mtypee == "1" && (broker == "True" || dealer == "True" || ander == "True"))
                 {
                     acctype.ItemsSource = actype1;
                     acctype.SelectedItem = null;

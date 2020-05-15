@@ -1,22 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Data.SqlClient;
 using System.Data;
-using System.Text.RegularExpressions;
 using Admin.dbBind;
-using System.Globalization;
 
 namespace Admin
 {
@@ -49,9 +37,11 @@ namespace Admin
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            if (aexpire.SelectedDate == null)
+            if (aexpire.SelectedDate == null || string.IsNullOrEmpty(acode.Text) || string.IsNullOrEmpty(aname.Text)
+                || string.IsNullOrEmpty(anote.Text) || string.IsNullOrEmpty(aprice.Text) || string.IsNullOrEmpty(avolume.Text) 
+                || string.IsNullOrEmpty(artio.Text) || astate.SelectedItem == null)
             {
-                MessageBox.Show("Please Set Date !!!!!");
+                MessageBox.Show("Талбарууд дутуу !!!!");
                 return;
             }
             using(demoEntities10 contx=new demoEntities10())

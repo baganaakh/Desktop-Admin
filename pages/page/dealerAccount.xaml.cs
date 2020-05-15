@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Admin.dbBind;
+using System;
+using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Data.SqlClient;
-using System.Text.RegularExpressions;
-using System.Data;
-using Admin.dbBind;
 
 namespace Admin
 {
@@ -37,22 +26,27 @@ namespace Admin
             var values = DateTable2.SelectedItem as DealerAccount;
             if (null == values) return;
 
-            memid.SelectedValue=values.memberid;
-            accid.SelectedValue=values.accountid;
-            stat.SelectedIndex=values.state+1;
+            memid.SelectedValue = values.memberid;
+            accid.SelectedValue = values.accountid;
+            stat.SelectedIndex = values.state + 1;
         }
         #endregion
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            using(demoEntities10 contx=new demoEntities10())
+            if (memid.SelectedItem == null || accid.SelectedItem == null || stat.SelectedItem == null)
+            {
+                MessageBox.Show("Талбар дутууу !!!!");
+                return;
+            }
+            using (demoEntities10 contx = new demoEntities10())
             {
                 DealerAccount dea = new DealerAccount
                 {
-                    memberid=Convert.ToInt32(memid.SelectedValue),
-                    accountid=Convert.ToInt64(accid.SelectedValue),
-                    state=Convert.ToInt16(stat.SelectedIndex -1),
-                    modified=DateTime.Now,
+                    memberid = Convert.ToInt32(memid.SelectedValue),
+                    accountid = Convert.ToInt64(accid.SelectedValue),
+                    state = Convert.ToInt16(stat.SelectedIndex - 1),
+                    modified = DateTime.Now,
                 };
                 contx.DealerAccounts.Add(dea);
                 contx.SaveChanges();
@@ -101,9 +95,9 @@ namespace Admin
             var ac = DateTable2.SelectedItem as Board;
             using (demoEntities10 conx = new demoEntities10())
             {
-                DealerAccount dea = conx.DealerAccounts.FirstOrDefault(r=>r.id==ac.id);
+                DealerAccount dea = conx.DealerAccounts.FirstOrDefault(r => r.id == ac.id);
                 dea.memberid = Convert.ToInt64(memid.SelectedValue);
-                dea.accountid =Convert.ToInt64(accid.SelectedValue);
+                dea.accountid = Convert.ToInt64(accid.SelectedValue);
                 dea.state = Convert.ToInt16(stat.SelectedIndex - 1);
                 conx.SaveChanges();
             }

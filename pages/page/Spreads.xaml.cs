@@ -1,19 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Text.RegularExpressions;
-using System.Data.SqlClient;
 using System.Data;
 using Admin.dbBind;
 
@@ -30,7 +20,6 @@ namespace Admin
             FillDataGrid();
             bindcombo();
         }        
-        
         long id;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -49,6 +38,12 @@ namespace Admin
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
+            if (contractid.SelectedItem== null || string.IsNullOrEmpty(ispread.Text) || 
+                string.IsNullOrEmpty(rspread.Text) || sessionid.SelectedItem== null || string.IsNullOrEmpty(rparam.Text))
+            {
+                MessageBox.Show("Талбар дутууу !!!!");
+                return;
+            }
             using (demoEntities10 conx = new demoEntities10())
             {
                 var secu = new Spread

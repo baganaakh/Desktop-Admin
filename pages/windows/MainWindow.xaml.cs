@@ -29,7 +29,7 @@ namespace Admin
             CultureInfo ci = new CultureInfo("en-US");
             Thread.CurrentThread.CurrentCulture = ci;
             InitializeComponent();
-            Main.Content = new boards();
+            Main.Content = new participants();
 
         }
         private void BtnClickP1(object sender, RoutedEventArgs e)

@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Admin.dbBind;
+using System;
+using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Data.SqlClient;
-using System.Text.RegularExpressions;
-using System.Data;
-using Admin.dbBind;
 
 namespace Admin
 {
@@ -36,9 +25,9 @@ namespace Admin
             upd.IsEnabled = true;
             var values = DateTable2.SelectedItem as Contract;
             if (null == values) return;
-           
-            securityid_Copy.SelectedValue= values.securityId;
-            ctype.SelectedIndex =Convert.ToInt32(values.type)-1;
+
+            securityid_Copy.SelectedValue = values.securityId;
+            ctype.SelectedIndex = Convert.ToInt32(values.type) - 1;
             ccode.Text = values.code;
             cname.Text = values.name;
             clot.Text = values.lot.ToString();
@@ -46,7 +35,7 @@ namespace Admin
             csdate.SelectedDate = values.sdate;
             cedate.SelectedDate = values.edate;
             cgroupid.Text = values.groupId.ToString();
-            cstate.SelectedIndex =Convert.ToInt16(values.state);
+            cstate.SelectedIndex = Convert.ToInt16(values.state);
             mmorderLim.Text = values.mmorderLimit.ToString();
             orderLim.Text = values.orderLimit.ToString();
             refpricePara.Text = values.refpriceParam.ToString();
@@ -56,12 +45,17 @@ namespace Admin
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            if (csdate.SelectedDate == null || cedate.SelectedDate == null)
+            if (csdate.SelectedDate == null || cedate.SelectedDate == null || string.IsNullOrEmpty(ccode.Text)
+                    || string.IsNullOrEmpty(cname.Text) || string.IsNullOrEmpty(clot.Text) || string.IsNullOrEmpty(cgroupid.Text)
+                    || string.IsNullOrEmpty(mmorderLim.Text) || string.IsNullOrEmpty(orderLim.Text) ||
+                    string.IsNullOrEmpty(refpricePara.Text) || cstate.SelectedItem == null || securityid_Copy.SelectedItem == null
+                    || ctype.SelectedItem == null || boardid.SelectedItem == null || ctick.SelectedItem == null
+                )
             {
-                MessageBox.Show("Please Set Date !!!!!");
+                MessageBox.Show("Талбар дутуу !!!!!");
                 return;
             }
-            using(demoEntities10 contx=new demoEntities10())
+            using (demoEntities10 contx = new demoEntities10())
             {
                 Contract con = new Contract
                 {
@@ -74,16 +68,16 @@ namespace Admin
                     sdate = csdate.SelectedDate,
                     edate = cedate.SelectedDate,
                     groupId = Convert.ToInt16(cgroupid.Text),
-                    state=Convert.ToInt16(cstate.SelectedIndex -1),
-                    modified=DateTime.Now,
-                    mmorderLimit=Convert.ToInt32( mmorderLim.Text),
-                    orderLimit=Convert.ToInt32( orderLim.Text),
-                    refpriceParam=Convert.ToDecimal(refpricePara.Text),
-                    bid=Convert.ToInt64( boardid.SelectedValue),
+                    state = Convert.ToInt16(cstate.SelectedIndex - 1),
+                    modified = DateTime.Now,
+                    mmorderLimit = Convert.ToInt32(mmorderLim.Text),
+                    orderLimit = Convert.ToInt32(orderLim.Text),
+                    refpriceParam = Convert.ToDecimal(refpricePara.Text),
+                    bid = Convert.ToInt64(boardid.SelectedValue),
                 };
                 contx.Contracts.Add(con);
                 contx.SaveChanges();
-            }           
+            }
             FillDataGrid();
         }
         #endregion
@@ -131,7 +125,7 @@ namespace Admin
                 var del = conx.Contracts.Where(x => x.id == value.id).First();
                 conx.Contracts.Remove(del);
                 conx.SaveChanges();
-            }            
+            }
             FillDataGrid();
         }
         #endregion
@@ -147,11 +141,11 @@ namespace Admin
                 ca.code = ccode.Text;
                 ca.lot = Convert.ToDecimal(clot.Text);
                 ca.name = cname.Text;
-                ca.tickTable =Convert.ToInt32(ctick.SelectedValue);
+                ca.tickTable = Convert.ToInt32(ctick.SelectedValue);
                 ca.sdate = csdate.SelectedDate;
                 ca.edate = cedate.SelectedDate;
-                ca.groupId =Convert.ToInt16(cgroupid.Text);
-                ca.state=Convert.ToInt16(cstate.SelectedIndex-1);
+                ca.groupId = Convert.ToInt16(cgroupid.Text);
+                ca.state = Convert.ToInt16(cstate.SelectedIndex - 1);
                 ca.modified = DateTime.Now;
                 ca.mmorderLimit = Convert.ToInt32(mmorderLim.Text);
                 ca.orderLimit = Convert.ToInt32(orderLim.Text);
@@ -165,7 +159,7 @@ namespace Admin
         #region combos
         private void bindCombo()
         {
-            demoEntities10 dE = new demoEntities10();            
+            demoEntities10 dE = new demoEntities10();
             securityid_Copy.ItemsSource = dE.Securities.ToList();
             boardid.ItemsSource = dE.Boards.ToList();
             ctick.ItemsSource = dE.TickSizeTables.ToList();

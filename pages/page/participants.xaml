@@ -11,7 +11,7 @@
     <Grid >
         <TextBox x:Name="pname" HorizontalAlignment="Left" Height="23" Margin="109,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="pcountry" Text="Монгол" HorizontalAlignment="Left" Height="23" Margin="109,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox IsEditable="True" x:Name="ptype" HorizontalAlignment="Left" Margin="109,135,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
+        <ComboBox x:Name="ptype" HorizontalAlignment="Left" Margin="109,135,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>ХХК</ComboBoxItem>
             <ComboBoxItem>Х.ХК</ComboBoxItem>
             <ComboBoxItem>ХК</ComboBoxItem>
@@ -25,7 +25,7 @@
             <ComboBoxItem>Хэвийн</ComboBoxItem>
             <ComboBoxItem>Идэвхгүй</ComboBoxItem>
         </ComboBox>
-        <ComboBox IsEditable="True" x:Name="spetype" HorizontalAlignment="Left" Margin="593,22,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
+        <ComboBox x:Name="spetype" HorizontalAlignment="Left" Margin="593,22,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Банк</ComboBoxItem>
             <ComboBoxItem>ББСБ</ComboBoxItem>
             <ComboBoxItem>ҮЦК</ComboBoxItem>
@@ -37,7 +37,7 @@
         </ComboBox>
         <TextBox x:Name="pphone" HorizontalAlignment="Left" Height="23" Margin="593,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="PreviewTextInput"/>
         <TextBox x:Name="pwebpage" HorizontalAlignment="Left" Height="23" Margin="594,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox IsEditable="True" x:Name="numofemp"  HorizontalAlignment="Left" Margin="594,124,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
+        <ComboBox x:Name="numofemp"  HorizontalAlignment="Left" Margin="594,124,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>1-10</ComboBoxItem>
             <ComboBoxItem>11-50</ComboBoxItem>
             <ComboBoxItem>51-100</ComboBoxItem>
@@ -47,7 +47,7 @@
         <TextBox x:Name="pmail" HorizontalAlignment="Left" Height="23" Margin="594,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="pwebid" HorizontalAlignment="Left" Height="23" Margin="845,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <TextBox x:Name="pcsid" HorizontalAlignment="Left" Height="23" Margin="845,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <TextBox x:Name="pcontact" HorizontalAlignment="Left" Height="23" Margin="845,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <TextBox x:Name="pcontact" Text="null" HorizontalAlignment="Left" Height="23" Margin="845,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <Label Content="contact" HorizontalAlignment="Left" Margin="744,151,0,0" VerticalAlignment="Top"/>
         <Label Content="Улс" HorizontalAlignment="Left" Margin="29,96,0,0" VerticalAlignment="Top"/>
         <Label Content="утас" HorizontalAlignment="Left" Margin="504,51,0,0" VerticalAlignment="Top"/>

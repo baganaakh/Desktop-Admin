@@ -12,7 +12,9 @@ namespace Admin.validator
     {
         public  PartValidator()
             {
-            RuleFor(p => p.name).Cascade(CascadeMode.StopOnFirstFailure).NotEmpty();
+            RuleFor(p => p.email)
+                .Cascade(CascadeMode.StopOnFirstFailure)                
+                .EmailAddress().WithMessage("{PropertyValue}    is not valid email");
 
             }
     }

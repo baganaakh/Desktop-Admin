@@ -1,22 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Admin.dbBind;
+using System;
+using System.Data;
+using System.Data.Entity.Validation;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Data.SqlClient;
-using System.Text.RegularExpressions;
-using System.Data;
-using Admin.dbBind;
-using System.Data.Entity.Validation;
 
 namespace Admin
 {
@@ -41,8 +30,8 @@ namespace Admin
             if (null == value) return;
             id = value.id;
             pcode.Text = value.code;
-            mtype.SelectedIndex=Convert.ToInt32(value.type);
-            pstate.SelectedIndex =Convert.ToInt32(value.state+1);
+            mtype.SelectedIndex = Convert.ToInt32(value.type);
+            pstate.SelectedIndex = Convert.ToInt32(value.state + 1);
             participants.SelectedValue = value.partid;
             starttime.SelectedDate = value.startdate;
             endtime.SelectedDate = value.enddate;
@@ -57,9 +46,11 @@ namespace Admin
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            if (starttime.SelectedDate == null || endtime.SelectedDate == null)
+            if (starttime.SelectedDate == null || endtime.SelectedDate == null || participants.SelectedItem == null ||
+                string.IsNullOrEmpty(pcode.Text) || pstate.SelectedItem == null || mtype.SelectedItem == null
+                || linkMember.SelectedItem == null)
             {
-                MessageBox.Show("Please Set Date !!!!!");
+                MessageBox.Show("Талбар дутуу");
                 return;
             }
             if (broker.IsChecked == false && dealer.IsChecked == false && ander.IsChecked == false && nominal.IsChecked == false)
@@ -67,28 +58,28 @@ namespace Admin
                 MessageBox.Show("Please please check dealerTypes !!!!!");
                 return;
             }
-            using(demoEntities10 conx=new demoEntities10())
+            using (demoEntities10 conx = new demoEntities10())
             {
                 try
                 {
-                var me = new Member
-                {
-                    type=Convert.ToInt16(mtype.SelectedIndex),
-                    code=pcode.Text,
-                    state=Convert.ToInt16(pstate.SelectedIndex-1),
-                    modified=DateTime.Now,
-                    partid=Convert.ToInt64(participants.SelectedValue),
-                    startdate=starttime.SelectedDate,
-                    enddate=endtime.SelectedDate,
-                    broker=broker.IsChecked,
-                    dealer=dealer.IsChecked,
-                    ander=ander.IsChecked,
-                    nominal=nominal.IsChecked,
-                    linkMember=Convert.ToInt32(linkMember.SelectedValue),
-                    name=participants.Text,
-                };
-                conx.Members.Add(me);
-                conx.SaveChanges();
+                    var me = new Member
+                    {
+                        type = Convert.ToInt16(mtype.SelectedIndex),
+                        code = pcode.Text,
+                        state = Convert.ToInt16(pstate.SelectedIndex - 1),
+                        modified = DateTime.Now,
+                        partid = Convert.ToInt64(participants.SelectedValue),
+                        startdate = starttime.SelectedDate,
+                        enddate = endtime.SelectedDate,
+                        broker = broker.IsChecked,
+                        dealer = dealer.IsChecked,
+                        ander = ander.IsChecked,
+                        nominal = nominal.IsChecked,
+                        linkMember = Convert.ToInt32(linkMember.SelectedValue),
+                        name = participants.Text,
+                    };
+                    conx.Members.Add(me);
+                    conx.SaveChanges();
                 }
                 catch (DbEntityValidationException ex)
                 {

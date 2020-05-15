@@ -1,22 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Data.SqlClient;
+﻿using Admin.dbBind;
 using System.Data;
-using Admin.dbBind;
-using System.Configuration;
-using System.Data.Entity.Core.EntityClient;
-using System.Data.Common;
+using System.Linq;
+using System.Windows;
 
 namespace Admin
 {
@@ -37,7 +22,7 @@ namespace Admin
         #region first submit
         private void log_submit(object sender, RoutedEventArgs e)
         {
-            
+
             string roless;
             //SqlConnection conn = new SqlConnection(connectionString);
             //try
@@ -74,21 +59,21 @@ namespace Admin
             //{
             //    conn.Close();
             //}
-                ////var originalConnectionSting = ConfigurationManager.ConnectionStrings[
-                ////    "Data Source=192.168.1.108\\MSX-1003, 1433; Initial Catalog=demo;" +
-                ////    " MultipleActiveResultSets=True; App=EntityFramework&amp;quot;" +
-                ////    " persist security info=True;Integrated Security=false;"].ConnectionString;
-                ////var entityBuilder = new EntityConnectionStringBuilder(originalConnectionSting);
-                ////var factory = DbProviderFactories.GetFactory(entityBuilder.Provider);
-                ////var providerBuilder = factory.CreateConnectionStringBuilder();
-                
-                ////providerBuilder.ConnectionString = entityBuilder.ProviderConnectionString;
-                ////providerBuilder.Add("sa","Qwerty123456");
-                ////entityBuilder.ProviderConnectionString = providerBuilder.ToString();
-                ////using(demoEntities10 contx=new demoEntities10(entityBuilder.ToString()))
-                ////{
+            ////var originalConnectionSting = ConfigurationManager.ConnectionStrings[
+            ////    "Data Source=192.168.1.108\\MSX-1003, 1433; Initial Catalog=demo;" +
+            ////    " MultipleActiveResultSets=True; App=EntityFramework&amp;quot;" +
+            ////    " persist security info=True;Integrated Security=false;"].ConnectionString;
+            ////var entityBuilder = new EntityConnectionStringBuilder(originalConnectionSting);
+            ////var factory = DbProviderFactories.GetFactory(entityBuilder.Provider);
+            ////var providerBuilder = factory.CreateConnectionStringBuilder();
 
-                ////}
+            ////providerBuilder.ConnectionString = entityBuilder.ProviderConnectionString;
+            ////providerBuilder.Add("sa","Qwerty123456");
+            ////entityBuilder.ProviderConnectionString = providerBuilder.ToString();
+            ////using(demoEntities10 contx=new demoEntities10(entityBuilder.ToString()))
+            ////{
+
+            ////}
             using (demoEntities10 context = new demoEntities10())
             {
                 var query = context.users.Where(s => s.uname == userName.Text).FirstOrDefault<user>();

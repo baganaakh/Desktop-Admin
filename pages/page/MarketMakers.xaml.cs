@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Data.SqlClient;
-using System.Text.RegularExpressions;
 using System.Data;
 using Admin.dbBind;
 namespace Admin
@@ -50,11 +39,15 @@ namespace Admin
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            if (sdat.SelectedDate == null || edat.SelectedDate == null)
+            if (sdat.SelectedDate == null || edat.SelectedDate == null || markcontact.SelectedItem == null
+                    || markmember.SelectedItem == null || string.IsNullOrEmpty(markorderl.Text) || string.IsNullOrEmpty(markdesc.Text)
+                    || string.IsNullOrEmpty(markticks.Text) || markaccount.SelectedItem== null
+                )
             {
-                MessageBox.Show("Please Set Date !!!!!");
+                MessageBox.Show("Талбар дутууу !!!!");
                 return;
             }
+
             using (demoEntities10 contx = new demoEntities10())
             {
                 MarketMaker mam = new MarketMaker

@@ -1,22 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Data.SqlClient;
-using System.Text.RegularExpressions;
 using System.Data;
 using Admin.dbBind;
-using System.Data.Entity.Validation;
+using Admin.validator;
+using FluentValidation.Results;
+using System.ComponentModel;
 
 namespace Admin
 {
@@ -26,6 +18,7 @@ namespace Admin
     public partial class participants : Page
     {
         int id;
+        BindingList<string> errors = new BindingList<string>();
         public participants()
         {
             InitializeComponent();
@@ -57,28 +50,50 @@ namespace Admin
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(pname.Text) || string.IsNullOrEmpty(pcountry.Text)
+                    || string.IsNullOrEmpty(pphone.Text) || string.IsNullOrEmpty(pmail.Text)
+                    || string.IsNullOrEmpty(pcity.Text) || string.IsNullOrEmpty(numofemp.Text)
+                    || string.IsNullOrEmpty(pdistr1.Text) || string.IsNullOrEmpty(phoroo.Text)
+                    || string.IsNullOrEmpty(pwebpage.Text) || pstate.SelectedItem == null
+                    || ptype.SelectedItem == null || spetype.SelectedItem == null
+                    || string.IsNullOrEmpty(pstreet.Text)
+                )
+            {
+                MessageBox.Show("Талбарууд дутуу байна");
+                return;
+            }
             try
             {
                 using (var context = new demoEntities10())
                 {
-                    var std = new Participant()
+                    var std = new Participant();
+                        std.name = pname.Text;
+                        std.country = pcountry.Text;
+                        std.phone = pphone.Text;
+                        std.email = pmail.Text;
+                        std.state = Convert.ToInt16(pstate.SelectedIndex -1);
+                        std.pcity = pcity.Text;
+                        std.pdistr = pdistr1.Text;
+                        std.phoroo = phoroo.Text;
+                        std.pstreet = pstreet.Text;
+                        std.pwebpage = pwebpage.Text;
+                        std.numofemp = numofemp.Text;
+                        std.specialType= Convert.ToInt16(spetype.SelectedIndex +1);
+                        std.companyType= Convert.ToInt16(ptype.SelectedIndex +1);
+                        std.modified = DateTime.Now;
+                    
+                    PartValidator validator = new PartValidator();
+                    FluentValidation.Results.ValidationResult result = validator.Validate(std);
+                    if(result.IsValid == false)
                     {
-                        name = pname.Text,
-                        country=pcountry.Text,
-                        phone = pphone.Text,
-                        email = pmail.Text,
-                        contact = pcontact.Text,
-                        state = Convert.ToInt16(pstate.SelectedIndex -1),
-                        pcity = pcity.Text,
-                        pdistr = pdistr1.Text,
-                        phoroo = phoroo.Text,
-                        pstreet = pstreet.Text,
-                        pwebpage = pwebpage.Text,
-                        numofemp = numofemp.Text,
-                        specialType= Convert.ToInt16(spetype.SelectedIndex +1),
-                        companyType= Convert.ToInt16(ptype.SelectedIndex +1),
-                        modified = DateTime.Now,
-                    };
+                        foreach(ValidationFailure failure in result.Errors)
+                        {
+                            //errors.Add(failure.ErrorMessage);
+                            ((MainWindow)Window.GetWindow(this)).btmstat.Foreground = Brushes.Red;
+                            ((MainWindow)Window.GetWindow(this)).btmstat.Text = failure.ErrorMessage;
+                            return;
+                        }
+                    }
                     context.Participants.Add(std);
                     try
                     {
@@ -188,34 +203,6 @@ namespace Admin
             }
             FillDataGrid();
         }
-        #endregion
-        #region email validation
-        //bool IsValidEmail(string email)
-        //{
-        //    try
-        //    {
-        //        var addr = new System.Net.Mail.MailAddress(email);
-        //        return addr.Address == email;
-        //    }
-        //    catch
-        //    {
-        //        return false;
-        //    }
-        //}
-        //public static class ValidatorExtensions
-        //{
-        //    public static bool IsValidEmailAddress(this string s)
-        //    {
-        //        Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
-        //        return regex.IsMatch(s);
-        //    }
-        //}
-
-        //private void pmail_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    bool result = ValidatorExtensions.IsValidEmailAddress(pmail.Text);
-        //}
-
-        #endregion
+        #endregion        
     }
 }

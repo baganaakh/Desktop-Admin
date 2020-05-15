@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Data.SqlClient;
-using System.Text.RegularExpressions;
 using System.Data;
 using Admin.dbBind;
 
@@ -29,7 +18,7 @@ namespace Admin
             InitializeComponent();
             FillDataGrid();
             bindCombo();
-        }        
+        }
         static string id;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -44,6 +33,11 @@ namespace Admin
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
+            if(markcontact.SelectedItem== null || string.IsNullOrEmpty(refprice.Text) || string.IsNullOrEmpty(name.Text))
+            {
+                MessageBox.Show("Талбар дутууу !!!!");
+                return;
+            }
             long contract=Convert.ToInt64(markcontact.SelectedValue);
             using(demoEntities10 conx =new demoEntities10())
             {

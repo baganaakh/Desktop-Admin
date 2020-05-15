@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Admin.dbBind;
+using System;
+using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Data.SqlClient;
-using System.Data;
-using Admin.dbBind;
 
 namespace Admin
 {
@@ -44,12 +34,12 @@ namespace Admin
             stimeminute.SelectedIndex = arrays.Minutes;
             stimeSecond.SelectedIndex = arrays.Seconds;
             duration.Text = value.duration.ToString();
-            allowT.SelectedIndex =Convert.ToInt32(value.allowedtypes);
+            allowT.SelectedIndex = Convert.ToInt32(value.allowedtypes);
             sdesc.Text = value.description;
-            sstate.SelectedIndex =Convert.ToInt32(value.state + 1);
-            algo.SelectedIndex =Convert.ToInt32(value.algorithm);
+            sstate.SelectedIndex = Convert.ToInt32(value.state + 1);
+            algo.SelectedIndex = Convert.ToInt32(value.algorithm);
             match1.Text = value.match.ToString();
-            markT.SelectedIndex =Convert.ToInt32(value.markettype);
+            markT.SelectedIndex = Convert.ToInt32(value.markettype);
             if (value.delorder != null)
             {
                 delOrder.IsChecked = bool.Parse(value.delorder.ToString());
@@ -62,15 +52,25 @@ namespace Admin
             {
                 isAct.IsChecked = bool.Parse(value.isactive.ToString());
             }
-            }
+        }
         #endregion
         #region insert
         private void insertFunc(object sender, RoutedEventArgs e)
         {
+            if (sboardid.SelectedItem == null || string.IsNullOrEmpty(sname.Text) || allowT.SelectedItem == null
+                || string.IsNullOrEmpty(match1.Text) || string.IsNullOrEmpty(sname.Text) ||
+                string.IsNullOrEmpty(sdesc.Text) || markT.SelectedItem == null || stimehour.SelectedItem == null
+                || stimeminute.SelectedItem == null || stimeSecond.SelectedItem == null || sstate.SelectedItem == null
+                || string.IsNullOrEmpty(duration.Text) || algo.SelectedItem == null
+                )
+            {
+                MessageBox.Show("Талбар дутууу !!!!");
+                return;
+            }
             TimeSpan startTime = new TimeSpan(
                 Convert.ToInt32(stimehour.Text), Convert.ToInt32(stimeminute.Text), Convert.ToInt32(stimeSecond.Text));
 
-            using(demoEntities10 conx =new demoEntities10())
+            using (demoEntities10 conx = new demoEntities10())
             {
                 Session ses = new Session
                 {
@@ -82,17 +82,17 @@ namespace Admin
                     match = Convert.ToInt32(match1.Text),
                     allowedtypes = Convert.ToInt16(allowT.SelectedIndex),
                     description = sdesc.Text,
-                    state=Convert.ToInt16(sstate.SelectedIndex-1),
-                    modified=DateTime.Now,
-                    isactive=isAct.IsChecked,
-                    delorder=delOrder.IsChecked,
-                    editorder=editOrder.IsChecked,
-                    markettype=Convert.ToInt16(markT.SelectedIndex),
+                    state = Convert.ToInt16(sstate.SelectedIndex - 1),
+                    modified = DateTime.Now,
+                    isactive = isAct.IsChecked,
+                    delorder = delOrder.IsChecked,
+                    editorder = editOrder.IsChecked,
+                    markettype = Convert.ToInt16(markT.SelectedIndex),
 
                 };
                 conx.Sessions.Add(ses);
                 conx.SaveChanges();
-            }          
+            }
             FillDataGrid();
         }
         #endregion
@@ -130,8 +130,8 @@ namespace Admin
         {
             sboardid.SelectedValue = null;
             sname.Text = null;
-            stimeminute.Text=null;
-            stimehour.Text=null;
+            stimeminute.Text = null;
+            stimehour.Text = null;
             dhour.SelectedValue = null;
             algo.Text = null;
             match1.Text = null;
@@ -139,73 +139,74 @@ namespace Admin
             sdesc.Text = null;
             sstate.Text = null;
             editOrder.IsChecked = null;
-            delOrder.IsChecked= null;
+            delOrder.IsChecked = null;
             markT.Text = null;
         }
         #endregion
         #region update
         private void update(object sender, RoutedEventArgs e)
-        {TimeSpan startTime = new TimeSpan(
-                Convert.ToInt32(stimehour.Text), Convert.ToInt32(stimeminute.Text), Convert.ToInt32(stimeSecond.Text));
+        {
+            TimeSpan startTime = new TimeSpan(
+                   Convert.ToInt32(stimehour.Text), Convert.ToInt32(stimeminute.Text), Convert.ToInt32(stimeSecond.Text));
             using (demoEntities10 conx = new demoEntities10())
             {
                 Session se = conx.Sessions.FirstOrDefault(r => r.id == id);
                 se.boardid = Convert.ToInt64(sboardid.SelectedValue);
-                    se.name = sname.Text;
-                    se.stime = startTime;
-                    se.duration = Convert.ToInt32(duration.Text);
-                    se.algorithm = Convert.ToInt16(algo.SelectedIndex);
-                    se.match = Convert.ToInt32(match1.Text);
-                    se.allowedtypes = Convert.ToInt16(allowT.SelectedIndex);
-                    se.description = sdesc.Text;
-                    se.state = Convert.ToInt16(sstate.SelectedIndex - 1);
-                    se.modified = DateTime.Now;
-                    se.isactive = isAct.IsChecked;
-                    se.delorder = delOrder.IsChecked;
-                    se.editorder = editOrder.IsChecked;
-                    se.markettype = Convert.ToInt16(markT.SelectedIndex);
+                se.name = sname.Text;
+                se.stime = startTime;
+                se.duration = Convert.ToInt32(duration.Text);
+                se.algorithm = Convert.ToInt16(algo.SelectedIndex);
+                se.match = Convert.ToInt32(match1.Text);
+                se.allowedtypes = Convert.ToInt16(allowT.SelectedIndex);
+                se.description = sdesc.Text;
+                se.state = Convert.ToInt16(sstate.SelectedIndex - 1);
+                se.modified = DateTime.Now;
+                se.isactive = isAct.IsChecked;
+                se.delorder = delOrder.IsChecked;
+                se.editorder = editOrder.IsChecked;
+                se.markettype = Convert.ToInt16(markT.SelectedIndex);
                 conx.SaveChanges();
             }
-                // string boardid = cid;
-                // string name = sname.Text;
-                // string sstimeminute = stimeminute.Text;
-                // string sstimehour = stimehour.Text;
-                // string dhours = dhour.Text;
-                // string dminutes = dminute.Text;
-                // string alogor = algo.Text;
-                // string match11 = match1.Text;
-                // string allowedT = allowT.Text;
-                // string descrip = sdesc.Text;
-                // string state = statid;
-                // string EDorder = eOrder.IsChecked.ToString();
-                // string DEorder = dOrder.IsChecked.ToString();
-                // string markType = markT.Text;
-                // System.Data.SqlClient.SqlConnection sqlConnection1 =
-                //new System.Data.SqlClient.SqlConnection(connectionString);
+            // string boardid = cid;
+            // string name = sname.Text;
+            // string sstimeminute = stimeminute.Text;
+            // string sstimehour = stimehour.Text;
+            // string dhours = dhour.Text;
+            // string dminutes = dminute.Text;
+            // string alogor = algo.Text;
+            // string match11 = match1.Text;
+            // string allowedT = allowT.Text;
+            // string descrip = sdesc.Text;
+            // string state = statid;
+            // string EDorder = eOrder.IsChecked.ToString();
+            // string DEorder = dOrder.IsChecked.ToString();
+            // string markType = markT.Text;
+            // System.Data.SqlClient.SqlConnection sqlConnection1 =
+            //new System.Data.SqlClient.SqlConnection(connectionString);
 
-                // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-                // cmd.CommandType = System.Data.CommandType.Text;
-                // cmd.CommandText = "UPDATE demo.dbo.session SET " +
-                //     "boardid = '" + boardid + "', " +
-                //     "name= N'" + name + "', " +
-                //     "stime = '" + sstimehour + ":" + sstimeminute + "', " +
-                //     "duration = '" + dhours + ":" + dminutes + "', " +
-                //     "algorithm= '" + alogor + "', " +
-                //     "match= '" + match11 + "', " +
-                //     "allowedtypes= '" + allowedT + "', " +
-                //     "description= '" + descrip + "', " +
-                //     "state= '" + state + "', " +
-                //     "modified = getdate(), " +
-                //     "editorder= '" + EDorder + "', " +
-                //     "delorder= '" + DEorder + "', " +
-                //     "markettype= '" + markType + "' " +
-                //     "WHERE id = '" + id + "'";
+            // System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            // cmd.CommandType = System.Data.CommandType.Text;
+            // cmd.CommandText = "UPDATE demo.dbo.session SET " +
+            //     "boardid = '" + boardid + "', " +
+            //     "name= N'" + name + "', " +
+            //     "stime = '" + sstimehour + ":" + sstimeminute + "', " +
+            //     "duration = '" + dhours + ":" + dminutes + "', " +
+            //     "algorithm= '" + alogor + "', " +
+            //     "match= '" + match11 + "', " +
+            //     "allowedtypes= '" + allowedT + "', " +
+            //     "description= '" + descrip + "', " +
+            //     "state= '" + state + "', " +
+            //     "modified = getdate(), " +
+            //     "editorder= '" + EDorder + "', " +
+            //     "delorder= '" + DEorder + "', " +
+            //     "markettype= '" + markType + "' " +
+            //     "WHERE id = '" + id + "'";
 
-                // cmd.Connection = sqlConnection1;
-                // sqlConnection1.Open();
-                // cmd.ExecuteNonQuery();
-                // sqlConnection1.Close();
-                FillDataGrid();
+            // cmd.Connection = sqlConnection1;
+            // sqlConnection1.Open();
+            // cmd.ExecuteNonQuery();
+            // sqlConnection1.Close();
+            FillDataGrid();
         }
         #endregion
         #region combos

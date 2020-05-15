@@ -178,6 +178,7 @@
         </ComboBox>
         <CheckBox x:Name="delOrder" Content="Del order" HorizontalAlignment="Left" Margin="716,137,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="editOrder" Content="Edit order" HorizontalAlignment="Left" Margin="844,134,0,0" VerticalAlignment="Top"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="duration" HorizontalAlignment="Left" Height="23" Margin="150,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <ComboBox IsEnabled="False" x:Name="dhour" HorizontalAlignment="Left" Margin="150,220,0,0" VerticalAlignment="Top" Width="45">
             <ComboBoxItem Content="00"/>
             <ComboBoxItem Content="01"/>
@@ -346,7 +347,6 @@
         <Button Content="Edit" HorizontalAlignment="Left" Margin="1156,86,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="Delete" HorizontalAlignment="Left" Margin="1062,124,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete"/>
         <Button Content="Update" IsEnabled="False" Name="upd"  HorizontalAlignment="Left" Margin="1063,162,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
-
         <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" VerticalAlignment="Center" Width="1362" Height="818" Margin="22,253,0,-11">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
@@ -370,7 +370,6 @@
                 <DataGridTextColumn Binding="{Binding markettype}" Header="MarketType"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="duration" HorizontalAlignment="Left" Height="23" Margin="150,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <CheckBox x:Name="isAct" Content="Is Active" HorizontalAlignment="Left" Margin="716,163,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>

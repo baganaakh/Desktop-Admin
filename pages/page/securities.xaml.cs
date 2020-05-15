@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Data.SqlClient;
-using System.Text.RegularExpressions;
 using System.Data;
 using Admin.dbBind;
 
@@ -38,7 +27,6 @@ namespace Admin
             var value = DateTable2.SelectedItem as Security;
             if (null == value) return;
             id = value.id;
-
             partId.SelectedValue= value.partid;
             stype.SelectedIndex= Convert.ToInt16(value.type);
             scode.Text = value.code;
@@ -55,16 +43,16 @@ namespace Admin
         #region insert func
         private void insertFunc(object sender, RoutedEventArgs e)
         {
-            if(partId.SelectedValue == null && 
-                stype.SelectedValue == null && 
-                assetId.SelectedValue == null && 
-                sname.Text == null && 
-                totalquant.Text == null && 
-                fprice.Text == null && 
-                srate.Text == null && 
-                sdate.SelectedDate == null && 
-                edate.SelectedDate == null && 
-                state.SelectedValue == null && 
+            if (partId.SelectedValue == null ||
+                stype.SelectedValue == null ||
+                assetId.SelectedValue == null ||
+                sname.Text == null ||
+                totalquant.Text == null ||
+                fprice.Text == null ||
+                srate.Text == null ||
+                sdate.SelectedDate == null ||
+                edate.SelectedDate == null ||
+                state.SelectedValue == null ||
                 scode.Text == null)
             {
                 MessageBox.Show("Талбарууд дутуу байна");

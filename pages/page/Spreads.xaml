@@ -11,9 +11,9 @@
     <Grid>
         <ComboBox IsEditable="True" x:Name="contractid" ItemsSource="{Binding}" SelectionChanged="contractid_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="151,18,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="ispread" HorizontalAlignment="Left" Height="23" Margin="434,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="rspread" HorizontalAlignment="Left" Height="23" Margin="715,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <ComboBox IsEditable="True" x:Name="sessionid" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="151,67,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBox  x:Name="rparam" HorizontalAlignment="Left" Height="23" Margin="434,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="rspread" HorizontalAlignment="Left" Height="23" Margin="715,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="ispread" HorizontalAlignment="Left" Margin="313,15,0,0" VerticalAlignment="Top"/>
         <Label Content="sessionid" HorizontalAlignment="Left" Margin="30,64,0,0" VerticalAlignment="Top"/>
         <Label Content="rparam" HorizontalAlignment="Left" Margin="313,64,0,0" VerticalAlignment="Top"/>

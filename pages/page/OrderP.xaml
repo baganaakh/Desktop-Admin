@@ -23,6 +23,16 @@
         </ComboBox>
         <ComboBox IsEditable="True" x:Name="boardid" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,99,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1"/>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="quantity" HorizontalAlignment="Left" Height="23" Margin="410,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="dealtype" Margin="639,96,441,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
+            <ComboBoxItem Content="Арилжаа"/>
+            <ComboBoxItem Content="OTC"/>
+            <ComboBoxItem Content="Тохиролцоо"/>
+            <ComboBoxItem Content="Repo"/>
+            <ComboBoxItem Content="Loan 1"/>
+            <ComboBoxItem Content="Loan 2"/>
+            <ComboBoxItem Content="Col 1"/>
+            <ComboBoxItem Content="Col 2"/>
+        </ComboBox>
         <Label Content="memberid" HorizontalAlignment="Left" Margin="29,16,0,0" VerticalAlignment="Top"/>
         <Label Content="side" HorizontalAlignment="Left" Margin="569,60,0,0" VerticalAlignment="Top"/>
         <Label Content="accountid" HorizontalAlignment="Left" Margin="29,58,0,0" VerticalAlignment="Top"/>
@@ -52,16 +62,6 @@
                 <DataGridTextColumn Binding="{Binding dealType}" Header="Dtype"/>
             </DataGrid.Columns>
         </DataGrid>
-        <ComboBox x:Name="dealtype" Margin="639,96,441,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
-            <ComboBoxItem Content="Арилжаа"/>
-            <ComboBoxItem Content="OTC"/>
-            <ComboBoxItem Content="Тохиролцоо"/>
-            <ComboBoxItem Content="Repo"/>
-            <ComboBoxItem Content="Loan 1"/>
-            <ComboBoxItem Content="Loan 2"/>
-            <ComboBoxItem Content="Col 1"/>
-            <ComboBoxItem Content="Col 2"/>
-        </ComboBox>
         <Label Content="dealType" HorizontalAlignment="Left" Margin="569,94,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>
