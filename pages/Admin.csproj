@@ -34,7 +34,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>\\192.168.1.109\Test\</InstallUrl>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -129,6 +129,9 @@
     <Compile Include="dbBind\Reason.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="dbBind\Session.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="dbBind\Transaction.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -205,9 +208,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\Security.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\Session.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\Spread.cs">

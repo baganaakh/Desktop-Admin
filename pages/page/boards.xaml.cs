@@ -123,6 +123,10 @@ namespace Admin
         {
             App.TextBox_PreviewTextInput(sender, e);
         }
+        private void semicolonInput(object sender, TextCompositionEventArgs e)
+        {
+            App.semicolon(sender, e);
+        }
         private void refreshh(object sender, RoutedEventArgs e)
         {
             FillDataGrid();

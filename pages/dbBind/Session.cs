@@ -18,7 +18,7 @@ namespace Admin.dbBind
         public Nullable<long> boardid { get; set; }
         public string name { get; set; }
         public Nullable<System.TimeSpan> stime { get; set; }
-        public Nullable<int> duration { get; set; }
+        public Nullable<System.TimeSpan> duration { get; set; }
         public Nullable<short> algorithm { get; set; }
         public Nullable<int> match { get; set; }
         public Nullable<short> allowedtypes { get; set; }
@@ -33,5 +33,10 @@ namespace Admin.dbBind
         public Nullable<bool> editorder { get; set; }
         public Nullable<bool> delorder { get; set; }
         public Nullable<short> markettype { get; set; }
+        public Nullable<bool> Захзээлүүсгэгч { get; set; }
+        public Nullable<bool> Тохиролцсон { get; set; }
+        public Nullable<bool> Кросс { get; set; }
+        public Nullable<bool> Нөхцөлт { get; set; }
+        public Nullable<bool> ЗахЗээлийн { get; set; }
     }
 }

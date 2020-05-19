@@ -21,6 +21,10 @@ namespace Admin
         public static void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = Regex.IsMatch(e.Text, "[^0-9.-]+");
+        } 
+        public static void semicolon(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = Regex.IsMatch(e.Text, "[^0-9;]+");
         }
     }
 }

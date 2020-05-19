@@ -9,16 +9,9 @@
 
     <Grid >
         <ComboBox IsEditable="True" Name="sboardid" ItemsSource="{Binding}" DisplayMemberPath="name" SelectedValuePath="id" HorizontalAlignment="Left" Margin="150,44,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="allowT" HorizontalAlignment="Left" Height="23" Margin="534,45,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.217,0">
-            <ComboBoxItem>Зах Зээлийн</ComboBoxItem>
-            <ComboBoxItem>Нөхцөлт</ComboBoxItem>
-            <ComboBoxItem>Кросс</ComboBoxItem>
-            <ComboBoxItem>Тохиролцсон</ComboBoxItem>
-            <ComboBoxItem>Зах зээл үүсгэгч</ComboBoxItem>
-        </ComboBox>
         <TextBox PreviewTextInput="PreviewTextInput" x:Name="match1" HorizontalAlignment="Left" Height="23" Margin="844,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="sname" HorizontalAlignment="Left" Height="23" Margin="150,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="sdesc" HorizontalAlignment="Left" Height="23" Margin="534,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="sdesc" HorizontalAlignment="Left" Height="23" Margin="534,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="markT" HorizontalAlignment="Left" Height="23" Margin="844,83,0,0" VerticalAlignment="Top" Width="120">
             <ComboBoxItem>margin</ComboBoxItem>
             <ComboBoxItem>DvP</ComboBoxItem>
@@ -171,15 +164,15 @@
             <ComboBoxItem Content="58"/>
             <ComboBoxItem Content="59"/>
         </ComboBox>
-        <ComboBox x:Name="sstate" HorizontalAlignment="Left" Margin="534,114,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
+        <ComboBox x:Name="sstate" HorizontalAlignment="Left" Margin="534,159,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Устгасан</ComboBoxItem>
             <ComboBoxItem>Хэвийн</ComboBoxItem>
             <ComboBoxItem>Идэвхгүй</ComboBoxItem>
         </ComboBox>
         <CheckBox x:Name="delOrder" Content="Del order" HorizontalAlignment="Left" Margin="716,137,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="editOrder" Content="Edit order" HorizontalAlignment="Left" Margin="844,134,0,0" VerticalAlignment="Top"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="duration" HorizontalAlignment="Left" Height="23" Margin="150,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox IsEnabled="False" x:Name="dhour" HorizontalAlignment="Left" Margin="150,220,0,0" VerticalAlignment="Top" Width="45">
+        <TextBox IsEnabled="False" PreviewTextInput="PreviewTextInput" x:Name="duration" HorizontalAlignment="Left" Height="23" Margin="150,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="dhour" HorizontalAlignment="Left" Margin="150,220,0,0" VerticalAlignment="Top" Width="45">
             <ComboBoxItem Content="00"/>
             <ComboBoxItem Content="01"/>
             <ComboBoxItem Content="02"/>
@@ -205,7 +198,7 @@
             <ComboBoxItem Content="22"/>
             <ComboBoxItem Content="23"/>
         </ComboBox>
-        <ComboBox IsEnabled="False" Name="dminute" HorizontalAlignment="Left" Margin="201,220,0,0" VerticalAlignment="Top" Width="43">
+        <ComboBox Name="dminute" HorizontalAlignment="Left" Margin="201,220,0,0" VerticalAlignment="Top" Width="43">
             <ComboBoxItem Content="00"/>
             <ComboBoxItem Content="01"/>
             <ComboBoxItem Content="02"/>
@@ -266,7 +259,7 @@
             <ComboBoxItem Content="58"/>
             <ComboBoxItem Content="59"/>
         </ComboBox>
-        <ComboBox IsEnabled="False" x:Name="dsecond" HorizontalAlignment="Left" Margin="249,220,0,0" VerticalAlignment="Top" Width="46">
+        <ComboBox x:Name="dsecond" HorizontalAlignment="Left" Margin="249,220,0,0" VerticalAlignment="Top" Width="46">
             <ComboBoxItem Content="00"/>
             <ComboBoxItem Content="01"/>
             <ComboBoxItem Content="02"/>
@@ -327,19 +320,18 @@
             <ComboBoxItem Content="58"/>
             <ComboBoxItem Content="59"/>
         </ComboBox>
-        <ComboBox x:Name="algo" HorizontalAlignment="Left" Height="23" Margin="534,163,0,0" VerticalAlignment="Top" Width="120">
+        <ComboBox x:Name="algo" HorizontalAlignment="Left" Height="23" Margin="534,208,0,0" VerticalAlignment="Top" Width="120">
             <ComboBoxItem>FIFO</ComboBoxItem>
             <ComboBoxItem>Equilibrium</ComboBoxItem>
         </ComboBox>
         <Label Content="boardid" HorizontalAlignment="Left" Margin="29,33,0,0" VerticalAlignment="Top"/>
         <Label Content="Нэр" HorizontalAlignment="Left" Margin="22,71,0,0" VerticalAlignment="Top"/>
         <Label Content="Эхлэх хугацаа" HorizontalAlignment="Left" Margin="22,114,0,0" VerticalAlignment="Top"/>
-        <Label Content="Үргэлжлэх хугацаа" HorizontalAlignment="Left" Margin="22,166,0,0" VerticalAlignment="Top"/>
-        <Label Content="Тайлбар" HorizontalAlignment="Left" Margin="381,81,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.286,0.577"/>
-        <Label Content="алгоритм" HorizontalAlignment="Left" Margin="383,163,0,0" VerticalAlignment="Top"/>
+        <Label Content="Үргэлжлэх хугацаа" HorizontalAlignment="Left" Margin="22,216,0,0" VerticalAlignment="Top"/>
+        <Label Content="Тайлбар" HorizontalAlignment="Left" Margin="381,126,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.286,0.577"/>
+        <Label Content="алгоритм" HorizontalAlignment="Left" Margin="383,208,0,0" VerticalAlignment="Top"/>
         <Label Content="тулгах тоо" HorizontalAlignment="Left" Margin="716,38,0,0" VerticalAlignment="Top"/>
-        <Label Content="allowed types" HorizontalAlignment="Left" Margin="383,38,0,0" VerticalAlignment="Top"/>
-        <Label Content="төлөв" HorizontalAlignment="Left" Margin="381,114,0,0" VerticalAlignment="Top"/>
+        <Label Content="төлөв" HorizontalAlignment="Left" Margin="381,159,0,0" VerticalAlignment="Top"/>
         <Label x:Name="checkDAta_Copy" Content="Market төрөл" HorizontalAlignment="Left" Margin="716,80,0,0" VerticalAlignment="Top"/>
         <Button Content="Insert" HorizontalAlignment="Left" Margin="1062,47,0,0" VerticalAlignment="Top" Width="76" Click="insertFunc" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="New" HorizontalAlignment="Left" Margin="1157,49,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="newData"/>
@@ -347,29 +339,17 @@
         <Button Content="Edit" HorizontalAlignment="Left" Margin="1156,86,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="Delete" HorizontalAlignment="Left" Margin="1062,124,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete"/>
         <Button Content="Update" IsEnabled="False" Name="upd"  HorizontalAlignment="Left" Margin="1063,162,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
-        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" AutoGenerateColumns="False" VerticalAlignment="Center" Width="1362" Height="818" Margin="22,253,0,-11">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding id}" Header="ID"/>
-                <DataGridTextColumn Binding="{Binding boardid}" Header="BID"/>
-                <DataGridTextColumn Binding="{Binding name}" Header="Name"/>
-                <DataGridTextColumn Binding="{Binding stime}" Header="Stime"/>
-                <DataGridTextColumn Binding="{Binding duration}" Header="Duration"/>
-                <DataGridTextColumn Binding="{Binding algorithm}" Header="Algorithm"/>
-                <DataGridTextColumn Binding="{Binding match}" Header="Match"/>
-                <DataGridTextColumn Binding="{Binding allowedtypes}" Header="AllowedTypes"/>
-                <DataGridTextColumn Binding="{Binding description}" Header="description"/>
-                <DataGridTextColumn Binding="{Binding state}" Header="state"/>
-                <DataGridTextColumn Binding="{Binding modified}" Header="Modified"/>
-                <DataGridTextColumn Binding="{Binding isactive}" Header="IsActive"/>
-                <DataGridTextColumn Binding="{Binding starttime}" Header="StartTime"/>
-                <DataGridTextColumn Binding="{Binding endtime}" Header="EndTime"/>
-                <DataGridTextColumn Binding="{Binding tduration}" Header="Tduration"/>
-                <DataGridTextColumn Binding="{Binding matched}" Header="Matched"/>
-                <DataGridTextColumn Binding="{Binding editorder}" Header="EditOrder"/>
-                <DataGridTextColumn Binding="{Binding delorder}" Header="DelOrder"/>
-                <DataGridTextColumn Binding="{Binding markettype}" Header="MarketType"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" VerticalAlignment="Center" Width="1362" Height="818" Margin="22,253,0,-11"/>
         <CheckBox x:Name="isAct" Content="Is Active" HorizontalAlignment="Left" Margin="716,163,0,0" VerticalAlignment="Top"/>
+        
+        <GroupBox Header="allowed types" HorizontalAlignment="Left" Height="97" Margin="383,24,0,0" VerticalAlignment="Top" Width="271">
+            <Grid HorizontalAlignment="Left" Height="87" Margin="10,0,-2,-13" VerticalAlignment="Top" Width="251">
+                <CheckBox x:Name="ЗахЗээлийн" Content="Зах Зээлийн" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <CheckBox x:Name="Нөхцөлт" Content="Нөхцөлт" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top"/>
+                <CheckBox x:Name="Кросс" Content="Кросс" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
+                <CheckBox x:Name="Тохиролцсон" Content="Тохиролцсон" HorizontalAlignment="Left" Margin="140,13,0,0" VerticalAlignment="Top"/>
+                <CheckBox x:Name="Захзээлүүсгэгч" Content="Зах зээл үүсгэгч" HorizontalAlignment="Left" Margin="140,33,0,0" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
     </Grid>
 </Page>

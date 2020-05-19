@@ -15,7 +15,7 @@
             <ColumnDefinition Width="417*"/>
         </Grid.ColumnDefinitions>
         <TextBox x:Name="bname" HorizontalAlignment="Left" Height="23" Margin="69,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" x:Name="tdayss" HorizontalAlignment="Left" Height="23" Margin="286,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="semicolonInput" x:Name="tdayss" HorizontalAlignment="Left" Height="23" Margin="286,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="state" HorizontalAlignment="Left" Margin="487,15,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1" Grid.ColumnSpan="2">
             <ComboBoxItem>Устгасан</ComboBoxItem>            
             <ComboBoxItem>Хэвийн</ComboBoxItem>            
