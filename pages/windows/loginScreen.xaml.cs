@@ -1,6 +1,8 @@
 ﻿using Admin.dbBind;
 using System.Data;
+using System.Deployment.Application;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 
 namespace Admin
@@ -12,7 +14,7 @@ namespace Admin
     {
         public loginScreen()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
         public static class MyGlobals
         {
@@ -23,7 +25,7 @@ namespace Admin
         private void log_submit(object sender, RoutedEventArgs e)
         {
 
-            string roless;
+            //string roless;
             //SqlConnection conn = new SqlConnection(connectionString);
             //try
             //{

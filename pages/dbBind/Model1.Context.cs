@@ -18,7 +18,7 @@ namespace Admin.dbBind
     public partial class demoEntities10 : DbContext
     {
         public demoEntities10()
-            : base("name=demoEntities10")
+            : base("name=Admin.Properties.Settings.demoEntities10")
         {
         }
     

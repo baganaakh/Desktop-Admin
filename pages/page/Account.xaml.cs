@@ -50,11 +50,11 @@ namespace Admin
             }
             string accNo = accno.Text;
             string accnu = string.Format(accNo.ToString().PadLeft(8, '0'));
-            if (acctype.SelectedIndex != 0 && linkacc.SelectedItem == null)
-            {
-                MessageBox.Show("Нэмэх боломжгүй");
-                return;
-            }
+            //if (acctype.SelectedIndex != 0 && linkacc.SelectedItem == null)
+            //{
+            //    MessageBox.Show("Нэмэх боломжгүй");
+            //    return;
+            //}
             using (demoEntities10 context = new demoEntities10())
             {
                 var exist = context.Accounts.Count(a => a.accNumber == accnu);
@@ -72,7 +72,7 @@ namespace Admin
                     {
                         memberid = Convert.ToInt64(memid.SelectedValue),
                         accNumber = accnu,
-                        accountType = (short)acctype.SelectedValue,
+                        accountType = Convert.ToInt16(acctype.SelectedIndex),
                         state = Convert.ToInt16(pstate.SelectedIndex - 1),
                         modified = DateTime.Now
                     };
@@ -222,11 +222,10 @@ namespace Admin
                 //var final = linkas.Where
                 //linkacc.ItemsSource = linkas.;
                 var items = memid.SelectedItem as Member;
-                int linkme = (int)dc.Members.FirstOrDefault(r => r.id == items.id).linkMember;
                 int lnk = 0;
                 try
                 {
-                    lnk = dc.Members.FirstOrDefault(r => r.partid == linkme).id;
+                    lnk = dc.Members.FirstOrDefault(r => r.partid == items.id).id;
                 }
                 catch (NullReferenceException)
                 {
@@ -249,27 +248,49 @@ namespace Admin
             try
             {
                 string mtypee = item.type.ToString();
-                if (item.mask == string.Empty)
-                    return;
-                //string mask = item.mask.ToString();
-                string ander = item.ander.ToString();
-                string dealer = item.dealer.ToString();
-                string broker = item.broker.ToString();
-
-                //companyName.Content = mask;
-                if (mtypee == "0")
+                #region ander broker dealer checknull
+                string ander, broker,dealer;
+                if (item.ander == null)
+                {
+                    ander = "False";
+                }
+                else
+                {
+                    ander = item.ander.ToString();
+                }                
+                if (item.dealer == null)
+                {
+                    dealer = "False";
+                }
+                else
+                {
+                    dealer = item.dealer.ToString();
+                }
+                
+                if (item.broker == null)
+                {
+                    broker = "False";
+                }
+                else
+                {
+                    broker = item.broker.ToString();
+                }
+                #endregion
+                if (mtypee == "0") //арилжаа төрөлтэй байвал
                 {
                     acctype.ItemsSource = actype1;
                     acctype.SelectedValue = 3;
                     acctype.IsEnabled = false;
                     linkacc.IsEnabled = true;
                 }
-                else if (mtypee == "1" && (broker == "False" && dealer == "False" && ander == "False"))
+                // клиринг өөр юу ч үгүй
+                else if (mtypee == "1" && (broker == "False" && dealer == "False" && ander == "False")) 
                 {
                     acctype.ItemsSource = actype2;
                     linkacc.IsEnabled = true;
                     acctype.IsEnabled = true;
                 }
+                // клиринг өөр бусад эрхтэй
                 else if (mtypee == "1" && (broker == "True" || dealer == "True" || ander == "True"))
                 {
                     acctype.ItemsSource = actype1;
@@ -280,7 +301,7 @@ namespace Admin
             }
             catch (Exception EX)
             {
-                MessageBox.Show(EX.ToString());
+                MessageBox.Show(EX.Message.ToString());
                 return;
             }
         }

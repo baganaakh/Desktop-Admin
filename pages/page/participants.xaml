@@ -20,7 +20,7 @@
         <TextBox x:Name="pdistr1" HorizontalAlignment="Left" Height="23" Margin="362,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="phoroo" HorizontalAlignment="Left" Height="23" Margin="362,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="pstreet" HorizontalAlignment="Left" Height="23" Margin="362,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="pstate" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="362,170,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
+        <ComboBox x:Name="pstate" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="362,165,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Устгасан</ComboBoxItem>
             <ComboBoxItem>Хэвийн</ComboBoxItem>
             <ComboBoxItem>Идэвхгүй</ComboBoxItem>
@@ -53,7 +53,7 @@
         <Label Content="утас" HorizontalAlignment="Left" Margin="504,51,0,0" VerticalAlignment="Top"/>
         <Label Content="Цахим хуудас" HorizontalAlignment="Left" Margin="504,92,0,0" VerticalAlignment="Top"/>
         <Label Content="Имэйл" HorizontalAlignment="Left" Margin="504,166,0,0" VerticalAlignment="Top"/>
-        <Label Content="төлөв" HorizontalAlignment="Left" Margin="273,168,0,0" VerticalAlignment="Top"/>
+        <Label Content="төлөв" HorizontalAlignment="Left" Margin="273,163,0,0" VerticalAlignment="Top"/>
         <Label Content="webid" HorizontalAlignment="Left" Margin="748,99,0,0" VerticalAlignment="Top"/>
         <Label Content="csid" HorizontalAlignment="Left" Margin="755,128,0,0" VerticalAlignment="Top"/>
         <Label Content="Нэр" HorizontalAlignment="Left" Margin="27,57,0,0" VerticalAlignment="Top"/>

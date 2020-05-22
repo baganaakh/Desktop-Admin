@@ -34,11 +34,11 @@ namespace Admin
             stimeminute.SelectedIndex = arrays.Minutes;
             stimeSecond.SelectedIndex = arrays.Seconds;
             duration.Text = value.duration.ToString();
-            //Захзээлүүсгэгч = Захзээлүүсгэгч.IsChecked.arrays.;
-            //Тохиролцсон = Тохиролцсон.IsChecked.arrays.;
-            //Кросс = Кросс.IsChecked.arrays.;
-            //Нөхцөлт = Нөхцөлт.IsChecked.arrays.;
-            //ЗахЗээлийн = ЗахЗээлийн.IsChecked.arrays.;
+            Захзээлүүсгэгч.IsChecked = value.Захзээлүүсгэгч;
+            Тохиролцсон.IsChecked = value.Тохиролцсон;
+            Кросс.IsChecked=value.Кросс;
+            Нөхцөлт.IsChecked=value.Нөхцөлт;
+            ЗахЗээлийн.IsChecked=value.ЗахЗээлийн;
             sdesc.Text = value.description;
             sstate.SelectedIndex = Convert.ToInt32(value.state + 1);
             algo.SelectedIndex = Convert.ToInt32(value.algorithm);
