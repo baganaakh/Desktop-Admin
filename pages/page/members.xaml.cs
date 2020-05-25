@@ -47,15 +47,18 @@ namespace Admin
         private void insertFunc(object sender, RoutedEventArgs e)
         {
             if (starttime.SelectedDate == null || endtime.SelectedDate == null || participants.SelectedItem == null ||
-                string.IsNullOrEmpty(pcode.Text) || pstate.SelectedItem == null || mtype.SelectedItem == null
-                || linkMember.SelectedItem == null)
+                string.IsNullOrEmpty(pcode.Text) || pstate.SelectedItem == null || mtype.SelectedItem == null)
             {
                 MessageBox.Show("Талбар дутуу");
                 return;
             }
-            if (broker.IsChecked == false && dealer.IsChecked == false && ander.IsChecked == false && nominal.IsChecked == false)
+
+            if ((broker.IsChecked == false && dealer.IsChecked == false 
+                && ander.IsChecked == false && nominal.IsChecked == false)
+                || (broker.IsChecked == false && dealer.IsChecked == false 
+                && ander.IsChecked == false && nominal.IsChecked == true && mtype.SelectedIndex==0))
             {
-                MessageBox.Show("Please please check dealerTypes !!!!!");
+                MessageBox.Show("Check box selection combos wrong !!!!!");
                 return;
             }
             using (demoEntities10 conx = new demoEntities10())
@@ -247,6 +250,14 @@ namespace Admin
         #region update
         private void update(object sender, RoutedEventArgs e)
         {
+            if ((broker.IsChecked == false && dealer.IsChecked == false
+                && ander.IsChecked == false && nominal.IsChecked == false)
+                || (broker.IsChecked == false && dealer.IsChecked == false
+                && ander.IsChecked == false && nominal.IsChecked == true && mtype.SelectedIndex == 0))
+            {
+                MessageBox.Show("Check box selection combos wrong !!!!!");
+                return;
+            }
             using (demoEntities10 conx = new demoEntities10())
             {
                 Member me = conx.Members.FirstOrDefault(r => r.id == id);

@@ -48,19 +48,43 @@ namespace Admin
                 MessageBox.Show("Талбарууд дутуу байна");
                 return;
             }
+            Member me = memid.SelectedItem as Member;
+            if (me.nominal == false && linkacc.SelectedItem == null)
+            {
+                MessageBox.Show("Арилжаа холбох дансгүй бол нээгдэхүй");
+                return;
+            }
             string accNo = accno.Text;
-            string accnu = string.Format(accNo.ToString().PadLeft(8, '0'));
             //if (acctype.SelectedIndex != 0 && linkacc.SelectedItem == null)
             //{
             //    MessageBox.Show("Нэмэх боломжгүй");
             //    return;
             //}
+            string accountType = acctype.Text;
+            switch (accountType) 
+            {
+                case "Төлбөр":
+                    accountType = "0";
+                    break;
+                case "Барьцаа":
+                    accountType = "1";
+                    break;
+                case "Клиринг":
+                    accountType = "2";
+                    break;
+                case "Арилжаа":
+                    accountType = "3";
+                    break;
+                default:
+                    accountType = "-1";
+                    break;
+            }
             using (demoEntities10 context = new demoEntities10())
             {
-                var exist = context.Accounts.Count(a => a.accNumber == accnu);
+                var exist = context.Accounts.Count(a => a.accNumber == accNo);
                 if (exist != 0)
                 {
-                    MessageBox.Show("Account number exists " + accnu + " !!!");
+                    MessageBox.Show("Account number exists " + accNo + " !!!");
                     return;
                 }
             }
@@ -71,8 +95,8 @@ namespace Admin
                     var std = new Account()
                     {
                         memberid = Convert.ToInt64(memid.SelectedValue),
-                        accNumber = accnu,
-                        accountType = Convert.ToInt16(acctype.SelectedIndex),
+                        accNumber = accNo,
+                        accountType = Convert.ToInt16(accountType),
                         state = Convert.ToInt16(pstate.SelectedIndex - 1),
                         modified = DateTime.Now
                     };
@@ -146,13 +170,19 @@ namespace Admin
         #region update
         private void update(object sender, RoutedEventArgs e)
         {
+            Member me = memid.SelectedItem as Member;
+            if (me.nominal == false && linkacc.SelectedItem == null)
+            {
+                MessageBox.Show("Арилжаа холбох дансгүй бол нээгдэхүй");
+                return;
+            }
             var ac = DateTable2.SelectedItem as Account;
             if (acctype.SelectedIndex != 0 && linkacc.SelectedItem == null)
             {
                 MessageBox.Show("Нэмэх боломжгүй");
                 return;
             }
-            string accnu = string.Format(accno.Text.ToString().PadLeft(8, '0'));
+            string accnu = accno.Text;
             using (demoEntities10 context = new demoEntities10())
             {
                 var exist = context.Accounts.Count(a => a.accNumber == accnu);
@@ -187,51 +217,42 @@ namespace Admin
             memid.ItemsSource = dc.Members.ToList();
         }
         private void acctype_SelectionChanged(object sender, SelectionChangedEventArgs e)
-
         {
             linkacc.SelectedItem = null;
             linkacc.ItemsSource = null;
-            int item = acctype.SelectedIndex;
+            string item = acctype.Text;
             try
             {
+                switch (item)
+                {
+                    case "Төлбөр":
+                        linkacc.IsEnabled = false;
+                        break;
+                    case "Барьцаа":
+                        linkType = 0;
+                        linkacc.IsEnabled = true;
+                        break;
+                    case "Клиринг":
+                        linkType = 0;
+                        linkacc.IsEnabled = true;
+                        break;
+                    case "Арилжаа":
+                        linkType = 1;
+                        linkacc.IsEnabled = true;
+                        break;
+                    default:
+                        break;
+                }
                 if (item == null)
                     return;
-                if (item == 0)  //Төлбөр
-                {
-                    linkacc.IsEnabled = false;
-                    return;
-                }
-                else if (item == 1)  //Барьцаа
-                {
-                    linkType = 0;
-                    linkacc.IsEnabled = true;
-                }
-                else if (item == 2)  //Клиринг
-                {
-                    linkType = 0;
-                    linkacc.IsEnabled = true;
-                }
-                else if (item == 3)  //Арилжаа
-                {
-                    linkType = 1;
-                    linkacc.IsEnabled = true;
-                }
+                
                 demoEntities10 dc = new demoEntities10();
                 List<Account> linkas = linkacc.ItemsSource as List<Account>;
                 //var linkas = de.Accounts.Where(s => s.accountType == linkType).ToList();
                 //var final = linkas.Where
                 //linkacc.ItemsSource = linkas.;
                 var items = memid.SelectedItem as Member;
-                int lnk = 0;
-                try
-                {
-                    lnk = dc.Members.FirstOrDefault(r => r.partid == items.id).id;
-                }
-                catch (NullReferenceException)
-                {
-                    MessageBox.Show("холбогдсон Participantid байхгүй байна");
-                }
-                var lists = dc.Accounts.Where(r => r.memberid == lnk).ToList();
+                var lists = dc.Accounts.Where(r => r.memberid == items.id).ToList();
                 linkacc.ItemsSource = lists.Where(s => s.accountType == linkType).ToList();
             }
             catch (Exception ex)
@@ -243,13 +264,15 @@ namespace Admin
         {
             List<string> actype1 = new List<string>() { "Төлбөр", "Барьцаа", "Клиринг", "Арилжаа" };
             List<string> actype2 = new List<string>() { "Төлбөр", "Барьцаа", "Клиринг" };
+            List<string> ariljaa = new List<string>() { "Арилжаа" };
+
             var item = memid.SelectedItem as Member;
             linkacc.ItemsSource = null;
             try
             {
                 string mtypee = item.type.ToString();
-                #region ander broker dealer checknull
-                string ander, broker,dealer;
+                #region ander broker dealer nominal checknull
+                string ander, broker, dealer, nominal;
                 if (item.ander == null)
                 {
                     ander = "False";
@@ -257,7 +280,7 @@ namespace Admin
                 else
                 {
                     ander = item.ander.ToString();
-                }                
+                }
                 if (item.dealer == null)
                 {
                     dealer = "False";
@@ -266,7 +289,7 @@ namespace Admin
                 {
                     dealer = item.dealer.ToString();
                 }
-                
+
                 if (item.broker == null)
                 {
                     broker = "False";
@@ -275,29 +298,74 @@ namespace Admin
                 {
                     broker = item.broker.ToString();
                 }
+                if (item.nominal == null)
+                {
+                    nominal = "False";
+                }
+                else
+                {
+                    nominal = item.nominal.ToString();
+                }
                 #endregion
-                if (mtypee == "0") //арилжаа төрөлтэй байвал
+                #region nominal false
+                if (nominal == "False")
+                {
+                    acctype.ItemsSource = ariljaa;
+                    acctype.SelectedIndex = 0;
+                    acctype.IsEnabled = false;
+                    return;
+                }
+
+                #endregion
+                #region nominal true
+                else if
+                    (nominal == "True" && item.type == 0 &&
+                                            (item.broker == true
+                                            || item.dealer == true
+                                            || item.ander == true)
+                    )
                 {
                     acctype.ItemsSource = actype1;
-                    acctype.SelectedValue = 3;
-                    acctype.IsEnabled = false;
-                    linkacc.IsEnabled = true;
+                    acctype.IsEnabled = true;
+                    return;
                 }
-                // клиринг өөр юу ч үгүй
-                else if (mtypee == "1" && (broker == "False" && dealer == "False" && ander == "False")) 
+                else if
+                    (item.nominal == true && item.type == 1 &&
+                                            (item.broker == false
+                                            || item.dealer == false
+                                            || item.ander == false)
+                    )
+                {
+                    acctype.ItemsSource = actype2;
+                    acctype.IsEnabled = true;
+                    return;
+                }
+
+                #endregion
+                MessageBox.Show("Error un predicted condition match !!!");
+                //if (mtypee == "0") //арилжаа төрөлтэй байвал
+                //{
+                //    acctype.ItemsSource = actype1;
+                //    acctype.SelectedValue = 3;
+                //    acctype.IsEnabled = false;
+                //    linkacc.IsEnabled = true;
+                //}
+                //// клиринг өөр юу ч үгүй
+                else if (mtypee == "1" && (broker == "False" && dealer == "False" && ander == "False"))
                 {
                     acctype.ItemsSource = actype2;
                     linkacc.IsEnabled = true;
                     acctype.IsEnabled = true;
                 }
-                // клиринг өөр бусад эрхтэй
-                else if (mtypee == "1" && (broker == "True" || dealer == "True" || ander == "True"))
-                {
-                    acctype.ItemsSource = actype1;
-                    acctype.SelectedItem = null;
-                    linkacc.IsEnabled = true;
-                    acctype.IsEnabled = true;
-                }
+                //// клиринг өөр бусад эрхтэй
+                //else if (mtypee == "1" &&(broker == "True" || dealer == "True" || ander == "True")
+                //        )
+                //{
+                //    acctype.ItemsSource = actype1;
+                //    acctype.SelectedItem = null;
+                //    linkacc.IsEnabled = true;
+                //    acctype.IsEnabled = true;
+                //}
             }
             catch (Exception EX)
             {
