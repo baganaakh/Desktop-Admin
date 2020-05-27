@@ -20,6 +20,7 @@ namespace Admin
             FillDataGrid();
             bindCombo();
         }
+        string accountType;
         short linkType;
         #region edit
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -60,7 +61,7 @@ namespace Admin
             //    MessageBox.Show("Нэмэх боломжгүй");
             //    return;
             //}
-            string accountType = acctype.Text;
+            accountType = acctype.Text;
             switch (accountType) 
             {
                 case "Төлбөр":
@@ -88,7 +89,7 @@ namespace Admin
                     return;
                 }
             }
-            if (acctype.SelectedIndex == 0)
+            if (accountType == "0")
             {
                 using (var contx = new demoEntities10())
                 {
@@ -119,7 +120,7 @@ namespace Admin
                 {
                     memberid = Convert.ToInt64(memid.SelectedValue),
                     accNumber = accno.Text,
-                    accountType = Convert.ToInt16(acctype.SelectedIndex),
+                    accountType = Convert.ToInt16(accountType),
                     LinkAccount = Convert.ToInt64(linkacc.SelectedValue),
                     startdate = sdate.SelectedDate,
                     enddate = edate.SelectedDate,
@@ -197,7 +198,7 @@ namespace Admin
                 Account acc = conx.Accounts.FirstOrDefault(r => r.id == ac.id);
                 acc.memberid = Convert.ToInt64(memid.SelectedValue);
                 acc.accNumber = accno.Text;
-                acc.accountType = Convert.ToInt16(acctype.SelectedIndex);
+                acc.accountType = Convert.ToInt16(accountType);
                 acc.state = Convert.ToInt16(pstate.SelectedIndex - 1);
                 acc.LinkAccount = Convert.ToInt64(linkacc.SelectedValue);
                 acc.startdate = sdate.SelectedDate;
@@ -237,22 +238,27 @@ namespace Admin
                         linkacc.IsEnabled = true;
                         break;
                     case "Арилжаа":
-                        linkType = 1;
+                        linkType = 2;
                         linkacc.IsEnabled = true;
                         break;
-                    default:
+                    case "":
+                        MessageBox.Show("Empty String");
                         break;
+                    default:
+                        MessageBox.Show("Error not expected !!! "+item);
+                        break;
+
                 }
                 if (item == null)
                     return;
                 
                 demoEntities10 dc = new demoEntities10();
                 List<Account> linkas = linkacc.ItemsSource as List<Account>;
-                //var linkas = de.Accounts.Where(s => s.accountType == linkType).ToList();
+                var lists = dc.Accounts.Where(s => s.accountType == linkType).ToList();
                 //var final = linkas.Where
                 //linkacc.ItemsSource = linkas.;
                 var items = memid.SelectedItem as Member;
-                var lists = dc.Accounts.Where(r => r.memberid == items.id).ToList();
+                //var lists = dc.Accounts.Where(r => r.memberid == items.id).ToList();
                 linkacc.ItemsSource = lists.Where(s => s.accountType == linkType).ToList();
             }
             catch (Exception ex)
@@ -262,6 +268,7 @@ namespace Admin
         }
         private void memid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            acctype.ItemsSource = null;
             List<string> actype1 = new List<string>() { "Төлбөр", "Барьцаа", "Клиринг", "Арилжаа" };
             List<string> actype2 = new List<string>() { "Төлбөр", "Барьцаа", "Клиринг" };
             List<string> ariljaa = new List<string>() { "Арилжаа" };
@@ -310,9 +317,11 @@ namespace Admin
                 #region nominal false
                 if (nominal == "False")
                 {
+                    acctype.Text = "Арилжаа";
                     acctype.ItemsSource = ariljaa;
                     acctype.SelectedIndex = 0;
                     acctype.IsEnabled = false;
+                    linkacc.IsEnabled = true;
                     return;
                 }
 
@@ -342,7 +351,7 @@ namespace Admin
                 }
 
                 #endregion
-                MessageBox.Show("Error un predicted condition match !!!");
+                
                 //if (mtypee == "0") //арилжаа төрөлтэй байвал
                 //{
                 //    acctype.ItemsSource = actype1;
@@ -356,6 +365,10 @@ namespace Admin
                     acctype.ItemsSource = actype2;
                     linkacc.IsEnabled = true;
                     acctype.IsEnabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Error un predicted condition match !!!");
                 }
                 //// клиринг өөр бусад эрхтэй
                 //else if (mtypee == "1" &&(broker == "True" || dealer == "True" || ander == "True")

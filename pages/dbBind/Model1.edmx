@@ -51,7 +51,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="code" Type="nvarchar" MaxLength="16" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="volume" Type="int" Nullable="false" />
+          <Property Name="volume" Type="bigint" Nullable="false" />
           <Property Name="note" Type="nvarchar(max)" />
           <Property Name="expireDate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="state" Type="smallint" Nullable="false" />
@@ -549,7 +549,6 @@
           <EntitySet Name="Accounts" EntityType="demoModel.Account" />
           <EntitySet Name="AccountDetails" EntityType="demoModel.AccountDetail" />
           <EntitySet Name="ActiveSessions" EntityType="demoModel.ActiveSession" />
-          <EntitySet Name="Assets" EntityType="demoModel.Asset" />
           <EntitySet Name="BoardInstruments" EntityType="demoModel.BoardInstrument" />
           <EntitySet Name="Boards" EntityType="demoModel.Board" />
           <EntitySet Name="ClearingAccounts" EntityType="demoModel.ClearingAccount" />
@@ -575,6 +574,7 @@
           <EntitySet Name="users" EntityType="demoModel.user" />
           <EntitySet Name="Margins" EntityType="demoModel.Margin" />
           <EntitySet Name="Sessions" EntityType="demoModel.Session" />
+          <EntitySet Name="Assets" EntityType="demoModel.Asset" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -625,21 +625,6 @@
           <Property Name="tduration" Type="Time" Nullable="false" Precision="7" />
           <Property Name="matched" Type="Int32" Nullable="false" />
           <Property Name="state" Type="Int16" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Asset">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="code" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="volume" Type="Int32" Nullable="false" />
-          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="expireDate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="ratio" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="BoardInstrument">
           <Key>
@@ -1032,6 +1017,21 @@
           <Property Name="Нөхцөлт" Type="Boolean" />
           <Property Name="ЗахЗээлийн" Type="Boolean" />
         </EntityType>
+        <EntityType Name="Asset">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="volume" Type="Int64" Nullable="false" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="expireDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ratio" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1075,22 +1075,6 @@
                 <ScalarProperty Name="starttime" ColumnName="starttime" />
                 <ScalarProperty Name="isactive" ColumnName="isactive" />
                 <ScalarProperty Name="sessionid" ColumnName="sessionid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Assets">
-            <EntityTypeMapping TypeName="demoModel.Asset">
-              <MappingFragment StoreEntitySet="Assets">
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="ratio" ColumnName="ratio" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="expireDate" ColumnName="expireDate" />
-                <ScalarProperty Name="note" ColumnName="note" />
-                <ScalarProperty Name="volume" ColumnName="volume" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1506,6 +1490,22 @@
                 <ScalarProperty Name="stime" ColumnName="stime" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="boardid" ColumnName="boardid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Assets">
+            <EntityTypeMapping TypeName="demoModel.Asset">
+              <MappingFragment StoreEntitySet="Assets">
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="ratio" ColumnName="ratio" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="expireDate" ColumnName="expireDate" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="volume" ColumnName="volume" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

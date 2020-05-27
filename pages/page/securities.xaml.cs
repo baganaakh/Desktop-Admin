@@ -53,11 +53,12 @@ namespace Admin
                 sdate.SelectedDate == null ||
                 edate.SelectedDate == null ||
                 state.SelectedValue == null ||
-                scode.Text == null)
+                scode.Text == null )
             {
                 MessageBox.Show("Талбарууд дутуу байна");
                 return;
             }
+            if (string.IsNullOrEmpty(srate.Text)) srate.Text = "0";
             using (demoEntities10 conx=new demoEntities10())
             {
                 var secu = new Security

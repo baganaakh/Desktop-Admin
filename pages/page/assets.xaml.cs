@@ -55,7 +55,7 @@ namespace Admin
                     ratio=Convert.ToDecimal( artio.Text)/100,
                     expireDate=Convert.ToDateTime( aexpire.SelectedDate),
                     state=Convert.ToInt16(astate.SelectedIndex -1),
-                    volume = Convert.ToInt32(avolume.Text),
+                    volume = Convert.ToInt64(avolume.Text),
                 };
                 contx.Assets.Add(ast);
                 contx.SaveChanges();
@@ -116,7 +116,7 @@ namespace Admin
                 asst.state = Convert.ToInt16(astate.SelectedIndex - 1);
                 asst.ratio = Convert.ToDecimal(artio.Text);
                 asst.expireDate = Convert.ToDateTime(aexpire.SelectedDate);
-                asst.volume = Convert.ToInt32(avolume.Text);
+                asst.volume = Convert.ToInt64(avolume.Text);
                 conx.SaveChanges();
             }          
             FillDataGrid();

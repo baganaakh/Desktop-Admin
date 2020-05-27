@@ -11,7 +11,6 @@
         <EntityTypeShape EntityType="demoModel.Account" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="demoModel.AccountDetail" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="demoModel.ActiveSession" Width="1.5" PointX="2.75" PointY="3.75" />
-        <EntityTypeShape EntityType="demoModel.Asset" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="demoModel.BoardInstrument" Width="1.5" PointX="4.75" PointY="4.75" />
         <EntityTypeShape EntityType="demoModel.Board" Width="1.5" PointX="6.75" PointY="0.75" />
         <EntityTypeShape EntityType="demoModel.ClearingAccount" Width="1.5" PointX="6.75" PointY="4.75" />
@@ -37,6 +36,7 @@
         <EntityTypeShape EntityType="demoModel.user" Width="1.5" PointX="14.75" PointY="14.75" />
         <EntityTypeShape EntityType="demoModel.Margin" Width="1.5" PointX="7.375" PointY="15.75" />
         <EntityTypeShape EntityType="demoModel.Session" Width="1.5" PointX="17.375" PointY="0.75" />
+        <EntityTypeShape EntityType="demoModel.Asset" Width="1.5" PointX="0.75" PointY="17.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

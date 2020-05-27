@@ -18,7 +18,7 @@ namespace Admin.dbBind
     public partial class demoEntities10 : DbContext
     {
         public demoEntities10()
-            : base("name=Admin.Properties.Settings.demoEntities10")
+            : base("name=demoEntities10")
         {
         }
     
@@ -30,7 +30,6 @@ namespace Admin.dbBind
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<AccountDetail> AccountDetails { get; set; }
         public virtual DbSet<ActiveSession> ActiveSessions { get; set; }
-        public virtual DbSet<Asset> Assets { get; set; }
         public virtual DbSet<BoardInstrument> BoardInstruments { get; set; }
         public virtual DbSet<Board> Boards { get; set; }
         public virtual DbSet<ClearingAccount> ClearingAccounts { get; set; }
@@ -56,6 +55,7 @@ namespace Admin.dbBind
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<Margin> Margins { get; set; }
         public virtual DbSet<Session> Sessions { get; set; }
+        public virtual DbSet<Asset> Assets { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

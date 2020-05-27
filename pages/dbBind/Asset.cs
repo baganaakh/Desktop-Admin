@@ -17,7 +17,7 @@ namespace Admin.dbBind
         public int id { get; set; }
         public string code { get; set; }
         public string name { get; set; }
-        public int volume { get; set; }
+        public long volume { get; set; }
         public string note { get; set; }
         public System.DateTime expireDate { get; set; }
         public short state { get; set; }

@@ -12,13 +12,13 @@
         <ComboBox IsEditable="True" x:Name="memid" ItemsSource="{Binding}" SelectionChanged="memid_SelectionChanged" DisplayMemberPath="code" SelectedValuePath="id" HorizontalAlignment="Left" Margin="155,55,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="pstate" HorizontalAlignment="Left" Margin="724,55,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.517,-1">
             <ComboBoxItem>Устгасан</ComboBoxItem>
-            <ComboBoxItem>Хэвийн</ComboBoxItem>
+            <ComboBoxItem IsSelected="True">Хэвийн</ComboBoxItem>
             <ComboBoxItem>Идэвхгүй</ComboBoxItem>
         </ComboBox>
         <ComboBox IsEditable="True" x:Name="linkacc" IsEnabled="False" DisplayMemberPath="accNumber" SelectedValuePath="id" HorizontalAlignment="Left" Margin="451,90,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox IsEditable="True" x:Name="acctype" IsEnabled="False" SelectionChanged="acctype_SelectionChanged" HorizontalAlignment="Left" Margin="451,55,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewTextInput="PreviewTextInput" Name="accno" HorizontalAlignment="Left" Height="23" Margin="155,97,0,0" MaxLength="10" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="memberid" HorizontalAlignment="Left" Margin="34,52,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="accno" HorizontalAlignment="Left" Height="23" Margin="155,97,0,0" MaxLength="10" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="member" HorizontalAlignment="Left" Margin="34,52,0,0" VerticalAlignment="Top"/>
         <Label Content="Company name" x:Name="companyName" HorizontalAlignment="Left" Margin="155,14,0,0" VerticalAlignment="Top"/>
         <Label Content="дансны төрөл" HorizontalAlignment="Left" Margin="345,51,0,0" VerticalAlignment="Top"/>
         <Label Content="дансны дугаар" HorizontalAlignment="Left" Margin="34,97,0,0" VerticalAlignment="Top"/>
@@ -30,9 +30,9 @@
         <Button Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.181,-0.633" Click="delete" Margin="927,90,0,0"/>
         <Button Content="Update" IsEnabled="False" Name="upd"  HorizontalAlignment="Left" Margin="1055,131,0,0" VerticalAlignment="Top" Width="75" Click="update" RenderTransformOrigin="1.181,-0.633"/>
         <Button Content="Edit" HorizontalAlignment="Left" Margin="1055,55,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="1.181,-0.633"/>
-        <DatePicker Name="sdate" HorizontalAlignment="Left" Margin="155,146,0,0" VerticalAlignment="Top" Width="120"/>
+        <DatePicker SelectedDate="2020.05.1" Name="sdate" HorizontalAlignment="Left" Margin="155,146,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Start date" HorizontalAlignment="Left" Margin="34,146,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.452,0.5"/>
-        <DatePicker Name="edate" HorizontalAlignment="Left" Margin="451,133,0,0" VerticalAlignment="Top" Width="120"/>
+        <DatePicker SelectedDate="2020.12.31" Name="edate" HorizontalAlignment="Left" Margin="451,133,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="End Date" HorizontalAlignment="Left" Margin="345,133,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.452,0.5"/>
         <DataGrid x:Name="DateTable2" HorizontalAlignment="Left" MinHeight="150" VerticalAlignment="Center" Width="1138" Height="604" Margin="34,200,0,0"></DataGrid>
     </Grid>
